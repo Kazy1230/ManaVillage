@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Newsreader, Noto_Sans_JP, Zen_Kaku_Gothic_New } from "next/font/google";
 import NavLinks from "@/components/NavLinks";
 import ScrollEffects from "@/components/ScrollEffects";
+import SiteFooter from "@/components/SiteFooter";
 import { getViewer } from "@/lib/auth";
 import { initial } from "@/lib/format";
 import { SITE_URL } from "@/lib/env";
@@ -39,17 +40,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
           </div>
         </header>
         <main>{children}</main>
-        <footer className="site-foot bleed">
-          <div className="foot-in">
-            <span>まなビレッジ — 英語学習の記事と交流の場</span>
-            <nav aria-label="フッター">
-              <Link href="/articles">記事</Link>
-              <Link href="/boards">掲示板</Link>
-              {viewer ? <Link href="/mypage">マイページ</Link> : <Link href="/login">ログイン</Link>}
-            </nav>
-            <span>© {new Date().getFullYear()} Kaz</span>
-          </div>
-        </footer>
+        <SiteFooter loggedIn={!!viewer} />
         <ScrollEffects />
       </body>
     </html>
