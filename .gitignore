@@ -1,0 +1,26 @@
+# dependencies / build
+node_modules/
+.next/
+out/
+build/
+*.tsbuildinfo
+next-env.d.ts
+
+# secrets
+.env
+.env*.local
+.env.*
+!.env.example
+
+# deploy links
+.vercel/
+
+# supabase cli
+web/supabase/.temp/
+
+# os / editor / logs
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+.claude/settings.local.json

@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+<title>まなビレッジ モック</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#F3F5FA; --surface:#FFFFFF; --ink:#222735; --muted:#667085; --faint:#98A1B3;
+  --line:#E2E6EE; --line-strong:#CDD4E1;
+  --accent:#2F6BFF; --accent-dark:#1F4FD1; --accent-soft:#EAF0FF; --hl:#FFE27A;
+  --p1:#E6EDFF; --p2:#FFF1CF; --p3:#DDF5E8; --p4:#FFE4EA; --p5:#ECE6FF; --p6:#DDF1FA;
+  --shadow-s:0 1px 2px rgba(25,35,70,.05),0 2px 8px rgba(25,35,70,.05);
+  --shadow-m:0 2px 4px rgba(25,35,70,.05),0 12px 32px rgba(25,35,70,.10);
+  --r:20px;
+  --display:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --en:"Newsreader",Georgia,serif;
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.8;padding-inline:20px;padding-block:0 140px;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:8px}
+h1,h2,h3{font-family:var(--display);font-weight:700;text-wrap:balance;margin:0;line-height:1.4;letter-spacing:.01em}
+p{margin:0}
+.wrap{max-width:1100px;margin-inline:auto}
+.bleed{margin-inline:-20px;padding-inline:20px}
+.en{font-family:var(--en);font-style:italic}
+.sub{color:var(--muted);font-size:13px}
+.hl{background:linear-gradient(var(--hl),var(--hl)) no-repeat 0 88% / 100% 42%;padding-inline:2px}
+
+/* ---------- header ---------- */
+.site-head{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:rgba(255,255,255,.92);backdrop-filter:saturate(1.5) blur(12px);border-bottom:1px solid var(--line);transition:box-shadow .3s}
+.site-head.scrolled{box-shadow:0 6px 24px rgba(25,35,70,.08)}
+.head-in{max-width:1100px;margin-inline:auto;display:flex;align-items:center;gap:40px;height:68px;transition:height .3s var(--ease)}
+.scrolled .head-in{height:58px}
+.logo{font-family:var(--display);font-weight:900;font-size:19px;letter-spacing:.04em;display:flex;align-items:center;gap:8px}
+.logo i{width:10px;height:10px;border-radius:3px;background:var(--accent);display:block;transition:transform .5s var(--ease)}
+.logo:hover i{transform:rotate(135deg) scale(1.2)}
+.nav{display:flex;gap:6px;font-size:14px}
+.nav a{position:relative;padding:8px 14px;border-radius:99px;color:var(--muted);transition:color .2s,background .2s}
+.nav a:hover{color:var(--ink);background:var(--bg)}
+.nav a[aria-current="true"]{color:var(--accent);background:var(--accent-soft);font-weight:500}
+.acct{margin-left:auto}
+.progress{position:absolute;left:0;bottom:-1px;height:3px;width:100%;background:var(--accent);transform-origin:0 50%;transform:scaleX(0)}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:42px;padding-inline:22px;border-radius:99px;border:1px solid var(--line-strong);background:var(--surface);font-weight:500;font-size:14px;white-space:nowrap;transition:transform .15s,box-shadow .2s,background .2s,border-color .2s}
+.btn:hover{border-color:var(--ink)}
+.btn:active{transform:scale(.96)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 4px 14px rgba(47,107,255,.28)}
+.btn.primary:hover{background:var(--accent-dark);border-color:var(--accent-dark);box-shadow:0 6px 20px rgba(47,107,255,.36)}
+.btn .arr{transition:transform .25s var(--ease)}
+.btn:hover .arr{transform:translateX(4px)}
+.avatar{width:38px;height:38px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:14px;flex:none;border:2px solid var(--surface);box-shadow:0 0 0 1px var(--line)}
+
+/* ---------- common blocks ---------- */
+.screen{padding-block:40px 0}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow-s)}
+.block{padding-block:72px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:28px;padding-bottom:18px;border-bottom:1px solid var(--line-strong)}
+.sec-head h2{font-size:24px;font-weight:900}
+.sec-head .sub{margin-top:4px}
+.more{font-size:14px;color:var(--accent);font-weight:500;display:inline-flex;gap:6px;align-items:center;white-space:nowrap}
+.more .arr{transition:transform .25s var(--ease)}
+.more:hover .arr{transform:translateX(4px)}
+.tag{color:var(--accent);font-size:13px;font-weight:500}
+.meta{display:flex;gap:6px 14px;align-items:center;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.dot-sep{width:3px;height:3px;border-radius:50%;background:var(--faint)}
+
+/* ---------- hero ---------- */
+.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:0;overflow:hidden}
+.hero-text{padding:clamp(28px,5vw,56px);display:grid;gap:22px;align-content:center}
+.badge-new{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:5px 12px;border-radius:99px;justify-self:start}
+.badge-new i{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 1.8s infinite}
+.hero h1{font-size:clamp(26px,3.8vw,40px);font-weight:900;line-height:1.38}
+.hero .lead{color:var(--muted);font-size:16px;max-width:32em}
+.stage{background:var(--p1);position:relative;display:grid;place-content:center;gap:14px;padding:48px 36px;min-height:360px;text-align:center;border-left:1px solid var(--line)}
+.stage-label{font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.phrase{display:grid;gap:10px;min-height:120px;align-content:center}
+.phrase .en{font-size:clamp(24px,3vw,32px);line-height:1.35}
+.phrase .ja{font-size:14px;color:var(--muted)}
+.phrase mark{color:inherit;background:linear-gradient(var(--hl),var(--hl)) no-repeat 0 88% / 0% 42%;padding-inline:2px}
+.phrase.in{animation:phraseIn .6s var(--ease) both}
+.phrase.in mark{animation:marker .7s .35s var(--ease) forwards}
+.level{display:inline-flex;gap:6px;justify-content:center;font-size:12px;color:var(--muted);align-items:center}
+.level b{font-weight:500;color:var(--ink)}
+.dots{display:flex;gap:8px;justify-content:center;margin-top:6px}
+.dots button{width:8px;height:8px;border-radius:99px;border:0;padding:0;background:rgba(34,39,53,.18);transition:width .35s var(--ease),background .3s}
+.dots button[aria-current="true"]{width:26px;background:var(--accent)}
+.float{position:absolute;font-family:var(--en);font-style:italic;color:rgba(47,107,255,.22);pointer-events:none;animation:bob 6s ease-in-out infinite}
+.f1{top:10%;left:8%;font-size:26px}
+.f2{bottom:12%;right:9%;font-size:22px;animation-delay:-2s}
+.f3{top:16%;right:14%;font-size:18px;animation-delay:-4s}
+
+/* ---------- ticker ---------- */
+.ticker{background:var(--ink);color:#fff;overflow:hidden;margin-top:40px;border-radius:0}
+.ticker-track{display:flex;gap:48px;width:max-content;padding-block:14px;animation:marquee 45s linear infinite}
+.ticker:hover .ticker-track{animation-play-state:paused}
+.ticker span{white-space:nowrap;font-size:14px;display:inline-flex;gap:12px;align-items:center}
+.ticker .en{font-size:17px;color:var(--hl)}
+.ticker .sep{color:rgba(255,255,255,.35)}
+
+/* ---------- cards ---------- */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:28px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow-s);transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .3s}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow-m);border-color:var(--line-strong)}
+.thumb{aspect-ratio:16/9;max-width:100%;display:grid;place-items:center;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.thumb .en{font-size:26px;color:var(--ink);transition:transform .5s var(--ease)}
+.card:hover .thumb .en{transform:scale(1.08) rotate(-2deg)}
+.thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);transform:translateX(-100%)}
+.card:hover .thumb::after{transform:translateX(100%);transition:transform .8s var(--ease)}
+.card-body{padding:20px 22px 22px;display:grid;gap:10px;flex:1;align-content:start}
+.card h3{font-size:17px;line-height:1.6;transition:color .2s}
+.card:hover h3{color:var(--accent)}
+.card-foot{margin-top:auto;padding:14px 22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--muted)}
+.card-foot .go{color:var(--accent);opacity:0;transform:translateX(-6px);transition:.3s var(--ease)}
+.card:hover .card-foot .go{opacity:1;transform:none}
+.pop{animation:popIn .5s var(--ease) both}
+
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{font-size:13px;padding:7px 16px;border-radius:99px;background:var(--surface);border:1px solid var(--line-strong);color:var(--ink);transition:background .2s,color .2s,border-color .2s,transform .15s}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+.chip:active{transform:scale(.95)}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.chip .n{opacity:.6;margin-left:6px;font-size:12px}
+
+/* ---------- board band ---------- */
+.band{background:linear-gradient(135deg,#2F6BFF,#5B8CFF);color:#fff;margin-top:88px;padding-block:72px;position:relative;overflow:hidden}
+.band::before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;background:rgba(255,255,255,.08);top:-160px;right:-80px;animation:bob 9s ease-in-out infinite}
+.band-in{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:48px;align-items:start;position:relative}
+.band h2{font-size:28px;font-weight:900;margin-bottom:12px}
+.band p{color:rgba(255,255,255,.85);margin-bottom:28px}
+.band .btn{background:#fff;color:var(--accent);border-color:#fff}
+.band .btn:hover{box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.band-list{display:grid;gap:12px}
+.band-item{background:var(--surface);color:var(--ink);border-radius:16px;padding:18px 22px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;align-items:center;box-shadow:0 4px 16px rgba(10,30,90,.15);transition:transform .3s var(--ease)}
+.band-item:hover{transform:translateX(6px)}
+.band-item .t{font-weight:500}
+.band-item .n{font-size:13px;color:var(--muted);grid-row:span 2}
+
+/* ---------- category pills ---------- */
+.cat{font-size:12px;font-weight:500;padding:2px 10px;border-radius:99px;justify-self:start;white-space:nowrap}
+.cat.c1{background:var(--p1);color:#2553C9}.cat.c2{background:var(--p3);color:#1E7A4C}
+.cat.c3{background:var(--p2);color:#99650A}.cat.c4{background:var(--p4);color:#B23A55}
+
+/* ---------- page title ---------- */
+.ptitle{padding:44px clamp(24px,4vw,48px);display:grid;gap:10px;margin-bottom:28px;position:relative;overflow:hidden}
+.ptitle h1{font-size:clamp(26px,3.4vw,34px);font-weight:900}
+.ptitle .deco{position:absolute;right:clamp(20px,4vw,48px);top:50%;transform:translateY(-50%);font-family:var(--en);font-style:italic;font-size:clamp(40px,7vw,80px);color:var(--accent-soft);pointer-events:none}
+.toolbar{padding:16px 20px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:28px}
+
+/* ---------- reader ---------- */
+.reader-grid{display:grid;grid-template-columns:minmax(0,760px);justify-content:center;gap:28px}
+.paper{padding:clamp(24px,6vw,64px)}
+.crumb{font-size:13px;color:var(--muted);margin-bottom:24px;display:flex;gap:8px;flex-wrap:wrap}
+.crumb a{transition:color .2s}.crumb a:hover{color:var(--accent)}
+.paper h1{font-size:clamp(24px,3.4vw,32px);font-weight:900;line-height:1.5;margin-bottom:24px}
+.byline{display:flex;gap:12px;align-items:center;padding-block:18px;border-block:1px solid var(--line);margin-bottom:40px}
+.prose{font-size:16px;line-height:2.05}
+.prose > * + *{margin-top:1.4em}
+.prose h2{font-size:21px;font-weight:900;margin-top:2.4em;padding-left:14px;border-left:4px solid var(--accent);line-height:1.5}
+.example{border:1px solid var(--line);border-radius:16px;padding:20px 24px;display:grid;gap:4px;background:var(--bg);transition:transform .3s var(--ease),box-shadow .3s}
+.example:hover{transform:translateY(-2px);box-shadow:var(--shadow-s)}
+.example .en{font-size:20px;line-height:1.5}
+.example .ja{font-size:13px;color:var(--muted)}
+.example.ng{background:#FFF5F7;border-color:#F7D3DB}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--accent)}
+.ng .lbl{color:#C9405C}
+.tags-foot{display:flex;gap:10px;flex-wrap:wrap;margin-top:48px;padding-top:24px;border-top:1px solid var(--line)}
+
+.comments{overflow:hidden}
+.c-head{padding:22px clamp(20px,4vw,40px);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;background:var(--bg)}
+.c-head h2{font-size:18px}
+.c-head .sub{font-family:var(--body)}
+.c-body{padding:8px clamp(20px,4vw,40px) 24px}
+.prompt{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-block:20px 8px;padding:18px 22px;border-radius:16px;background:var(--accent-soft);border:1px dashed #B8CBFF;font-size:14px}
+.cmt{display:grid;grid-template-columns:38px minmax(0,1fr);gap:14px;padding-block:22px;border-top:1px solid var(--line)}
+.cmt:first-of-type{border-top:0}
+.cmt-body{display:grid;gap:6px}
+.who{font-size:14px;font-weight:500;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.who .sub{font-weight:400}
+.author{font-size:11px;background:var(--accent);color:#fff;padding:1px 8px;border-radius:99px}
+.reply-btn{font-size:13px;color:var(--muted);background:none;border:0;padding:4px 0;justify-self:start;transition:color .2s}
+.reply-btn:hover{color:var(--accent)}
+.replies{grid-column:2;display:grid;border-left:2px solid var(--line);padding-left:18px;margin-top:6px}
+.replies .cmt{border-top:0;padding-block:12px 0}
+.reply-box{display:grid;gap:10px;margin-top:6px;animation:slideDown .35s var(--ease)}
+
+/* ---------- boards ---------- */
+.seg,.tabs{position:relative;display:inline-flex;background:var(--bg);border:1px solid var(--line);border-radius:99px;padding:4px}
+.seg button,.tabs button{position:relative;z-index:1;border:0;background:none;padding:7px 18px;border-radius:99px;font-size:13px;color:var(--muted);transition:color .25s}
+.seg button[aria-pressed="true"],.tabs button[aria-selected="true"]{color:var(--ink);font-weight:500}
+.ind{position:absolute;top:4px;bottom:4px;left:0;border-radius:99px;background:var(--surface);box-shadow:0 1px 4px rgba(25,35,70,.12);transition:transform .35s var(--ease),width .35s var(--ease)}
+.pending{font-size:12px;color:#C9405C;margin:-12px 0 20px 4px}
+.board-list{display:grid;gap:12px}
+.board-row{display:grid;grid-template-columns:minmax(0,1fr) 72px 24px;gap:8px 20px;align-items:center;padding:20px 24px;transition:transform .3s var(--ease),box-shadow .3s,border-color .3s}
+.board-row:hover{transform:translateY(-3px);box-shadow:var(--shadow-m);border-color:var(--line-strong)}
+.board-row .t{font-size:16px;font-weight:500;transition:color .2s}
+.board-row:hover .t{color:var(--accent)}
+.board-row .info{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:13px;color:var(--muted);grid-column:1}
+.board-row .n{grid-column:2;grid-row:1/span 2;text-align:center;font-size:12px;color:var(--muted);border-left:1px solid var(--line);padding-left:16px}
+.board-row .n b{display:block;font-size:22px;color:var(--ink);font-weight:700;font-variant-numeric:tabular-nums;line-height:1.3}
+.board-row .chev{grid-column:3;grid-row:1/span 2;color:var(--faint);transition:transform .3s var(--ease),color .2s}
+.board-row:hover .chev{transform:translateX(4px);color:var(--accent)}
+
+/* ---------- forms ---------- */
+.form{display:grid;gap:20px}
+.field{display:grid;gap:8px;font-size:13px;font-weight:500}
+input,select,textarea{font:inherit;font-size:15px;color:var(--ink);background:var(--surface);border:1px solid var(--line-strong);border-radius:12px;padding:12px 16px;width:100%;transition:border-color .2s,box-shadow .2s}
+input:hover,select:hover,textarea:hover{border-color:var(--faint)}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px rgba(47,107,255,.15)}
+textarea{min-height:120px;resize:vertical}
+.form .btn{height:48px;width:100%}
+.hint{font-size:12px;color:var(--muted);font-weight:400}
+.auth-wrap{display:grid;grid-template-columns:minmax(0,440px);justify-content:center;padding-top:24px}
+.auth{padding:clamp(24px,5vw,44px);display:grid;gap:28px}
+.auth-head{text-align:center;display:grid;gap:6px}
+.auth-head h1{font-size:26px;font-weight:900}
+.tabs{display:flex}
+.tabs button{flex:1}
+.link{font-size:13px;color:var(--accent);justify-self:center}
+.swap{animation:fadeUp .4s var(--ease)}
+
+/* ---------- mypage ---------- */
+.profile{padding:32px clamp(24px,4vw,40px);display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+.profile .avatar{width:72px;height:72px;font-size:26px}
+.profile h1{font-size:26px;font-weight:900}
+.stats{margin-left:auto;display:flex;gap:0}
+.stats div{padding-inline:24px;text-align:center;border-left:1px solid var(--line)}
+.stats b{display:block;font-size:22px;font-variant-numeric:tabular-nums}
+.stats span{font-size:12px;color:var(--muted)}
+.my-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:28px;align-items:start}
+.list-panel{overflow:hidden}
+.list-panel .c-head{background:var(--surface)}
+.my-item{display:grid;gap:6px;padding:20px clamp(20px,4vw,32px);border-top:1px solid var(--line);transition:background .2s}
+.my-item:first-of-type{border-top:0}
+.my-item:hover{background:var(--bg)}
+.my-item:hover .t{color:var(--accent)}
+.side-form{padding:28px}
+
+/* ---------- footer ---------- */
+.site-foot{background:var(--surface);border-top:1px solid var(--line);margin-top:96px;padding-block:40px}
+.foot-in{max-width:1100px;margin-inline:auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;font-size:13px;color:var(--muted)}
+.foot-in nav{display:flex;gap:20px}
+.foot-in nav a:hover{color:var(--accent)}
+
+/* ---------- mock bar / toast / to-top ---------- */
+.mockbar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:40;display:flex;align-items:center;gap:10px;background:var(--ink);color:#fff;box-shadow:0 10px 30px rgba(25,35,70,.3);border-radius:99px;padding:6px 6px 6px 18px;font-size:12px;max-width:calc(100% - 32px)}
+.mockbar select{width:auto;padding:6px 14px;border-radius:99px;font-size:13px;background:rgba(255,255,255,.12);color:#fff;border-color:transparent}
+.mockbar select option,.mockbar select optgroup{color:var(--ink);background:#fff}
+.toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:41;transform:translate(-50%,20px);opacity:0;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow-m);padding:12px 20px;border-radius:14px;font-size:14px;pointer-events:none;transition:.35s var(--ease)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.totop{position:fixed;right:20px;bottom:calc(24px + env(safe-area-inset-bottom,0px));z-index:39;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow-m);display:grid;place-items:center;transform:scale(0);transition:transform .3s var(--ease)}
+.totop.show{transform:scale(1)}
+
+/* ---------- motion ---------- */
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(47,107,255,.5)}70%{box-shadow:0 0 0 8px rgba(47,107,255,0)}100%{box-shadow:0 0 0 0 rgba(47,107,255,0)}}
+@keyframes marker{to{background-size:100% 42%}}
+@keyframes phraseIn{from{opacity:0;transform:translateY(16px);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
+@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -14px}}
+@keyframes marquee{to{transform:translateX(-50%)}}
+@keyframes popIn{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes slideDown{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+@keyframes rise{from{opacity:0;translate:0 48px}to{opacity:1;translate:0 0}}
+@keyframes screenIn{from{opacity:0;translate:0 14px}to{opacity:1;translate:0 0}}
+.screen.enter{animation:screenIn .5s var(--ease)}
+.intro > *{animation:fadeUp .7s var(--ease) both}
+.intro > *:nth-child(2){animation-delay:.08s}.intro > *:nth-child(3){animation-delay:.16s}.intro > *:nth-child(4){animation-delay:.24s}.intro > *:nth-child(5){animation-delay:.32s}
+@supports (animation-timeline: view()){
+  .reveal{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 55%}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .phrase mark{background-size:100% 42%}
+  html{scroll-behavior:auto}
+}
+
+@media (max-width:860px){
+  .hero,.band-in,.my-grid{grid-template-columns:1fr}
+  .stage{border-left:0;border-top:1px solid var(--line);min-height:300px}
+  .head-in{gap:16px}
+  .stats{margin-left:0;width:100%}
+  .stats div:first-child{border-left:0;padding-left:0}
+}
+@media (max-width:520px){
+  .nav a{padding:6px 10px}
+  .board-row{grid-template-columns:minmax(0,1fr) 56px;padding:18px}
+  .board-row .chev{display:none}
+  .ptitle .deco{display:none}
+}
+</style>
+
+<header class="site-head bleed" id="head">
+  <div class="head-in">
+    <a class="logo" href="#top"><i></i>まなビレッジ</a>
+    <nav class="nav" aria-label="サイト">
+      <a href="#articles" data-nav="articles article">記事</a>
+      <a href="#boards" data-nav="boards thread newthread">掲示板</a>
+    </nav>
+    <div class="acct" id="acct"></div>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<!-- ================= TOP ================= -->
+<section class="screen" id="s-top">
+  <div class="wrap">
+    <a class="panel hero" href="#article">
+      <div class="hero-text intro">
+        <span class="badge-new"><i></i>最新記事</span>
+        <h1>「〜してもいいですか？」は Can I だけじゃない。許可の求め方5パターン</h1>
+        <p class="lead">May I、Do you mind if I、Would it be OK if I。丁寧さの段階と、実際の使い分けを例文で整理しました。</p>
+        <div class="meta"><span class="tag">#丁寧表現</span><span class="dot-sep"></span><span>9月25日</span><span class="dot-sep"></span><span>8分で読める</span></div>
+        <span class="btn primary" style="justify-self:start">記事を読む <span class="arr">→</span></span>
+      </div>
+      <div class="stage">
+        <span class="float f1">May I…?</span><span class="float f2">Sure!</span><span class="float f3">Go ahead.</span>
+        <span class="stage-label">この記事で学ぶ5つの言い方</span>
+        <div class="phrase in" id="phrase"></div>
+        <div class="dots" id="dots" role="group" aria-label="フレーズ切替"></div>
+      </div>
+    </a>
+  </div>
+
+  <div class="ticker bleed" aria-label="今日のひとことフレーズ">
+    <div class="ticker-track" id="ticker"></div>
+  </div>
+
+  <div class="wrap">
+    <div class="block">
+      <div class="sec-head reveal">
+        <div><h2>新着記事</h2><p class="sub">Kaz が書いた英語学習の記事</p></div>
+        <a class="more" href="#articles">すべての記事 <span class="arr">→</span></a>
+      </div>
+      <div class="cards" id="top-cards"></div>
+    </div>
+
+    <div class="block">
+      <div class="sec-head reveal">
+        <div><h2>タグから探す</h2><p class="sub">記事が増えるたびにタグも増えていきます</p></div>
+      </div>
+      <div class="chips reveal" id="top-tags"></div>
+    </div>
+  </div>
+
+  <div class="band bleed">
+    <div class="wrap band-in">
+      <div class="reveal">
+        <h2>掲示板</h2>
+        <p>学習者どうしで質問したり、勉強の進捗を報告しあったりできます。読むだけならログインは不要です。</p>
+        <a class="btn" href="#boards">掲示板をひらく <span class="arr">→</span></a>
+      </div>
+      <div class="band-list">
+        <a class="band-item reveal" href="#thread"><span class="t">TOEIC 800点を半年で目指す人、進捗を報告しあいませんか</span><span class="n">返信 48</span><span class="cat c3">試験</span></a>
+        <a class="band-item reveal" href="#thread"><span class="t">シャドーイングの教材、みんな何使ってる？</span><span class="n">返信 31</span><span class="cat c2">教材・勉強法</span></a>
+        <a class="band-item reveal" href="#thread"><span class="t">「I'm fine, thank you」以外の返し方を集めよう</span><span class="n">返信 27</span><span class="cat c4">フリートーク</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ARTICLES ================= -->
+<section class="screen" id="s-articles" hidden>
+  <div class="wrap">
+    <div class="panel ptitle intro">
+      <span class="sub">/articles</span>
+      <h1 id="articles-heading">記事</h1>
+      <p class="sub" id="count"></p>
+      <span class="deco" aria-hidden="true">Read.</span>
+    </div>
+    <div class="panel toolbar">
+      <div class="chips" id="filter-chips" role="group" aria-label="タグで絞り込み"></div>
+    </div>
+    <div class="cards" id="all-cards"></div>
+  </div>
+</section>
+
+<!-- ================= ARTICLE ================= -->
+<section class="screen" id="s-article" hidden>
+  <div class="wrap reader-grid">
+    <article class="panel paper">
+      <div class="crumb"><a href="#articles">記事</a><span>/</span><a href="#articles" data-tag="丁寧表現">#丁寧表現</a></div>
+      <h1>「〜してもいいですか？」は Can I だけじゃない。許可の求め方5パターン</h1>
+      <div class="byline"><div class="avatar">K</div><div><div class="who">Kaz</div><div class="sub">2026年9月25日 · 8分で読める</div></div></div>
+      <div class="prose">
+        <p>英語で許可を求めるとき、まず浮かぶのは <span class="en">Can I …?</span> だと思います。間違いではありませんが、相手や場面によっては少しカジュアルすぎることがあります。丁寧さの段階ごとに5つの言い方を見ていきましょう。</p>
+        <h2>友だち・同僚なら Can I</h2>
+        <div class="example reveal"><span class="lbl">EXAMPLE</span><span class="en"><span class="hl">Can I</span> borrow your pen for a sec?</span><span class="ja">ちょっとペン借りていい？</span></div>
+        <h2>目上の人には May I</h2>
+        <p>May I は丁寧ですが、日常会話で多用すると少しかしこまった印象になります。接客や初対面の場面に向いています。</p>
+        <div class="example reveal"><span class="lbl">EXAMPLE</span><span class="en"><span class="hl">May I</span> ask you a few questions?</span><span class="ja">いくつか質問させていただいてもよろしいですか？</span></div>
+        <h2>よくある間違い</h2>
+        <div class="example ng reveal"><span class="lbl">NG</span><span class="en">Do you mind if I open the window? — Yes.</span><span class="ja">Yes は「気にします（＝だめ）」の意味に。OKなら No, not at all. と答えます。</span></div>
+        <p>残りの2パターン（<span class="en">Do you mind if I</span> と <span class="en">Would it be OK if I</span>）は、仮定法の感覚とあわせて後半で説明します。</p>
+      </div>
+      <div class="tags-foot"><a class="chip" href="#articles" data-tag="丁寧表現">#丁寧表現</a><a class="chip" href="#articles" data-tag="ビジネス英語">#ビジネス英語</a><a class="chip" href="#articles" data-tag="会話">#会話</a></div>
+    </article>
+
+    <div class="panel comments reveal">
+      <div class="c-head"><h2>コメント <span class="sub">12件 · 新着順</span></h2></div>
+      <div class="c-body">
+        <div class="prompt"><span>コメントするにはログインしてください。読むだけならそのままでOKです。</span><a class="btn primary" href="#auth">ログイン</a></div>
+        <div class="cmt"><div class="avatar">み</div><div class="cmt-body">
+          <div class="who">みほ<span class="sub">2時間前</span></div>
+          <p>Do you mind if I の返事、ずっと Yes って答えてました…！ No, not at all. 覚えます。</p>
+          <button class="reply-btn" type="button">返信する</button>
+        </div>
+          <div class="replies"><div class="cmt"><div class="avatar">K</div><div class="cmt-body">
+            <div class="who">Kaz<span class="author">筆者</span><span class="sub">1時間前</span></div>
+            <p>みんな一度は通る道です。<span class="en">Sure, go ahead.</span> と答えても伝わりますよ。</p>
+            <button class="reply-btn" type="button">返信する</button>
+          </div></div></div>
+        </div>
+        <div class="cmt"><div class="avatar">T</div><div class="cmt-body">
+          <div class="who">taku_eng<span class="sub">5時間前</span></div>
+          <p>Would it be OK if I の後が過去形 left になるのが仮定法っぽくて面白いです。</p>
+          <button class="reply-btn" type="button">返信する</button>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BOARDS ================= -->
+<section class="screen" id="s-boards" hidden>
+  <div class="wrap">
+    <div class="panel ptitle intro">
+      <span class="sub">/boards</span>
+      <h1>掲示板</h1>
+      <p class="sub">学習者どうしで質問・相談・報告ができる場所です。</p>
+      <span class="deco" aria-hidden="true">Talk.</span>
+    </div>
+    <div class="panel toolbar">
+      <div class="chips" role="group" aria-label="カテゴリ" data-group>
+        <button class="chip" aria-pressed="true" type="button">すべて</button>
+        <button class="chip" aria-pressed="false" type="button">学習相談</button>
+        <button class="chip" aria-pressed="false" type="button">教材・勉強法</button>
+        <button class="chip" aria-pressed="false" type="button">試験</button>
+        <button class="chip" aria-pressed="false" type="button">フリートーク</button>
+      </div>
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+        <div class="seg" role="group" aria-label="並び替え"><span class="ind"></span><button type="button" aria-pressed="true">新着順</button><button type="button" aria-pressed="false">人気順</button></div>
+        <a class="btn primary" href="#newthread">＋ スレッドを作る</a>
+      </div>
+    </div>
+    <p class="pending">※ カテゴリは要件未決定のため、仮に固定4種で表示しています</p>
+    <div class="board-list" id="board-list">
+      <a class="panel board-row pop" href="#thread"><span class="t">TOEIC 800点を半年で目指す人、進捗を報告しあいませんか</span><span class="n"><b data-n="48">48</b>返信</span><span class="chev">›</span><span class="info"><span class="cat c3">試験</span>ゆうき · 10分前</span></a>
+      <a class="panel board-row pop" href="#thread" style="animation-delay:.06s"><span class="t">シャドーイングの教材、みんな何使ってる？</span><span class="n"><b data-n="31">31</b>返信</span><span class="chev">›</span><span class="info"><span class="cat c2">教材・勉強法</span>みほ · 1時間前</span></a>
+      <a class="panel board-row pop" href="#thread" style="animation-delay:.12s"><span class="t">「I'm fine, thank you」以外の返し方を集めよう</span><span class="n"><b data-n="27">27</b>返信</span><span class="chev">›</span><span class="info"><span class="cat c4">フリートーク</span>taku_eng · 3時間前</span></a>
+      <a class="panel board-row pop" href="#thread" style="animation-delay:.18s"><span class="t">社会人になってから英語をやり直している人いますか</span><span class="n"><b data-n="19">19</b>返信</span><span class="chev">›</span><span class="info"><span class="cat c1">学習相談</span>nao · 昨日</span></a>
+      <a class="panel board-row pop" href="#thread" style="animation-delay:.24s"><span class="t">英検準1級の面接、どんな準備をしましたか</span><span class="n"><b data-n="8">8</b>返信</span><span class="chev">›</span><span class="info"><span class="cat c3">試験</span>sora · 2日前</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= THREAD ================= -->
+<section class="screen" id="s-thread" hidden>
+  <div class="wrap reader-grid">
+    <article class="panel paper">
+      <div class="crumb"><a href="#boards">掲示板</a><span>/</span><a href="#boards">教材・勉強法</a></div>
+      <span class="cat c2" style="display:inline-block;margin-bottom:14px">教材・勉強法</span>
+      <h1>シャドーイングの教材、みんな何使ってる？</h1>
+      <div class="byline" style="margin-bottom:28px"><div class="avatar">み</div><div><div class="who">みほ</div><div class="sub">9月20日作成 · 返信 31</div></div></div>
+      <p class="prose">毎朝15分シャドーイングしているのですが、教材がマンネリ気味です。レベルは TOEIC 600 くらいです。おすすめがあれば教えてください！</p>
+    </article>
+    <div class="panel comments reveal">
+      <div class="c-head"><h2>返信 <span class="sub">31件 · 新着順</span></h2></div>
+      <div class="c-body">
+        <div class="prompt"><span>書き込むにはログインしてください。</span><a class="btn primary" href="#auth">ログイン</a></div>
+        <div class="cmt"><div class="avatar">ゆ</div><div class="cmt-body">
+          <div class="who">ゆうき<span class="sub">1時間前</span></div>
+          <p>TED-Ed の短い動画がおすすめです。5分前後でスピードもちょうどいいです。</p>
+          <button class="reply-btn" type="button">返信する</button>
+        </div>
+          <div class="replies"><div class="cmt"><div class="avatar">み</div><div class="cmt-body">
+            <div class="who">みほ<span class="author">スレ主</span><span class="sub">40分前</span></div>
+            <p>ありがとうございます！字幕つきで見られるのもいいですね。</p>
+          </div></div></div>
+        </div>
+        <div class="cmt"><div class="avatar">N</div><div class="cmt-body">
+          <div class="who">nao<span class="sub">3時間前</span></div>
+          <p>好きな海外ドラマのワンシーンを繰り返してます。楽しいので続きます。</p>
+          <button class="reply-btn" type="button">返信する</button>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= NEW THREAD ================= -->
+<section class="screen" id="s-newthread" hidden>
+  <div class="wrap reader-grid">
+    <div class="panel paper intro">
+      <div class="crumb"><a href="#boards">掲示板</a><span>/</span><span>新しいスレッド</span></div>
+      <h1 style="margin-bottom:8px">スレッドを作る</h1>
+      <p class="sub" style="margin-bottom:32px">返信がつくと登録メールアドレスにお知らせします。</p>
+      <form class="form">
+        <label class="field" for="nt-cat">カテゴリ<select id="nt-cat"><option>学習相談</option><option>教材・勉強法</option><option>試験</option><option>フリートーク</option></select></label>
+        <label class="field" for="nt-title">タイトル<input id="nt-title" value="英語日記を続けるコツを教えてください"><span class="hint">一覧に表示されます。内容がひと目でわかるタイトルにしましょう。</span></label>
+        <label class="field" for="nt-body">本文<textarea id="nt-body">3日坊主になりがちです。毎日書いている人はどんな工夫をしていますか？</textarea></label>
+        <button class="btn primary" type="submit">スレッドを作成する</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AUTH ================= -->
+<section class="screen" id="s-auth" hidden>
+  <div class="wrap auth-wrap">
+    <div class="panel auth intro">
+      <div class="auth-head"><h1 id="auth-title">おかえりなさい</h1><p class="sub" id="auth-sub">ログインしてコメントや掲示板に参加しましょう</p></div>
+      <div class="tabs" role="tablist"><span class="ind"></span><button type="button" role="tab" aria-selected="true" data-auth="login">ログイン</button><button type="button" role="tab" aria-selected="false" data-auth="signup">新規登録</button></div>
+      <form class="form" id="f-login">
+        <label class="field" for="li-mail">メールアドレス<input id="li-mail" type="email" placeholder="you@example.com"></label>
+        <label class="field" for="li-pass">パスワード<input id="li-pass" type="password" placeholder="••••••••"></label>
+        <button class="btn primary" type="submit">ログイン</button>
+        <a class="link" href="#auth">パスワードを忘れた方</a>
+      </form>
+      <form class="form" id="f-signup" hidden>
+        <label class="field" for="su-nick">ニックネーム<input id="su-nick" placeholder="例：みほ"><span class="hint">コメントや掲示板に表示されます</span></label>
+        <label class="field" for="su-mail">メールアドレス<input id="su-mail" type="email" placeholder="you@example.com"></label>
+        <label class="field" for="su-pass">パスワード<input id="su-pass" type="password" placeholder="8文字以上"></label>
+        <button class="btn primary" type="submit">無料で登録する</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MYPAGE ================= -->
+<section class="screen" id="s-mypage" hidden>
+  <div class="wrap">
+    <div class="panel profile intro">
+      <div class="avatar">み</div>
+      <div><h1>みほ</h1><p class="sub">2026年6月から参加</p></div>
+      <div class="stats"><div><b>14</b><span>コメント</span></div><div><b>2</b><span>スレッド</span></div><div><b>23</b><span>もらった返信</span></div></div>
+    </div>
+    <div class="my-grid">
+      <div class="panel list-panel reveal">
+        <div class="c-head"><h2>自分の投稿</h2></div>
+        <a class="my-item" href="#article"><span class="cat c1">記事へのコメント</span><span class="t">Do you mind if I の返事、ずっと Yes って答えてました…！</span><span class="sub">許可の求め方5パターン · 返信 1</span></a>
+        <a class="my-item" href="#thread"><span class="cat c2">スレッド</span><span class="t">シャドーイングの教材、みんな何使ってる？</span><span class="sub">教材・勉強法 · 返信 31</span></a>
+        <a class="my-item" href="#thread"><span class="cat c3">スレッドへの返信</span><span class="t">ありがとうございます！字幕つきで見られるのもいいですね。</span><span class="sub">シャドーイングの教材、みんな何使ってる？</span></a>
+      </div>
+      <form class="panel form side-form reveal">
+        <h2 style="font-size:18px">プロフィール</h2>
+        <label class="field" for="my-nick">ニックネーム<input id="my-nick" value="みほ"></label>
+        <button class="btn" type="submit">保存する</button>
+        <p class="sub">返信がつくと登録メールアドレスにお知らせが届きます。</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="site-foot bleed">
+  <div class="foot-in"><span>まなビレッジ — 英語学習の記事と交流の場</span><nav><a href="#articles">記事</a><a href="#boards">掲示板</a><a href="#auth">ログイン</a></nav><span>© 2026 Kaz</span></div>
+</footer>
+
+<div class="mockbar">
+  <label for="mock-sel">モック画面</label>
+  <select id="mock-sel">
+    <optgroup label="記事"><option value="top">トップ</option><option value="articles">記事一覧</option><option value="article">記事詳細</option></optgroup>
+    <optgroup label="掲示板"><option value="boards">掲示板一覧</option><option value="thread">スレッド詳細</option><option value="newthread">スレッド作成</option></optgroup>
+    <optgroup label="アカウント"><option value="auth">ログイン / 登録</option><option value="mypage">マイページ（ログイン後）</option></optgroup>
+  </select>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<button class="totop" id="totop" type="button" aria-label="ページの先頭へ">↑</button>
+
+<script>
+const PASTEL=["var(--p1)","var(--p2)","var(--p3)","var(--p4)","var(--p5)","var(--p6)"];
+const ARTICLES=[
+  {t:"「〜してもいいですか？」は Can I だけじゃない。許可の求め方5パターン",d:"9月25日",m:8,c:12,tags:["丁寧表現","ビジネス英語","会話"],w:"May I…?"},
+  {t:"make / let / have — 使役動詞の違いを一枚で理解する",d:"9月18日",m:6,c:7,tags:["文法"],w:"let me"},
+  {t:"聞き取れない原因は単語じゃない。リンキングの3つの型",d:"9月11日",m:7,c:15,tags:["リスニング","発音"],w:"gonna"},
+  {t:"英語日記を3か月続けてわかった、挫折しない書き方",d:"9月4日",m:5,c:21,tags:["勉強法","ライティング"],w:"Dear diary,"},
+  {t:"会議で使える「ちょっといいですか」の言い方",d:"8月28日",m:4,c:4,tags:["ビジネス英語","会話"],w:"Can I jump in?"},
+  {t:"前置詞 on / in / at を「イメージ」でつかむ",d:"8月21日",m:9,c:9,tags:["文法"],w:"on · in · at"},
+  {t:"「たぶん」の英語、maybe と probably はどれくらい違う？",d:"8月14日",m:5,c:6,tags:["会話"],w:"probably"}
+];
+const PHRASES=[
+  ["Can I","borrow your pen for a sec?","ちょっとペン借りていい？","カジュアル"],
+  ["May I","ask you a few questions?","いくつか質問させていただいてもよろしいですか？","丁寧"],
+  ["Do you mind if I","open the window?","窓を開けても構いませんか？","丁寧"],
+  ["Would it be OK if I","left a bit early today?","今日は少し早めに帰ってもいいですか？","とても丁寧"],
+  ["Is it alright if I","sit here?","ここに座ってもいいですか？","ふつう"]
+];
+const TICKER=[["Break a leg!","がんばって！"],["It's up to you.","あなた次第だよ"],["I'm on it.","今やってるよ"],["No worries.","気にしないで"],["Fair enough.","なるほど、もっともだね"],["Let's call it a day.","今日はここまでにしよう"],["I'll keep that in mind.","覚えておくね"]];
+
+const $=s=>document.querySelector(s);
+const tagCount={};ARTICLES.forEach(a=>a.tags.forEach(t=>tagCount[t]=(tagCount[t]||0)+1));
+const tagNames=Object.keys(tagCount).sort((a,b)=>tagCount[b]-tagCount[a]);
+const card=(a,i,extra="")=>`<a class="card ${extra}" href="#article" style="${extra==="pop"?`animation-delay:${i*.06}s`:""}"><div class="thumb" style="background:${PASTEL[i%6]}"><span class="en">${a.w}</span></div><div class="card-body"><div class="meta"><span class="tag">#${a.tags[0]}</span><span class="dot-sep"></span><span>${a.d}</span><span class="dot-sep"></span><span>${a.m}分</span></div><h3>${a.t}</h3></div><div class="card-foot"><span>💬 ${a.c}件のコメント</span><span class="go">読む →</span></div></a>`;
+$("#top-cards").innerHTML=ARTICLES.slice(1,7).map((a,i)=>card(a,i+1,"reveal")).join("");
+$("#top-tags").innerHTML=tagNames.map(t=>`<a class="chip" href="#articles" data-tag="${t}">#${t}<span class="n">${tagCount[t]}</span></a>`).join("");
+const tick=TICKER.map(([e,j])=>`<span><span class="en">${e}</span>${j}<span class="sep">✦</span></span>`).join("");
+$("#ticker").innerHTML=tick+tick;
+
+/* phrase carousel */
+let pi=3,ptimer;
+$("#dots").innerHTML=PHRASES.map((_,i)=>`<button type="button" aria-label="${i+1}つ目"></button>`).join("");
+function setPhrase(i){
+  pi=i;const [k,rest,ja,lv]=PHRASES[i];const el=$("#phrase");
+  el.classList.remove("in");void el.offsetWidth;
+  el.innerHTML=`<span class="en"><mark>${k}</mark> ${rest}</span><span class="ja">${ja}</span><span class="level">丁寧さ <b>${lv}</b></span>`;
+  el.classList.add("in");
+  document.querySelectorAll("#dots button").forEach((b,j)=>b.setAttribute("aria-current",j===i));
+}
+function autoplay(){clearInterval(ptimer);ptimer=setInterval(()=>setPhrase((pi+1)%PHRASES.length),3600)}
+$("#dots").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;e.preventDefault();setPhrase([...b.parentNode.children].indexOf(b));autoplay()});
+setPhrase(3);autoplay();
+
+/* article list */
+let active=null;
+function renderList(){
+  const list=ARTICLES.map((a,i)=>[a,i]).filter(([a])=>!active||a.tags.includes(active));
+  $("#all-cards").innerHTML=list.map(([a,i],k)=>card(a,i,"pop").replace(`animation-delay:${i*.06}s`,`animation-delay:${k*.06}s`)).join("");
+  $("#articles-heading").textContent=active?"#"+active:"記事";
+  $("#count").textContent=list.length+"件の記事 · 新着順";
+  $("#filter-chips").innerHTML=[`<button type="button" class="chip" data-f="" aria-pressed="${!active}">すべて</button>`].concat(tagNames.map(t=>`<button type="button" class="chip" data-f="${t}" aria-pressed="${active===t}">#${t}<span class="n">${tagCount[t]}</span></button>`)).join("");
+}
+
+/* sliding indicators */
+function placeInd(g){const ind=g.querySelector(".ind");const act=g.querySelector('[aria-pressed="true"],[aria-selected="true"]');if(!ind||!act||!act.offsetWidth)return;ind.style.width=act.offsetWidth+"px";ind.style.transform=`translateX(${act.offsetLeft}px)`}
+const allInd=()=>document.querySelectorAll(".seg,.tabs").forEach(placeInd);
+addEventListener("resize",allInd);
+
+/* toast */
+let tt;function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("show"),2400)}
+
+/* count-up */
+function countUp(){document.querySelectorAll("[data-n]").forEach(el=>{const n=+el.dataset.n,s=performance.now();const f=now=>{const p=Math.min(1,(now-s)/800);el.textContent=Math.round(n*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)})}
+
+document.addEventListener("click",e=>{
+  const f=e.target.closest("[data-f]");if(f){active=f.dataset.f||null;renderList();return}
+  const t=e.target.closest("[data-tag]");if(t)active=t.dataset.tag;
+  else if(e.target.closest('a[href="#articles"]'))active=null;
+  const p=e.target.closest(".seg button, [data-group] .chip");
+  if(p){p.parentElement.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b===p));placeInd(p.parentElement);
+    if(p.closest(".seg")||p.closest("[data-group]")){document.querySelectorAll("#board-list .board-row").forEach((r,i)=>{r.classList.remove("pop");void r.offsetWidth;r.style.animationDelay=i*.05+"s";r.classList.add("pop")})}}
+  const au=e.target.closest("[data-auth]");
+  if(au){const s=au.dataset.auth==="signup";
+    document.querySelectorAll("[data-auth]").forEach(b=>b.setAttribute("aria-selected",b===au));placeInd(au.parentElement);
+    const show=s?$("#f-signup"):$("#f-login");$("#f-login").hidden=s;$("#f-signup").hidden=!s;
+    show.classList.remove("swap");void show.offsetWidth;show.classList.add("swap");
+    $("#auth-title").textContent=s?"はじめまして":"おかえりなさい";
+    $("#auth-sub").textContent=s?"無料で登録して、記事へのコメントや掲示板に参加しましょう":"ログインしてコメントや掲示板に参加しましょう";}
+  const rb=e.target.closest(".reply-btn");
+  if(rb){const body=rb.parentElement;const open=body.querySelector(".reply-box");
+    if(open){open.remove()}else{rb.insertAdjacentHTML("afterend",`<div class="reply-box"><textarea id="rb-${Date.now()}" placeholder="返信を書く（ログイン後に投稿できます）"></textarea><div style="display:flex;gap:8px;justify-content:flex-end"><button type="button" class="btn rb-cancel">キャンセル</button><button type="button" class="btn primary rb-send">返信する</button></div></div>`);body.querySelector("textarea").focus()}}
+  if(e.target.closest(".rb-cancel"))e.target.closest(".reply-box").remove();
+  if(e.target.closest(".rb-send")){e.target.closest(".reply-box").remove();toast("返信を投稿しました（モックのため保存はされません）")}
+});
+document.querySelectorAll("form").forEach(f=>f.addEventListener("submit",e=>{e.preventDefault();toast("送信しました（モックのため保存はされません）")}));
+$("#totop").addEventListener("click",()=>scrollTo({top:0}));
+
+/* scroll: header shadow, reading progress, to-top */
+let reading=false;
+function onScroll(){
+  const y=scrollY;$("#head").classList.toggle("scrolled",y>8);$("#totop").classList.toggle("show",y>600);
+  const max=document.documentElement.scrollHeight-innerHeight;
+  $("#progress").style.transform=`scaleX(${reading&&max>0?Math.min(1,y/max):0})`;
+}
+addEventListener("scroll",onScroll,{passive:true});
+
+/* router */
+const SCREENS=["top","articles","article","boards","thread","newthread","auth","mypage"];
+const sel=$("#mock-sel");sel.addEventListener("change",()=>location.hash=sel.value);
+function show(){
+  const h=location.hash.slice(1);const cur=SCREENS.includes(h)?h:"top";
+  SCREENS.forEach(s=>{const el=$("#s-"+s);el.hidden=s!==cur;if(s===cur){el.classList.remove("enter");void el.offsetWidth;el.classList.add("enter")}});
+  sel.value=cur;
+  document.querySelectorAll("[data-nav]").forEach(a=>a.setAttribute("aria-current",a.dataset.nav.split(" ").includes(cur)));
+  $("#acct").innerHTML=cur==="mypage"?`<a class="avatar" href="#mypage" aria-label="マイページ">み</a>`:`<a class="btn primary" href="#auth">ログイン</a>`;
+  reading=cur==="article"||cur==="thread";
+  if(cur==="articles")renderList();
+  if(cur==="boards")countUp();
+  scrollTo({top:0,behavior:"instant"});
+  requestAnimationFrame(()=>{allInd();onScroll()});
+}
+addEventListener("hashchange",show);show();
+</script>
+
+</html>
