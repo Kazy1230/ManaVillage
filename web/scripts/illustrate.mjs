@@ -28,8 +28,11 @@ for (const slug of slugs) {
     const svg = d.toString();
     fs.writeFileSync(path.join(src, `${name}.svg`), svg);
     const png = new Resvg(svg, { font: { loadSystemFonts: true, defaultFontFamily: "Yu Gothic" }, fitTo: { mode: "width", value: 1200 } }).render().asPng();
-    const webp = await sharp(png).webp({ quality: 82 }).toBuffer();
+    const webp = await sharp(png).resize({ width: 900 }).webp({ quality: 80 }).toBuffer();
     fs.writeFileSync(path.join(out, `${name}.webp`), webp);
-    console.log(`${slug}/${name}.webp  ${(webp.length / 1024).toFixed(1)} KB`);
+    // SNS の共有用(1200x630 の PNG)。webp に対応しない共有先があるため
+    const og = await sharp(png).resize(1200, 630, { fit: "contain", background: "#ffffff" }).png().toBuffer();
+    fs.writeFileSync(path.join(out, `${name}-og.png`), og);
+    console.log(`${slug}/${name}.webp  ${(webp.length / 1024).toFixed(1)} KB  + ${name}-og.png`);
   }
 }

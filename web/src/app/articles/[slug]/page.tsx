@@ -12,7 +12,7 @@ import { asPosts, getCommentCounts, POST_COLUMNS } from "@/lib/queries";
 import { createClient } from "@/lib/supabase/server";
 import { SITE_URL } from "@/lib/env";
 import { withLinkCards } from "@/lib/linkCards";
-import { SOCIAL } from "@/lib/site";
+import { ORG_ID, PERSON_ID, ldScript, organizationLd, personLd } from "@/lib/jsonld";
 
 export async function generateMetadata(props: PageProps<"/articles/[slug]">): Promise<Metadata> {
   const { slug } = await props.params;
@@ -29,8 +29,9 @@ export async function generateMetadata(props: PageProps<"/articles/[slug]">): Pr
       url: `/articles/${slug}`,
       publishedTime: article.date,
       tags: article.tags,
-      ...(article.coreIllustration ? { images: [{ url: article.coreIllustration, alt: article.coreIllustrationAlt }] } : {}),
+      images: [article.ogImage ? { url: article.ogImage, width: 1200, height: 630, alt: article.coreIllustrationAlt } : { url: "/og-default.png", width: 1200, height: 630, alt: "まなビレッジ" }],
     },
+    twitter: { card: "summary_large_image", title: article.title, description: article.summary, images: [article.ogImage ?? "/og-default.png"] },
     ...(article.draft ? { robots: { index: false, follow: false } } : {}),
   };
 }
@@ -50,7 +51,6 @@ export default async function ArticlePage(props: PageProps<"/articles/[slug]">) 
   const all = getAllArticles();
   const url = `${SITE_URL}/articles/${slug}`;
   const jsonLd = {
-    "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: article.title,
     description: article.summary,
@@ -59,15 +59,15 @@ export default async function ArticlePage(props: PageProps<"/articles/[slug]">) 
     keywords: article.tags.join(", "),
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
     url,
-    ...(article.coreIllustration ? { image: `${SITE_URL}${article.coreIllustration}` } : {}),
-    author: { "@type": "Organization", name: "まなビレッジ", url: SITE_URL },
-    publisher: { "@type": "Organization", name: "まなビレッジ", url: SITE_URL, sameAs: [SOCIAL.instagram.url, SOCIAL.youtube.url] },
+    image: `${SITE_URL}${article.ogImage ?? "/og-default.png"}`,
+    author: { "@id": PERSON_ID },
+    publisher: { "@id": ORG_ID },
   };
 
   return (
     <div className="screen">
       <ReadingProgress />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldScript({ "@context": "https://schema.org", "@graph": [jsonLd, personLd, organizationLd] }) }} />
       <div className="wrap reader-grid">
         <article className="panel paper">
           <div className="crumb">

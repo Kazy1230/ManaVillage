@@ -2,7 +2,7 @@
 title: 「〜してもいいですか？」は Can I だけじゃない。許可の求め方5パターン
 date: 2026-09-25
 tags: [丁寧表現, ビジネス英語, 会話]
-summary: May I、Do you mind if I、Would it be OK if I。丁寧さの段階と、実際の使い分けを例文で整理しました。
+summary: May I、Do you mind if I、Would it be OK if I。許可を求める英語の言い方を、Can I から丁寧な言い方まで丁寧さの段階ごとに整理し、場面別の使い分けと、間違えやすい答え方を例文で紹介します。
 keyword: May I…?
 phrases:
   - { key: "Can I", rest: "borrow your pen for a sec?", ja: "ちょっとペン借りていい？", level: "カジュアル" }

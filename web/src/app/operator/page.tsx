@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import InfoPage from "@/components/InfoPage";
 import { CONTACT_EMAIL, ESTABLISHED, OPERATOR_NAME, SOCIAL } from "@/lib/site";
+import { ldScript, personLd } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "運営者について",
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
 export default function OperatorPage() {
   return (
     <InfoPage title="運営者について">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldScript({ "@context": "https://schema.org", ...personLd }) }} />
       <h2>運営者情報</h2>
       <table>
         <tbody>

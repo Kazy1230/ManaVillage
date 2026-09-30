@@ -42,7 +42,8 @@ web/
     articles/<slug>/*.svg            導入前の記事のイラスト
   scripts/
     doodle.mjs           クレヨン風の絵を描く道具箱(揺れる線、棒人間、吹き出し…)
-    illustrate.mjs       content/illustrations/<slug>/*.mjs → svg と webp を書き出す
+    illustrate.mjs       content/illustrations/<slug>/*.mjs → svg、webp(幅900)、共有用の PNG(1200x630)を書き出す
+    make-og.mjs          サイト共通の共有画像 public/og-default.png を作る
     check-article.mjs    記事の機械チェック(ワークフロー 3-5 のうち機械で判定できる項目)
     draw-articles.mjs    導入前の記事10本のイラスト(旧方式)
     draw-study.mjs       導入前の勉強法記事30本のイラスト(旧方式)
@@ -59,6 +60,8 @@ web/
       about, operator, contact, privacy, terms   サイトの紹介・運営者・問い合わせ・プライバシーポリシー・利用規約(InfoPage 部品で共通のレイアウト)
       auth/confirm/route.ts   メールのリンク(登録確認・パスワード再設定)の受け口
       sitemap.ts, robots.ts
+    lib/jsonld.ts        JSON-LD(WebSite / Organization / Person、記事の BlogPosting の著者・発行元の参照)
+    lib/tags.ts          タグページの説明文(記事が3本以上のタグを中身のあるページにする)
     lib/site.ts          SNS のアカウント、タグライン、運営者名、問い合わせ先メール(変更はここだけ)
     components/          UI 部品(Discussion = コメント/返信のツリー表示と投稿フォーム など)
     lib/
@@ -113,7 +116,9 @@ web/
 
 ## SEO の実装
 
-- `canonical`(全ページ)、OG タグ、記事に JSON-LD `BlogPosting`
+- `canonical`(全ページ)、OG タグ、Twitter の大きいカード(`summary_large_image`)
+- 共有画像: サイト共通 `public/og-default.png`(`node scripts/make-og.mjs` で作る)、ワークフロー導入後の記事は `public/illustrations/<slug>/core-og.png`(`illustrate.mjs` が 1200x630 の PNG を一緒に書き出す)。導入前の記事は共通画像
+- JSON-LD: トップに `WebSite` + `Organization` + `Person`(運営者)、運営者ページに `Person`、記事に `BlogPosting`(著者は運営者の `Person`、発行元は `Organization`)
 - `sitemap.xml`: 公開済みの記事と、検索に出してよいタグページだけ
 - タグページの `noindex`: 公開記事が3本未満、または `hubTag` にそのタグを持つハブ記事が公開済み
 - 返信ゼロのスレッドは `noindex`

@@ -22,6 +22,7 @@ export type ArticleMeta = {
   // ハブ記事のとき、検索を譲らせる（noindex にする）タグ
   hubTag: string;
   coreIllustration: string | null;
+  ogImage: string | null;
   coreIllustrationAlt: string;
   related: string[];
 };
@@ -29,6 +30,17 @@ export type ArticleMeta = {
 export type Article = ArticleMeta & { html: string };
 
 const DIR = path.join(process.cwd(), "content", "articles");
+
+// 本文の画像に、寸法(イラストはすべて 8:5)と遅延読み込みを付ける。レイアウトのずれと、初回表示の重さを防ぐ
+marked.use({
+  renderer: {
+    image({ href, title, text }) {
+      const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+      const illust = /^\/(illustrations|articles)\//.test(href);
+      return `<img src="${esc(href)}" alt="${esc(text)}"${title ? ` title="${esc(title)}"` : ""}${illust ? ' width="800" height="500"' : ""} loading="lazy" decoding="async">`;
+    },
+  },
+});
 const isProd = process.env.NODE_ENV === "production";
 const today = () => new Date().toISOString().slice(0, 10);
 const str = (v: unknown) => (v instanceof Date ? v.toISOString().slice(0, 10) : v == null ? "" : String(v));
@@ -55,6 +67,7 @@ function load(file: string): Article {
     hub: str(data.hub),
     hubTag: str(data.hubTag),
     coreIllustration: core ? `/illustrations/${slug}/${core}` : null,
+    ogImage: core ? `/illustrations/${slug}/${core.replace(/\.[a-z]+$/, "")}-og.png` : null,
     coreIllustrationAlt: str(data.coreIllustrationAlt),
     related: list(data.related),
     // 日本語の読書速度を約500字/分として概算

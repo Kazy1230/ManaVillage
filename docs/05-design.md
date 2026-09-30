@@ -27,10 +27,9 @@
 
 ## 文字
 
-- 見出し: Zen Kaku Gothic New(700/900)
-- 本文: Noto Sans JP
-- 英語の例文・飾り: Newsreader(イタリック)
-- `next/font/google` で読み込み
+- 日本語(見出し・本文): **OS 標準のゴシック体**(Hiragino Sans → Noto Sans JP → Yu Gothic Medium → Meiryo の順)。Web フォントは使わない
+- 英語の例文・飾り: Newsreader(イタリック。`next/font/google`、ラテン文字だけなので軽い)
+- **日本語の Web フォントを使わない理由**: 以前は Noto Sans JP と Zen Kaku Gothic New を `next/font/google` で読み込んでいたが、日本語のフォントは小さく分割されて配信されるため、`@font-face` が合計737個・CSS が558KB になり、表示をブロックしていた。OS 標準フォントに変えて、ローカルの Lighthouse(モバイル)で、パフォーマンス56→95、LCP 11.8秒→2.9秒になった(2026-10-01)。日本語の Web フォントを再び入れるときは、1つの太さだけにするなど、CSS の量を測ってから決める
 
 ## 部品と動き
 

@@ -2,6 +2,7 @@ import Link from "next/link";
 import ArticleCard from "@/components/ArticleCard";
 import { getAllArticles, getTagCounts } from "@/lib/articles";
 import { getCommentCounts } from "@/lib/queries";
+import { TAG_DESCRIPTIONS } from "@/lib/tags";
 
 export default async function ArticleList({ tag }: { tag?: string }) {
   const all = getAllArticles();
@@ -14,6 +15,7 @@ export default async function ArticleList({ tag }: { tag?: string }) {
         <div className="panel ptitle intro">
           <span className="sub">{tag ? "タグ" : "/articles"}</span>
           <h1>{tag ? `#${tag}` : "記事"}</h1>
+          {tag && TAG_DESCRIPTIONS[tag] && <p style={{ maxWidth: "40em", position: "relative" }}>{TAG_DESCRIPTIONS[tag]}</p>}
           <p className="sub">{list.length}件の記事 · 新着順</p>
           <span className="deco" aria-hidden="true">Read.</span>
         </div>

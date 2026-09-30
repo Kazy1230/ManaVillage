@@ -4,6 +4,7 @@ import PhraseCarousel from "@/components/PhraseCarousel";
 import { getAllArticles, getTagCounts } from "@/lib/articles";
 import { shortDate } from "@/lib/format";
 import { catClass, getCommentCounts, listThreads } from "@/lib/queries";
+import { ldScript, organizationLd, personLd, websiteLd } from "@/lib/jsonld";
 
 export const metadata = { alternates: { canonical: "/" } };
 
@@ -25,6 +26,7 @@ export default async function Home() {
 
   return (
     <div className="screen">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldScript({ "@context": "https://schema.org", "@graph": [websiteLd, organizationLd, personLd] }) }} />
       {latest && (
         <div className="wrap">
           <Link className="panel hero" href={`/articles/${latest.slug}`}>
