@@ -3,7 +3,7 @@ export type Author = { nickname: string; is_admin: boolean };
 export type PostRow = {
   id: number;
   parent_id: number | null;
-  user_id: string;
+  user_id: string | null;
   body: string;
   created_at: string;
   author: Author | null;

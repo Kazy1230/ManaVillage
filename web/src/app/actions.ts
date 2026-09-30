@@ -168,7 +168,7 @@ export async function addThreadPost(_: ActionState, fd: FormData): Promise<Actio
   const supabase = await createClient();
   const { data: thread } = await supabase.from("threads").select("id, title, user_id, category_id").eq("id", threadId).single();
   if (!thread) return { error: "スレッドが見つかりません。" };
-  const recipients = [thread.user_id];
+  const recipients: (string | null)[] = [thread.user_id];
   if (parentId) {
     const { data } = await supabase.from("thread_posts").select("user_id").eq("id", parentId).eq("thread_id", threadId).single();
     if (!data) return { error: "返信先の書き込みが見つかりません。" };

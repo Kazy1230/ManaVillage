@@ -33,8 +33,9 @@ export async function notifyAdminOfComment(articleTitle: string, slug: string, n
   );
 }
 
-export async function notifyReply(recipientIds: string[], actorId: string, subject: string, nickname: string, body: string, url: string) {
-  const targets = [...new Set(recipientIds)].filter((id) => id && id !== actorId);
+export async function notifyReply(recipientIds: (string | null)[], actorId: string, subject: string, nickname: string, body: string, url: string) {
+  // 退会したユーザーの投稿(user_id が null)には通知しない
+  const targets = [...new Set(recipientIds)].filter((id): id is string => !!id && id !== actorId);
   await Promise.all(
     targets.map(async (id) => {
       const to = await emailOf(id);

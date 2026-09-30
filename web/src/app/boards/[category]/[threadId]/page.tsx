@@ -13,7 +13,7 @@ type Thread = {
   id: number;
   title: string;
   body: string;
-  user_id: string;
+  user_id: string | null;
   created_at: string;
   reply_count: number;
   category_id: number;
@@ -89,7 +89,7 @@ export default async function ThreadPage(props: PageProps<"/boards/[category]/[t
           path={path}
           placeholder="このスレッドに書き込む"
           empty="まだ返信はありません。最初の返信を書いてみませんか？"
-          badge={(r) => (r.user_id === thread.user_id ? "スレ主" : null)}
+          badge={(r) => (r.user_id && r.user_id === thread.user_id ? "スレ主" : null)}
         />
       </div>
     </div>
