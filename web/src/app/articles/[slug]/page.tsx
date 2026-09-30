@@ -11,6 +11,7 @@ import { formatDate } from "@/lib/format";
 import { asPosts, getCommentCounts, POST_COLUMNS } from "@/lib/queries";
 import { createClient } from "@/lib/supabase/server";
 import { SITE_URL } from "@/lib/env";
+import { withLinkCards } from "@/lib/linkCards";
 
 export async function generateMetadata(props: PageProps<"/articles/[slug]">): Promise<Metadata> {
   const { slug } = await props.params;
@@ -65,7 +66,7 @@ export default async function ArticlePage(props: PageProps<"/articles/[slug]">) 
   return (
     <div className="screen">
       <ReadingProgress />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\u003c") }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
       <div className="wrap reader-grid">
         <article className="panel paper">
           <div className="crumb">
@@ -81,13 +82,25 @@ export default async function ArticlePage(props: PageProps<"/articles/[slug]">) 
               <div className="sub">{formatDate(article.date)} · {article.minutes}分で読める</div>
             </div>
           </div>
-          <div className="prose" dangerouslySetInnerHTML={{ __html: article.html }} />
+          <div className="prose" dangerouslySetInnerHTML={{ __html: withLinkCards(article.html, slug) }} />
           {article.tags.length > 0 && (
             <div className="tags-foot">
               {article.tags.map((t) => <Link key={t} className="chip" href={`/tags/${encodeURIComponent(t)}`}>#{t}</Link>)}
             </div>
           )}
         </article>
+
+        <Discussion
+          title="コメント"
+          rows={asPosts(data)}
+          action={addComment}
+          hidden={{ slug }}
+          loggedIn={!!viewer}
+          path={`/articles/${slug}`}
+          placeholder="感想や質問をどうぞ"
+          empty="まだコメントはありません。最初のコメントを書いてみませんか？"
+          badge={(r) => (r.author?.is_admin ? "筆者" : null)}
+        />
 
         {related.length > 0 && (
           <section className="related" aria-label="関連記事">
@@ -101,18 +114,6 @@ export default async function ArticlePage(props: PageProps<"/articles/[slug]">) 
             </div>
           </section>
         )}
-
-        <Discussion
-          title="コメント"
-          rows={asPosts(data)}
-          action={addComment}
-          hidden={{ slug }}
-          loggedIn={!!viewer}
-          path={`/articles/${slug}`}
-          placeholder="感想や質問をどうぞ"
-          empty="まだコメントはありません。最初のコメントを書いてみませんか？"
-          badge={(r) => (r.author?.is_admin ? "筆者" : null)}
-        />
       </div>
     </div>
   );
