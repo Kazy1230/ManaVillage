@@ -56,8 +56,10 @@ web/
       tags/[tag]/        タグ別一覧(記事3本未満、またはハブ記事がある場合は noindex)
       boards/            掲示板一覧(カテゴリ・新着/人気)、スレッド詳細、スレッド作成
       login, signup, reset-password, update-password, mypage
+      about, operator, contact, privacy, terms   サイトの紹介・運営者・問い合わせ・プライバシーポリシー・利用規約(InfoPage 部品で共通のレイアウト)
       auth/confirm/route.ts   メールのリンク(登録確認・パスワード再設定)の受け口
       sitemap.ts, robots.ts
+    lib/site.ts          SNS のアカウント、タグライン、運営者名、問い合わせ先メール(変更はここだけ)
     components/          UI 部品(Discussion = コメント/返信のツリー表示と投稿フォーム など)
     lib/
       articles.ts        記事の読み込み(旧形式と新形式の frontmatter 両対応)、下書きの除外、関連記事、タグの index 判定

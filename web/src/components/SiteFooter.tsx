@@ -71,6 +71,17 @@ export default function SiteFooter({ loggedIn }: { loggedIn: boolean }) {
               )}
             </ul>
           </nav>
+
+          <nav className="foot-col" aria-label="サイトについて">
+            <h2>サイトについて</h2>
+            <ul>
+              <li><Link href="/about">まなビレッジとは</Link></li>
+              <li><Link href="/operator">運営者について</Link></li>
+              <li><Link href="/contact">お問い合わせ</Link></li>
+              <li><Link href="/privacy">プライバシーポリシー</Link></li>
+              <li><Link href="/terms">利用規約</Link></li>
+            </ul>
+          </nav>
         </div>
 
         <div className="foot-bottom">

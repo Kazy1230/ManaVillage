@@ -12,6 +12,7 @@ import { asPosts, getCommentCounts, POST_COLUMNS } from "@/lib/queries";
 import { createClient } from "@/lib/supabase/server";
 import { SITE_URL } from "@/lib/env";
 import { withLinkCards } from "@/lib/linkCards";
+import { SOCIAL } from "@/lib/site";
 
 export async function generateMetadata(props: PageProps<"/articles/[slug]">): Promise<Metadata> {
   const { slug } = await props.params;
@@ -60,7 +61,7 @@ export default async function ArticlePage(props: PageProps<"/articles/[slug]">) 
     url,
     ...(article.coreIllustration ? { image: `${SITE_URL}${article.coreIllustration}` } : {}),
     author: { "@type": "Organization", name: "まなビレッジ", url: SITE_URL },
-    publisher: { "@type": "Organization", name: "まなビレッジ", url: SITE_URL },
+    publisher: { "@type": "Organization", name: "まなビレッジ", url: SITE_URL, sameAs: [SOCIAL.instagram.url, SOCIAL.youtube.url] },
   };
 
   return (

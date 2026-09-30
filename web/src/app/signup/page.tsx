@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { signup } from "@/app/actions";
 import ActionForm from "@/components/ActionForm";
@@ -30,6 +31,9 @@ export default async function SignupPage(props: PageProps<"/signup">) {
           <input id="su-pass" name="password" type="password" required minLength={8} autoComplete="new-password" placeholder="8文字以上" />
         </label>
       </ActionForm>
+      <p className="hint" style={{ textAlign: "center", lineHeight: 1.8 }}>
+        登録すると、<Link href="/terms">利用規約</Link>と<Link href="/privacy">プライバシーポリシー</Link>に同意したものとみなします。
+      </p>
     </AuthShell>
   );
 }

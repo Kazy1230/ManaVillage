@@ -4,3 +4,7 @@ export const SOCIAL = {
 } as const;
 
 export const SITE_TAGLINE = "For Everyone's Learning, For Everyone's Help";
+
+export const OPERATOR_NAME = "Kaz";
+export const CONTACT_EMAIL = "xenon.english@gmail.com";
+export const ESTABLISHED = "2026年9月";
