@@ -116,8 +116,7 @@
 
 英語学習のワークフロー 3章と同じ順番。違いだけ:
 
-1. **テーマ選定(週1)**: `planning/japanese/topic-map.md` の `idea` の行から選び、企画カードを作る(`planning/japanese/cards/`)。主キーワードは英語の検索語
-2. **Kaz の承認**
+1. **テーマ選定(毎日。Kaz の確認なし)**: `planning/japanese/topic-map.md` の `idea` の行から選ぶ(英語学習のワークフロー 3-1)。主キーワードは英語の検索語
 3. **アウトライン**(`planning/japanese/outlines/`)→ 企画チェック(別エージェント)
 4. **本文とイラスト**(`content/japanese/articles/<slug>.md`、`status: draft`)
 5. `node scripts/check-article.mjs <slug>`(ルビ、type、内部リンクなどを機械で確認)

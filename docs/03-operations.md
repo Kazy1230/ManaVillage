@@ -76,7 +76,7 @@ update profiles set is_admin = true where id = (select id from auth.users where 
 
 `web/content/planning/workflow.md`(記事制作ワークフロー)に従う。要点:
 
-- 週1回: テーマ選定 → 企画カード(`web/content/planning/cards/`)→ Kaz の承認 → `topic-map.md` に登録
+- テーマは、エージェントが在庫(`topic-map.md`)から選ぶ。Kaz の確認はない(2026-10-02 決定)
 - 毎日2本: アウトライン → 企画チェック(別エージェント)→ 本文とイラスト → `node scripts/check-article.mjs <slug>` → 本文チェック(別エージェント)→ `status: draft` で保存 → Kaz のレビュー → 承認されたら `published` にしてデプロイ
 - イラスト: `web/content/illustrations/<slug>/core.mjs` を書いて `node scripts/illustrate.mjs <slug>`
 - Claude Code なら、スキル `manavillage-weekly` / `manavillage-daily` と、チェック用サブエージェント `manavillage-checker`(`.claude/`)が使える

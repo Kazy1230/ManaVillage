@@ -28,12 +28,12 @@
 ## 記事の作業の流れ(要約。詳細はワークフロー)
 
 ```
-[週1] テーマ選定 → 企画カード(web/content/planning/cards/)→ Kaz が承認 → topic-map に登録
-[毎日2本] アウトライン(planning/outlines/)→ 企画チェック(別エージェント)
+[毎日2本] テーマを在庫(topic-map)から選ぶ(Kaz の確認なし)
+          → アウトライン(planning/outlines/)→ 企画チェック(別エージェント)
           → 本文(content/articles/<slug>.md, status: draft)とイラスト
           → node scripts/check-article.mjs <slug>(web/ で実行)
           → 本文チェック(別エージェント。差し戻しは最大2回)
-          → Kaz がレビュー → 承認されたら published にしてデプロイ → topic-map を published に
+          → Kaz が完成した2本を確認 → 承認されたら published にしてデプロイ → topic-map を published に
 [毎日1本] 導入前の記事(topic-map の A-xx)の手直し(docs/06-open-items.md の優先順)
 ```
 
@@ -43,7 +43,7 @@
 
 ## ツールごとのメモ
 
-- **Claude Code**: `.claude/agents/manavillage-checker.md`(チェック用サブエージェント)、`.claude/skills/manavillage-weekly`(週次のテーマ選定)、`.claude/skills/manavillage-daily`(日次の記事作成)が使える。personal-brain(MCP)が接続されていれば、`get_persona_core` / `search_persona`(theme: `learning`)/ `get_persona_exemplars` で素材と文体を確かめる
+- **Claude Code**: `.claude/agents/manavillage-checker.md`(チェック用サブエージェント)、`.claude/skills/manavillage-weekly`(在庫の見直し。Kaz の確認なし)、`.claude/skills/manavillage-daily`(日次の記事作成)が使える。personal-brain(MCP)が接続されていれば、`get_persona_core` / `search_persona`(theme: `learning`)/ `get_persona_exemplars` で素材と文体を確かめる
 - **その他のエージェント**: 上の `.claude/` のファイルは普通の Markdown なので、手順書として読んで同じことを行う。チェックは、執筆とは別のセッションで `manavillage-checker.md` の指示に従って行う。personal-brain に接続できない場合は `web/content/materials/` だけを素材にする
 
 ## よく使うコマンド(`web/` で実行)

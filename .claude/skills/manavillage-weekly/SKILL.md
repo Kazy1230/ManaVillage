@@ -1,16 +1,16 @@
 ---
 name: manavillage-weekly
-description: まなビレッジの週次テーマ選定。検索サジェスト・Search Console のクエリ・掲示板・personal-brain・topic-map から、企画カードを15〜20本作り、Kaz の承認を取る。「今週のテーマ選定」「企画カードを作って」と言われたときに使う。
+description: まなビレッジの在庫(テーマの全体リスト)の見直し。検索サジェスト・Search Console のクエリ・掲示板・personal-brain から、topic-map の在庫を増やし、点数を付け直す。「在庫を見直して」「テーマを増やして」と言われたときに使う。Kaz の確認はいらない。
 ---
 
-`web/content/planning/workflow.md` の 3-1 に従って、今週の企画カードを作る。
+`web/content/planning/workflow.md` の 3-1 に従って、在庫(`web/content/planning/topic-map.md`、日本語学習は `web/content/planning/japanese/topic-map.md`)を見直す。**Kaz にテーマの承認は求めない**(2026-10-02 決定。Kaz が確認するのは完成した記事だけ)。
 
-1. `web/content/planning/topic-map.md` と `web/content/planning/cards/` の過去のカードを読む
+1. topic-map を読む
 2. 材料を集める
-   - personal-brain: `get_persona_core`(recentThoughts、themeIndex)、`search_persona`(theme: learning。必要なら creative、work)
+   - personal-brain: `get_persona_core`(recentThoughts、themeIndex)、`search_persona`(theme: learning)
    - Kaz が共有した Search Console の CSV(あれば)
-   - 検索サジェスト(Google の候補。`suggestqueries.google.com` を `client=firefox&hl=ja&gl=jp` で取得)
+   - 検索サジェスト(Google の候補。`suggestqueries.google.com` を `client=firefox&hl=ja&gl=jp` で取得。日本語学習は `hl=en&gl=us`)
+   - 検索結果の「他の人はこちらも質問」「関連する検索」
    - 掲示板のスレッドとコメント(Supabase の公開 API で読む)
-3. `web/content/planning/cards/<年>-W<週>.md` に、カード15〜20本と、執筆キュー(直近3〜4日は固定)を書く。書式は前週のファイルに合わせる
-4. 各カードを topic-map に `card` で登録し、近い記事との判定を「近い記事と、判定」の表に書く
-5. Kaz に承認を求める。承認されたカードの状態を `approved` にする
+3. 在庫にない項目を `idea` で足す。重複の判定は、ワークフロー1章の基準
+4. 需要・勝ちやすさ・穴埋めの順で点数を付け直し、次に書く順番を決める
