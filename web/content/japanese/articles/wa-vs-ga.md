@@ -1,5 +1,5 @@
 ---
-# テスト用の下書き(日本語学習セクションの表示確認のため)。Kaz の指示があるまで公開しない
+# 最初の記事の候補(2026-10-02 Kaz 決定)。もとは表示確認用のテスト。ワークフロー(planning/japanese/workflow.md)に沿って、アウトライン・チェックを経て仕上げる。Kaz の承認まで公開しない
 title: "は (wa) vs が (ga): think of it as a spotlight"
 description: "The difference between は and が, explained with a stage-and-spotlight picture, example sentences with furigana and romaji, and the most common mistake."
 slug: wa-vs-ga
@@ -9,7 +9,7 @@ publishedAt: ""
 updatedAt: ""
 primaryKeyword: "wa vs ga"
 searchIntent: "Understand when to use は and when to use が"
-targetReader: "Beginner learners of Japanese"
+targetReader: "Beginner learners of Japanese (level: beginner)"
 hub: "Particles"
 tags: [Particles, Grammar, Beginner]
 coreIllustration: core.webp

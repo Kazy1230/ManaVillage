@@ -7,7 +7,7 @@
 
 | ID | slug | タイトル(仮) | 主キーワード | 検索意図 | 想定読者 | type | 状態 | ハブ |
 |---|---|---|---|---|---|---|---|---|
-| J-01 | wa-vs-ga | は (wa) vs が (ga): think of it as a spotlight | wa vs ga | は と が の使い分けを知りたい | 初級 | general | draft(テスト用) | Particles |
+| J-01 | wa-vs-ga | は (wa) vs が (ga): think of it as a spotlight | wa vs ga | は と が の使い分けを知りたい | 初級 | general | draft(最初の記事の候補。ワークフローに沿って仕上げる) | Particles |
 | J-02 | ni-vs-de | に (ni) vs で (de): where things are vs. where things happen | ni vs de | 場所の に と で の違いを知りたい | 初級 | general | idea | Particles |
 | J-03 | miru-mieru-nagameru | 見る, 見える, 眺める: three ways to “see” | miru vs mieru | 見る と 見える の違いを知りたい | 初級〜中級 | general | idea | Synonyms |
 | J-04 | te-shimau | 〜てしまう: finished, or “oops”? | te shimau meaning | 〜てしまう の2つの意味を知りたい | 中級 | general | idea | Grammar |
@@ -21,6 +21,8 @@
 | J-12 | iku-kuru | 行く vs 来る: why “I’ll come” is 行きます | iku vs kuru | 行く と 来る の視点の違いを知りたい | 初級 | general | idea | Grammar |
 
 ## 近い記事・重複の注意(案の段階)
+
+- 対象レベルは記事ごとに決める(Kaz 決定)。想定読者が「初級〜中級」の行は、企画カードの段階で、どちらか1つのレベルに決めるか、検索意図が違うならレベル別の記事に分ける
 
 - J-01(は/が)と J-08(ある/いる)は、どちらも「が」が出るが、検索意図が違うので別記事
 - J-04(〜てしまう)と J-09(〜ている)は、形が似ているが意味が違うので別記事。互いにリンクする
