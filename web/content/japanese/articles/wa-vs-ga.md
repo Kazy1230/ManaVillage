@@ -1,11 +1,10 @@
 ---
-# 日本語学習の最初の記事(J-01)。Kaz の承認まで公開しない
 title: "は (wa) vs が (ga): how to choose, with real conversations and a quiz"
 description: "Learn when to use は and when to use が, with a simple stage-and-spotlight picture, real conversations, the question-word rule, and a five-question quiz."
 slug: wa-vs-ga
 type: general
-status: draft
-publishedAt: ""
+status: published
+publishedAt: "2026-10-02"
 updatedAt: ""
 primaryKeyword: "wa vs ga"
 searchIntent: "Decide whether to use は or が in a sentence"
