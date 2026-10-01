@@ -58,8 +58,10 @@ body.no-ro .example .ro{display:none}
 .vlabel{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--faint);margin:48px 0 14px;display:flex;align-items:center;gap:12px}
 .vlabel::after{content:"";flex:1;border-top:1px dashed var(--line-strong)}
 .vlabel b{color:var(--accent)}
-@media (max-width:520px){.nav a[lang]{display:none}.ex-pair{grid-template-columns:1fr}.example .jpx{font-size:20px}.prose figure.illus{padding:8px 12px}}
+@media (max-width:520px){.nav a[lang]{display:none}.prose tbody th{white-space:nowrap;font-size:12px}.prose th,.prose td{padding:8px 10px}.prose td .jpx,.prose th .jpx{font-size:15px;white-space:nowrap}.ex-pair{grid-template-columns:1fr}.example .jpx{font-size:20px}.prose figure.illus{padding:8px 12px}}
 """
+
+WA_CSS = open(os.path.join(os.path.dirname(__file__), "wa.css"), encoding="utf-8").read()
 
 TOGGLE_JS = """<script>
 document.querySelectorAll('[data-toggle]').forEach(function(b){b.addEventListener('click',function(){
@@ -81,6 +83,7 @@ def page(lang, title, body, script=""):
 {GLOBALS}
 /* ===== モックで足した部品 ===== */
 {EXTRA_CSS}
+{WA_CSS if lang == "en" else ""}
 </style>
 </head>
 <body>
