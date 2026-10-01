@@ -359,13 +359,13 @@ html[data-section="japanese"]{--body:-apple-system,BlinkMacSystemFont,"Segoe UI"
 .phrase .ro{font-family:var(--en);font-style:italic;font-size:17px;color:var(--ink)}
 
 /* ヘッダーの科目タブ */
-.head-nav{display:flex;align-items:center;gap:12px;min-width:0}
+.head-nav{position:relative;display:flex;align-items:center;gap:12px;min-width:0;overflow-x:auto;scrollbar-width:none}
 .subjects{display:flex;gap:4px}
 .subjects a{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:99px;font-size:14px;color:var(--muted);white-space:nowrap;transition:color .2s,background .2s}
 .subjects a:hover{color:var(--ink);background:var(--bg)}
 .subjects a[aria-current="page"]{color:var(--accent);background:var(--accent-soft);font-weight:500}
 .nav-sep{width:1px;height:22px;background:var(--line-strong)}
-@media (max-width:760px){
+@media (max-width:1080px){
   .head-in,.scrolled .head-in{flex-wrap:wrap;height:auto;padding-block:10px;row-gap:8px}
   .head-nav{order:3;width:100%;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
   .subjects a{font-size:13px}
@@ -491,3 +491,39 @@ html[data-section="japanese"] .site-foot{background:var(--ink)}
 html[data-section="japanese"] .cat.c0{background:var(--p1);color:#A23A50}.cat.c1{background:var(--p3);color:#3C7A4A}
 /* フッター: 科目の列が増えた分 */
 @media (min-width:861px){.foot-main{grid-template-columns:minmax(0,1.5fr) repeat(4,minmax(0,1fr));gap:32px}}
+
+/* ===== 科目の見た目(IT・哲学・科学・人間関係)。レイアウトは共通で、色とヒーローの右側・用語の帯だけを変える ===== */
+.code{font-style:normal}
+.section-it,.subject-it{--accent:#0E7C70;--accent-dark:#0A5F56;--accent-soft:#E3F4F1;--accent-rgb:14,124,112}
+.section-philosophy,.subject-philosophy{--accent:#5B4B8A;--accent-dark:#46396C;--accent-soft:#ECE8F6;--accent-rgb:91,75,138}
+.section-science,.subject-science{--accent:#1F6FB2;--accent-dark:#175A91;--accent-soft:#E4EEF8;--accent-rgb:31,111,178}
+.section-relationships,.subject-relationships{--accent:#C8553D;--accent-dark:#A54430;--accent-soft:#FCE9E3;--accent-rgb:200,85,61}
+:is(.section-it,.section-philosophy,.section-science,.section-relationships) .btn.primary,
+:is(.subject-it,.subject-philosophy,.subject-science,.subject-relationships) .btn.primary{box-shadow:0 4px 14px rgba(var(--accent-rgb),.25)}
+:is(.section-it,.section-philosophy,.section-science,.section-relationships) .btn.primary:hover{box-shadow:0 6px 20px rgba(var(--accent-rgb),.33)}
+:is(.section-it,.section-philosophy,.section-science,.section-relationships) .badge-new i{animation:none}
+:is(.section-it,.section-philosophy,.section-science,.section-relationships) .band{background:linear-gradient(135deg,var(--accent-dark),var(--accent))}
+:is(.section-it,.section-philosophy,.section-science,.section-relationships) .band .btn{color:var(--accent)}
+:is(.section-it,.section-philosophy,.section-science,.section-relationships) .stage .code{font-size:clamp(26px,3vw,34px)}
+:is(.section-it,.section-philosophy,.section-science,.section-relationships) .stage mark{background:linear-gradient(var(--hl),var(--hl)) no-repeat 0 88% / 0% 42%;animation:marker .7s .35s var(--ease) forwards;color:inherit;padding-inline:2px}
+:is(.section-it,.section-philosophy,.section-science,.section-relationships) .stage-label{color:var(--accent)}
+/* IT: ヒーローの右側は黒い画面、コードの文字 */
+.section-it .code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
+.section-it .stage{background:#1E2530;border-left-color:#1E2530;color:#E6EDF3}
+.section-it .stage-label{color:#7EE0C3;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:0}
+.section-it .stage mark{background-image:linear-gradient(rgba(126,224,195,.35),rgba(126,224,195,.35))}
+.section-it .ticker .code{font-size:16px;color:#7EE0C3}
+.section-it .prose code{background:#1E2530;color:#E6EDF3;padding:2px 7px}
+.section-it .prose pre{background:#1E2530;color:#E6EDF3;border-radius:14px;padding:18px 22px;overflow-x:auto;font-size:14px;line-height:1.7}
+.section-it .prose pre code{background:none;padding:0}
+/* 哲学: 明朝の見出し、紙の地 */
+.section-philosophy h1,.section-philosophy h2,.section-philosophy h3,.subject-philosophy h2{font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP","Noto Serif CJK JP",Georgia,serif;font-weight:700}
+.section-philosophy .stage{background:#F4EFE6}
+.section-philosophy .stage .code{font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",Georgia,serif}
+.section-philosophy .ticker .code{font-size:16px;color:#CDBEF5;font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",Georgia,serif}
+/* 科学: 方眼紙の地 */
+.section-science .stage{background-color:#F4F8FC;background-image:linear-gradient(rgba(31,111,178,.10) 1px,transparent 1px),linear-gradient(90deg,rgba(31,111,178,.10) 1px,transparent 1px);background-size:24px 24px}
+.section-science .ticker .code{font-size:16px;color:#9FD0FF;font-weight:700}
+/* 人間関係: やわらかい水玉の地 */
+.section-relationships .stage{background-color:#FFF4EF;background-image:radial-gradient(rgba(200,85,61,.12) 2px,transparent 2.5px);background-size:22px 22px}
+.section-relationships .ticker .code{font-size:16px;color:#FFC2B3;font-weight:700}

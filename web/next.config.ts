@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
   experimental: { globalNotFound: true },
   // 記事の Markdown は実行時に読み込むため、サーバー関数に同梱する
   outputFileTracingIncludes: {
-    "/**": ["./content/articles/**/*", "./content/japanese/**/*"],
+    "/**": ["./content/articles/**/*", "./content/japanese/**/*", "./content/it/**/*", "./content/philosophy/**/*", "./content/science/**/*", "./content/relationships/**/*"],
   },
   // 別ホスト名でのアクセスは正規のドメインへ寄せる（検索評価の分散を防ぐ）
   async redirects() {

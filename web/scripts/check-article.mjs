@@ -11,6 +11,10 @@ const slug = process.argv[2];
 const SECTIONS = {
   english: { dir: path.join(root, "content", "articles"), base: "/articles/", lang: "ja" },
   japanese: { dir: path.join(root, "content", "japanese", "articles"), base: "/en/japanese/articles/", lang: "en" },
+  it: { dir: path.join(root, "content", "it", "articles"), base: "/it/articles/", lang: "ja" },
+  philosophy: { dir: path.join(root, "content", "philosophy", "articles"), base: "/philosophy/articles/", lang: "ja" },
+  science: { dir: path.join(root, "content", "science", "articles"), base: "/science/articles/", lang: "ja" },
+  relationships: { dir: path.join(root, "content", "relationships", "articles"), base: "/relationships/articles/", lang: "ja" },
 };
 const sectionKey = Object.keys(SECTIONS).find((k) => fs.existsSync(path.join(SECTIONS[k].dir, `${slug}.md`))) ?? "english";
 const SEC = SECTIONS[sectionKey];
@@ -39,7 +43,7 @@ for (const [k, s] of Object.entries(SECTIONS)) {
 const all = fs.readdirSync(ART).filter((f) => f.endsWith(".md")).map((f) => ({ slug: f.slice(0, -3), ...read(f.slice(0, -3)) }));
 const self = all.find((a) => a.slug === slug);
 if (!self) {
-  console.error(`${slug}.md が content/articles/ にも content/japanese/articles/ にも見つかりません`);
+  console.error(`${slug}.md が、どの科目の記事フォルダ(content/articles/、content/<科目>/articles/)にも見つかりません`);
   process.exit(1);
 }
 const { data: fm, content } = self;
@@ -168,8 +172,8 @@ if (fm.type === "general" && content.includes('class="voice"')) err("general 記
 if (!isJa && content.includes('class="analogy"')) warn("英語学習の記事に例え話の囲み(class=\"analogy\")がある。日本語学習の記事用の部品");
 
 // ---------- topic-map ----------
-const mapFile = isJa ? path.join(root, "content", "planning", "japanese", "topic-map.md") : path.join(root, "content", "planning", "topic-map.md");
-if (isJa && !fs.existsSync(mapFile)) warn("日本語学習の topic-map(content/planning/japanese/topic-map.md)がまだない");
+const mapFile = sectionKey === "english" ? path.join(root, "content", "planning", "topic-map.md") : path.join(root, "content", "planning", sectionKey, "topic-map.md");
+if (sectionKey !== "english" && !fs.existsSync(mapFile)) warn(`この科目の topic-map(content/planning/${sectionKey}/topic-map.md)がまだない`);
 else if (fs.existsSync(mapFile)) {
   const rows = fs.readFileSync(mapFile, "utf8").split("\n").filter((l) => /^\|\s*[A-Z]+-?\d+/.test(l)).map((l) => l.split("|").map((c) => c.trim()));
   const row = rows.find((r) => r[2] === slug);

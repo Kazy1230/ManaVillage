@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useRef } from "react";
 import { sectionOfPath, type Lang, type SectionKey } from "@/lib/sections";
 
 type Tab = { key: SectionKey; label: string; top: string; lang: Lang };
@@ -10,8 +11,17 @@ type Tab = { key: SectionKey; label: string; top: string; lang: Lang };
 export default function SubjectTabs({ tabs, board, lang }: { tabs: Tab[]; board: string; lang: Lang }) {
   const pathname = usePathname();
   const current = sectionOfPath(pathname);
+  const nav = useRef<HTMLElement>(null);
+
+  // 狭い画面ではメニューが横にスクロールするので、いまの科目が見える位置まで動かす
+  useEffect(() => {
+    const el = nav.current;
+    const cur = el?.querySelector<HTMLElement>('[aria-current="page"]');
+    if (el && cur) el.scrollLeft = cur.offsetLeft - (el.clientWidth - cur.offsetWidth) / 2;
+  }, [pathname]);
+
   return (
-    <nav className="head-nav" aria-label={lang === "en" ? "Site" : "サイト"}>
+    <nav className="head-nav" ref={nav} aria-label={lang === "en" ? "Site" : "サイト"}>
       <div className="subjects">
         {tabs.map((s) => (
           <Link key={s.key} href={s.top} lang={s.lang} aria-current={s.key === current ? "page" : undefined}>

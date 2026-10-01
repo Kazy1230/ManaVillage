@@ -3,30 +3,13 @@ import Link from "next/link";
 import { getAllArticles, liveSections } from "@/lib/articles";
 import { catClass, listThreads } from "@/lib/queries";
 import { ldScript, organizationLd, personLd, websiteLd } from "@/lib/jsonld";
-import { SECTIONS, type SectionKey } from "@/lib/sections";
+import { PORTAL_CARDS } from "@/lib/sectionPages";
+import { SECTIONS } from "@/lib/sections";
 import { SITE_TAGLINE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: { absolute: "まなビレッジ — 学び、つまずき、助け合う。" },
   alternates: { canonical: "/" },
-};
-
-// 科目ごとのカードの文言。読者の言語で書く(英語学習は日本語、日本語学習は英語)
-const CARD: Record<SectionKey, { who: string; desc: string; count: (n: number) => string; btn: string; bg: string }> = {
-  english: {
-    who: "日本語で読む · FOR JAPANESE SPEAKERS",
-    desc: "単語の覚え方、文法書の進め方、スピーキングの練習まで。研究と経験にもとづく英語の勉強法。",
-    count: (n) => `記事 ${n}本`,
-    btn: "英語の記事へ",
-    bg: "var(--p1)",
-  },
-  japanese: {
-    who: "IN ENGLISH · FOR JAPANESE LEARNERS",
-    desc: "Practical guides to Japanese grammar and look-alike words — each one built around a simple analogy and real example sentences.",
-    count: (n) => `${n} ${n === 1 ? "guide" : "guides"}`,
-    btn: "Start learning",
-    bg: "#F4EFE4",
-  },
 };
 
 // まなビレッジ全体の入口。科目のトップ(/english、/en/japanese)とは別のページ
@@ -48,10 +31,10 @@ export default async function Portal() {
       <div className="wrap subjects-grid">
         {liveSections().map((key) => {
           const sec = SECTIONS[key];
-          const card = CARD[key];
+          const card = PORTAL_CARDS[key];
           const articles = getAllArticles(key);
           return (
-            <section key={key} className={`panel subject reveal${key === "japanese" ? " wa" : ""}`} lang={sec.lang}>
+            <section key={key} className={`panel subject reveal ${key === "japanese" ? "wa" : `subject-${key}`}`} lang={sec.lang}>
               <Link className="subject-art" href={sec.top} style={{ background: card.bg }} tabIndex={-1} aria-hidden="true">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={`/illustrations/section-${key}/core.webp`} alt="" width={800} height={500} />
