@@ -47,11 +47,11 @@ keyword: gonna
 
 前の単語が子音で終わり、次の単語が母音で始まると、その子音が次の単語の頭に移ったように聞こえます。
 
-<div class="example"><span class="lbl">EXAMPLE</span><span class="en"><mark class="hl">check it out</mark></span><span class="ja">「チェック・イット・アウト」ではなく、「チェキラウ」に近く聞こえます。</span></div>
+<div class="example"><span class="lbl">EXAMPLE</span><span class="en"><mark class="hl">check it out</mark></span><span class="ja">「チェック・イット・アウト」ではなく、「チェキラウ」に近く聞こえることがあります。</span></div>
 
-<div class="example"><span class="lbl">EXAMPLE</span><span class="en">Turn <mark class="hl">it on</mark>.</span><span class="ja">「ターン・イット・オン」ではなく、「ターニトン」のように聞こえます。</span></div>
+<div class="example"><span class="lbl">EXAMPLE</span><span class="en">Turn <mark class="hl">it on</mark>.</span><span class="ja">「ターン・イット・オン」ではなく、「ターニトン」に近く聞こえることがあります。</span></div>
 
-<div class="example"><span class="lbl">EXAMPLE</span><span class="en">Pick <mark class="hl">up</mark> a pen.</span><span class="ja">「ピック・アップ」ではなく、「ピカップ」に近く聞こえます。</span></div>
+<div class="example"><span class="lbl">EXAMPLE</span><span class="en">Pick <mark class="hl">up</mark> a pen.</span><span class="ja">「ピック・アップ」ではなく、「ピカップ」に近く聞こえることがあります。</span></div>
 
 ### なぜ起きるか
 
@@ -105,9 +105,9 @@ t や d は、英語のリンキングで、いちばん聞き取りにくい音
 
 アメリカ英語では、t や d が母音と母音にはさまれると、舌先を軽く1回はじく音(たたき音)になります。これを、フラッピング(flapping)と呼びます。日本語のラ行に近く聞こえることがあります。
 
-<div class="example"><span class="lbl">EXAMPLE</span><span class="en">wa<mark class="hl">t</mark>er / bu<mark class="hl">tt</mark>er</span><span class="ja">「ウォーター」「バター」ではなく、「ウォーラー」「バラー」に近く聞こえます(アメリカ英語)。</span></div>
+<div class="example"><span class="lbl">EXAMPLE</span><span class="en">wa<mark class="hl">t</mark>er / bu<mark class="hl">tt</mark>er</span><span class="ja">「ウォーター」「バター」ではなく、「ウォーラー」「バラー」に近く聞こえることがあります(アメリカ英語)。</span></div>
 
-<div class="example"><span class="lbl">EXAMPLE</span><span class="en">ge<mark class="hl">t o</mark>ver</span><span class="ja">単語の間でも、母音にはさまれると起きます。「ゲロウヴァー」のように聞こえます。</span></div>
+<div class="example"><span class="lbl">EXAMPLE</span><span class="en">ge<mark class="hl">t o</mark>ver</span><span class="ja">単語の間でも、母音にはさまれると起きます。「ゲロウヴァー」に近く聞こえることがあります。</span></div>
 
 Wikipedia の Flapping の項によると、単語の中では、t や d が、強く読まれる母音と、弱く読まれる母音の間に入るときに起きます。単語をまたぐ場合は、あとの単語が母音で始まれば、起きます(get over など)。ただし、例外もあり、規則できれいに予測するのは難しいそうです。「water は必ずこう」と決めつけず、「そう聞こえることが多い」くらいに捉えてください。イギリス英語では、別の発音になる話者も多くいます。
 

@@ -45,7 +45,7 @@ keyword: Learn sentences.
 
 <div class="example"><span class="lbl">EXAMPLE</span><span class="en">I'm <mark class="hl">looking forward to</mark> seeing you this weekend.</span><span class="ja">今週末会えるのを楽しみにしてるね。</span></div>
 
-この1文を覚えておけば、「to の後ろは -ing」という決まりも一緒に入ります。文法書を読み返さなくても、自然に正しい形が出てくるようになります。
+この1文を覚えておけば、「to の後ろは -ing」という決まりも一緒に入ります。正しい形も一緒に覚えやすくなります。
 
 ### 相性のいい組み合わせ（コロケーション）も一緒に入る
 
@@ -106,8 +106,6 @@ keyword: Learn sentences.
 ![布団に入った人の頭の上に「I'm looking forward to it!」という吹き出しがあり、窓の外に月が出ている絵](/illustrations/example-sentences/core.webp)
 
 <div class="voice"><span class="lbl">運営者の意見</span><p>単語帳の丸暗記は、とても効果的だと考えています。ただし覚えるなら、単語より例文を、発音付きで。寝る前に布団の中で思い出せるくらいまで、繰り返すのがよいと思っています。</p></div>
-
-意識して思い出すのではなく、ぼーっとしているときに、例文が勝手に浮かんでくる。そこまで繰り返した表現は、会話でも考える前に口から出やすくなります。これは運営者の実感であって、誰にでも同じ結果が出ると保証するものではありません。
 
 ## 例文の選び方
 

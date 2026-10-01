@@ -24,7 +24,7 @@ related:
 sources:
   - Godden, D. R., & Baddeley, A. D. (1975). Context-dependent memory in two natural environments - on land and underwater. British Journal of Psychology, 66(3), 325-331.
   - Godden, D., & Baddeley, A. (1980). When does context influence recognition memory? British Journal of Psychology, 71(1), 99-104.
-  - Murre, J. M. J. (2021). The Godden and Baddeley (1975) experiment on context-dependent memory on land and underwater - a replication. Royal Society Open Science, 8(11), 211524.
+  - Murre, J. M. J. (2021). The Godden and Baddeley (1975) experiment on context-dependent memory on land and underwater - a replication. Royal Society Open Science, 8(11), 200724.
   - Tulving, E., & Thomson, D. M. (1973). Encoding specificity and retrieval processes in episodic memory. Psychological Review, 80(5), 352-373.
   - Smith, S. M., & Vela, E. (2001). Environmental context-dependent memory - a review and meta-analysis. Psychonomic Bulletin & Review, 8(2), 203-220.
 materialsUsed: []
@@ -55,7 +55,7 @@ keyword: Where you learn.
 - 全員が、「陸で覚えて陸で思い出す」「陸で覚えて水中で思い出す」など、4つの組み合わせをすべて体験
 - 単語は音声で聞かせ、自由に思い出してもらった
 
-結果は、**「同じ場所で思い出したほうがよい」という効果は統計的に確認できませんでした**。見つかったのは「水中で覚えた単語は、あまり思い出せなかった」という、覚えた場所そのものの影響です。論文では、原典とのずれとして、温水プールか冷たい外海か、テストの日数、撮影が入ったことなど、条件の違いがいくつか挙げられています。ただ、どれが原因かは、はっきりしていません。
+結果は、**「同じ場所で思い出したほうがよい」という効果は統計的に確認できませんでした**。見つかったのは「水中で覚えた単語は、あまり思い出せなかった」という、覚えた場所そのものの影響です。原典との条件の違いがいくつか指摘されていますが、どれが原因かははっきりしません。
 
 つまり、「この実験で、場所が同じだと必ず記憶がよくなる」とは、もう言えない状況です。教科書で有名でも、あとから確かめ直すと再現されないことがある。それが、この話の一番の教訓かもしれません。
 

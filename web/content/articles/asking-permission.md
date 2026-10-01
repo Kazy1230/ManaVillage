@@ -91,7 +91,7 @@ Cambridge Dictionary の文法ページには、許可を求める can、could�
 
 <div class="example"><span class="lbl">EXAMPLE</span><span class="en"><mark class="hl">Is it alright if I</mark> bring a friend to the party?</span><span class="ja">パーティーに友だちを連れてきてもいいですか？</span></div>
 
-if の後ろは、ふつう現在形です(*sit*、*bring*)。ここを *sat* のような過去形にすると、あとで出てくる *Would it be OK if I* のような、より控えめな形になります。
+if の後ろは、ふつう現在形です(*sit*、*bring*)。if の後ろを *sat* のような過去形にし、文頭を *Would it be* にすると(*Would it be alright if I sat here?*)、より控えめな形になります。
 
 ## お客さん・初対面・目上には May I
 
@@ -171,7 +171,7 @@ if の後ろが過去形になっているのが特徴です。「もし〜し�
 ## 間違いやすいポイント
 
 1. **Yes と No が逆になる**: *Do you mind if I …?* には、OK なら No。前の章のとおりです
-2. **if の後ろの形**: *Would it be OK if I leave …* ではなく、*left* のように過去形にします。一方、*Do you mind if I open …* は現在形が基本です
+2. **if の後ろの形**: *Would it be OK if I leave …* より、*left* のような過去形のほうが一般的で、控えめな印象になります。一方、*Do you mind if I open …* は現在形が基本です
 3. **丁寧にしすぎる**: 友だちに *Would it be OK if I borrowed your pen?* と言うと、距離を感じさせることがあります。関係に合う形を選びましょう
 4. **相手の肩書きだけで決めない**: 相手との関係と場面の両方を見ます。初対面でも、カジュアルな場なら *Can I …?* が自然なことがあります
 5. **声の調子**: Longman は、*would you mind …?* が、怒りを込めた命令としても使われると注記しています。笑顔で言えば丁寧な依頼に、きつい声だと嫌みに聞こえることもあります
@@ -180,6 +180,8 @@ if の後ろが過去形になっているのが特徴です。「もし〜し�
 
 許可を求めたくなる場面は、意外に毎日あります。窓を開ける、席に座る、荷物を置く、電話に出る。そのたびに、頭のなかで5つのどれが合うかを考えてみてください。
 
-覚えるときは、フレーズだけでなく、例文ごとのほうが口から出やすくなります。やり方は「[単語は「例文ごと」覚えよう](/articles/example-sentences)」で紹介しています。「間違えたらどうしよう」と思って声に出せないときは、「[まちがえるのが怖いあなたへ](/articles/mistakes-ok)」や、「[英語の独り言](/articles/self-talk)」の練習が役に立ちます。
+覚えるときは、フレーズだけでなく、例文ごとのほうが口から出やすくなります。やり方は「[単語は「例文ごと」覚えよう](/articles/example-sentences)」で紹介しています。
+
+「間違えたらどうしよう」と思って声に出せないときは、「[まちがえるのが怖いあなたへ](/articles/mistakes-ok)」や、「[英語の独り言](/articles/self-talk)」の練習が役に立ちます。
 
 あなたがよく許可を求める場面は、何ですか？コメント欄で、使ってみたい例文を教えてください。

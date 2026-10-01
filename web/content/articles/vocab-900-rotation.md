@@ -1,6 +1,6 @@
 ---
 title: 単語帳の回し方は「300語×3日」。最大900語を回す手順と、量の調整のしかた
-description: 新しい300語に前日と前々日の復習を足して回す単語帳の回し方を、準備段階、日ごとの表、覚えた判定、量の減らし方、崩れたときの立て直しまで、具体的に解説します。
+description: 新しい300語に前日と前々日の復習を足して回す単語帳の回し方を解説。準備段階、日ごとの表、1日の順番、1語にかける時間、覚えた判定、量の減らし方、崩れたときの立て直しまで紹介します。
 slug: vocab-900-rotation
 type: experience
 status: published
@@ -22,6 +22,8 @@ related:
   - spaced-review
 sources: []
 materialsUsed:
+  - content/materials/learning-philosophy.md §1
+  - content/materials/learning-philosophy.md §2
   - content/materials/learning-philosophy.md §3
   - content/materials/learning-philosophy.md §4
 keyword: 300 × 3
@@ -77,7 +79,7 @@ keyword: 300 × 3
 2. **前日の分**
 3. **今日の新しい分**(最後に、「初めまして」の単語を見る)
 
-新しい単語を最後に置くのは、新しい単語を見た直後に、別の単語を見ると、混ざりやすいためです。ここは好みで、自分がやりやすい順に変えてかまいません。1つだけ守りたいのは、**順番を毎日同じにする**ことです。決めておくと、「今日はどれからやろう」と悩む時間がなくなります。
+新しい単語を最後に置く並べ方は、一例です。ここは好みで、自分がやりやすい順に変えてかまいません。1つだけ守りたいのは、**順番を毎日同じにする**ことです。決めておくと、「今日はどれからやろう」と悩む時間がなくなります。
 
 ## 1語にかける時間は、とにかく短く
 

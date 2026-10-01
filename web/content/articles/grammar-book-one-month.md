@@ -91,9 +91,9 @@ keyword: 'One month, one book.'
 - **例文を見ないと言えなかった所**:2周目で印をつけた所は、4週目に必ず戻ります
 - **誤りやすい所に、NG 例が載っている項目**:間違い方まで書いてある所は、自分も間違えやすい所です
 
-<div class="example ng"><span class="lbl">NG</span><span class="en">I have <mark class="hl">went</mark> to the store.</span><span class="ja">go の過去分詞は gone。完了形の章は、戻る価値がある。</span></div>
+<div class="example ng"><span class="lbl">NG</span><span class="en">She has <mark class="hl">went</mark> to the store.</span><span class="ja">go の過去分詞は gone。完了形の章は、戻る価値がある。</span></div>
 
-<div class="example"><span class="lbl">EXAMPLE</span><span class="en">I have <mark class="hl">gone</mark> to the store.</span><span class="ja">私は店に行ってしまった。</span></div>
+<div class="example"><span class="lbl">EXAMPLE</span><span class="en">She has <mark class="hl">gone</mark> to the store.</span><span class="ja">彼女は店に行ってしまった。</span></div>
 
 「読み飛ばす」と「戻る」の線引きは、**例文を見てすぐ言えるか**です。言えれば飛ばし、言えなければ戻ります。
 
@@ -127,7 +127,7 @@ keyword: 'One month, one book.'
 1冊が終わったら、文法書を読み直すのではなく、**別の形で使う段階**に進みます。
 
 - 英文を読む中で、「あ、あの章だ」と思い出す。細かい例外は、そこで埋めます
-- 単語帳を進める。運営者の素材では、単語帳は、文法書でカバーしきれない例外表現の補強にもなり、英語が楽しくなった、とあります
+- 単語帳を進める。運営者は、単語帳が文法書でカバーしきれない例外表現の補強にもなり、英語が楽しくなったと感じています
 - 2周目をしたくなったら、2冊目の本を開く
 
 なお、まったく基礎がない人は、初心者向けの文法書を1冊終えてから、一般レベルの文法書へ進む、という順番も考えられます。自分のレベルに合わない本を、無理に1か月で終わらせる必要はありません。本の選び方は[参考書は1冊を完璧に](/articles/one-book-mastery)で書いています。
