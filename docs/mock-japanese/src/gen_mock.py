@@ -30,11 +30,9 @@ html[lang="en"]{--body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helve
 /* ヘッダーの科目タブ */
 .head-nav{display:flex;align-items:center;gap:12px;min-width:0}
 .subjects{display:flex;gap:4px}
-.subjects a{display:inline-flex;align-items:center;gap:8px;padding:5px 14px 5px 5px;border-radius:99px;font-size:14px;color:var(--muted);white-space:nowrap;transition:color .2s,background .2s}
+.subjects a{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:99px;font-size:14px;color:var(--muted);white-space:nowrap;transition:color .2s,background .2s}
 .subjects a:hover{color:var(--ink);background:var(--bg)}
-.subjects .ico{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--bg);border:1px solid var(--line);font-family:var(--display);font-weight:700;font-size:13px;color:var(--ink);transition:background .2s,color .2s}
 .subjects a[aria-current="page"]{color:var(--accent);background:var(--accent-soft);font-weight:500}
-.subjects a[aria-current="page"] .ico{background:var(--accent);border-color:var(--accent);color:#fff}
 .nav-sep{width:1px;height:22px;background:var(--line-strong)}
 @media (max-width:760px){
   .head-in,.scrolled .head-in{flex-wrap:wrap;height:auto;padding-block:10px;row-gap:8px}
@@ -109,19 +107,19 @@ def page(lang, title, body, script=""):
 
 # 科目の切り替えは、ヘッダーのメニューに科目を並べる(科目が増えたら、ここに足すだけ)
 SUBJECTS = [
-    ("en-learning", "03-language-switch.html", "A", "英語を学ぶ", "ja"),
-    ("ja-learning", "01-section-top.html", "あ", "Learn Japanese", "en"),
+    ("en-learning", "03-english-top.html", "英語を学ぶ", "ja"),
+    ("ja-learning", "01-japanese-top.html", "Learn Japanese", "en"),
 ]
 
-def header(lang="en"):
-    cur = "ja-learning" if lang == "en" else "en-learning"
+def header(lang="en", cur=None):
+    # cur: いま見ている科目。まなビレッジ全体の入口(00-index)では None
     tabs = "".join(
-        f'<a href="{href}" lang="{l}"{" aria-current=\"page\"" if key == cur else ""}><span class="ico">{ico}</span>{label}</a>'
-        for key, href, ico, label, l in SUBJECTS)
+        f'<a href="{href}" lang="{l}"{" aria-current=\"page\"" if key == cur else ""}>{label}</a>'
+        for key, href, label, l in SUBJECTS)
     board = "Board" if lang == "en" else "掲示板"
     acct = '<a class="btn primary" href="#">Log in</a>' if lang == "en" else '<a class="btn primary" href="#">ログイン</a>'
     return f"""<header class="site-head bleed" id="site-head"><div class="head-in">
-  <a class="logo jp" href="#"><i></i>まなビレッジ</a>
+  <a class="logo jp" href="00-index.html"><i></i>まなビレッジ</a>
   <nav class="head-nav" aria-label="Site">
     <div class="subjects" role="list" aria-label="{'Subjects' if lang == 'en' else '学ぶ科目'}">{tabs}</div>
     <span class="nav-sep" aria-hidden="true"></span>
@@ -149,7 +147,7 @@ def footer(lang="en"):
     col = lambda c: f'<nav class="foot-col"><h2>{c[0]}</h2><ul>' + "".join(f'<li><a href="#">{x}</a></li>' for x in c[1]) + "</ul></nav>"
     return f"""<footer class="site-foot bleed"><div class="foot-in">
   <div class="foot-main">
-    <div class="foot-brand"><a class="foot-logo jp" href="#"><i></i>まなビレッジ</a>
+    <div class="foot-brand"><a class="foot-logo jp" href="00-index.html"><i></i>まなビレッジ</a>
       <p class="foot-tag en">For Everyone's Learning, For Everyone's Help</p>
       <p class="foot-desc">{desc}</p>
       <ul class="foot-social"><li><a href="#">{IG}<span>Instagram</span></a></li><li><a href="#">{YT}<span>YouTube</span></a></li></ul>
@@ -170,7 +168,7 @@ ARTICLES = [
 ]
 
 def card(a, i):
-    return f"""<a class="card reveal" href="02-article.html">
+    return f"""<a class="card reveal" href="02-japanese-article.html">
   <div class="thumb" style="background:{PASTEL[i % 6]}">{a['art']}</div>
   <div class="card-body">
     <div class="meta"><span class="tag">#{a['tag']}</span><span class="dot-sep"></span><span>{a['date']}</span><span class="dot-sep"></span><span>{a['mins']} min</span></div>
@@ -195,14 +193,14 @@ TAGS = [("Particles", 9), ("Grammar", 14), ("Synonyms", 11), ("Politeness", 6), 
 chips = "".join(f'<a class="chip" href="#">#{t}<span class="n">{n}</span></a>' for t, n in TAGS)
 
 # ---------- 1. セクションのトップ(既存のトップと同じ並び) ----------
-top = header("en") + f"""
+top = header("en", "ja-learning") + f"""
 <main><div class="screen">
   <div class="wrap home-intro">
     <h1>Japanese grammar, explained with things you already know.</h1>
     <p>Particles, verb forms, and words that look alike — each guide is built around a simple analogy and real example sentences. Read it, try it, and ask the community on the board when you get stuck.</p>
   </div>
   <div class="wrap">
-    <a class="panel hero" href="02-article.html">
+    <a class="panel hero" href="02-japanese-article.html">
       <div class="hero-text intro">
         <span class="badge-new"><i></i>Latest guide</span>
         <h2>は (wa) vs が (ga): think of it as a spotlight</h2>
@@ -244,10 +242,10 @@ top = header("en") + f"""
 """ + footer("en")
 
 # ---------- 2. 記事ページ(既存の記事ページと同じ並び) ----------
-article = '<div class="progress" aria-hidden="true"></div>' + header("en") + f"""
+article = '<div class="progress" aria-hidden="true"></div>' + header("en", "ja-learning") + f"""
 <main><div class="screen"><div class="wrap reader-grid">
   <article class="panel paper">
-    <div class="crumb"><a href="01-section-top.html">Articles</a><span>/</span><a href="#">#Particles</a></div>
+    <div class="crumb"><a href="01-japanese-top.html">Articles</a><span>/</span><a href="#">#Particles</a></div>
     <h1>は (wa) vs が (ga): think of it as a spotlight</h1>
     <div class="byline"><div class="avatar" aria-hidden="true">K</div><div><div class="who">Kaz</div><div class="sub">Sep 30, 2026 · 8 min read · Updated Oct 1, 2026</div></div></div>
     <div class="reading">
@@ -322,7 +320,7 @@ article = '<div class="progress" aria-hidden="true"></div>' + header("en") + f""
 """ + footer("en")
 
 # ---------- 3. 既存のトップに置く言語の切り替え ----------
-switch = '<div class="mock-note">モック: 英語学習のトップ(今のまま)に、科目を並べたヘッダーを付けた場合</div>' + header("ja") + f"""
+switch = '<div class="mock-note">モック: 英語学習のトップ(「英語を学ぶ」を押した先。今のトップをここへ移す)</div>' + header("ja", "en-learning") + f"""
 <main><div class="screen">
   <div class="wrap home-intro">
     <h1>英語の勉強方法を、研究と経験から。</h1>
@@ -337,11 +335,92 @@ switch = '<div class="mock-note">モック: 英語学習のトップ(今のま�
 </div></main>
 """ + footer("ja")
 
+# ---------- 0. まなビレッジ全体の入口(index。科目のトップとは別のページ) ----------
+from doodles import svg, person, torii, sakura, SHU, INK
+ART_EN = svg('<path d="M70 18 h96 a10 10 0 0 1 10 10 v26 a10 10 0 0 1 -10 10 h-58 l-14 12 v-12 h-24 a10 10 0 0 1 -10 -10 v-26 a10 10 0 0 1 10 -10z" stroke="#2F6BFF" stroke-width="2.4" fill="#fff"/>'
+             '<text x="88" y="47" font-size="20" fill="#222735" stroke="none" font-style="italic" font-family="Georgia">Hello!</text>' + person(46, 66, "#222735"))
+ART_JA = svg(torii(150, 36, .9) + person(56, 64, INK) +
+             '<path d="M20 18 h76 a8 8 0 0 1 8 8 v16 a8 8 0 0 1 -8 8 h-44 l-10 9 v-9 h-22 a8 8 0 0 1 -8 -8 v-16 a8 8 0 0 1 8 -8z" stroke="%s" stroke-width="2.2" fill="#fff"/>' % SHU +
+             '<text x="24" y="40" font-size="15" fill="%s" stroke="none" font-weight="700">こんにちは</text>' % INK + sakura(120, 104, .9) + sakura(186, 96, .7))
+
+def subject(cls, lang, art, bg, name, who, desc, n, latest, btn, href):
+    items = "".join(f'<li><a href="#">{x}</a></li>' for x in latest)
+    return f"""<section class="panel subject {cls} reveal" lang="{lang}">
+  <a class="subject-art" href="{href}" style="background:{bg}">{art}</a>
+  <div class="subject-body">
+    <span class="who">{who}</span>
+    <h2><a href="{href}">{name}</a></h2>
+    <p>{desc}</p>
+    <ul class="subject-latest">{items}</ul>
+    <div class="subject-foot"><span class="sub">{n}</span><a class="btn primary" href="{href}">{btn} <span class="arr">→</span></a></div>
+  </div>
+</section>"""
+
+INDEX_CSS = """<style>
+.portal-intro{text-align:center;justify-items:center;padding-block:24px 40px}
+.portal-intro .tagline{font-size:clamp(20px,2.6vw,26px);color:var(--accent)}
+.portal-intro p{margin-inline:auto}
+.subjects-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+.subject{overflow:hidden;display:flex;flex-direction:column;transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.subject:hover{transform:translateY(-6px);box-shadow:var(--shadow-m)}
+.subject-art{display:grid;place-items:center;aspect-ratio:16/8;border-bottom:1px solid var(--line);padding:16px 40px}
+.subject-art svg{width:100%;height:100%}
+.subject-body{padding:26px 28px 24px;display:grid;gap:12px;flex:1;align-content:start}
+.subject .who{font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--accent)}
+.subject h2{font-size:26px;font-weight:900}
+.subject h2 a:hover{color:var(--accent)}
+.subject p{color:var(--muted)}
+.subject-latest{list-style:none;margin:4px 0 0;padding:0;display:grid;border-top:1px solid var(--line)}
+.subject-latest li{border-bottom:1px solid var(--line)}
+.subject-latest a{display:block;padding:10px 2px;font-size:14px;transition:color .2s,padding .2s}
+.subject-latest a:hover{color:var(--accent);padding-left:8px}
+.subject-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:8px;flex-wrap:wrap}
+/* 日本語学習のカードだけ、和の色と明朝 */
+.subject.wa{--accent:#B83A2A;--accent-dark:#932C1F}
+.subject.wa h2{font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",Georgia,serif;font-weight:700}
+.subject.wa .btn.primary{box-shadow:0 4px 14px rgba(184,58,42,.25)}
+.subject.wa h2,.subject.wa p,.subject.wa .subject-latest{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Hiragino Sans",sans-serif}
+.subject.wa h2{font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",Georgia,serif}
+.soon{border:2px dashed var(--line-strong);border-radius:var(--r);padding:20px 24px;color:var(--faint);font-size:14px;text-align:center;margin-top:28px}
+@media (max-width:860px){.subjects-grid{grid-template-columns:1fr}}
+</style>"""
+
+index = '<div class="mock-note">モック: まなビレッジ全体の入口(index)。ロゴを押すとここに戻る。科目のトップとは別のページ</div>' + header("ja") + f"""
+<main><div class="screen">
+  <div class="wrap home-intro portal-intro">
+    <h1>まなビレッジ</h1>
+    <p class="tagline en">For Everyone's Learning, For Everyone's Help</p>
+    <p>学びたい人が集まる、小さな村。科目ごとに、読みものと、学習者どうしで助け合える掲示板があります。<br><span class="sub" lang="en">A small village for learners — guides for each subject, and a board where everyone helps each other.</span></p>
+  </div>
+  <div class="wrap subjects-grid">
+    {subject("", "ja", ART_EN, "var(--p1)", "英語を学ぶ", "日本語で読む · FOR JAPANESE SPEAKERS",
+             "単語の覚え方、文法書の進め方、スピーキングの練習まで。研究と経験にもとづく英語の勉強法。", "記事 34本",
+             ["英単語の覚え方 決定版", "英語の独り言のやり方。通勤・通学中に場面別で続ける練習法", "文法書は1か月で1冊"], "英語の記事へ", "03-english-top.html")}
+    {subject("wa", "en", ART_JA, "#F4EFE4", "Learn Japanese", "IN ENGLISH · FOR JAPANESE LEARNERS",
+             "Practical guides to Japanese grammar and look-alike words — each one built around a simple analogy and real example sentences.", "12 guides",
+             ["は (wa) vs が (ga): think of it as a spotlight", "見る, 見える, 眺める: three ways to “see”", "です / ます vs. casual forms: which one at work?"], "Start learning", "01-japanese-top.html")}
+  </div>
+  <div class="wrap"><p class="soon">(将来の科目: IT、音楽 … ここにカードが増え、ヘッダーのメニューにも並ぶ)</p></div>
+
+  <section class="band bleed"><div class="wrap band-in">
+    <div class="reveal"><h2>掲示板 <span class="en" style="font-weight:400;font-size:20px">/ Board</span></h2><p>科目ごとのカテゴリで、質問したり、進み具合を報告したりできます。読むだけならログインは不要です。</p><a class="btn" href="#">掲示板をひらく <span class="arr">→</span></a></div>
+    <div class="band-list">
+      <a class="band-item reveal" href="#"><span class="t">単語帳、何周目で覚えられた？</span><span class="n">返信 12</span><span class="cat c0">英語 · 勉強法</span></a>
+      <a class="band-item reveal" href="#" lang="en"><span class="t">Please check my sentence: <span class="jp">昨日、公園に走りました</span></span><span class="n">3 replies</span><span class="cat c3">Japanese · Sentence check</span></a>
+      <a class="band-item reveal" href="#"><span class="t">独り言、最初の一言どうしてる？</span><span class="n">返信 8</span><span class="cat c1">英語 · スピーキング</span></a>
+    </div>
+  </div></section>
+</div></main>
+""" + footer("ja")
+
 os.makedirs(OUT, exist_ok=True)
+for old in ["01-section-top.html", "02-article.html", "03-language-switch.html"]:
+    if os.path.exists(os.path.join(OUT, old)): os.remove(os.path.join(OUT, old))
 for name, html in {
-    "01-section-top.html": page("en", "Learn Japanese — Mock", top),
-    "02-article.html": page("en", "は vs が — Mock", article, TOGGLE_JS),
-    "03-language-switch.html": page("ja", "英語学習のトップ — モック", switch),
+    "00-index.html": page("ja", "まなビレッジ — モック", index).replace("</head>", INDEX_CSS + "</head>"),
+    "01-japanese-top.html": page("en", "Learn Japanese — Mock", top),
+    "02-japanese-article.html": page("en", "は vs が — Mock", article, TOGGLE_JS),
+    "03-english-top.html": page("ja", "英語学習のトップ — モック", switch),
 }.items():
     open(os.path.join(OUT, name), "w", encoding="utf-8", newline="\n").write(html)
     print(name, len(html))
