@@ -1,8 +1,25 @@
 ---
 title: 留学しても話せるようにならない人と、ぐんぐん伸びる人の決定的な違い
-date: 2026-09-09
-tags: [留学, スピーキング]
-summary: 同じ学校、同じ期間の留学でも、帰ってくるころの英語力は人によってまるで違います。差がつくのは、才能よりも「毎日何をするか」。これから留学する人に読んでほしい記事です。
+description: >-
+  同じ学校、同じ期間の留学でも、帰ってくるころの英語力は人によってまるで違います。差がつくのは、才能よりも「毎日何をするか」。これから留学する人に読んでほしい記事です。
+slug: study-abroad
+type: general
+status: published
+publishedAt: '2026-09-09'
+primaryKeyword: 留学 話せるようにならない
+searchIntent: 留学で伸びる人の行動を知りたい
+targetReader: 留学予定者
+hub: 独り言・スピーキング
+tags:
+  - 留学
+  - スピーキング
+coreIllustration: core.webp
+coreIllustrationAlt: 左は部屋にこもってパソコンで日本語の動画を見ている棒人間。右は3人の棒人間が「Hi! I'm Kaz.」「Nice!」と話している絵
+related:
+  - communication-skill
+  - vocab-first
+sources: []
+materialsUsed: []
 keyword: Just say hi.
 ---
 
@@ -16,7 +33,7 @@ keyword: Just say hi.
 
 はっきり言います。**留学で英語が伸びるかどうかは、そこで何をするか次第**です。
 
-![左は部屋にこもってパソコンで日本語の動画を見ている棒人間。右は3人の棒人間が「Hi! I'm Kaz.」「Nice!」と話している絵](/articles/study-abroad/1.svg)
+![左は部屋にこもってパソコンで日本語の動画を見ている棒人間。右は3人の棒人間が「Hi! I'm Kaz.」「Nice!」と話している絵](/illustrations/study-abroad/core.webp)
 
 授業が終わったら部屋にこもって、日本語の動画を見て、日本人の友だちとだけ過ごす。これでは、日本にいるのとあまり変わりません。英語に囲まれた環境にいても、自分から英語を使わなければ、英語力は伸びようがないのです。
 

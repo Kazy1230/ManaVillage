@@ -27,12 +27,16 @@ export default async function Home() {
   return (
     <div className="screen">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldScript({ "@context": "https://schema.org", "@graph": [websiteLd, organizationLd, personLd] }) }} />
+      <div className="wrap home-intro">
+        <h1>英語の勉強方法を、研究と経験から。</h1>
+        <p>単語の覚え方、文法書の進め方、スピーキングの練習まで。読んで、試して、つまずいたら掲示板でみんなに聞ける、英語学習のサイトです。</p>
+      </div>
       {latest && (
         <div className="wrap">
           <Link className="panel hero" href={`/articles/${latest.slug}`}>
             <div className="hero-text intro">
               <span className="badge-new"><i />最新記事</span>
-              <h1>{latest.title}</h1>
+              <h2>{latest.title}</h2>
               <p className="lead">{latest.summary}</p>
               <div className="meta">
                 {latest.tags[0] && <span className="tag">#{latest.tags[0]}</span>}

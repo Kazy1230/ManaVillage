@@ -1,9 +1,28 @@
 ---
 title: 読み返すより「思い出す」。テストするだけで記憶が強くなる、という研究
-date: 2026-09-07
-tags: [学習研究, 単語]
-summary: スワヒリ語の単語を覚える実験で、1週間後に覚えていた割合は「思い出す練習」を続けた人が約80%、「読み直し」を続けた人は約3分の1。英語の単語学習にどう使うかまで解説します。
-keyword: Recall, don't reread.
+description: >-
+  スワヒリ語の単語を覚える実験で、1週間後に覚えていた割合は「思い出す練習」を続けた人が約80%、「読み直し」を続けた人は約3分の1。英語の単語学習にどう使うかまで解説します。
+slug: retrieval-practice
+type: general
+status: published
+publishedAt: '2026-09-07'
+primaryKeyword: 想起練習 英単語
+searchIntent: 思い出す練習の研究と使い方
+targetReader: 研究に関心がある学習者
+hub: 勉強法の研究
+tags:
+  - 学習研究
+  - 単語
+coreIllustration: core.webp
+coreIllustrationAlt: >-
+  1週間後に覚えていた割合のグラフ。「読み直し」は約1/3、「思い出す練習」は約80%。読み直し側の棒人間は眠そうで、思い出す練習側の棒人間は両手を上げている絵
+related:
+  - spaced-review
+  - rip-the-pages
+  - example-sentences
+sources: []
+materialsUsed: []
+keyword: 'Recall, don''t reread.'
 ---
 
 テスト前、教科書やノートを何度も読み返す。多くの人が当たり前にやっている勉強法です。
@@ -24,7 +43,7 @@ keyword: Recall, don't reread.
 
 そして1週間後、どれだけ覚えているかを調べました。
 
-![1週間後に覚えていた割合のグラフ。「読み直し」は約1/3、「思い出す練習」は約80%。読み直し側の棒人間は眠そうで、思い出す練習側の棒人間は両手を上げている絵](/articles/retrieval-practice/1.svg)
+![1週間後に覚えていた割合のグラフ。「読み直し」は約1/3、「思い出す練習」は約80%。読み直し側の棒人間は眠そうで、思い出す練習側の棒人間は両手を上げている絵](/illustrations/retrieval-practice/core.webp)
 
 ## 結果：思い出す練習を続けた人が圧勝
 

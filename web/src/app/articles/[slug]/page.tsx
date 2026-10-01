@@ -55,6 +55,7 @@ export default async function ArticlePage(props: PageProps<"/articles/[slug]">) 
     headline: article.title,
     description: article.summary,
     datePublished: article.date,
+    dateModified: article.updatedAt || article.date,
     inLanguage: "ja",
     keywords: article.tags.join(", "),
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
@@ -64,10 +65,19 @@ export default async function ArticlePage(props: PageProps<"/articles/[slug]">) 
     publisher: { "@id": ORG_ID },
   };
 
+  const breadcrumbLd = {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "トップ", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "記事", item: `${SITE_URL}/articles` },
+      { "@type": "ListItem", position: 3, name: article.title, item: url },
+    ],
+  };
+
   return (
     <div className="screen">
       <ReadingProgress />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldScript({ "@context": "https://schema.org", "@graph": [jsonLd, personLd, organizationLd] }) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldScript({ "@context": "https://schema.org", "@graph": [jsonLd, breadcrumbLd, personLd, organizationLd] }) }} />
       <div className="wrap reader-grid">
         <article className="panel paper">
           <div className="crumb">
@@ -80,7 +90,7 @@ export default async function ArticlePage(props: PageProps<"/articles/[slug]">) 
             <div className="avatar" aria-hidden="true">K</div>
             <div>
               <div className="who">Kaz</div>
-              <div className="sub">{formatDate(article.date)} · {article.minutes}分で読める</div>
+              <div className="sub">{formatDate(article.date)} · {article.minutes}分で読める{article.updatedAt && article.updatedAt !== article.date ? ` · ${formatDate(article.updatedAt)}に更新` : ""}</div>
             </div>
           </div>
           <div className="prose" dangerouslySetInnerHTML={{ __html: withLinkCards(article.html, slug) }} />

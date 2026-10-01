@@ -1,8 +1,26 @@
 ---
 title: 英語学習の「よくある誤解」5つ。まじめな人ほどハマる落とし穴
-date: 2026-09-16
-tags: [勉強法, 学習研究]
-summary: 聞き流すだけでいい、マーカーで覚える、書いて覚える、留学すれば話せる、日本語訳で覚える。よく聞く5つの「常識」を、ひとつずつ見直してみます。
+description: 聞き流すだけでいい、マーカーで覚える、書いて覚える、留学すれば話せる、日本語訳で覚える。よく聞く5つの「常識」を、ひとつずつ見直してみます。
+slug: myth-list
+type: general
+status: published
+publishedAt: '2026-09-16'
+primaryKeyword: 英語 勉強法 間違い
+searchIntent: 効かない勉強法を避けたい
+targetReader: まじめな学習者
+hub: 勉強法の研究
+tags:
+  - 勉強法
+  - 学習研究
+coreIllustration: core.webp
+coreIllustrationAlt: >-
+  「よくある誤解」と書かれた紙に、「聞き流すだけでOK」「マーカーで覚える」「書いて覚える」「留学すれば話せる」「日本語訳で覚える」の5つが並び、それぞれにバツがついている絵
+related:
+  - mumble-commute
+  - highlighter-myth
+  - dont-write-to-memorize
+sources: []
+materialsUsed: []
 keyword: 5 myths.
 ---
 
@@ -12,7 +30,7 @@ keyword: 5 myths.
 
 この記事では、よく聞く5つの誤解を見直してみます。
 
-![「よくある誤解」と書かれた紙に、「聞き流すだけでOK」「マーカーで覚える」「書いて覚える」「留学すれば話せる」「日本語訳で覚える」の5つが並び、それぞれにバツがついている絵](/articles/myth-list/1.svg)
+![「よくある誤解」と書かれた紙に、「聞き流すだけでOK」「マーカーで覚える」「書いて覚える」「留学すれば話せる」「日本語訳で覚える」の5つが並び、それぞれにバツがついている絵](/illustrations/myth-list/core.webp)
 
 ## 誤解1：英語は聞き流すだけで身につく
 

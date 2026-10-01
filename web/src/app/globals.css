@@ -77,7 +77,10 @@ p{margin:0}
 .hero-text{padding:clamp(28px,5vw,56px);display:grid;gap:22px;align-content:center}
 .badge-new{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:5px 12px;border-radius:99px;justify-self:start}
 .badge-new i{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 1.8s infinite}
-.hero h1{font-size:clamp(26px,3.8vw,40px);font-weight:900;line-height:1.38}
+.hero h2{font-size:clamp(26px,3.8vw,40px);font-weight:900;line-height:1.38}
+.home-intro{padding-bottom:28px;display:grid;gap:10px}
+.home-intro h1{font-size:clamp(24px,3.4vw,34px);font-weight:900}
+.home-intro p{color:var(--muted);max-width:42em}
 .hero .lead{color:var(--muted);font-size:16px;max-width:32em}
 .stage{background:var(--p1);position:relative;display:grid;place-content:center;gap:14px;padding:48px 36px;min-height:360px;text-align:center;border-left:1px solid var(--line)}
 .stage-label{font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.06em}

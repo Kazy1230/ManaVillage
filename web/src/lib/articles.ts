@@ -10,6 +10,7 @@ export type ArticleMeta = {
   slug: string;
   title: string;
   date: string;
+  updatedAt: string;
   tags: string[];
   summary: string;
   keyword: string;
@@ -57,6 +58,7 @@ function load(file: string): Article {
     slug,
     title: str(data.title),
     date: str(data.publishedAt) || str(data.date) || today(),
+    updatedAt: str(data.updatedAt),
     tags: list(data.tags),
     summary: str(data.description) || str(data.summary),
     keyword: str(data.keyword) || str(data.primaryKeyword) || str(data.title),

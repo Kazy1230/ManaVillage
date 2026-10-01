@@ -1,8 +1,26 @@
 ---
 title: マーカーを引くほど覚えられない？研究が「効果が低い」と評価した勉強法
-date: 2026-09-03
-tags: [学習研究, 勉強法]
-summary: 心理学者たちが10種類の勉強法を比べた有名な研究では、マーカーを引くことも読み返すことも「効果が低い」と評価されました。代わりに何をすればいいかまで紹介します。
+description: >-
+  心理学者たちが10種類の勉強法を比べた有名な研究では、マーカーを引くことも読み返すことも「効果が低い」と評価されました。代わりに何をすればいいかまで紹介します。
+slug: highlighter-myth
+type: general
+status: published
+publishedAt: '2026-09-03'
+primaryKeyword: マーカー 勉強 効果ない
+searchIntent: マーカーが効かない理由と代わりの方法
+targetReader: 大学生・受験生
+hub: 勉強法の研究
+tags:
+  - 学習研究
+  - 勉強法
+coreIllustration: core.webp
+coreIllustrationAlt: 見開きのページがほとんど黄色いマーカーで塗られていて、横で棒人間が汗をかいている。「ぜんぶ大事…?」と書いてある絵
+related:
+  - retrieval-practice
+  - spaced-review
+  - myth-list
+sources: []
+materialsUsed: []
 keyword: Stop highlighting.
 ---
 
@@ -10,7 +28,7 @@ keyword: Stop highlighting.
 
 気づけばページの半分以上が塗られていて、どこが本当に大事なのかわからない。そんな経験がある人も多いと思います。
 
-![見開きのページがほとんど黄色いマーカーで塗られていて、横で棒人間が汗をかいている。「ぜんぶ大事…?」と書いてある絵](/articles/highlighter-myth/1.svg)
+![見開きのページがほとんど黄色いマーカーで塗られていて、横で棒人間が汗をかいている。「ぜんぶ大事…?」と書いてある絵](/illustrations/highlighter-myth/core.webp)
 
 ## 10種類の勉強法を比べた研究
 
