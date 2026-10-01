@@ -56,4 +56,5 @@
 - `web/scripts/doodle.mjs` の関数で描く(`person`, `bubble`, `line`, `poly`, `ellipse`, `text`, `star`, `heart`, `arrow` など)。SVG フィルタでクレヨンのかすれを出す
 - ワークフロー導入後の記事: `web/content/illustrations/<slug>/core.mjs` に描画コード → `node scripts/illustrate.mjs <slug>` → `public/illustrations/<slug>/core.webp`
 - イラストは飾りではなく説明そのもの。1枚で記事の核の概念が伝わるようにする(common.md 2-4)
+- サムネ(`core.webp`)は、記事ページのタイトルの下(署名と本文の間)に自動で出る(どの科目も同じ。2026-10-02)。本文のイラストは、必要なところに何枚でも置く(`fig-1.mjs` → `fig-1.webp`)
 - 実在の人物・キャラクター・ロゴは描かない

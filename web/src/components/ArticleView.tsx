@@ -97,6 +97,13 @@ export default async function ArticleView({ slug, section }: { slug: string; sec
               <div className="sub">{formatDate(article.date, sec.lang)} · {s.minutesRead(article.minutes)}{updated}</div>
             </div>
           </div>
+          {/* サムネ(核のイラスト)は、どの科目でもタイトルと本文の間に出す。本文には書かない */}
+          {article.coreIllustration && (
+            <figure className="cover">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={article.coreIllustration} alt={article.coreIllustrationAlt} width={800} height={500} fetchPriority="high" decoding="async" />
+            </figure>
+          )}
           {sec.lang === "en" && <ReadingToggle />}
           <div className="prose" dangerouslySetInnerHTML={{ __html: withLinkCards(article.html, article) }} />
           {article.tags.length > 0 && (

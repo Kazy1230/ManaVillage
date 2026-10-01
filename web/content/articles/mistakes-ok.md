@@ -47,8 +47,6 @@ keyword: Mistakes are OK.
 
 最初の練習場所は独り言です。誰も聞いていないので、評価される心配がありません。
 
-![片手を上げて元気に「I goed to work!」と言っている棒人間。「(正しくは went)」「誰も聞いてない だからOK!」と書いてある絵](/illustrations/mistakes-ok/core.webp)
-
 たとえば、今日あったことを英語で言ってみます。
 
 <div class="example ng"><span class="lbl">NG</span><span class="en">I goed to work by bike today.</span><span class="ja">今日は自転車で会社に行った。(go の過去形を間違えている)</span></div>

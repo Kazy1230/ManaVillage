@@ -35,8 +35,6 @@ materialsUsed: []
 3. **思い出せる**:見なくても、自分から英語を引き出せる
 4. **使える**:話すときや書くときに、口や手から出てくる
 
-![英単語を覚える4つの段階を表す階段。1段目「出会う」で「はじめまして」と驚く人、2段目「イメージできる」で頭にコーヒーがこぼれる絵を浮かべる人、3段目「思い出せる」で「あ、spill!」と指さす人、4段目「使える」で「I spilled coffee!」と友達に話す人](/illustrations/vocabulary-memorization/core.webp)
-
 *spill*(こぼす)という単語で、4つの段階を見てみましょう。
 
 <div class="example"><span class="lbl">EXAMPLE</span><span class="ja">段階1:単語帳で見たことはある<br>段階2:<i>spill</i> を見ると、コーヒーがこぼれる場面が浮かぶ<br>段階3:「こぼしちゃった」と言いたいときに <i>spill</i> が頭に出てくる<br>段階4:とっさに <i>I spilled coffee on my shirt.</i> と言える</span></div>

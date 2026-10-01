@@ -103,8 +103,6 @@ keyword: Learn sentences.
 
 その日に覚えた例文を、寝る前に布団の中で思い出します。何も見ず、頭の中で言えるか試すだけです。詰まったら、翌朝にステップ1へ戻ればOKです。
 
-![布団に入った人の頭の上に「I'm looking forward to it!」という吹き出しがあり、窓の外に月が出ている絵](/illustrations/example-sentences/core.webp)
-
 <div class="voice"><span class="lbl">運営者の意見</span><p>単語帳の丸暗記は、とても効果的だと考えています。ただし覚えるなら、単語より例文を、発音付きで。寝る前に布団の中で思い出せるくらいまで、繰り返すのがよいと思っています。</p></div>
 
 ## 例文の選び方

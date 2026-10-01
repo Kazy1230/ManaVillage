@@ -118,7 +118,8 @@ for (const [, alt, src] of images) {
 for (const [tag] of htmlImages) if (!/alt="[^"]+"/.test(tag)) err(`img タグに alt がない: ${tag.slice(0, 60)}`);
 const core = `/illustrations/${slug}/${fm.coreIllustration}`;
 if (fm.coreIllustration && !fs.existsSync(path.join(root, "public", core))) err(`核のイラストがない: public${core}（node scripts/illustrate.mjs ${slug}）`);
-if (fm.coreIllustration && !content.includes(core)) err(`核のイラスト（${core}）が本文に入っていない`);
+// サムネ(核のイラスト)は、記事ページがタイトルと本文の間に自動で出す。本文に書くと2回出るので不合格
+if (fm.coreIllustration && content.includes(core)) err(`サムネ（${core}）が本文に入っている。サムネはタイトルの下に自動で出るので、本文からは外す`);
 
 const linkRe = new RegExp(`\\]\\(${SEC.base}([a-z0-9-]+)\\)`, "g");
 const links = [...new Set([...content.matchAll(linkRe)].map((m) => m[1]))];

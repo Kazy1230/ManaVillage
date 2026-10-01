@@ -43,8 +43,6 @@ keyword: Words first.
 - 英語の動画を見ていて、知らない単語のところで思考が止まり、次の文を聞き逃す
 - 話そうとして、「えーと、〇〇って英語で何だっけ」で会話が止まる
 
-![左は単語を知らない人が文法書を持って「？」だらけになっている絵。右は単語を知っている人が笑顔ですらすら読んでいる絵](/illustrations/vocab-first/core.webp)
-
 特に最初の例が厄介です。たとえば次の文を見てください。
 
 <div class="example"><span class="lbl">EXAMPLE</span><span class="en">The company decided to <mark class="hl">postpone</mark> the launch until next spring.</span><span class="ja">その会社は、発売を来春まで延期することにした。</span></div>

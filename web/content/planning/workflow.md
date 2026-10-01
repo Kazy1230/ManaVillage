@@ -61,7 +61,7 @@
 - タグ: 3〜5個。新しいタグは「要確認」。主キーワードをそのままタグにしていないか
 - title と description が、他の記事と同じでないか
 - 見出し: h1 がない、h2 より前に h3 がない、階層が飛んでいない
-- 画像: alt、ファイルの存在、核のイラストが本文に入っているか
+- 画像: alt、ファイルの存在。サムネ(`core.webp`)を本文に書いていたら不合格(タイトルの下に自動で出るため)
 - 内部リンク(`/articles/<slug>`): 2本以上、リンク先と related が公開済みか
 - 主キーワードの語が、title と導入(最初の h2 より前)にすべて入っているか
 - 本文が2,500字未満なら「要確認」。「Kazです」「僕の学習メモ」「Kaz式」がないか。「僕」は「要確認」
@@ -103,7 +103,7 @@ phrases: []            # 任意。最新記事のときトップで切り替わ�
 | 項目 | このサイト |
 |---|---|
 | 記事 | `web/content/articles/<slug>.md` |
-| イラスト | `web/content/illustrations/<slug>/core.mjs`(描画コード)→ `node scripts/illustrate.mjs <slug>` で `core.svg`(原本)と `web/public/illustrations/<slug>/core.webp`、`core-og.png` |
+| イラスト | `web/content/illustrations/<slug>/` に描画コードを置く。サムネは `core.mjs`、本文の図は `fig-1.mjs` のように好きな名前で何枚でも。`node scripts/illustrate.mjs <slug>` で、全部の `.svg`(原本)と `web/public/illustrations/<slug>/<名前>.webp`、`<名前>-og.png` を書き出す |
 | アウトライン | `web/content/planning/outlines/<slug>.md` |
 | チェックエージェント | `.claude/agents/manavillage-checker.md`(執筆したセッションとは別に起動する) |
 
@@ -117,7 +117,8 @@ phrases: []            # 任意。最新記事のときトップで切り替わ�
 ### 本文の書き方
 
 - h1 は title から自動で作られる。本文は `##` から始める
-- 核のイラスト: `![alt と同じ文](/illustrations/<slug>/core.webp)`
+- サムネ(`core.webp`): 本文には書かない。frontmatter の `coreIllustration` と `coreIllustrationAlt` を埋めると、記事ページのタイトルの下に自動で出る
+- 本文のイラスト: 必要なところに `![図が伝える内容](/illustrations/<slug>/fig-1.webp)`
 - 例文ボックス: `<div class="example"><span class="lbl">EXAMPLE</span><span class="en">英文(<mark class="hl">強調</mark>)</span><span class="ja">日本語訳</span></div>`(間違い例は `class="example ng"`、ラベルは `NG`)
 - 蛍光ペン: `==語句==`
 - 内部リンク: `[記事タイトル](/articles/<slug>)`。公開済みの記事だけ。リンクを張ると段落の直後に埋め込みカードが出るので、1段落のリンクは1〜2本まで

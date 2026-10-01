@@ -45,8 +45,6 @@ This guide gives you one simple picture to decide with, shows both particles in 
 
 </div>
 
-![A stage with a striped kabuki curtain. A spotlight shines on one stick figure, labeled が = this one!, while two gray figures stand on the stage labeled は = the stage.](/illustrations/wa-vs-ga/core.webp)
-
 ## The stage and the spotlight
 
 A handy way to picture these two particles is a theater, and we’ll use the same picture all the way through this guide.
