@@ -19,8 +19,8 @@
 
 | ID | slug | タイトル | 主キーワード | 検索意図 | 想定読者 | type | 状態 | ハブ |
 |---|---|---|---|---|---|---|---|---|
-| A-01 | asking-permission | 「〜してもいいですか？」は Can I だけじゃない。許可の求め方5パターン | してもいいですか 英語 | 許可を求める言い方を丁寧さ別に知りたい | 英会話初中級 | general | published | 英会話フレーズ |
-| A-02 | linking-sounds | 聞き取れない原因は単語じゃない。リンキングの3つの型 | リンキング 英語 | 音がつながる仕組みを知って聞き取りたい | リスニングに悩む学習者 | general | published | 発音・リスニング |
+| A-01 | asking-permission | 「してもいいですか」を英語で。Can I から Would it be OK if I まで、許可の求め方5つ | してもいいですか 英語 | 許可を求める言い方を丁寧さ別に知りたい | 英会話初中級 | general | published | 英会話フレーズ |
+| A-02 | linking-sounds | 英語のリンキングとは？聞き取れない原因になる音のつながり3つの型 | リンキング 英語 | 音がつながる仕組みを知って聞き取りたい | リスニングに悩む学習者 | general | published | 発音・リスニング |
 | A-03 | how-are-you | How are you? に「I'm fine, thank you.」はもう卒業。自然な返し方5つ | How are you 返し方 | 自然な返事を知りたい | 英会話初級 | general | draft | 英会話フレーズ |
 | A-04 | me-too-me-neither | 「私も！」を Me too で返すと逆の意味に？否定文には Me neither | Me neither 使い方 | 否定文への「私も」の言い方を知りたい | 英会話初級 | general | draft | 英会話フレーズ |
 | A-05 | see-look-watch | see / look / watch の違い | see look watch 違い | 3つの「見る」を使い分けたい | 中学〜やり直し | general | draft | 英文法・語法 |
@@ -31,36 +31,36 @@
 | A-10 | a-and-the | a と the の違いは「相手もどれかわかるか」だけ | a the 違い | 冠詞の使い分けの判断基準がほしい | やり直し学習者 | general | draft | 英文法・語法 |
 | A-11 | l-and-r | rice のつもりが lice に。L と R の発音 | L R 発音 違い | L と R の出し方を知りたい | 発音に悩む学習者 | general | draft | 発音・リスニング |
 | A-12 | english-diary | 英語日記が3日で終わる人へ | 英語日記 続け方 | 英語日記を続けるコツを知りたい | 初中級 | general | draft | 続け方・モチベーション |
-| A-13 | why-research | 勉強法を知ると、勉強は楽しくなる | 英語 勉強法 研究 | 学習法の研究を知る意味を知りたい | 学習法に関心がある人 | experience | published | 勉強法の研究 |
-| A-14 | vocab-first | 英語のやり直しは単語帳から | 英語 やり直し 何から | やり直しで最初に何をすればいいか知りたい | 社会人のやり直し組 | experience | published | 英単語の覚え方 |
-| A-15 | highlighter-myth | マーカーを引くほど覚えられない？ | マーカー 勉強 効果ない | マーカーが効かない理由と代わりの方法 | 大学生・受験生 | general | published | 勉強法の研究 |
-| A-16 | example-sentences | 単語は「例文ごと」覚えよう | 英単語 例文で覚える | 例文で覚える方法と理由 | 初中級 | experience | published | 英単語の覚え方 |
-| A-17 | which-first | 単語帳と文法書、どっちが先？ | 単語帳 文法書 どっちが先 | 教材の順番を決めたい | 初心者〜中級 | experience | published | 教材の選び方・進め方 |
-| A-18 | mumble-commute | 聞き流すだけで英語は話せるようにならない。でも「口ずさむ」なら | 英語 聞き流し 効果 | 聞き流しは効くのか知りたい | 通勤する社会人 | experience | published | 独り言・スピーキング |
-| A-19 | retrieval-practice | 読み返すより「思い出す」 | 想起練習 英単語 | 思い出す練習の研究と使い方 | 研究に関心がある学習者 | general | published | 勉強法の研究 |
-| A-20 | rip-the-pages | 覚えたページは破り捨てろ | 単語帳 破る 覚え方 | 単語帳を効率よく使い切りたい | 高校生・覚悟のある人 | experience | published | 英単語の覚え方 |
-| A-21 | study-abroad | 留学しても話せるようにならない人と、伸びる人の違い | 留学 話せるようにならない | 留学で伸びる人の行動を知りたい | 留学予定者 | general | published | 独り言・スピーキング |
-| A-22 | tough-times | 英語の勉強がつらいあなたへ | 英語 勉強 つらい | つらい時期の乗り越え方 | 停滞中の学習者 | experience | published | 続け方・モチベーション |
-| A-23 | grammar-book-one-month | 文法書は1か月で1冊 | 英文法 参考書 進め方 | 文法書を最後まで終わらせたい | 高校生・大学生 | experience | published | 教材の選び方・進め方 |
-| A-24 | image-not-japanese | 日本語に訳さず「イメージ」で覚えると | 英単語 イメージで覚える | 訳さずに覚える方法 | 中級 | experience | published | 英単語の覚え方 |
-| A-25 | 5-minute-gaps | 忙しい社会人のための「スキマ5分」英語メニュー7選 | 英語 スキマ時間 勉強 | 短い時間でできる勉強を知りたい | 忙しい社会人 | general | published | 続け方・モチベーション |
-| A-26 | communication-skill | 「自分は頭がよくないから英語は無理」と思っている人へ | 英語 話しかける 勇気 | 自信がなくても伸びる方法 | 自信のない学習者 | general | published | 独り言・スピーキング |
-| A-27 | vocab-900-rotation | 1日900語を回す「300語×3日」単語帳ローテーション | 単語帳 回し方 | 単語帳の具体的な回し方を知りたい | 中級・受験生 | experience | published | 英単語の覚え方 |
-| A-28 | myth-list | 英語学習の「よくある誤解」5つ | 英語 勉強法 間違い | 効かない勉強法を避けたい | まじめな学習者 | general | published | 勉強法の研究 |
-| A-29 | self-talk-beginners | 英語がひとことも出てこない人のための「独り言」入門 | 英語 独り言 出てこない | 独り言で何も出てこないときの始め方 | 完全初心者 | experience | published | 独り言・スピーキング |
-| A-30 | spaced-review | 復習は「忘れかけた頃」がいちばん効く | 英単語 復習 タイミング | いつ復習すればいいか知りたい | 社会人 | general | published | 勉強法の研究 |
-| A-31 | adults-restart | 40代・50代からの英語やり直し | 英語 やり直し 40代 | 年齢が上でも間に合うか知りたい | 40〜50代 | general | published | 続け方・モチベーション |
-| A-32 | dont-write-to-memorize | 単語は10回書かなくていい | 英単語 書いて覚える | 書く暗記は効くのか知りたい | 中高生 | general | published | 英単語の覚え方 |
-| A-33 | fun-youtube | 勉強に疲れた日は、楽しい英語YouTubeを見るだけでいい | 英語 勉強 疲れた | 疲れた日の過ごし方 | 全員 | experience | published | 続け方・モチベーション |
-| A-34 | toeic-vocab | TOEICの点数が伸び悩んでいる人へ | TOEIC 単語帳 使い方 | TOEIC 対策の単語帳の進め方 | TOEIC 受験者 | general | published | 英単語の覚え方 |
-| A-35 | context-memory | 覚えた「場所」と「気持ち」ごと思い出せる？ | 文脈依存記憶 英語 | 場面と記憶の関係を知りたい | 研究に関心がある学習者 | general | published | 勉強法の研究 |
-| A-36 | mistakes-ok | まちがえるのが怖いあなたへ | 英語 間違えるのが怖い | 間違いへの恐怖をなくしたい | 恥ずかしがり屋 | experience | published | 独り言・スピーキング |
-| A-37 | one-book-mastery | 参考書は「たくさん」より「1冊を完璧に」 | 参考書 1冊を完璧に | 教材を買い替え続けるのをやめたい | 教材迷子 | experience | published | 教材の選び方・進め方 |
-| A-38 | parents-kids | 子どもと一緒に英語をやり直すパパ・ママへ | 親子 英語 家で | 家で親子でできる英語 | 子育て中の親 | general | published | 独り言・スピーキング |
-| A-39 | money-vs-learning | 参考書は2冊目を買っていい | 参考書 2冊買う | 同じ本を2冊買う意味 | 社会人 | experience | published | 教材の選び方・進め方 |
-| A-40 | enjoy-learning | 勉強は、楽しんだもの勝ち | 英語 勉強 楽しい | 勉強を楽しむ考え方 | 全員 | experience | published | 続け方・モチベーション |
-| A-41 | faq-kaz-method | Kaz式英語勉強法 よくある質問10選 | 英語 勉強法 よくある質問 | 勉強法の疑問をまとめて解決 | 全員 | experience | published | 教材の選び方・進め方 |
-| A-42 | self-talk | 通勤中の独り言が、スピーキングの「引き出し」を作る | 英語 独り言 やり方 | 独り言の具体的なやり方 | 通勤する社会人 | experience | published | 独り言・スピーキング |
+| A-13 | why-research | 英語の勉強法を「研究」で選ぶ理由。近道の地図の使い方と、読むときの注意 | 英語 勉強法 研究 | 学習法の研究を知る意味を知りたい | 学習法に関心がある人 | experience | published | 勉強法の研究 |
+| A-14 | vocab-first | 英語のやり直しは何から？最初の1冊に単語帳をすすめる理由と始め方 | 英語 やり直し 何から | やり直しで最初に何をすればいいか知りたい | 社会人のやり直し組 | experience | published | 英単語の覚え方 |
+| A-15 | highlighter-myth | マーカーを引く勉強は効果ない？研究が示す理由と、代わりにやること | マーカー 勉強 効果ない | マーカーが効かない理由と代わりの方法 | 大学生・受験生 | experience | published | 勉強法の研究 |
+| A-16 | example-sentences | 英単語を例文で覚える方法。音声付き4ステップと、例文の選び方 | 英単語 例文で覚える | 例文で覚える方法と理由 | 初中級 | experience | published | 英単語の覚え方 |
+| A-17 | which-first | 単語帳と文法書はどっちが先？基礎の有無で決める順番と進め方 | 単語帳 文法書 どっちが先 | 教材の順番を決めたい | 初心者〜中級 | experience | published | 教材の選び方・進め方 |
+| A-18 | mumble-commute | 英語の聞き流しに効果はある？研究で見る限界と、通勤中の「口ずさみ」のやり方 | 英語 聞き流し 効果 | 聞き流しは効くのか知りたい | 通勤する社会人 | experience | published | 独り言・スピーキング |
+| A-19 | retrieval-practice | 想起練習で英単語を覚える方法。読み返すより「思い出す」が効く研究 | 想起練習 英単語 | 思い出す練習の研究と使い方 | 研究に関心がある学習者 | general | published | 勉強法の研究 |
+| A-20 | rip-the-pages | 単語帳を破る覚え方。覚えたページを捨てる手順と、破ったあとの確認 | 単語帳 破る 覚え方 | 単語帳を効率よく使い切りたい | 高校生・覚悟のある人 | experience | published | 英単語の覚え方 |
+| A-21 | study-abroad | 留学しても話せるようにならない人の共通点と、留学を活かす方法 | 留学 話せるようにならない | 留学で伸びる人の行動を知りたい | 留学予定者 | experience | published | 独り言・スピーキング |
+| A-22 | tough-times | 英語の勉強がつらい、伸びない時期の乗り越え方。やめる前に試したいこと | 英語 勉強 つらい | つらい時期の乗り越え方 | 停滞中の学習者 | experience | published | 続け方・モチベーション |
+| A-23 | grammar-book-one-month | 英文法の参考書の進め方。1か月で1冊を終える計画と、読み飛ばす所 | 英文法 参考書 進め方 | 文法書を最後まで終わらせたい | 高校生・大学生 | experience | published | 教材の選び方・進め方 |
+| A-24 | image-not-japanese | 英単語はイメージで覚える。訳さずに覚える手順と、日本語を使うコツ | 英単語 イメージで覚える | 訳さずに覚える方法 | 中級 | experience | published | 英単語の覚え方 |
+| A-25 | 5-minute-gaps | 英語のスキマ時間で勉強する5分メニュー7選。1日の流れ順に紹介 | 英語 スキマ時間 勉強 | 短い時間でできる勉強を知りたい | 忙しい社会人 | general | published | 続け方・モチベーション |
+| A-26 | communication-skill | 英語を話しかける勇気を出しやすくする、自信がない人のための小さな5ステップ | 英語 話しかける 勇気 | 自信がなくても伸びる方法 | 自信のない学習者 | general | published | 独り言・スピーキング |
+| A-27 | vocab-900-rotation | 単語帳の回し方は「300語×3日」。最大900語を回す手順と、量の調整のしかた | 単語帳 回し方 | 単語帳の具体的な回し方を知りたい | 中級・受験生 | experience | published | 英単語の覚え方 |
+| A-28 | myth-list | 英語の勉強法でありがちな間違い5つ。まじめな人ほどハマる思い込みと直し方 | 英語 勉強法 間違い | 効かない勉強法を避けたい | まじめな学習者 | experience | published | 勉強法の研究 |
+| A-29 | self-talk-beginners | 英語の独り言が出てこない人へ。単語ひとことから始める3段階 | 英語 独り言 出てこない | 独り言で何も出てこないときの始め方 | 完全初心者 | experience | published | 独り言・スピーキング |
+| A-30 | spaced-review | 英単語の復習タイミングは？すぐ忘れる理由と、間をあけて覚える方法 | 英単語 復習 タイミング | いつ復習すればいいか知りたい | 社会人 | general | published | 勉強法の研究 |
+| A-31 | adults-restart | 英語のやり直しは40代・50代でも遅くない？研究で見る年齢の影響と始め方 | 英語 やり直し 40代 | 年齢が上でも間に合うか知りたい | 40〜50代 | general | published | 続け方・モチベーション |
+| A-32 | dont-write-to-memorize | 英単語を書いて覚えるのは効く？10回書き写すより、声に出して見ないで言う | 英単語 書いて覚える | 書く暗記は効くのか知りたい | 中高生 | general | published | 英単語の覚え方 |
+| A-33 | fun-youtube | 英語の勉強に疲れた日は、楽しいYouTubeを見る「軽い学習」でいい | 英語 勉強 疲れた | 疲れた日の過ごし方 | 全員 | experience | published | 続け方・モチベーション |
+| A-34 | toeic-vocab | TOEICの単語帳の使い方。点数が伸び悩む人は、問題集の前に1冊を固めよう | TOEIC 単語帳 使い方 | TOEIC 対策の単語帳の進め方 | TOEIC 受験者 | general | published | 英単語の覚え方 |
+| A-35 | context-memory | 文脈依存記憶は英語学習に効く？ダイバー実験と追試でわかること | 文脈依存記憶 英語 | 場面と記憶の関係を知りたい | 研究に関心がある学習者 | general | published | 勉強法の研究 |
+| A-36 | mistakes-ok | 英語を間違えるのが怖い人へ。独り言から人前へ進む5つの段階 | 英語 間違えるのが怖い | 間違いへの恐怖をなくしたい | 恥ずかしがり屋 | experience | published | 独り言・スピーキング |
+| A-37 | one-book-mastery | 参考書は1冊を完璧に。複数冊に手を出すと詰まる理由と、やり切る進め方 | 参考書 1冊を完璧に | 教材を買い替え続けるのをやめたい | 教材迷子 | experience | published | 教材の選び方・進め方 |
+| A-38 | parents-kids | 親子で英語を家でやるには？ものの名前・毎日のフレーズ・独り言の場面別表現 | 親子 英語 家で | 家で親子でできる英語 | 子育て中の親 | general | published | 独り言・スピーキング |
+| A-39 | money-vs-learning | 参考書を2冊買う意味とは？2周目は新しい本で、お金より学習を守る | 参考書 2冊買う | 同じ本を2冊買う意味 | 社会人 | experience | published | 教材の選び方・進め方 |
+| A-40 | enjoy-learning | 英語の勉強を楽しむコツ。「楽しい→続く→できる」の好循環の作り方 | 英語 勉強 楽しい | 勉強を楽しむ考え方 | 全員 | experience | published | 続け方・モチベーション |
+| A-41 | faq-kaz-method | 英語の勉強法 よくある質問10選。単語帳・ページ破り・聞き流しに答えます | 英語 勉強法 よくある質問 | 勉強法の疑問をまとめて解決 | 全員 | experience | published | 教材の選び方・進め方 |
+| A-42 | self-talk | 英語の独り言のやり方。通勤・通学中に場面別で続ける練習法 | 英語 独り言 やり方 | 独り言の具体的なやり方 | 通勤する社会人 | experience | published | 独り言・スピーキング |
 
 ### 2026年第40週の企画カード(カードの詳細は `cards/2026-W40.md`)
 

@@ -13,7 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/contact`, changeFrequency: "yearly", priority: 0.3 },
     { url: `${SITE_URL}/privacy`, changeFrequency: "yearly", priority: 0.3 },
     { url: `${SITE_URL}/terms`, changeFrequency: "yearly", priority: 0.3 },
-    ...articles.map((a) => ({ url: `${SITE_URL}/articles/${a.slug}`, lastModified: a.date, changeFrequency: "monthly" as const, priority: 0.8 })),
+    ...articles.map((a) => ({ url: `${SITE_URL}/articles/${a.slug}`, lastModified: a.updatedAt || a.date, changeFrequency: "monthly" as const, priority: 0.8 })),
     ...getTagCounts().filter(([t]) => isTagIndexable(t)).map(([t]) => ({ url: `${SITE_URL}/tags/${encodeURIComponent(t)}`, changeFrequency: "weekly" as const, priority: 0.5 })),
   ];
 }

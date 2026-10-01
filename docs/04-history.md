@@ -68,3 +68,11 @@ Kaz(運営者)と Claude Code の作業の記録を、決定事項と理由を�
 ## 2026-10-01: GitHub に整理
 
 - このリポジトリ(公開)に、コード・記事・手順書・経緯をまとめた。Kaz の判断で、学習の素材ファイルも含めて公開している
+
+## 2026-10-01: 導入前の記事32本の書き直しと、SEO の仕上げ
+
+- 導入前に公開した記事32本を、`web/content/planning/rework-brief.md` の基準で書き直した(厚み、出典の確認、素材にない体験談の削除)。執筆者とは別のエージェントが本文チェックを行い、指摘を反映した。`topic-map.md` の該当行は、記事の最新の title / 主キーワード / type / ハブに更新した
+- frontmatter を新テンプレートに統一(`scripts/migrate-legacy-articles.mjs`)。`updatedAt` を持ち、sitemap の `lastmod` と JSON-LD の `dateModified` に使う
+- トップに、固定の h1 と説明文の帯(`.home-intro`)を追加。ヒーローの記事タイトルは h2
+- 構造化データに BreadcrumbList を追加。記事ごとの OG 画像(`core-og.png`)
+- DB: 退会後も投稿を残す(`on delete set null`)。本番に適用済み。プライバシーポリシーと利用規約に反映
