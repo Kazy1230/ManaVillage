@@ -1,17 +1,20 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import InfoPage from "@/components/InfoPage";
+import { pageAlternates } from "@/lib/articles";
 import { SITE_TAGLINE, SOCIAL } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "まなビレッジとは",
-  description: "まなビレッジは、英語の勉強方法を書いた記事と、学習者どうしで助け合える掲示板のサイトです。サイトの考え方と、記事の作り方を紹介します。",
-  alternates: { canonical: "/about" },
-};
+export function generateMetadata(): Metadata {
+  return {
+    title: "まなビレッジとは",
+    description: "まなビレッジは、英語の勉強方法を書いた記事と、学習者どうしで助け合える掲示板のサイトです。サイトの考え方と、記事の作り方を紹介します。",
+    alternates: pageAlternates("/about"),
+  };
+}
 
 export default function AboutPage() {
   return (
-    <InfoPage title="まなビレッジとは">
+    <InfoPage title="まなビレッジとは" otherLang="/en/about">
       <p>
         まなビレッジは、<strong>英語の勉強方法</strong>を書いた記事と、学習者どうしで<strong>つまずきを助け合える掲示板</strong>のサイトです。
       </p>

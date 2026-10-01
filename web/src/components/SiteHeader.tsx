@@ -3,6 +3,7 @@ import SubjectTabs from "@/components/SubjectTabs";
 import { liveSections } from "@/lib/articles";
 import { initial } from "@/lib/format";
 import { t } from "@/lib/i18n";
+import { lp } from "@/lib/paths";
 import { SECTIONS, type Lang } from "@/lib/sections";
 
 type Viewer = { nickname: string } | null;
@@ -17,9 +18,9 @@ export default function SiteHeader({ lang, viewer }: { lang: Lang; viewer: Viewe
         <SubjectTabs tabs={tabs} board={s.board} lang={lang} />
         <div className="acct">
           {viewer ? (
-            <Link className="avatar" href="/mypage" aria-label={`${s.mypage}（${viewer.nickname}）`}>{initial(viewer.nickname)}</Link>
+            <Link className="avatar" href={lp(lang, "/mypage")} aria-label={`${s.mypage}（${viewer.nickname}）`}>{initial(viewer.nickname)}</Link>
           ) : (
-            <Link className="btn primary" href="/login">{s.login}</Link>
+            <Link className="btn primary" href={lp(lang, "/login")}>{s.login}</Link>
           )}
         </div>
       </div>

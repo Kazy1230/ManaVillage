@@ -170,3 +170,14 @@ export function getRelatedArticles(slug: string, section: SectionKey = "english"
     .map(({ a }) => a);
   return [...picked, ...rest].slice(0, limit);
 }
+
+// 英語のページ(/en/login、/en/about など)を出すか。英語で書く科目が1つでも公開されていれば出す
+export function englishPagesLive() {
+  return liveSections().some((k) => SECTIONS[k].lang === "en");
+}
+
+// サイトについてのページなどの、言語ごとの URL。英語のページを出していない間は、日本語の URL だけ
+export function pageAlternates(path: string, lang: "ja" | "en" = "ja") {
+  const canonical = lang === "en" ? `/en${path}` : path;
+  return englishPagesLive() ? { canonical, languages: { ja: path, en: `/en${path}` } } : { canonical };
+}

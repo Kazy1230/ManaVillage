@@ -1,17 +1,20 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import InfoPage from "@/components/InfoPage";
+import { pageAlternates } from "@/lib/articles";
 import { CONTACT_EMAIL, OPERATOR_NAME } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "プライバシーポリシー",
-  description: "まなビレッジが取得する情報、利用目的、外部サービスの利用、広告を導入する場合の取り扱い、削除の依頼方法などをまとめています。",
-  alternates: { canonical: "/privacy" },
-};
+export function generateMetadata(): Metadata {
+  return {
+    title: "プライバシーポリシー",
+    description: "まなビレッジが取得する情報、利用目的、外部サービスの利用、広告を導入する場合の取り扱い、削除の依頼方法などをまとめています。",
+    alternates: pageAlternates("/privacy"),
+  };
+}
 
 export default function PrivacyPage() {
   return (
-    <InfoPage title="プライバシーポリシー" updated="制定日: 2026年10月1日">
+    <InfoPage title="プライバシーポリシー" otherLang="/en/privacy" updated="制定日: 2026年10月1日">
       <p>
         まなビレッジ(https://manavillage.online。以下「当サイト」)の運営者 {OPERATOR_NAME}(以下「運営者」)は、当サイトで取得する情報を、次のとおり取り扱います。
       </p>

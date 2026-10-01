@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getTagCounts, isSectionLive, liveSections } from "@/lib/articles";
+import { lp } from "@/lib/paths";
 import { SECTIONS, type Lang, type SectionKey } from "@/lib/sections";
 import { SITE_TAGLINE, SOCIAL } from "@/lib/site";
 
@@ -33,7 +34,7 @@ const COPY = {
   en: {
     desc: "Learn, stumble, and help each other. Guides for each subject, and a board where learners help each other.",
     subjects: "Subjects", articles: "Guides", all: "All guides", join: "Join", board: "Board", newThread: "Start a thread",
-    mypage: "My page", login: "Log in", signup: "Sign up", about: "About (in Japanese)",
+    mypage: "My page", login: "Log in", signup: "Sign up", about: "About",
     info: [["/about", "About Mana Village"], ["/operator", "About the operator"], ["/contact", "Contact"], ["/privacy", "Privacy policy"], ["/terms", "Terms of use"]],
     copy: "Mana Village", by: "Operated by Kaz", official: "Official accounts",
   },
@@ -92,14 +93,14 @@ export default function SiteFooter({ loggedIn, lang }: { loggedIn: boolean; lang
           <nav className="foot-col" aria-label={c.join}>
             <h2>{c.join}</h2>
             <ul>
-              <li><Link href="/boards">{c.board}</Link></li>
-              <li><Link href="/boards/new">{c.newThread}</Link></li>
+              <li><Link href={lp(lang, "/boards")}>{c.board}</Link></li>
+              <li><Link href={lp(lang, "/boards/new")}>{c.newThread}</Link></li>
               {loggedIn ? (
-                <li><Link href="/mypage">{c.mypage}</Link></li>
+                <li><Link href={lp(lang, "/mypage")}>{c.mypage}</Link></li>
               ) : (
                 <>
-                  <li><Link href="/login">{c.login}</Link></li>
-                  <li><Link href="/signup">{c.signup}</Link></li>
+                  <li><Link href={lp(lang, "/login")}>{c.login}</Link></li>
+                  <li><Link href={lp(lang, "/signup")}>{c.signup}</Link></li>
                 </>
               )}
             </ul>
@@ -108,7 +109,7 @@ export default function SiteFooter({ loggedIn, lang }: { loggedIn: boolean; lang
           <nav className="foot-col" aria-label={c.about}>
             <h2>{c.about}</h2>
             <ul>
-              {c.info.map(([href, label]) => <li key={href}><Link href={href}>{label}</Link></li>)}
+              {c.info.map(([href, label]) => <li key={href}><Link href={lp(lang, href)}>{label}</Link></li>)}
             </ul>
           </nav>
         </div>

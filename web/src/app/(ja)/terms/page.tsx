@@ -1,17 +1,20 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import InfoPage from "@/components/InfoPage";
+import { pageAlternates } from "@/lib/articles";
 import { OPERATOR_NAME } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "利用規約",
-  description: "まなビレッジのアカウント登録、コメントや掲示板への投稿、記事の利用についてのルールです。",
-  alternates: { canonical: "/terms" },
-};
+export function generateMetadata(): Metadata {
+  return {
+    title: "利用規約",
+    description: "まなビレッジのアカウント登録、コメントや掲示板への投稿、記事の利用についてのルールです。",
+    alternates: pageAlternates("/terms"),
+  };
+}
 
 export default function TermsPage() {
   return (
-    <InfoPage title="利用規約" updated="制定日: 2026年10月1日">
+    <InfoPage title="利用規約" otherLang="/en/terms" updated="制定日: 2026年10月1日">
       <p>
         この利用規約(以下「本規約」)は、まなビレッジ(https://manavillage.online。以下「当サイト」)の利用についてのルールです。
         当サイトを利用するときは、本規約に同意したものとします。アカウントを登録するときは、登録の前に本規約をお読みください。

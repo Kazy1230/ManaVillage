@@ -3,6 +3,7 @@ import ActionForm from "@/components/ActionForm";
 import ReplyToggle from "@/components/ReplyToggle";
 import { initial, timeAgo } from "@/lib/format";
 import { t as tr } from "@/lib/i18n";
+import { lp } from "@/lib/paths";
 import type { Lang } from "@/lib/sections";
 import type { ActionState, PostRow } from "@/lib/types";
 
@@ -45,7 +46,7 @@ function buildTree(rows: PostRow[]) {
 export default function Discussion({ title, rows, action, hidden, loggedIn, path, placeholder, empty, badge, lang = "ja" }: Props) {
   const s = tr(lang);
   const { roots, replies, byId } = buildTree(rows);
-  const loginHref = `/login?next=${encodeURIComponent(path)}`;
+  const loginHref = `${lp(lang, "/login")}?next=${encodeURIComponent(path)}`;
   const name = (r: PostRow) => r.author?.nickname ?? s.deletedUser;
 
   const Post = ({ row, isReply }: { row: PostRow; isReply?: boolean }) => {

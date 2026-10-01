@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getAllArticles, getTagCounts, isTagIndexable, liveSections } from "@/lib/articles";
+import { englishPagesLive, getAllArticles, getTagCounts, isTagIndexable, liveSections } from "@/lib/articles";
 import { SITE_URL } from "@/lib/env";
 import { SECTIONS } from "@/lib/sections";
 
@@ -23,5 +23,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/contact`, changeFrequency: "yearly", priority: 0.3 },
     { url: `${SITE_URL}/privacy`, changeFrequency: "yearly", priority: 0.3 },
     { url: `${SITE_URL}/terms`, changeFrequency: "yearly", priority: 0.3 },
+    // 英語のサイトについてのページ(英語で書く科目が公開されてから)
+    ...(englishPagesLive() && sections.some((k) => k === "japanese")
+      ? ["/about", "/operator", "/contact", "/privacy", "/terms"].map((p) => ({ url: `${SITE_URL}/en${p}`, changeFrequency: "yearly" as const, priority: 0.3 }))
+      : []),
   ];
 }

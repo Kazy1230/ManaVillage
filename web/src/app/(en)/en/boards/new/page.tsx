@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { NewThreadView } from "@/components/pages/BoardViews";
 
-export const metadata: Metadata = { title: "スレッドを作る" };
+export const metadata: Metadata = { title: "Start a thread" };
 
 export default function Page() {
-  return <NewThreadView lang="ja" />;
+  return <NewThreadView lang="en" />;
 }

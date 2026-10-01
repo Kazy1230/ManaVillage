@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
+import { lp } from "@/lib/paths";
 import { sectionOfPath, type Lang, type SectionKey } from "@/lib/sections";
 
 type Tab = { key: SectionKey; label: string; top: string; lang: Lang };
@@ -31,7 +32,7 @@ export default function SubjectTabs({ tabs, board, lang }: { tabs: Tab[]; board:
       </div>
       <span className="nav-sep" aria-hidden="true" />
       <div className="nav">
-        <Link href="/boards" aria-current={pathname.startsWith("/boards") ? "page" : undefined}>{board}</Link>
+        <Link href={lp(lang, "/boards")} aria-current={pathname.startsWith(lp(lang, "/boards")) ? "page" : undefined}>{board}</Link>
       </div>
     </nav>
   );

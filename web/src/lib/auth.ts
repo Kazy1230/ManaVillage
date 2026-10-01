@@ -1,5 +1,7 @@
 import "server-only";
 import { redirect } from "next/navigation";
+import { lp } from "@/lib/paths";
+import type { Lang } from "@/lib/sections";
 import { createClient } from "@/lib/supabase/server";
 
 export type Viewer = { id: string; email: string | null; nickname: string; isAdmin: boolean };
@@ -21,9 +23,10 @@ export async function getViewer(): Promise<Viewer | null> {
   };
 }
 
-export async function requireViewer(next: string) {
+// ログインしていなければ、ログインのページへ(英語のページからは /en/login へ)
+export async function requireViewer(next: string, lang: Lang = "ja") {
   const viewer = await getViewer();
-  if (!viewer) redirect(`/login?next=${encodeURIComponent(next)}`);
+  if (!viewer) redirect(`${lp(lang, "/login")}?next=${encodeURIComponent(next)}`);
   return viewer;
 }
 
