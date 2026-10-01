@@ -55,5 +55,5 @@
 - 白い背景、揺れる線、2〜4色、棒人間と丸い顔、吹き出しに英語。上手に描かない
 - `web/scripts/doodle.mjs` の関数で描く(`person`, `bubble`, `line`, `poly`, `ellipse`, `text`, `star`, `heart`, `arrow` など)。SVG フィルタでクレヨンのかすれを出す
 - ワークフロー導入後の記事: `web/content/illustrations/<slug>/core.mjs` に描画コード → `node scripts/illustrate.mjs <slug>` → `public/illustrations/<slug>/core.webp`
-- イラストは飾りではなく説明そのもの。1枚で記事の核の概念が伝わるようにする(ワークフロー 3-4)
+- イラストは飾りではなく説明そのもの。1枚で記事の核の概念が伝わるようにする(common.md 2-4)
 - 実在の人物・キャラクター・ロゴは描かない
