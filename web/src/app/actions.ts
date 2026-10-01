@@ -5,7 +5,8 @@ import { redirect } from "next/navigation";
 import { after } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { getViewer, safeNext } from "@/lib/auth";
-import { getArticle } from "@/lib/articles";
+import { findArticle } from "@/lib/articles";
+import { SECTIONS } from "@/lib/sections";
 import { notifyAdminOfComment, notifyReply } from "@/lib/mail";
 import { SITE_URL } from "@/lib/env";
 import type { ActionState } from "@/lib/types";
@@ -93,34 +94,37 @@ export async function updateNickname(_: ActionState, fd: FormData): Promise<Acti
 // ---------- article comments ----------
 
 export async function addComment(_: ActionState, fd: FormData): Promise<ActionState> {
-  const viewer = await getViewer();
-  if (!viewer) return { error: "コメントするにはログインしてください。" };
   const slug = text(fd, "slug");
-  const article = getArticle(slug);
+  const article = findArticle(slug);
+  // 英語のページ(日本語学習)の記事には、英語で返す
+  const en = !!article && SECTIONS[article.section].lang === "en";
+  const msg = (ja: string, english: string) => (en ? english : ja);
+  const viewer = await getViewer();
+  if (!viewer) return { error: msg("コメントするにはログインしてください。", "Please log in to comment.") };
   if (!article) return { error: "記事が見つかりません。" };
   const body = text(fd, "body");
-  if (!body) return { error: "コメントを入力してください。" };
-  if (body.length > 2000) return { error: "コメントは2000文字以内にしてください。" };
+  if (!body) return { error: msg("コメントを入力してください。", "Please write a comment.") };
+  if (body.length > 2000) return { error: msg("コメントは2000文字以内にしてください。", "Comments must be 2,000 characters or fewer.") };
   const parentId = optionalId(fd, "parent_id");
 
   const supabase = await createClient();
   let parentAuthor: string | null = null;
   if (parentId) {
     const { data } = await supabase.from("comments").select("user_id").eq("id", parentId).eq("article_slug", slug).single();
-    if (!data) return { error: "返信先のコメントが見つかりません。" };
+    if (!data) return { error: msg("返信先のコメントが見つかりません。", "The comment you’re replying to was not found.") };
     parentAuthor = data.user_id;
   }
   const { error } = await supabase.from("comments").insert({ article_slug: slug, body, parent_id: parentId });
-  if (error) return { error: "投稿できませんでした。もう一度お試しください。" };
+  if (error) return { error: msg("投稿できませんでした。もう一度お試しください。", "Couldn’t post. Please try again.") };
 
   after(async () => {
-    await notifyAdminOfComment(article.title, slug, viewer.nickname, body);
+    await notifyAdminOfComment(article.title, article.url, viewer.nickname, body);
     if (parentAuthor) {
-      await notifyReply([parentAuthor], viewer.id, `「${article.title}」のあなたのコメントに返信がありました`, viewer.nickname, body, `${SITE_URL}/articles/${slug}#comments`);
+      await notifyReply([parentAuthor], viewer.id, `「${article.title}」のあなたのコメントに返信がありました`, viewer.nickname, body, `${SITE_URL}${article.url}#comments`);
     }
   });
-  revalidatePath(`/articles/${slug}`);
-  return { ok: parentId ? "返信しました。" : "コメントしました。" };
+  revalidatePath(article.url);
+  return { ok: parentId ? msg("返信しました。", "Reply posted.") : msg("コメントしました。", "Comment posted.") };
 }
 
 // ---------- boards ----------

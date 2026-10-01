@@ -1,4 +1,5 @@
 // 記事の機械的なチェック（指示書 3-5 のうち、機械で判定できる項目）: node scripts/check-article.mjs <slug>
+// 英語学習(content/articles/)と日本語学習(content/japanese/articles/、英語で書く)の両方に使える。科目はファイルの場所で決まる
 // 判断が必要な項目（薄さ・事実・捏造）はチェックエージェントが行う。このスクリプトはその前提条件を確かめる。
 import fs from "node:fs";
 import path from "node:path";
@@ -6,8 +7,15 @@ import { fileURLToPath } from "node:url";
 import matter from "gray-matter";
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
-const ART = path.join(root, "content", "articles");
 const slug = process.argv[2];
+const SECTIONS = {
+  english: { dir: path.join(root, "content", "articles"), base: "/articles/", lang: "ja" },
+  japanese: { dir: path.join(root, "content", "japanese", "articles"), base: "/en/japanese/articles/", lang: "en" },
+};
+const sectionKey = Object.keys(SECTIONS).find((k) => fs.existsSync(path.join(SECTIONS[k].dir, `${slug}.md`))) ?? "english";
+const SEC = SECTIONS[sectionKey];
+const ART = SEC.dir;
+const isJa = SEC.lang === "en"; // 日本語学習(英語で書く)の記事
 if (!slug) {
   console.error("usage: node scripts/check-article.mjs <slug>");
   process.exit(1);
@@ -21,10 +29,17 @@ const warn = (m) => warnings.push(m);
 
 const read = (s) => matter(fs.readFileSync(path.join(ART, `${s}.md`), "utf8"));
 const isPublished = (d) => (d.status ? d.status === "published" : d.draft !== true);
+// slug は科目をまたいで重複させない(コメントは slug で記事にひも付くため)
+for (const [k, s] of Object.entries(SECTIONS)) {
+  if (k !== sectionKey && fs.existsSync(path.join(s.dir, `${slug}.md`))) {
+    console.error(`slug「${slug}」が ${k} の記事と重複している`);
+    process.exit(1);
+  }
+}
 const all = fs.readdirSync(ART).filter((f) => f.endsWith(".md")).map((f) => ({ slug: f.slice(0, -3), ...read(f.slice(0, -3)) }));
 const self = all.find((a) => a.slug === slug);
 if (!self) {
-  console.error(`content/articles/${slug}.md が見つかりません`);
+  console.error(`${slug}.md が content/articles/ にも content/japanese/articles/ にも見つかりません`);
   process.exit(1);
 }
 const { data: fm, content } = self;
@@ -38,6 +53,7 @@ for (const k of ["title", "description", "primaryKeyword", "searchIntent", "targ
 }
 if (fm.slug !== slug) err(`frontmatter: slug（${fm.slug}）がファイル名（${slug}）と一致しない`);
 if (!["general", "experience"].includes(fm.type)) err(`frontmatter: type は general / experience のどちらか`);
+if (isJa && fm.type !== "general") err("日本語学習の記事は type: general だけ(体験談は使わない。例え話と例文で書く)");
 if (!["draft", "published"].includes(fm.status)) err(`frontmatter: status は draft / published のどちらか`);
 if (fm.status === "published" && !fm.publishedAt) err("frontmatter: 公開済みなのに publishedAt が空");
 if (fm.type === "experience" && !(fm.materialsUsed ?? []).length) err("experience 記事なのに materialsUsed が空");
@@ -45,7 +61,10 @@ if (fm.type === "general" && (fm.materialsUsed ?? []).length) warn("general 記�
 
 const desc = String(fm.description ?? "");
 info.push(`description: ${desc.length}字`);
-if (desc.length < 90 || desc.length > 150) warn(`description は120字前後が目安（今は${desc.length}字）`);
+if (isJa) {
+  // 英語の description は、検索結果で切れにくい 110〜160 文字を目安にする
+  if (desc.length < 110 || desc.length > 160) warn(`description は英語で110〜160文字が目安（今は${desc.length}文字）`);
+} else if (desc.length < 90 || desc.length > 150) warn(`description は120字前後が目安（今は${desc.length}字）`);
 
 // タグ：既存から選ぶ、3〜5個、主キーワードをそのままタグにしない
 const tags = (fm.tags ?? []).map(String);
@@ -90,38 +109,68 @@ const core = `/illustrations/${slug}/${fm.coreIllustration}`;
 if (fm.coreIllustration && !fs.existsSync(path.join(root, "public", core))) err(`核のイラストがない: public${core}（node scripts/illustrate.mjs ${slug}）`);
 if (fm.coreIllustration && !content.includes(core)) err(`核のイラスト（${core}）が本文に入っていない`);
 
-const links = [...new Set([...content.matchAll(/\]\(\/articles\/([a-z0-9-]+)\)/g)].map((m) => m[1]))];
+const linkRe = new RegExp(`\\]\\(${SEC.base}([a-z0-9-]+)\\)`, "g");
+const links = [...new Set([...content.matchAll(linkRe)].map((m) => m[1]))];
 const linkable = (s) => {
   const o = others.find((a) => a.slug === s);
   return o && isPublished(o.data);
 };
 info.push(`本文内の内部リンク: ${links.length}本（${links.join(", ")}）`);
-if (links.length < 2) err("本文内の内部リンクが2本未満");
+// 公開済みの記事がまだ少ない科目(立ち上げ時)は、本数の不足を「要確認」にとどめる
+const publishedOthers = others.filter((a) => isPublished(a.data)).length;
+const few = (m) => (publishedOthers < 3 ? warn(`${m}(この科目の公開済み記事が${publishedOthers}本のため、要確認にとどめる)`) : err(m));
+if (links.length < 2) few("本文内の内部リンクが2本未満");
 for (const s of links) if (!linkable(s)) err(`内部リンク先 ${s} が存在しないか、公開済みでない`);
 for (const s of fm.related ?? []) if (!linkable(s)) err(`related の ${s} が存在しないか、公開済みでない`);
-if ((fm.related ?? []).length < 2) err("related が2本未満");
+if ((fm.related ?? []).length < 2) few("related が2本未満");
+
+// ---------- ルビ(日本語学習の記事は、漢字にすべて読みを付ける) ----------
+const RUBY = /\{([^{}|\n]+)\|([^{}|\n]+)\}/g;
+const unruby = (s) => String(s).replace(RUBY, "$1");
+if (isJa) {
+  const KANJI = /[一-鿿㐀-䶿々]/;
+  const bare = (label, s) => {
+    const rest = String(s ?? "").replace(RUBY, "").replace(/<rt>[\s\S]*?<\/rt>/g, "").replace(/\]\([^)]*\)/g, "]");
+    const found = [...new Set(rest.match(new RegExp(KANJI.source, "g")) ?? [])];
+    if (found.length) err(`${label}に読み(ルビ)のない漢字がある: ${found.join("")}(記法 {漢字|かんじ})`);
+  };
+  bare("title ", fm.title);
+  bare("description ", fm.description);
+  bare("本文", content);
+  for (const [i, ph] of (fm.phrases ?? []).entries()) bare(`phrases[${i}].jp `, ph.jp);
+  if (/<ruby>/.test(content)) warn("本文に <ruby> タグを直接書いている。記法 {漢字|かんじ} にそろえる");
+}
 
 // ---------- 主キーワード ----------
 const kw = String(fm.primaryKeyword ?? "").split(/[\s　]+/).filter(Boolean);
 const plain = content.replace(/<[^>]+>/g, "").replace(/!\[[^\]]*\]\([^)]*\)/g, "");
 const intro = plain.split(/\n##\s/)[0];
 for (const w of kw) {
-  if (!String(fm.title).includes(w)) err(`主キーワードの語「${w}」が title にない`);
-  if (!intro.includes(w)) err(`主キーワードの語「${w}」が導入（最初の h2 より前）にない`);
+  const has = (s) => (isJa ? unruby(s).toLowerCase().includes(w.toLowerCase()) : s.includes(w));
+  if (!has(String(fm.title))) err(`主キーワードの語「${w}」が title にない`);
+  if (!has(intro)) err(`主キーワードの語「${w}」が導入（最初の h2 より前）にない`);
 }
 
 // ---------- 分量と表現 ----------
-const chars = plain.replace(/\s/g, "").length;
-info.push(`本文: 約${chars}字（目安5000字。水増しより短さを優先）`);
-if (chars < 2500) warn("本文が2500字未満。内容が足りているか確認");
+if (isJa) {
+  const words = unruby(plain).split(/\s+/).filter(Boolean).length;
+  info.push(`本文: 約${words}語(英語。水増しより短さを優先)`);
+  if (words < 800) warn("本文が800語未満。内容が足りているか確認");
+} else {
+  const chars = plain.replace(/\s/g, "").length;
+  info.push(`本文: 約${chars}字（目安5000字。水増しより短さを優先）`);
+  if (chars < 2500) warn("本文が2500字未満。内容が足りているか確認");
+}
 for (const bad of ["Kazです", "僕の学習メモ", "Kaz式"]) if (content.includes(bad) || String(fm.title).includes(bad)) err(`個人ブログに見える表現「${bad}」がある`);
 if (/僕/.test(plain)) warn("「僕」がある。体験談は「運営者の体験」の囲みで書く");
 if (fm.type === "experience" && !content.includes('class="voice"')) err("experience 記事なのに「運営者の体験」の囲み（class=\"voice\"）がない");
 if (fm.type === "general" && content.includes('class="voice"')) err("general 記事に「運営者の体験」の囲みがある");
+if (!isJa && content.includes('class="analogy"')) warn("英語学習の記事に例え話の囲み(class=\"analogy\")がある。日本語学習の記事用の部品");
 
 // ---------- topic-map ----------
-const mapFile = path.join(root, "content", "planning", "topic-map.md");
-if (fs.existsSync(mapFile)) {
+const mapFile = isJa ? path.join(root, "content", "planning", "japanese", "topic-map.md") : path.join(root, "content", "planning", "topic-map.md");
+if (isJa && !fs.existsSync(mapFile)) warn("日本語学習の topic-map(content/planning/japanese/topic-map.md)がまだない");
+else if (fs.existsSync(mapFile)) {
   const rows = fs.readFileSync(mapFile, "utf8").split("\n").filter((l) => /^\|\s*[A-Z]+-?\d+/.test(l)).map((l) => l.split("|").map((c) => c.trim()));
   const row = rows.find((r) => r[2] === slug);
   if (!row) err("topic-map に、この slug の行がない");

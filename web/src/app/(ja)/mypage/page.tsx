@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { logout, updateNickname } from "@/app/actions";
 import ActionForm from "@/components/ActionForm";
-import { getArticle } from "@/lib/articles";
+import { findArticle } from "@/lib/articles";
 import { requireViewer } from "@/lib/auth";
 import { formatDate, initial, timeAgo } from "@/lib/format";
 import { createClient } from "@/lib/supabase/server";
@@ -24,8 +24,8 @@ export default async function MyPage() {
 
   const items: Item[] = [
     ...(comments.data ?? []).map((c) => {
-      const a = getArticle(c.article_slug);
-      return { key: `c${c.id}`, kind: "記事へのコメント", cls: "cat c0", text: c.body, context: a?.title ?? c.article_slug, href: `/articles/${c.article_slug}#p-${c.id}`, at: c.created_at };
+      const a = findArticle(c.article_slug);
+      return { key: `c${c.id}`, kind: "記事へのコメント", cls: "cat c0", text: c.body, context: a?.title ?? c.article_slug, href: `${a?.url ?? `/articles/${c.article_slug}`}#p-${c.id}`, at: c.created_at };
     }),
     ...(threads.data ?? []).map((t) => ({
       key: `t${t.id}`, kind: "スレッド", cls: "cat c1", text: t.title, context: `返信 ${t.reply_count}`, href: `/boards/${t.category_id}/${t.id}`, at: t.created_at,

@@ -2,31 +2,34 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { addComment } from "@/app/actions";
+import ArticleCard from "@/components/ArticleCard";
 import Discussion from "@/components/Discussion";
 import ReadingProgress from "@/components/ReadingProgress";
-import { getAllArticles, getArticle, getRelatedArticles } from "@/lib/articles";
-import ArticleCard from "@/components/ArticleCard";
+import ReadingToggle from "@/components/ReadingToggle";
+import { getAllArticles, getArticle, getRelatedArticles, isSectionLive } from "@/lib/articles";
 import { getViewer } from "@/lib/auth";
-import { formatDate } from "@/lib/format";
-import { asPosts, getCommentCounts, POST_COLUMNS } from "@/lib/queries";
-import { createClient } from "@/lib/supabase/server";
 import { SITE_URL } from "@/lib/env";
-import { withLinkCards } from "@/lib/linkCards";
+import { formatDate } from "@/lib/format";
+import { t } from "@/lib/i18n";
 import { ORG_ID, PERSON_ID, ldScript, organizationLd, personLd } from "@/lib/jsonld";
+import { withLinkCards } from "@/lib/linkCards";
+import { asPosts, getCommentCounts, POST_COLUMNS } from "@/lib/queries";
+import { SECTIONS, type SectionKey } from "@/lib/sections";
+import { createClient } from "@/lib/supabase/server";
 
-export async function generateMetadata(props: PageProps<"/articles/[slug]">): Promise<Metadata> {
-  const { slug } = await props.params;
-  const article = getArticle(slug);
+// 記事ページ(どの科目でも同じ作り)。英語学習は /articles/[slug]、日本語学習は /en/japanese/articles/[slug]
+export function articleMetadata(slug: string, section: SectionKey): Metadata {
+  const article = isSectionLive(section) ? getArticle(slug, section) : null;
   if (!article) return {};
   return {
     title: article.title,
     description: article.summary,
-    alternates: { canonical: `/articles/${slug}` },
+    alternates: { canonical: article.url },
     openGraph: {
       type: "article",
       title: article.title,
       description: article.summary,
-      url: `/articles/${slug}`,
+      url: article.url,
       publishedTime: article.date,
       tags: article.tags,
       images: [article.ogImage ? { url: article.ogImage, width: 1200, height: 630, alt: article.coreIllustrationAlt } : { url: "/og-default.png", width: 1200, height: 630, alt: "まなビレッジ" }],
@@ -36,10 +39,11 @@ export async function generateMetadata(props: PageProps<"/articles/[slug]">): Pr
   };
 }
 
-export default async function ArticlePage(props: PageProps<"/articles/[slug]">) {
-  const { slug } = await props.params;
-  const article = getArticle(slug);
+export default async function ArticleView({ slug, section }: { slug: string; section: SectionKey }) {
+  const sec = SECTIONS[section];
+  const article = isSectionLive(section) ? getArticle(slug, section) : null;
   if (!article) notFound();
+  const s = t(sec.lang);
 
   const supabase = await createClient();
   const [viewer, { data }, counts] = await Promise.all([
@@ -47,16 +51,16 @@ export default async function ArticlePage(props: PageProps<"/articles/[slug]">) 
     supabase.from("comments").select(POST_COLUMNS).eq("article_slug", slug).order("created_at", { ascending: false }),
     getCommentCounts(),
   ]);
-  const related = getRelatedArticles(slug);
-  const all = getAllArticles();
-  const url = `${SITE_URL}/articles/${slug}`;
+  const related = getRelatedArticles(slug, section);
+  const all = getAllArticles(section);
+  const url = `${SITE_URL}${article.url}`;
   const jsonLd = {
     "@type": "BlogPosting",
     headline: article.title,
     description: article.summary,
     datePublished: article.date,
     dateModified: article.updatedAt || article.date,
-    inLanguage: "ja",
+    inLanguage: sec.lang,
     keywords: article.tags.join(", "),
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
     url,
@@ -64,15 +68,15 @@ export default async function ArticlePage(props: PageProps<"/articles/[slug]">) 
     author: { "@id": PERSON_ID },
     publisher: { "@id": ORG_ID },
   };
-
   const breadcrumbLd = {
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "トップ", item: SITE_URL },
-      { "@type": "ListItem", position: 2, name: "記事", item: `${SITE_URL}/articles` },
+      { "@type": "ListItem", position: 1, name: sec.label, item: `${SITE_URL}${sec.top}` },
+      { "@type": "ListItem", position: 2, name: s.articles, item: `${SITE_URL}${sec.articles}` },
       { "@type": "ListItem", position: 3, name: article.title, item: url },
     ],
   };
+  const updated = article.updatedAt && article.updatedAt !== article.date ? ` · ${s.updatedOn(formatDate(article.updatedAt, sec.lang))}` : "";
 
   return (
     <div className="screen">
@@ -81,42 +85,44 @@ export default async function ArticlePage(props: PageProps<"/articles/[slug]">) 
       <div className="wrap reader-grid">
         <article className="panel paper">
           <div className="crumb">
-            <Link href="/articles">記事</Link>
-            {article.tags[0] && (<><span>/</span><Link href={`/tags/${encodeURIComponent(article.tags[0])}`}>#{article.tags[0]}</Link></>)}
+            <Link href={sec.articles}>{s.articles}</Link>
+            {article.tags[0] && (<><span>/</span><Link href={`${sec.tags}/${encodeURIComponent(article.tags[0])}`}>#{article.tags[0]}</Link></>)}
           </div>
           {article.draft && <p className="draft-badge">下書き（本番には表示されません）</p>}
-          <h1>{article.title}</h1>
+          <h1 dangerouslySetInnerHTML={{ __html: article.titleHtml }} />
           <div className="byline">
             <div className="avatar" aria-hidden="true">K</div>
             <div>
               <div className="who">Kaz</div>
-              <div className="sub">{formatDate(article.date)} · {article.minutes}分で読める{article.updatedAt && article.updatedAt !== article.date ? ` · ${formatDate(article.updatedAt)}に更新` : ""}</div>
+              <div className="sub">{formatDate(article.date, sec.lang)} · {s.minutesRead(article.minutes)}{updated}</div>
             </div>
           </div>
-          <div className="prose" dangerouslySetInnerHTML={{ __html: withLinkCards(article.html, slug) }} />
+          {sec.lang === "en" && <ReadingToggle />}
+          <div className="prose" dangerouslySetInnerHTML={{ __html: withLinkCards(article.html, article) }} />
           {article.tags.length > 0 && (
             <div className="tags-foot">
-              {article.tags.map((t) => <Link key={t} className="chip" href={`/tags/${encodeURIComponent(t)}`}>#{t}</Link>)}
+              {article.tags.map((tg) => <Link key={tg} className="chip" href={`${sec.tags}/${encodeURIComponent(tg)}`}>#{tg}</Link>)}
             </div>
           )}
         </article>
 
         <Discussion
-          title="コメント"
+          title={s.commentsTitle}
           rows={asPosts(data)}
           action={addComment}
           hidden={{ slug }}
           loggedIn={!!viewer}
-          path={`/articles/${slug}`}
-          placeholder="感想や質問をどうぞ"
-          empty="まだコメントはありません。最初のコメントを書いてみませんか？"
-          badge={(r) => (r.author?.is_admin ? "筆者" : null)}
+          path={article.url}
+          placeholder={s.commentPlaceholder}
+          empty={s.commentEmpty}
+          badge={(r) => (r.author?.is_admin ? s.authorBadge : null)}
+          lang={sec.lang}
         />
 
         {related.length > 0 && (
-          <section className="related" aria-label="関連記事">
+          <section className="related" aria-label={s.related}>
             <div className="sec-head" style={{ marginBottom: 20 }}>
-              <h2>関連記事</h2>
+              <h2>{s.related}</h2>
             </div>
             <div className="cards">
               {related.map((a) => (

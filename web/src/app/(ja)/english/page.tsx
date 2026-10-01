@@ -1,12 +1,17 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import ArticleCard from "@/components/ArticleCard";
 import PhraseCarousel from "@/components/PhraseCarousel";
 import { getAllArticles, getTagCounts } from "@/lib/articles";
 import { shortDate } from "@/lib/format";
 import { catClass, getCommentCounts, listThreads } from "@/lib/queries";
-import { ldScript, organizationLd, personLd, websiteLd } from "@/lib/jsonld";
+import { ldScript, organizationLd, personLd } from "@/lib/jsonld";
 
-export const metadata = { alternates: { canonical: "/" } };
+export const metadata: Metadata = {
+  title: "英語を学ぶ — 英語の勉強方法を、研究と経験から",
+  description: "単語の覚え方、文法書の進め方、スピーキングの練習まで。研究と経験にもとづく英語の勉強法の記事と、学習者どうしで助け合える掲示板。",
+  alternates: { canonical: "/english" },
+};
 
 const TICKER: [string, string][] = [
   ["Break a leg!", "がんばって！"],
@@ -18,7 +23,8 @@ const TICKER: [string, string][] = [
   ["I'll keep that in mind.", "覚えておくね"],
 ];
 
-export default async function Home() {
+// 英語学習のトップ(ヘッダーの「英語を学ぶ」の行き先)。サイト全体の入口は (ja)/page.tsx
+export default async function EnglishHome() {
   const articles = getAllArticles();
   const [latest, ...rest] = articles;
   const [counts, threads] = await Promise.all([getCommentCounts(), listThreads({ sort: "popular", limit: 3 })]);
@@ -26,14 +32,14 @@ export default async function Home() {
 
   return (
     <div className="screen">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldScript({ "@context": "https://schema.org", "@graph": [websiteLd, organizationLd, personLd] }) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldScript({ "@context": "https://schema.org", "@graph": [organizationLd, personLd] }) }} />
       <div className="wrap home-intro">
         <h1>英語の勉強方法を、研究と経験から。</h1>
         <p>単語の覚え方、文法書の進め方、スピーキングの練習まで。読んで、試して、つまずいたら掲示板でみんなに聞ける、英語学習のサイトです。</p>
       </div>
       {latest && (
         <div className="wrap">
-          <Link className="panel hero" href={`/articles/${latest.slug}`}>
+          <Link className="panel hero" href={latest.url}>
             <div className="hero-text intro">
               <span className="badge-new"><i />最新記事</span>
               <h2>{latest.title}</h2>

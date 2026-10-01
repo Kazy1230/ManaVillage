@@ -33,7 +33,8 @@ manavillage.online の技術構成。コードを触る前に読む。
 ```
 web/
   content/
-    articles/            記事の Markdown(slug = ファイル名)
+    articles/            英語学習の記事の Markdown(slug = ファイル名)
+    japanese/articles/   日本語学習の記事の Markdown(英語で書く)。slug は科目をまたいで重複させない
     illustrations/<slug>/core.mjs, core.svg   記事イラストの描画コードと原本
     materials/           運営者の学習の素材(personal-brain のスナップショット)
     planning/            記事制作ワークフロー(workflow.md, topic-map.md, cards/, outlines/)
@@ -50,16 +51,22 @@ web/
   src/
     proxy.ts             Supabase のセッション更新(旧 middleware)
     app/
-      layout.tsx         ヘッダー・フッター・共通メタデータ
-      page.tsx           トップ(最新記事のヒーロー、新着、タグ、掲示板の人気スレッド)
+      (ja)/layout.tsx    日本語のページのルートレイアウト(<html lang="ja">)。中身は components/RootShell.tsx
+      (ja)/page.tsx      まなビレッジ全体の入口(/)。キャッチコピーと、科目ごとのカード、掲示板
+      (ja)/english/      英語学習のトップ(/english。最新記事のヒーロー、新着、タグ、掲示板の人気スレッド)
+      (en)/layout.tsx    英語のページのルートレイアウト(<html lang="en" data-section="japanese">)
+      (en)/en/japanese/  日本語学習のトップ・記事一覧・記事・タグ(/en/japanese/...)
+      global-not-found.tsx   どのルートにも当たらない URL の 404(ルートレイアウトが2つあるため)
       actions.ts         Server Actions(ログイン、登録、コメント、スレッド作成、書き込み、ニックネーム変更 など)
-      articles/          記事一覧・記事詳細(JSON-LD, canonical, OG, 関連記事, コメント)
-      tags/[tag]/        タグ別一覧(記事3本未満、またはハブ記事がある場合は noindex)
+      (ja)/articles/     英語学習の記事一覧・記事詳細(記事ページの中身は components/ArticleView.tsx。どの科目も共通)
+      (ja)/tags/[tag]/   英語学習のタグ別一覧(記事3本未満、またはハブ記事がある場合は noindex)
       boards/            掲示板一覧(カテゴリ・新着/人気)、スレッド詳細、スレッド作成
       login, signup, reset-password, update-password, mypage
       about, operator, contact, privacy, terms   サイトの紹介・運営者・問い合わせ・プライバシーポリシー・利用規約(InfoPage 部品で共通のレイアウト)
       auth/confirm/route.ts   メールのリンク(登録確認・パスワード再設定)の受け口
       sitemap.ts, robots.ts
+    lib/sections.ts      科目(セクション)の定義: 言語、メニューの名前、URL、記事フォルダ。科目を増やすときはここに足す
+    lib/i18n.ts          画面の文言(ja / en)
     lib/jsonld.ts        JSON-LD(WebSite / Organization / Person、記事の BlogPosting の著者・発行元の参照)
     lib/tags.ts          タグページの説明文(記事が3本以上のタグを中身のあるページにする)
     lib/site.ts          SNS のアカウント、タグライン、運営者名、問い合わせ先メール(変更はここだけ)
@@ -108,6 +115,9 @@ web/
   - 新形式(ワークフロー導入後): `title, description, slug, type, status, publishedAt, primaryKeyword, searchIntent, targetReader, hub, hubTag?, tags, coreIllustration, coreIllustrationAlt, related, sources, materialsUsed`
   - 旧形式(導入前の42本): `title, date, tags, summary, keyword, phrases?, draft?`
 - 下書き(`status: draft` / `draft: true`)は、本番(`NODE_ENV=production`)のサイト表示・sitemap・関連記事から除外。ローカルでは「下書き」バッジ付きで表示し、`noindex`
+- 科目ごとに読み込む(`getAllArticles(section)`)。記事は `section` と `url` を持つ。コメントやマイページのように slug だけのときは `findArticle(slug)`
+- **公開済みの記事が1本もない科目は、本番ではメニュー・入口のカード・ページ・sitemap に出さない**(`isSectionLive`)。ローカルでは下書きの確認のため出す
+- 日本語学習の記事: 漢字には記法 `{漢字|かんじ}` でルビを付ける(title、description、本文、phrases)。`check-article.mjs` がルビのない漢字を不合格にする。例文は `<div class="example">` に `.jpx`(日本語)、`.ro`(ローマ字)、`.tr`(英訳)。例え話の囲みは `<div class="analogy">`(体験談の `.voice` は使わない)。ふりがなとローマ字は最初から表示し、記事ページの切り替えで消せる(`ReadingToggle`)
 - 本文の独自記法: `==語句==` → 蛍光ペン。例文ボックス `<div class="example">`、運営者の体験 `<div class="voice">`(書き方は `web/content/planning/workflow.md` の付録)
 - `phrases`(任意)を持つ記事が最新だと、トップのヒーローでフレーズが切り替わる
 - 関連記事: frontmatter の `related` を優先し、足りない分をタグの重なりで補う
@@ -139,12 +149,13 @@ web/
 
 ローカルは `web/.env.local`、本番は Vercel の Environment Variables(Production)に設定済み。
 
-## 将来の拡張方針(2026-10-01 決定。まだ実装していない)
+## 科目(セクション)と言語の方針(2026-10-01 決定。日本語学習まで実装済み)
 
 分野(英語学習、日本語学習、IT、音楽など)と、言語(ja / en)を、別の軸として扱う。
 
-- **URL**: 日本語は接頭辞なし、英語だけ `/en/` を付ける。分野は URL の階層で分ける(例: `/english/...`、`/en/japanese/...`、`/it/...`、`/en/it/...`)。いまの `/articles/<slug>` は、分野を導入するときに `/english/articles/<slug>` へ 301 で移す
-- **データ**: 記事の frontmatter に `section`(分野)を足す。言語は、分野ごとの設定(サイト側のファイル)か、フォルダ名(`content/articles/<section>/<lang>/`)から決める。記事ごとの `lang` は持たない。同じ内容の翻訳には、共通の `translationKey` を付けて結び、`hreflang` と言語切り替えのリンクを出す
+- **URL**: 日本語は接頭辞なし、英語だけ `/en/` を付ける。分野は URL の階層で分ける(例: `/en/japanese/...`、将来 `/it/...`、`/en/it/...`)。`/` はまなビレッジ全体の入口、英語学習のトップは `/english`
+  - **英語学習の記事の URL(`/articles/<slug>`、`/tags/<tag>`)は変えない**(実装時に決定。301 で移すと、検索の評価の引き継ぎに時間がかかり、Search Console の重複の件も重なるため。リダイレクトを増やさないほうが安全)
+- **データ**: 科目は記事のフォルダで決まる(frontmatter に `section` は書かない。二重に持つとずれるため)。言語は科目ごとの設定(`web/src/lib/sections.ts`)で決まる。記事ごとの `lang` は持たない。同じ内容の翻訳には、共通の `translationKey` を付けて結び、`hreflang` と言語切り替えのリンクを出す
 - **絞り込み**: 一覧、タグ、sitemap、トップのヒーロー、関連記事は、分野と言語で絞る。`<html lang>` は、記事の言語で切り替える
 - **運営**: `topic-map`、素材(`materials`)、ワークフロー、チェックの基準は、分野ごとに分ける。体験談の素材があるのは英語学習だけ。日本語学習・IT・音楽の記事は、一般解説と例え話(体験談なし)が中心
 - **順序**: 分野を足すのは、英語学習の記事が十分に厚くなってから(分野を広げると、サイトの専門性の評価が薄まるおそれがある)。翻訳は、日本語版を先に作り、必要な記事だけ英語にする

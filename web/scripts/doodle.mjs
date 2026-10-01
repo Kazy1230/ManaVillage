@@ -235,6 +235,24 @@ export function canvas(seed = 1, w = 800, h = 500) {
       api.line(x + 20, y - 20, x - 20, y + 20, { color, w: 8 });
     },
 
+    // ---- 和の小物(日本語学習の記事で使う) ----
+    sakura(x, y, sz = 14) {
+      for (let i = 0; i < 5; i++) {
+        const a = -Math.PI / 2 + (i * 2 * Math.PI) / 5;
+        api.ellipse(x + Math.cos(a) * sz * 0.75, y + Math.sin(a) * sz * 0.75, sz * 0.55, sz * 0.55, { color: "#E07A90", fill: "#F7B7C5", w: 2, overshoot: false });
+      }
+      api.dot(x, y, sz * 0.22, C.yellow);
+    },
+
+    // 鳥居。x は中心、y は笠木(いちばん上の横木)の高さ
+    torii(x, y, sz = 1, color = "#D2452F") {
+      const W = 150 * sz, H = 150 * sz;
+      api.curve([[x - W * 0.62, y + 6 * sz], [x, y - 10 * sz], [x + W * 0.62, y + 6 * sz]], { color, w: 12 * sz });
+      api.line(x - W * 0.5, y + 30 * sz, x + W * 0.5, y + 30 * sz, { color, w: 9 * sz });
+      api.line(x - W * 0.34, y, x - W * 0.36, y + H, { color, w: 11 * sz });
+      api.line(x + W * 0.34, y, x + W * 0.36, y + H, { color, w: 11 * sz });
+    },
+
     toString() {
       return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">
 <defs><filter id="crayon"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="${seed % 97}"/><feDisplacementMap in="SourceGraphic" scale="3.5"/></filter></defs>

@@ -2,6 +2,8 @@ import Link from "next/link";
 import ActionForm from "@/components/ActionForm";
 import ReplyToggle from "@/components/ReplyToggle";
 import { initial, timeAgo } from "@/lib/format";
+import { t as tr } from "@/lib/i18n";
+import type { Lang } from "@/lib/sections";
 import type { ActionState, PostRow } from "@/lib/types";
 
 type Props = {
@@ -14,6 +16,7 @@ type Props = {
   placeholder: string;
   empty: string;
   badge: (row: PostRow) => string | null;
+  lang?: Lang;
 };
 
 // 返信は根のコメントの下にまとめ、古い順に並べる。根のコメントは新着順。
@@ -39,10 +42,11 @@ function buildTree(rows: PostRow[]) {
   return { roots, replies, byId };
 }
 
-export default function Discussion({ title, rows, action, hidden, loggedIn, path, placeholder, empty, badge }: Props) {
+export default function Discussion({ title, rows, action, hidden, loggedIn, path, placeholder, empty, badge, lang = "ja" }: Props) {
+  const s = tr(lang);
   const { roots, replies, byId } = buildTree(rows);
   const loginHref = `/login?next=${encodeURIComponent(path)}`;
-  const name = (r: PostRow) => r.author?.nickname ?? "退会したユーザー";
+  const name = (r: PostRow) => r.author?.nickname ?? s.deletedUser;
 
   const Post = ({ row, isReply }: { row: PostRow; isReply?: boolean }) => {
     const parent = row.parent_id ? byId.get(row.parent_id) : undefined;
@@ -54,11 +58,11 @@ export default function Discussion({ title, rows, action, hidden, loggedIn, path
           <div className="who">
             {name(row)}
             {label && <span className="author">{label}</span>}
-            <span className="sub">{timeAgo(row.created_at)}</span>
+            <span className="sub">{timeAgo(row.created_at, lang)}</span>
           </div>
-          {isReply && parent && parent.parent_id && <span className="to">→ {name(parent)}さんへ</span>}
+          {isReply && parent && parent.parent_id && <span className="to">{s.toUser(name(parent))}</span>}
           <p>{row.body}</p>
-          <ReplyToggle action={action} hidden={hidden} parentId={row.id} to={name(row)} loggedIn={loggedIn} loginHref={loginHref} />
+          <ReplyToggle action={action} hidden={hidden} parentId={row.id} to={name(row)} loggedIn={loggedIn} loginHref={loginHref} lang={lang} />
         </div>
         {!isReply && replies.get(row.id) && (
           <div className="replies">
@@ -72,19 +76,19 @@ export default function Discussion({ title, rows, action, hidden, loggedIn, path
   return (
     <section className="panel comments reveal" id="comments">
       <div className="c-head">
-        <h2>{title} <span className="sub">{rows.length}件 · 新着順</span></h2>
+        <h2>{title} <span className="sub">{s.commentsCount(rows.length)}</span></h2>
       </div>
       <div className="c-body">
         {loggedIn ? (
-          <ActionForm action={action} submitLabel="投稿する" className="compose" buttonClass="btn primary" footNote="投稿後は編集・削除できません">
+          <ActionForm action={action} submitLabel={s.post} pendingLabel={s.sending} className="compose" buttonClass="btn primary" footNote={s.noEdit}>
             {Object.entries(hidden).map(([k, v]) => <input key={k} type="hidden" name={k} value={v} />)}
-            <label className="sr-only" htmlFor="compose-body">{title}を書く</label>
+            <label className="sr-only" htmlFor="compose-body">{title}</label>
             <textarea id="compose-body" name="body" required maxLength={2000} placeholder={placeholder} />
           </ActionForm>
         ) : (
           <div className="prompt">
-            <span>投稿するにはログインしてください。読むだけならそのままでOKです。</span>
-            <Link className="btn primary" href={loginHref}>ログイン</Link>
+            <span>{s.loginToPost}</span>
+            <Link className="btn primary" href={loginHref}>{s.login}</Link>
           </div>
         )}
         {roots.length === 0 ? <p className="empty">{empty}</p> : roots.map((r) => <Post key={r.id} row={r} />)}

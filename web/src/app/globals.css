@@ -347,3 +347,147 @@ textarea{min-height:110px;resize:vertical}
   .board-row .chev{display:none}
   .ptitle .deco{display:none}
 }
+
+/* ===== 科目(セクション)。ヘッダーの科目メニュー、全体の入口、日本語学習の部品 ===== */
+/* 英語で書くページ(日本語学習): 本文は英字のフォントを先に */
+html[data-section="japanese"]{--body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Hiragino Sans","Noto Sans JP","Yu Gothic Medium",Meiryo,sans-serif;--display:var(--body)}
+.jp{font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Noto Sans CJK JP","Yu Gothic Medium","Yu Gothic",Meiryo,sans-serif;font-style:normal}
+
+/* ヒーローの右側: 日本語のフレーズ */
+.phrase .jpx{font-size:clamp(28px,3.4vw,38px);line-height:1.5;font-weight:700}
+.phrase .jpx mark{color:inherit;background:linear-gradient(var(--hl),var(--hl)) no-repeat 0 88% / 0% 42%;padding-inline:2px;animation:marker .7s .35s var(--ease) forwards}
+.phrase .ro{font-family:var(--en);font-style:italic;font-size:17px;color:var(--ink)}
+
+/* ヘッダーの科目タブ */
+.head-nav{display:flex;align-items:center;gap:12px;min-width:0}
+.subjects{display:flex;gap:4px}
+.subjects a{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:99px;font-size:14px;color:var(--muted);white-space:nowrap;transition:color .2s,background .2s}
+.subjects a:hover{color:var(--ink);background:var(--bg)}
+.subjects a[aria-current="page"]{color:var(--accent);background:var(--accent-soft);font-weight:500}
+.nav-sep{width:1px;height:22px;background:var(--line-strong)}
+@media (max-width:760px){
+  .head-in,.scrolled .head-in{flex-wrap:wrap;height:auto;padding-block:10px;row-gap:8px}
+  .head-nav{order:3;width:100%;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+  .subjects a{font-size:13px}
+}
+/* 例文ボックス(.example を拡張): 日本語、ローマ字、英訳の3段 */
+.example .jpx{font-size:22px;line-height:2;font-weight:700;letter-spacing:.02em}
+.example .jpx mark{color:inherit;background:linear-gradient(var(--hl),var(--hl)) no-repeat 0 88% / 100% 42%;padding-inline:2px}
+.example .ro{font-family:var(--en);font-style:italic;font-size:15px;color:var(--muted);line-height:1.5}
+.example .tr{font-size:15px;line-height:1.6}
+.example.ng .jpx{text-decoration:line-through;text-decoration-color:rgba(201,64,92,.5);text-decoration-thickness:2px}
+.example.ok{background:#F2FBF6;border-color:#CBEBD9}
+.ok .lbl{color:var(--ok)}
+.example .why{font-size:13px;color:var(--muted);border-top:1px dashed var(--line-strong);padding-top:8px;margin-top:6px;line-height:1.8}
+.ex-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+ruby{ruby-position:over}
+rt{font-size:.48em;font-weight:500;color:var(--muted);letter-spacing:0}
+/* ふりがな・ローマ字の切り替え(掲示板の .seg と同じ形) */
+.reading{display:flex;gap:10px;flex-wrap:wrap;align-items:center;font-size:13px;color:var(--muted);margin:-16px 0 32px}
+html .reading .seg button{border:0;background:none;padding:6px 14px;border-radius:99px;font-size:13px;color:var(--muted)}
+html .reading .seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);font-weight:500;box-shadow:0 1px 4px rgba(25,35,70,.12)}
+/* 例え話の囲み(日本語学習の記事。運営者の体験の囲み .voice と同じ形で、中身は例え話) */
+.prose .analogy{border:2px dashed var(--line-strong);border-radius:16px;padding:20px 24px;background:var(--surface);display:grid;gap:8px}
+.prose .analogy .lbl{color:var(--ink);letter-spacing:.06em}
+.prose .analogy p{margin:0;font-size:15px;line-height:1.95}
+/* 要点(冒頭) */
+.prose .points{border:1px solid var(--line);border-radius:16px;padding:20px 24px;background:var(--accent-soft)}
+.prose .points .lbl{display:block;margin-bottom:6px}
+.prose .points ul{margin:0}
+/* 表(既存の .prose table)の日本語セル */
+.prose td .jpx,.prose th .jpx{font-size:17px;font-weight:700;display:block;line-height:1.9}
+.prose td .tr{font-size:13px;color:var(--muted);display:block}
+@media (max-width:520px){.prose tbody th{white-space:nowrap;font-size:12px}.prose th,.prose td{padding:8px 10px}.prose td .jpx,.prose th .jpx{font-size:15px;white-space:nowrap}.ex-pair{grid-template-columns:1fr}.example .jpx{font-size:20px}}
+html.no-furi rt{visibility:hidden}
+html.no-ro .example .ro{display:none}
+
+/* 全体の入口(/) */
+.portal-intro{text-align:center;justify-items:center;padding-block:24px 40px}
+.portal-intro .tagline{font-size:clamp(20px,2.6vw,26px);color:var(--accent)}
+.portal-intro p{margin-inline:auto}
+.subjects-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+.subject{overflow:hidden;display:flex;flex-direction:column;transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.subject:hover{transform:translateY(-6px);box-shadow:var(--shadow-m)}
+.subject-art{display:grid;place-items:center;aspect-ratio:16/8;border-bottom:1px solid var(--line);padding:16px 40px}
+.subject-art img{width:100%;height:100%;object-fit:contain}
+.subject-body{padding:26px 28px 24px;display:grid;gap:12px;flex:1;align-content:start}
+.subject .who{font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--accent)}
+.subject h2{font-size:26px;font-weight:900}
+.subject h2 a:hover{color:var(--accent)}
+.subject p{color:var(--muted)}
+.subject-latest{list-style:none;margin:4px 0 0;padding:0;display:grid;border-top:1px solid var(--line)}
+.subject-latest li{border-bottom:1px solid var(--line)}
+.subject-latest a{display:block;padding:10px 2px;font-size:14px;transition:color .2s,padding .2s}
+.subject-latest a:hover{color:var(--accent);padding-left:8px}
+.subject-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:8px;flex-wrap:wrap}
+/* 日本語学習のカードだけ、和の色と明朝 */
+.subject.wa{--accent:#B83A2A;--accent-dark:#932C1F}
+.subject.wa h2{font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",Georgia,serif;font-weight:700}
+.subject.wa .btn.primary{box-shadow:0 4px 14px rgba(184,58,42,.25)}
+.subject.wa p,.subject.wa .subject-latest{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Hiragino Sans",sans-serif}
+@media (max-width:860px){.subjects-grid{grid-template-columns:1fr}}
+.band-en{font-weight:400;font-size:20px}
+.portal-intro h1{line-height:1.45}
+
+/* ===== 和の見た目(日本語学習セクションだけ。レイアウトは既存のまま、変数と飾りだけを上書き) ===== */
+html[data-section="japanese"]{
+  --bg:#F4EFE4;            /* 生成り(和紙) */
+  --surface:#FFFDF8;
+  --ink:#2A2522;           /* 墨 */
+  --muted:#6E655C; --faint:#A39A8E;
+  --line:#E6DDCC; --line-strong:#D6CAB4;
+  --accent:#B83A2A;        /* 朱 */
+  --accent-dark:#932C1F; --accent-soft:#F8E8E2;
+  --ai:#2E4A7D;            /* 藍 */
+  --hl:#F6D46A;            /* 山吹の蛍光ペン */
+  --ok:#3C7A4A; --danger:#B83A2A;
+  --p1:#F8E3E7; --p2:#FBEFCF; --p3:#E3EEDC; --p4:#E9E2F1; --p5:#E0EAF3; --p6:#F1EADB; /* 桜・山吹・若竹・藤・空・生成り */
+  --r:12px;
+  --display:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP","Noto Serif CJK JP",Georgia,serif;
+  --shadow-s:0 1px 2px rgba(60,40,20,.05),0 2px 8px rgba(60,40,20,.05);
+  --shadow-m:0 2px 4px rgba(60,40,20,.06),0 12px 32px rgba(60,40,20,.10);
+}
+/* 和紙の質感 */
+html[data-section="japanese"] body{background-color:var(--bg);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .35 0 0 0 0 .2 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23f)'/%3E%3C/svg%3E")}
+html[data-section="japanese"] h1,html[data-section="japanese"] h2,html[data-section="japanese"] h3{font-family:var(--display);letter-spacing:.02em}
+/* 判子風のロゴ */
+html[data-section="japanese"] .logo i,html[data-section="japanese"] .foot-logo i{width:22px;height:22px;border-radius:4px;background:var(--accent);position:relative;transform:rotate(-4deg)}
+html[data-section="japanese"] .logo i::after,html[data-section="japanese"] .foot-logo i::after{content:"ま";position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-size:13px;font-weight:700;font-style:normal;font-family:var(--display)}
+html[data-section="japanese"] .logo:hover i{transform:rotate(8deg) scale(1.08)}
+html[data-section="japanese"] .site-head{background:rgba(255,253,248,.9)}
+/* ボタンと強調色の影を朱に */
+html[data-section="japanese"] .btn.primary{box-shadow:0 4px 14px rgba(184,58,42,.25)}
+html[data-section="japanese"] .btn.primary:hover{box-shadow:0 6px 20px rgba(184,58,42,.33)}
+html[data-section="japanese"] .badge-new i{animation:none}
+html[data-section="japanese"] .float{color:rgba(46,74,125,.2);font-family:var(--display);font-style:normal}
+/* 青海波(せいがいは)の柄: ヒーローの右側と、掲示板の帯 */
+html[data-section="japanese"] .stage{background-color:#EEF2F8;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='20'%3E%3Cg fill='none' stroke='%232E4A7D' stroke-opacity='.13' stroke-width='1.2'%3E%3Ccircle cx='20' cy='20' r='18'/%3E%3Ccircle cx='20' cy='20' r='13'/%3E%3Ccircle cx='20' cy='20' r='8'/%3E%3Ccircle cx='0' cy='10' r='18'/%3E%3Ccircle cx='0' cy='10' r='13'/%3E%3Ccircle cx='0' cy='10' r='8'/%3E%3Ccircle cx='40' cy='10' r='18'/%3E%3Ccircle cx='40' cy='10' r='13'/%3E%3Ccircle cx='40' cy='10' r='8'/%3E%3C/g%3E%3C/svg%3E")}
+html[data-section="japanese"] .stage-label{color:var(--ai)}
+html[data-section="japanese"] .band{background-color:var(--ai);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='24'%3E%3Cg fill='none' stroke='%23fff' stroke-opacity='.10' stroke-width='1.3'%3E%3Ccircle cx='24' cy='24' r='22'/%3E%3Ccircle cx='24' cy='24' r='16'/%3E%3Ccircle cx='24' cy='24' r='10'/%3E%3Ccircle cx='0' cy='12' r='22'/%3E%3Ccircle cx='0' cy='12' r='16'/%3E%3Ccircle cx='0' cy='12' r='10'/%3E%3Ccircle cx='48' cy='12' r='22'/%3E%3Ccircle cx='48' cy='12' r='16'/%3E%3Ccircle cx='48' cy='12' r='10'/%3E%3C/g%3E%3C/svg%3E")}
+html[data-section="japanese"] .band::before{background:radial-gradient(circle,rgba(184,58,42,.55),rgba(184,58,42,0) 70%);width:260px;height:260px;top:-60px;right:6%}
+html[data-section="japanese"] .band .btn{color:var(--ai)}
+/* フレーズの帯: 墨の地に、山吹の文字 */
+html[data-section="japanese"] .ticker{background:var(--ink)}
+/* 見出し: 下線を細い二重線に、左に朱の丸(日の丸の小さな印) */
+html[data-section="japanese"] .sec-head{border-bottom:3px double var(--line-strong)}
+html[data-section="japanese"] .sec-head h2::before{content:"";display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--accent);margin-right:10px;vertical-align:.1em}
+html[data-section="japanese"] .prose h2{border-left-color:var(--accent)}
+/* 記事: 紙のパネルの上辺に、朱と藍の細い帯 */
+html[data-section="japanese"] .paper{border-top:4px solid var(--accent);background-image:linear-gradient(var(--surface),var(--surface))}
+html[data-section="japanese"] .card{border-top:3px solid transparent;transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .3s}
+html[data-section="japanese"] .card:hover{border-top-color:var(--accent)}
+html[data-section="japanese"] .prose .points{background:#F7F1E3;border-color:#E6D7B5}
+html[data-section="japanese"] .prose .points .lbl{color:#8A6A1F}
+html[data-section="japanese"] .prose .analogy{background:#FFFDF8;border-color:#D6CAB4}
+html[data-section="japanese"] .prose .analogy .lbl{color:var(--ai)}
+html[data-section="japanese"] .example{background:#FAF6EC}
+html[data-section="japanese"] .example .lbl{color:var(--ai)}
+html[data-section="japanese"] .example.ng{background:#FBEDEA;border-color:#EFCFC8}
+html[data-section="japanese"] .example.ng .lbl{color:var(--accent)}
+html[data-section="japanese"] .example.ok{background:#EEF5EA;border-color:#CFE2C8}
+html[data-section="japanese"] .example.ok .lbl{color:var(--ok)}
+html[data-section="japanese"] .prose th{background:#F1EADB}
+html[data-section="japanese"] .site-foot{background:var(--ink)}
+html[data-section="japanese"] .cat.c0{background:var(--p1);color:#A23A50}.cat.c1{background:var(--p3);color:#3C7A4A}
+/* フッター: 科目の列が増えた分 */
+@media (min-width:861px){.foot-main{grid-template-columns:minmax(0,1.5fr) repeat(4,minmax(0,1fr));gap:32px}}

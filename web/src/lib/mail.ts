@@ -25,11 +25,11 @@ async function emailOf(userId: string) {
   return data.user?.email ?? null;
 }
 
-export async function notifyAdminOfComment(articleTitle: string, slug: string, nickname: string, body: string) {
+export async function notifyAdminOfComment(articleTitle: string, articlePath: string, nickname: string, body: string) {
   await send(
     ADMIN_EMAIL,
     `【まなビレッジ】「${articleTitle}」にコメントが付きました`,
-    `${nickname} さんのコメント:\n\n${body}\n\n${SITE_URL}/articles/${slug}#comments`,
+    `${nickname} さんのコメント:\n\n${body}\n\n${SITE_URL}${articlePath}#comments`,
   );
 }
 

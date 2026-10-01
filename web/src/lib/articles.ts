@@ -3,18 +3,27 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import { marked } from "marked";
+import { SECTIONS, SECTION_ORDER, type SectionKey } from "@/lib/sections";
 
 export type Phrase = { key: string; rest: string; ja: string; level?: string };
+// 日本語学習の記事の例文(トップのヒーローに出す)。jp はルビの記法 {漢字|かんじ} を HTML にしたもの
+export type JaPhrase = { jp: string; romaji: string; en: string };
 
 export type ArticleMeta = {
   slug: string;
+  section: SectionKey;
+  url: string;
   title: string;
+  // 表示用(日本語学習の記事では、漢字にルビが付く)。title と summary は検索・共有用の素の文字
+  titleHtml: string;
   date: string;
   updatedAt: string;
   tags: string[];
   summary: string;
+  summaryHtml: string;
   keyword: string;
   phrases: Phrase[];
+  jaPhrases: JaPhrase[];
   minutes: number;
   draft: boolean;
   type: "general" | "experience";
@@ -30,7 +39,7 @@ export type ArticleMeta = {
 
 export type Article = ArticleMeta & { html: string };
 
-const DIR = path.join(process.cwd(), "content", "articles");
+const CONTENT = path.join(process.cwd(), "content");
 
 // 本文の画像に、寸法(イラストはすべて 8:5)と遅延読み込みを付ける。レイアウトのずれと、初回表示の重さを防ぐ
 marked.use({
@@ -46,23 +55,40 @@ const isProd = process.env.NODE_ENV === "production";
 const today = () => new Date().toISOString().slice(0, 10);
 const str = (v: unknown) => (v instanceof Date ? v.toISOString().slice(0, 10) : v == null ? "" : String(v));
 const list = (v: unknown) => (Array.isArray(v) ? v.map(String).filter(Boolean) : []);
+const escHtml = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+// ルビの記法 {漢字|かんじ}。日本語学習の記事では、漢字にはすべて読みを付ける(scripts/check-article.mjs が確かめる)
+const RUBY = /\{([^{}|\n]+)\|([^{}|\n]+)\}/g;
+export const rubyToHtml = (s: string) => s.replace(RUBY, "<ruby>$1<rt>$2</rt></ruby>");
+export const rubyToPlain = (s: string) => s.replace(RUBY, "$1");
 
 // 旧形式（date / summary / draft）と、制作ワークフローの新形式（publishedAt / description / status）の両方を読む
-function load(file: string): Article {
+function load(section: SectionKey, file: string): Article {
+  const { lang, dir, articles } = SECTIONS[section];
   const slug = file.replace(/\.md$/, "");
-  const { data, content } = matter(fs.readFileSync(path.join(DIR, file), "utf8"));
-  const withMarks = content.replace(/==([^=\n]+)==/g, '<mark class="hl">$1</mark>');
+  const { data, content } = matter(fs.readFileSync(path.join(CONTENT, dir, file), "utf8"));
+  const ruby = lang === "en";
+  let body = content.replace(/==([^=\n]+)==/g, '<mark class="hl">$1</mark>');
+  if (ruby) body = rubyToHtml(body);
   const draft = data.status ? data.status !== "published" : data.draft === true;
   const core = str(data.coreIllustration);
+  const rawTitle = str(data.title);
+  const rawSummary = str(data.description) || str(data.summary);
+  const words = content.replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
   return {
     slug,
-    title: str(data.title),
+    section,
+    url: `${articles}/${slug}`,
+    title: ruby ? rubyToPlain(rawTitle) : rawTitle,
+    titleHtml: ruby ? rubyToHtml(escHtml(rawTitle)) : escHtml(rawTitle),
     date: str(data.publishedAt) || str(data.date) || today(),
     updatedAt: str(data.updatedAt),
     tags: list(data.tags),
-    summary: str(data.description) || str(data.summary),
-    keyword: str(data.keyword) || str(data.primaryKeyword) || str(data.title),
-    phrases: data.phrases ?? [],
+    summary: ruby ? rubyToPlain(rawSummary) : rawSummary,
+    summaryHtml: ruby ? rubyToHtml(escHtml(rawSummary)) : escHtml(rawSummary),
+    keyword: str(data.keyword) || str(data.primaryKeyword) || rawTitle,
+    phrases: ruby ? [] : (data.phrases ?? []),
+    jaPhrases: ruby ? (data.phrases ?? []).map((p: Record<string, unknown>) => ({ jp: rubyToHtml(escHtml(str(p.jp))), romaji: str(p.romaji), en: str(p.en) })) : [],
     draft,
     type: data.type === "experience" ? "experience" : "general",
     primaryKeyword: str(data.primaryKeyword),
@@ -72,46 +98,67 @@ function load(file: string): Article {
     ogImage: core ? `/illustrations/${slug}/${core.replace(/\.[a-z]+$/, "")}-og.png` : null,
     coreIllustrationAlt: str(data.coreIllustrationAlt),
     related: list(data.related),
-    // 日本語の読書速度を約500字/分として概算
-    minutes: Math.max(1, Math.round(content.length / 500)),
-    html: marked.parse(withMarks, { async: false }),
+    // 日本語は約500字/分、英語は約200語/分として概算
+    minutes: Math.max(1, Math.round(lang === "ja" ? content.length / 500 : words / 200)),
+    html: marked.parse(body, { async: false }),
   };
 }
 
-let cache: Article[] | null = null;
+const cache = new Map<SectionKey, Article[]>();
 
-export function getAllArticles(): Article[] {
-  if (cache && isProd) return cache;
-  cache = fs
-    .readdirSync(DIR)
+export function getAllArticles(section: SectionKey = "english"): Article[] {
+  const hit = cache.get(section);
+  if (hit && isProd) return hit;
+  const dir = path.join(CONTENT, SECTIONS[section].dir);
+  const articles = (fs.existsSync(dir) ? fs.readdirSync(dir) : [])
     .filter((f) => f.endsWith(".md"))
-    .map(load)
+    .map((f) => load(section, f))
     // 下書きは本番のサイト表示・sitemap・内部リンクから除外する。ローカルでは Kaz のレビュー用に表示する
     .filter((a) => !a.draft || !isProd)
     .sort((a, b) => b.date.localeCompare(a.date));
-  return cache;
+  cache.set(section, articles);
+  return articles;
 }
 
-export function getArticle(slug: string) {
-  return getAllArticles().find((a) => a.slug === slug) ?? null;
+export function getArticle(slug: string, section: SectionKey = "english") {
+  return getAllArticles(section).find((a) => a.slug === slug) ?? null;
 }
 
-export function getTagCounts() {
+// コメントやマイページのように、slug だけから記事を探すとき(slug は科目をまたいで重複させない)
+export function findArticle(slug: string) {
+  for (const s of SECTION_ORDER) {
+    const a = getArticle(slug, s);
+    if (a) return a;
+  }
+  return null;
+}
+
+// 公開済みの記事がまだない科目は、本番ではメニューにもページにも出さない(ローカルでは下書きの確認のため出す)
+export function isSectionLive(section: SectionKey) {
+  return !isProd || getAllArticles(section).some((a) => !a.draft);
+}
+
+export function liveSections() {
+  return SECTION_ORDER.filter(isSectionLive);
+}
+
+export function getTagCounts(section: SectionKey = "english") {
   const counts = new Map<string, number>();
-  for (const a of getAllArticles().filter((x) => !x.draft)) for (const t of a.tags) counts.set(t, (counts.get(t) ?? 0) + 1);
+  for (const a of getAllArticles(section).filter((x) => !x.draft || !isProd)) for (const t of a.tags) counts.set(t, (counts.get(t) ?? 0) + 1);
   return [...counts.entries()].sort((a, b) => b[1] - a[1]);
 }
 
 // タグページを検索に出さない条件：記事が3本未満、または同じテーマのハブ記事が公開済み
-export function isTagIndexable(tag: string) {
-  const count = getTagCounts().find(([t]) => t === tag)?.[1] ?? 0;
-  const hasHub = getAllArticles().some((a) => !a.draft && a.hubTag === tag);
+export function isTagIndexable(tag: string, section: SectionKey = "english") {
+  const published = getAllArticles(section).filter((a) => !a.draft);
+  const count = published.filter((a) => a.tags.includes(tag)).length;
+  const hasHub = published.some((a) => a.hubTag === tag);
   return count >= 3 && !hasHub;
 }
 
-// frontmatter の related を優先し、足りない分をタグの重なりで補う
-export function getRelatedArticles(slug: string, limit = 3) {
-  const all = getAllArticles().filter((a) => !a.draft || !isProd);
+// frontmatter の related を優先し、足りない分をタグの重なりで補う。関連記事は同じ科目の中から選ぶ
+export function getRelatedArticles(slug: string, section: SectionKey = "english", limit = 3) {
+  const all = getAllArticles(section);
   const self = all.find((a) => a.slug === slug);
   if (!self) return [];
   const others = all.filter((a) => a.slug !== slug && !a.draft);
