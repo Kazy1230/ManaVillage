@@ -3,6 +3,7 @@
 # 既存のページ(トップ、記事ページ)と同じクラス・同じ並びで組む。新しい部品は EXTRA_CSS だけ。
 import os, sys
 sys.path.insert(0, os.path.dirname(__file__))
+from furigana import add_furigana
 from doodles import D_SPOT, D_SEE, D_POLITE, D_NIDE, D_GIVE, D_SHIMAU
 
 ROOT = r"C:\まなビレッジサイト"
@@ -422,5 +423,6 @@ for name, html in {
     "02-japanese-article.html": page("en", "は vs が — Mock", article, TOGGLE_JS),
     "03-english-top.html": page("ja", "英語学習のトップ — モック", switch),
 }.items():
+    html = add_furigana(html, "en" if "<html lang=\"en\">" in html else "ja")
     open(os.path.join(OUT, name), "w", encoding="utf-8", newline="\n").write(html)
     print(name, len(html))
