@@ -374,6 +374,20 @@ html[lang="en"]{--body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helve
 .phrase .jpx mark{color:inherit;background:linear-gradient(var(--hl),var(--hl)) no-repeat 0 88% / 0% 42%;padding-inline:2px;animation:marker .7s .35s var(--ease) forwards}
 .phrase .ro{font-family:var(--en);font-style:italic;font-size:17px;color:var(--ink)}
 
+/* ヘッダーの科目タブ */
+.head-nav{display:flex;align-items:center;gap:12px;min-width:0}
+.subjects{display:flex;gap:4px}
+.subjects a{display:inline-flex;align-items:center;gap:8px;padding:5px 14px 5px 5px;border-radius:99px;font-size:14px;color:var(--muted);white-space:nowrap;transition:color .2s,background .2s}
+.subjects a:hover{color:var(--ink);background:var(--bg)}
+.subjects .ico{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--bg);border:1px solid var(--line);font-family:var(--display);font-weight:700;font-size:13px;color:var(--ink);transition:background .2s,color .2s}
+.subjects a[aria-current="page"]{color:var(--accent);background:var(--accent-soft);font-weight:500}
+.subjects a[aria-current="page"] .ico{background:var(--accent);border-color:var(--accent);color:#fff}
+.nav-sep{width:1px;height:22px;background:var(--line-strong)}
+@media (max-width:760px){
+  .head-in,.scrolled .head-in{flex-wrap:wrap;height:auto;padding-block:10px;row-gap:8px}
+  .head-nav{order:3;width:100%;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+  .subjects a{font-size:13px}
+}
 /* 例文ボックス(.example を拡張): 日本語、ローマ字、英訳の3段 */
 .example .jpx{font-size:22px;line-height:2;font-weight:700;letter-spacing:.02em}
 .example .jpx mark{color:inherit;background:linear-gradient(var(--hl),var(--hl)) no-repeat 0 88% / 100% 42%;padding-inline:2px}
@@ -405,7 +419,7 @@ body.no-ro .example .ro{display:none}
 .vlabel{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--faint);margin:48px 0 14px;display:flex;align-items:center;gap:12px}
 .vlabel::after{content:"";flex:1;border-top:1px dashed var(--line-strong)}
 .vlabel b{color:var(--accent)}
-@media (max-width:520px){.nav a[lang]{display:none}.prose tbody th{white-space:nowrap;font-size:12px}.prose th,.prose td{padding:8px 10px}.prose td .jpx,.prose th .jpx{font-size:15px;white-space:nowrap}.ex-pair{grid-template-columns:1fr}.example .jpx{font-size:20px}.prose figure.illus{padding:8px 12px}}
+@media (max-width:520px){.prose tbody th{white-space:nowrap;font-size:12px}.prose th,.prose td{padding:8px 10px}.prose td .jpx,.prose th .jpx{font-size:15px;white-space:nowrap}.ex-pair{grid-template-columns:1fr}.example .jpx{font-size:20px}.prose figure.illus{padding:8px 12px}}
 
 /* ===== 和の見た目(日本語学習セクションだけ。レイアウトは既存のまま、変数と飾りだけを上書き) ===== */
 html[lang="en"]{
@@ -474,7 +488,11 @@ html[lang="en"] .cat.c0{background:var(--p1);color:#A23A50}.cat.c1{background:va
 <body>
 <div class="progress" aria-hidden="true"></div><header class="site-head bleed" id="site-head"><div class="head-in">
   <a class="logo jp" href="#"><i></i>まなビレッジ</a>
-  <nav class="nav" aria-label="Site"><a href="#" aria-current="page">Articles</a><a href="#">Board</a><a href="03-language-switch.html" class="jp" lang="ja">英語を学ぶ</a></nav>
+  <nav class="head-nav" aria-label="Site">
+    <div class="subjects" role="list" aria-label="Subjects"><a href="03-language-switch.html" lang="ja"><span class="ico">A</span>英語を学ぶ</a><a href="01-section-top.html" lang="en" aria-current="page"><span class="ico">あ</span>Learn Japanese</a></div>
+    <span class="nav-sep" aria-hidden="true"></span>
+    <div class="nav"><a href="#">Board</a></div>
+  </nav>
   <div class="acct"><a class="btn primary" href="#">Log in</a></div>
 </div></header>
 <main><div class="screen"><div class="wrap reader-grid">

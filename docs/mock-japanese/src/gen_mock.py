@@ -27,6 +27,20 @@ html[lang="en"]{--body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helve
 .phrase .jpx mark{color:inherit;background:linear-gradient(var(--hl),var(--hl)) no-repeat 0 88% / 0% 42%;padding-inline:2px;animation:marker .7s .35s var(--ease) forwards}
 .phrase .ro{font-family:var(--en);font-style:italic;font-size:17px;color:var(--ink)}
 
+/* ヘッダーの科目タブ */
+.head-nav{display:flex;align-items:center;gap:12px;min-width:0}
+.subjects{display:flex;gap:4px}
+.subjects a{display:inline-flex;align-items:center;gap:8px;padding:5px 14px 5px 5px;border-radius:99px;font-size:14px;color:var(--muted);white-space:nowrap;transition:color .2s,background .2s}
+.subjects a:hover{color:var(--ink);background:var(--bg)}
+.subjects .ico{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--bg);border:1px solid var(--line);font-family:var(--display);font-weight:700;font-size:13px;color:var(--ink);transition:background .2s,color .2s}
+.subjects a[aria-current="page"]{color:var(--accent);background:var(--accent-soft);font-weight:500}
+.subjects a[aria-current="page"] .ico{background:var(--accent);border-color:var(--accent);color:#fff}
+.nav-sep{width:1px;height:22px;background:var(--line-strong)}
+@media (max-width:760px){
+  .head-in,.scrolled .head-in{flex-wrap:wrap;height:auto;padding-block:10px;row-gap:8px}
+  .head-nav{order:3;width:100%;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+  .subjects a{font-size:13px}
+}
 /* 例文ボックス(.example を拡張): 日本語、ローマ字、英訳の3段 */
 .example .jpx{font-size:22px;line-height:2;font-weight:700;letter-spacing:.02em}
 .example .jpx mark{color:inherit;background:linear-gradient(var(--hl),var(--hl)) no-repeat 0 88% / 100% 42%;padding-inline:2px}
@@ -58,7 +72,7 @@ body.no-ro .example .ro{display:none}
 .vlabel{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--faint);margin:48px 0 14px;display:flex;align-items:center;gap:12px}
 .vlabel::after{content:"";flex:1;border-top:1px dashed var(--line-strong)}
 .vlabel b{color:var(--accent)}
-@media (max-width:520px){.nav a[lang]{display:none}.prose tbody th{white-space:nowrap;font-size:12px}.prose th,.prose td{padding:8px 10px}.prose td .jpx,.prose th .jpx{font-size:15px;white-space:nowrap}.ex-pair{grid-template-columns:1fr}.example .jpx{font-size:20px}.prose figure.illus{padding:8px 12px}}
+@media (max-width:520px){.prose tbody th{white-space:nowrap;font-size:12px}.prose th,.prose td{padding:8px 10px}.prose td .jpx,.prose th .jpx{font-size:15px;white-space:nowrap}.ex-pair{grid-template-columns:1fr}.example .jpx{font-size:20px}.prose figure.illus{padding:8px 12px}}
 """
 
 WA_CSS = open(os.path.join(os.path.dirname(__file__), "wa.css"), encoding="utf-8").read()
@@ -93,19 +107,26 @@ def page(lang, title, body, script=""):
 </html>
 """
 
-def header(lang="en", current="articles"):
-    if lang == "en":
-        nav = [("Articles", "articles"), ("Board", "board")]
-        other = '<a href="03-language-switch.html" class="jp" lang="ja">英語を学ぶ</a>'
-        acct = '<a class="btn primary" href="#">Log in</a>'
-    else:
-        nav = [("記事", "articles"), ("掲示板", "board")]
-        other = '<a href="01-section-top.html" lang="en">Learn Japanese</a>'
-        acct = '<a class="btn primary" href="#">ログイン</a>'
-    links = "".join(f'<a href="#"{" aria-current=\"page\"" if k == current else ""}>{t}</a>' for t, k in nav)
+# 科目の切り替えは、ヘッダーのメニューに科目を並べる(科目が増えたら、ここに足すだけ)
+SUBJECTS = [
+    ("en-learning", "03-language-switch.html", "A", "英語を学ぶ", "ja"),
+    ("ja-learning", "01-section-top.html", "あ", "Learn Japanese", "en"),
+]
+
+def header(lang="en"):
+    cur = "ja-learning" if lang == "en" else "en-learning"
+    tabs = "".join(
+        f'<a href="{href}" lang="{l}"{" aria-current=\"page\"" if key == cur else ""}><span class="ico">{ico}</span>{label}</a>'
+        for key, href, ico, label, l in SUBJECTS)
+    board = "Board" if lang == "en" else "掲示板"
+    acct = '<a class="btn primary" href="#">Log in</a>' if lang == "en" else '<a class="btn primary" href="#">ログイン</a>'
     return f"""<header class="site-head bleed" id="site-head"><div class="head-in">
   <a class="logo jp" href="#"><i></i>まなビレッジ</a>
-  <nav class="nav" aria-label="Site">{links}{other}</nav>
+  <nav class="head-nav" aria-label="Site">
+    <div class="subjects" role="list" aria-label="{'Subjects' if lang == 'en' else '学ぶ科目'}">{tabs}</div>
+    <span class="nav-sep" aria-hidden="true"></span>
+    <div class="nav"><a href="#">{board}</a></div>
+  </nav>
   <div class="acct">{acct}</div>
 </div></header>"""
 
@@ -301,23 +322,18 @@ article = '<div class="progress" aria-hidden="true"></div>' + header("en") + f""
 """ + footer("en")
 
 # ---------- 3. 既存のトップに置く言語の切り替え ----------
-switch = '<div class="mock-note">モック: 今の英語学習のトップに、日本語学習セクションへの入口を足した場合</div>' + header("ja", current="") + f"""
+switch = '<div class="mock-note">モック: 英語学習のトップ(今のまま)に、科目を並べたヘッダーを付けた場合</div>' + header("ja") + f"""
 <main><div class="screen">
-  <div class="wrap"><div class="vlabel"><b>A案(おすすめ)</b> · h1 の帯の中に、学ぶ言語の切り替え</div></div>
   <div class="wrap home-intro">
     <h1>英語の勉強方法を、研究と経験から。</h1>
     <p>単語の覚え方、文法書の進め方、スピーキングの練習まで。読んで、試して、つまずいたら掲示板でみんなに聞ける、英語学習のサイトです。</p>
-    <div class="seg" role="navigation" aria-label="学ぶ言語"><a href="#" aria-current="page">英語を学ぶ</a><a href="01-section-top.html" lang="en">Learn Japanese →</a></div>
   </div>
   <div class="wrap">
     <a class="panel hero" href="#">
-      <div class="hero-text intro"><span class="badge-new"><i></i>最新記事</span><h2>(いまの最新記事のヒーロー。変更なし)</h2><p class="lead">ヒーロー以下のトップは、今のまま。</p></div>
+      <div class="hero-text intro"><span class="badge-new"><i></i>最新記事</span><h2>(いまの最新記事のヒーロー。変更なし)</h2><p class="lead">ヘッダー以外は、今のトップのまま。</p></div>
       <div class="stage"><span class="stage-label">この記事で学ぶ5つの言い方</span><div class="phrase in"><span class="en"><mark>Talk to yourself.</mark></span><span class="ja">独り言を言おう</span></div></div>
     </a>
   </div>
-
-  <div class="wrap"><div class="vlabel"><b>B案</b> · ヘッダーのナビにだけ置く(上のヘッダーの「Learn Japanese」)</div>
-    <p class="sub">場所を取らないが、見落とされやすい。A案でも、ヘッダーとフッターには小さく置く。</p></div>
 </div></main>
 """ + footer("ja")
 
@@ -325,7 +341,7 @@ os.makedirs(OUT, exist_ok=True)
 for name, html in {
     "01-section-top.html": page("en", "Learn Japanese — Mock", top),
     "02-article.html": page("en", "は vs が — Mock", article, TOGGLE_JS),
-    "03-language-switch.html": page("ja", "言語の切り替え — モック", switch),
+    "03-language-switch.html": page("ja", "英語学習のトップ — モック", switch),
 }.items():
     open(os.path.join(OUT, name), "w", encoding="utf-8", newline="\n").write(html)
     print(name, len(html))
