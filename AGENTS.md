@@ -9,7 +9,7 @@
 3. [`docs/06-open-items.md`](docs/06-open-items.md) — 今残っている作業
 4. 作業の種類に応じて:
    - **記事を作る・直す** → [`web/content/planning/workflow.md`](web/content/planning/workflow.md)(記事制作ワークフロー)と [`web/content/planning/topic-map.md`](web/content/planning/topic-map.md)
-   - **日本語学習(英語で書く)の記事** → [`web/content/planning/japanese/workflow.md`](web/content/planning/japanese/workflow.md)(**たたき台。Kaz の確認前なので、この手順で記事を量産しない**)
+   - **日本語学習(英語で書く)の記事** → [`web/content/planning/japanese/workflow.md`](web/content/planning/japanese/workflow.md)(2026-10-02 確定。英語学習のワークフローとの違いだけを書いている)
    - **コードを触る** → [`docs/02-architecture.md`](docs/02-architecture.md) と `web/AGENTS.md`(Next.js 16 の注意)
    - **デプロイ・設定** → [`docs/03-operations.md`](docs/03-operations.md)
    - **見た目を変える** → [`docs/05-design.md`](docs/05-design.md)

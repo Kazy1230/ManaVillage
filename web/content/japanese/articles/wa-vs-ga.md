@@ -11,7 +11,7 @@ primaryKeyword: "wa vs ga"
 searchIntent: "Understand when to use は and when to use が"
 targetReader: "Beginner learners of Japanese (level: beginner)"
 hub: "Particles"
-tags: [Particles, Grammar, Beginner]
+tags: [Particles, Beginner, N5]
 coreIllustration: core.webp
 coreIllustrationAlt: "A stage with a striped kabuki curtain. A spotlight shines on one stick figure, labeled が = this one!, while two gray figures stand on the stage labeled は = the stage."
 related: []

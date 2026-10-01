@@ -74,7 +74,14 @@ if (isJa) {
 const tags = (fm.tags ?? []).map(String);
 const known = new Set(others.flatMap((a) => (a.data.tags ?? []).map(String)));
 if (tags.length < 3 || tags.length > 5) err(`tags は3〜5個（今は${tags.length}個）`);
-for (const t of tags) if (!known.has(t)) warn(`新しいタグ「${t}」。既存タグと意味が重なっていないか確認（既存: ${[...known].join("、")}）`);
+// 日本語学習のタグは固定の一覧(planning/japanese/workflow.md 8章)
+const JA_TAGS = new Set(["Particles", "Grammar", "Synonyms", "Politeness", "Phrases", "Beginner", "Intermediate", "Advanced", "N5", "N4", "N3", "N2", "N1", "Verbs", "Adjectives", "Conversation", "Business"]);
+if (isJa) {
+  for (const t of tags) if (!JA_TAGS.has(t)) err(`タグ「${t}」は日本語学習のタグの一覧にない(workflow 8章)`);
+  if (tags.filter((t) => ["Beginner", "Intermediate", "Advanced"].includes(t)).length !== 1) err("レベルのタグ(Beginner / Intermediate / Advanced)を1つだけ付ける");
+  if (tags.filter((t) => /^N[1-5]$/.test(t)).length > 1) err("JLPT のタグは0〜1つ");
+  if (!["Particles", "Grammar", "Synonyms", "Politeness", "Phrases"].includes(String(fm.hub))) err("hub は Particles / Grammar / Synonyms / Politeness / Phrases のどれか");
+} else for (const t of tags) if (!known.has(t)) warn(`新しいタグ「${t}」。既存タグと意味が重なっていないか確認（既存: ${[...known].join("、")}）`);
 if (tags.some((t) => t === fm.primaryKeyword)) err("主キーワードをそのままタグにしている");
 
 // title / description の重複
