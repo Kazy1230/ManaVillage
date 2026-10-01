@@ -388,9 +388,9 @@ INDEX_CSS = """<style>
 index = '<div class="mock-note">モック: まなビレッジ全体の入口(index)。ロゴを押すとここに戻る。科目のトップとは別のページ</div>' + header("ja") + f"""
 <main><div class="screen">
   <div class="wrap home-intro portal-intro">
-    <h1>まなビレッジ</h1>
+    <h1>学び、つまずき、助け合う。<br>まなビレッジ。</h1>
     <p class="tagline en">For Everyone's Learning, For Everyone's Help</p>
-    <p>学びたい人が集まる、小さな村。科目ごとに、読みものと、学習者どうしで助け合える掲示板があります。<br><span class="sub" lang="en">A small village for learners — guides for each subject, and a board where everyone helps each other.</span></p>
+    <p>科目ごとに、読みものと、学習者どうしで助け合える掲示板があります。<br><span class="sub" lang="en">A small village for learners — guides for each subject, and a board where everyone helps each other.</span></p>
   </div>
   <div class="wrap subjects-grid">
     {subject("", "ja", ART_EN, "var(--p1)", "英語を学ぶ", "日本語で読む · FOR JAPANESE SPEAKERS",
