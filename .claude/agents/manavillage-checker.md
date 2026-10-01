@@ -11,6 +11,7 @@ tools: Read, Grep, Glob, Bash, WebSearch, WebFetch, mcp__personal-brain__search_
 - `web/content/planning/workflow.md`(指示書。特に 0章、1章の「重複の判定基準」、3-3、3-4、3-5、4章、5章)
 - `web/content/planning/topic-map.md`
 - `web/content/materials/`(素材庫のスナップショット)
+- 日本語学習の記事(`web/content/japanese/articles/`)のときは、`web/content/planning/japanese/workflow.md` の 5章の項目も判定する(日本語の自然さ、文法の説明、ルビ、ローマ字、英訳)
 
 ## 企画チェック(アウトラインを渡されたとき)
 
