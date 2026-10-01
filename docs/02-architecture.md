@@ -37,7 +37,7 @@ web/
     japanese/articles/   日本語学習の記事の Markdown(英語で書く)。slug は科目をまたいで重複させない
     illustrations/<slug>/core.mjs, core.svg   記事イラストの描画コードと原本
     materials/           運営者の学習の素材(personal-brain のスナップショット)
-    planning/            記事制作ワークフロー(workflow.md, topic-map.md, cards/, outlines/)
+    planning/            記事制作のルール(common.md = 共通、workflow.md = 英語学習、japanese/workflow.md = 日本語学習)、在庫(inventory.csv)、topic-map.md、outlines/)
   public/
     illustrations/<slug>/core.webp   ワークフロー導入後の記事のイラスト
     articles/<slug>/*.svg            導入前の記事のイラスト
