@@ -3,8 +3,8 @@ title: "How to ask permission in Japanese, from casual to very polite"
 description: "Ask permission in Japanese with the right phrase for a friend, a teacher, or your boss. Learn when させていただけますか fits and how people answer."
 slug: permission-in-japanese
 type: general
-status: draft
-publishedAt: ""
+status: published
+publishedAt: "2026-10-02"
 updatedAt: ""
 primaryKeyword: "how to ask permission in japanese"
 searchIntent: "Choose the right way to ask permission in Japanese depending on who you are asking"

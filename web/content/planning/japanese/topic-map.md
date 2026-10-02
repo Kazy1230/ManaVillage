@@ -7,7 +7,7 @@
 | ID | slug | タイトル(仮) | 主キーワード | 検索意図 | 想定読者 | type | 状態 | ハブ |
 |---|---|---|---|---|---|---|---|---|
 | J-01 | wa-vs-ga | は (wa) vs が (ga): how to choose, with real conversations and a quiz | wa vs ga | は と が の使い分けを知りたい | 初級(Beginner, N5) | general | published | Particles |
-| J-0107 | permission-in-japanese | How to ask permission in Japanese: from casual to very polite | how to ask permission in japanese | 相手に合わせて、許可を求める言い方を選びたい | 初級(Beginner) | general | draft | Phrases |
+| J-0107 | permission-in-japanese | How to ask permission in Japanese: from casual to very polite | how to ask permission in japanese | 相手に合わせて、許可を求める言い方を選びたい | 初級(Beginner) | general | published | Phrases |
 | J-02 | ni-vs-de | に (ni) vs で (de): where things are vs. where things happen | ni vs de | 場所の に と で の違いを知りたい | 初級 | general | idea | Particles |
 | J-03 | miru-mieru-nagameru | 見る, 見える, 眺める: three ways to “see” | miru vs mieru | 見る と 見える の違いを知りたい | 初級〜中級 | general | idea | Synonyms |
 | J-04 | te-shimau | 〜てしまう: finished, or “oops”? | te shimau meaning | 〜てしまう の2つの意味を知りたい | 中級 | general | idea | Grammar |

@@ -166,7 +166,7 @@
 ### 2-7. 下書き保存とレビュー
 
 - 合格した記事は `status: draft` で保存する(本番には出ない)。topic-map の状態を `draft` にする
-- Kaz が、完成した記事を毎日2本(科目ごとに1本)確認する。ローカル(`npm run dev`)で記事の URL を開いてもらう
+- Kaz が、完成した記事を毎日2本(科目ごとに1本)確認する。**記事の `.md` とイラストの画像(`web/public/illustrations/<slug>/` の webp)を、チャットに送る**(Kaz はリモートのセッションから見ることが多く、localhost は開けないため。2026-10-02)
 - 承認された記事だけ、`status: published` と `publishedAt` を書いてデプロイする。topic-map を `published` にする
 
 ---

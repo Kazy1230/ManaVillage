@@ -18,6 +18,6 @@ description: まなビレッジの今日の記事作成。在庫から英語学�
 3. **本文とイラスト**: 科目の記事フォルダに、科目の文書の frontmatter で書く(`status: draft`)。イラストは `web/content/illustrations/<slug>/core.mjs` に描画コードを書き、`node scripts/illustrate.mjs <slug>` で書き出す
 4. **機械チェック**: `node scripts/check-article.mjs <slug>` が合格するまで直す
 5. **本文チェック**: `manavillage-checker` を起動して判定させる。差し戻しは最大2回。2回で合格しなければ Kaz に判断を仰ぐ
-6. **下書き保存**: topic-map の状態を `draft` にする。完成した2本を、Kaz にローカル(`npm run dev` → 記事の URL)で確認してもらう
+6. **下書き保存**: topic-map の状態を `draft` にする。完成した2本の `.md` とイラストの画像を、**チャットに送って**(SendUserFile)Kaz に確認してもらう。localhost の URL だけを渡さない(リモートのセッションでは開けない)
 
 **公開(`status: published` と `publishedAt`、デプロイ)は、Kaz の承認後だけ。**
