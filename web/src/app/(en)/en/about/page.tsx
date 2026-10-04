@@ -41,7 +41,7 @@ export default function AboutPage() {
         <li>We don’t rewrite other sites’ articles. We use them only to research the topic; the structure, example sentences, and pictures are our own.</li>
         <li>When we mention research or statistics, we only include what we could confirm in the original source. If we can’t confirm it, we leave it out.</li>
         <li>The operator’s personal opinions are written as opinions, separately from facts.</li>
-        <li>The operator writes the articles.</li>
+        <li>The articles are written by the operator, Kaz, and by a fictional character, Yukina Shirakawa. The experiences Yukina talks about are based on the operator’s real experiences.</li>
         <li>The pictures in our articles are simple drawings on a white background, made to help the explanation.</li>
       </ul>
 

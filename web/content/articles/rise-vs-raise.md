@@ -3,9 +3,9 @@ title: rise と raise の違い。ペンが立つのと、ペンを立てるの�
 description: rise は「自分で上がる」、raise は「何かを上げる」。日本語の「立つ/立てる」「上がる/上げる」と同じ関係だと考えると、見分けがぐっと楽になります。後ろに「〜を」が来るかの見分け方や、昇給の言い方、変化形もまとめました。
 slug: rise-vs-raise
 type: general
-status: draft
+status: published
 author: yukina
-publishedAt: ""
+publishedAt: 2026-10-04
 updatedAt: ""
 primaryKeyword: rise raise 違い
 searchIntent: rise と raise のどちらを使うか迷う。形も意味も似ていて、使い分けを一度で終わらせたい

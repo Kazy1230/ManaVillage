@@ -3,9 +3,9 @@ title: 高校生の英語多読は効果がある? 挫折した私が、効果�
 description: 多読を1か月くらい続けても効果を感じられず、挫折した私が、のちに効果を実感できた理由を書きました。本のやさしさ、友達といっしょ、プレッシャーのある環境。高校生が多読を続けるコツと、教科書との順番を紹介します。
 slug: extensive-reading-high-school
 type: experience
-status: draft
+status: published
 author: kaz
-publishedAt: ""
+publishedAt: 2026-10-04
 updatedAt: ""
 primaryKeyword: 英語 多読 高校生
 searchIntent: 高校生(または、その保護者)が、受験勉強もある中で、多読を始めていいのか・どうやるのかを知りたい

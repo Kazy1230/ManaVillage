@@ -1,11 +1,19 @@
 ---
 name: manavillage-review
-description: Kaz が書いた記事の文章をチャットに貼ったときの確認と、イラスト、公開の作業。下書きとして保存し、機械チェック・事実と出典の確認・読みやすさと薄さの指摘を行い、イラストを描く。承認後に公開してデプロイする。文章は書き直さない。
+description: 記事の執筆(既定は Claude が書く。Kaz が書いて貼ったときは確認だけ)、確認、イラスト、公開の作業。下書きとして保存し、機械チェック・事実と出典の確認・読みやすさと薄さの指摘を行い、イラストを描く。承認後に公開してデプロイする。Kaz が書いた文章は書き直さない。
 ---
 
 `web/content/planning/common.md` の 2-2〜2-6 と、対象の科目の文書(英語学習 `workflow.md` / 日本語学習 `japanese/workflow.md`)に従う。**Kaz の文章の言葉は変えない。直した文を出さない。**(雪菜の記事は、Claude が書いた文章なので、指摘を受けて Claude が直してよい。`common.md` 5章)
 
-## Kaz が文章を貼ったとき
+## Claude が書くとき(既定。2026-10-04 から)
+
+1. 提案と、`common.md` 2-1c(主張を絞る、研究の詳細は別記事)・2-1d(見出し・導入・口調・改行・具体例)に従って、本文を書き、`status: draft` で保存する。著者は `author: kaz` か `yukina`(雪菜の口調は `characters/shirakawa-yukina/profile.md`)
+2. 体験談は、personal-brain と `content/materials/` の記録の範囲だけ。気持ち・見解・数字・言い回しを足さない。足りなければ Kaz に質問する
+3. コラム(`class="voice"`)は、本文だけで完結する補足の読み物。題を付け、単独で読めるようにし、本文の言い換えにしない
+4. 機械チェック → `manavillage-checker` の確認(指摘を受けて直す。**最大2回**)→ イラスト → チャットに本文と画像を送る(SendUserFile)
+5. Kaz が最終チェック → 承認 → 公開(下の「Kaz が承認したとき」)
+
+## Kaz が文章を貼ったとき(Kaz が自分で書いたとき)
 
 1. **保存**: 提案(`planning/proposals/<slug>.md`)から、どの記事かを判断し、`content/…/articles/<slug>.md` に `status: draft` で保存する。frontmatter を組み立てる(題名は Kaz が選んだもの。description は案を出し、Kaz に確かめる)。科目の文書の「書き方の約束」の変換だけを行う(例文ボックス、囲み、ルビなど)。**変えた所を、すべて報告する**。日本語学習は、ルビを付けた読みの一覧を出す
 2. **機械チェック**: `web/` で `node scripts/check-article.mjs <slug>`

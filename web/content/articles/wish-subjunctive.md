@@ -3,9 +3,9 @@ title: 仮定法 I wish の使い方。「今」「過去」「相手の行動�
 description: 仮定法の I wish のあとの動詞が過去形になるのは、「いまの事実から1歩離れる」合図だから。現在の願い、過去の後悔、相手の行動への不満の3つの形を、例文で見分けられるように整理しました。
 slug: wish-subjunctive
 type: general
-status: draft
+status: published
 author: yukina
-publishedAt: ""
+publishedAt: 2026-10-04
 updatedAt: ""
 primaryKeyword: 仮定法 I wish
 searchIntent: I wish の後ろの形(過去形、過去完了、would)を、いつ・なぜそうするのか知りたい。学校の文法で習ったが、意味がつかめていない

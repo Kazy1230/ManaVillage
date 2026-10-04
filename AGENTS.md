@@ -32,10 +32,10 @@
 Kaz:「テーマを出して」
   → Claude: 在庫から無作為に抽出(node scripts/pick-topic.mjs <english|japanese>)→ 上位記事と出典を調べる
             → 提案(概要・構成案・出典・図の案)を出す            [skill: manavillage-propose]
-  → Kaz: 1つ選ぶ → 自分で書く → チャットに貼る
-  → Claude: 下書きとして保存(言葉は変えない)→ 機械チェック(check-article.mjs)
+  → Kaz: 1つ選ぶ(著者も決める)→ Claude が書く(Kaz が自分で書くときは、Kaz が明示する)
+  → Claude: 下書きとして保存 → 機械チェック(check-article.mjs)
             → 別エージェントが、事実・出典の確認と、読みやすさ・薄さの指摘 → イラストを描く  [skill: manavillage-review]
-  → Kaz: 指摘を見て直す(何度でも)→ 承認 → Claude が公開してデプロイ
+  → Claude: 指摘を受けて直す(最大2回)→ 本文と図をチャットに送る → Kaz が最終チェック → 承認 → Claude が公開してデプロイ
 ```
 
 - 記事の frontmatter と、Kaz の書き方の約束(例文、囲み、ルビなど)は、科目の文書に書いてある
