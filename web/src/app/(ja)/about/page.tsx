@@ -35,7 +35,7 @@ export default function AboutPage() {
       </p>
       <p>
         そのために、効果が低いとされるやり方を避け、少ない時間でも進める方法を、研究と運営者の経験の両方から紹介しています。
-        考え方の例は、<Link href="/articles/enjoy-learning">勉強は、楽しんだもの勝ち</Link>や、<Link href="/articles/why-research">まなビレッジが「研究」を大事にする理由</Link>で読めます。
+        読んだ人が、手ごたえを感じながら続けられるように、記事を書いています。
       </p>
 
       <h2>記事を作るときのルール</h2>

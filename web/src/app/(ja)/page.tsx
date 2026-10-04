@@ -28,6 +28,15 @@ export default async function Portal() {
         </p>
       </div>
 
+      {liveSections().length === 0 && (
+        <div className="wrap">
+          <div className="panel empty">
+            <p style={{ marginBottom: 16 }}>記事を準備しています。公開まで、もうしばらくお待ちください。</p>
+            <Link className="btn primary" href="/boards">掲示板をひらく <span className="arr">→</span></Link>
+          </div>
+        </div>
+      )}
+
       <div className="wrap subjects-grid">
         {liveSections().map((key) => {
           const sec = SECTIONS[key];

@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import ArticleCard from "@/components/ArticleCard";
 import PhraseCarousel from "@/components/PhraseCarousel";
-import { getAllArticles, getTagCounts } from "@/lib/articles";
+import { notFound } from "next/navigation";
+import { getAllArticles, getTagCounts, isSectionLive } from "@/lib/articles";
 import { shortDate } from "@/lib/format";
 import { catClass, getCommentCounts, listThreads } from "@/lib/queries";
 import { ldScript, organizationLd, personLd } from "@/lib/jsonld";
@@ -25,6 +26,7 @@ const TICKER: [string, string][] = [
 
 // 英語学習のトップ(ヘッダーの「英語を学ぶ」の行き先)。サイト全体の入口は (ja)/page.tsx
 export default async function EnglishHome() {
+  if (!isSectionLive("english")) notFound();
   const articles = getAllArticles();
   const [latest, ...rest] = articles;
   const [counts, threads] = await Promise.all([getCommentCounts(), listThreads({ sort: "popular", limit: 3 })]);
