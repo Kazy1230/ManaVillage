@@ -11,7 +11,7 @@ export const organizationLd = {
   "@id": ORG_ID,
   name: "まなビレッジ",
   url: SITE_URL,
-  logo: `${SITE_URL}/og-default.png`,
+  logo: `${SITE_URL}/icon.png`,
   sameAs,
 };
 

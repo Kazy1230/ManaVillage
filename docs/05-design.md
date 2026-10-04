@@ -31,6 +31,13 @@
 - 英語の例文・飾り: Newsreader(イタリック。`next/font/google`、ラテン文字だけなので軽い)
 - **日本語の Web フォントを使わない理由**: 以前は Noto Sans JP と Zen Kaku Gothic New を `next/font/google` で読み込んでいたが、日本語のフォントは小さく分割されて配信されるため、`@font-face` が合計737個・CSS が558KB になり、表示をブロックしていた。OS 標準フォントに変えて、ローカルの Lighthouse(モバイル)で、パフォーマンス56→95、LCP 11.8秒→2.9秒になった(2026-10-01)。日本語の Web フォントを再び入れるときは、1つの太さだけにするなど、CSS の量を測ってから決める
 
+## サイトのアイコン
+
+- 「まなV」のロゴ(Wi-Fi のような弧が付いた青い文字)。元の画像は `web/content/brand/icon-source.jpg`(150px と小さい)
+- `node scripts/make-icons.mjs`(`web/` で実行)で、`src/app/favicon.ico`(16/32/48)、`icon.png`(512)、`apple-icon.png`(180)を書き出す。Next.js が `<head>` に自動で出す(どの科目のページにも付く)
+- 検索エンジン向けの組織のロゴ(`lib/jsonld.ts` の `logo`)も、`/icon.png`(正方形)
+- 大きな元画像(512px 以上)に差し替えて同じコマンドを実行すると、くっきりする
+
 ## 部品と動き
 
 - 白いパネル(`.panel`)に 1px の枠線と薄い影で区切る
