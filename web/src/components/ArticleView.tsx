@@ -105,6 +105,14 @@ export default async function ArticleView({ slug, section }: { slug: string; sec
               <img src={article.coreIllustration} alt={article.coreIllustrationAlt} width={800} height={500} fetchPriority="high" decoding="async" />
             </figure>
           )}
+          {article.toc.length >= 3 && (
+            <nav className="toc" aria-label={sec.lang === "en" ? "Contents" : "目次"}>
+              <div className="toc-title">{sec.lang === "en" ? "Contents" : "目次"}</div>
+              <ol>
+                {article.toc.map((i) => <li key={i.id}><a href={`#${i.id}`}>{i.text}</a></li>)}
+              </ol>
+            </nav>
+          )}
           {sec.lang === "en" && <ReadingToggle />}
           <div className="prose" dangerouslySetInnerHTML={{ __html: withLinkCards(article.html, article) }} />
           {article.tags.length > 0 && (

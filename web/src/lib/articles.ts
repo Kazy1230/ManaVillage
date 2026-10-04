@@ -39,13 +39,24 @@ export type ArticleMeta = {
   related: string[];
 };
 
-export type Article = ArticleMeta & { html: string };
+export type TocItem = { id: string; text: string };
+export type Article = ArticleMeta & { html: string; toc: TocItem[] };
 
 const CONTENT = path.join(process.cwd(), "content");
 
 // 本文の画像に、寸法(イラストはすべて 8:5)と遅延読み込みを付ける。レイアウトのずれと、初回表示の重さを防ぐ
+let tocCollector: TocItem[] | null = null;
 marked.use({
   renderer: {
+    heading({ tokens, depth }) {
+      const inner = this.parser.parseInline(tokens);
+      if (depth !== 2 || !tocCollector) return `<h${depth}>${inner}</h${depth}>
+`;
+      const id = `sec-${tocCollector.length + 1}`;
+      tocCollector.push({ id, text: inner.replace(/<[^>]+>/g, "") });
+      return `<h2 id="${id}">${inner}</h2>
+`;
+    },
     image({ href, title, text }) {
       const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
       const illust = /^\/(illustrations|articles)\//.test(href);
@@ -76,6 +87,10 @@ function load(section: SectionKey, file: string): Article {
   const core = str(data.coreIllustration);
   const rawTitle = str(data.title);
   const rawSummary = str(data.description) || str(data.summary);
+  const toc: TocItem[] = [];
+  tocCollector = toc;
+  const html = marked.parse(body, { async: false });
+  tocCollector = null;
   const words = content.replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
   return {
     slug,
@@ -103,7 +118,8 @@ function load(section: SectionKey, file: string): Article {
     related: list(data.related),
     // 日本語は約500字/分、英語は約200語/分として概算
     minutes: Math.max(1, Math.round(lang === "ja" ? content.length / 500 : words / 200)),
-    html: marked.parse(body, { async: false }),
+    html,
+    toc,
   };
 }
 
