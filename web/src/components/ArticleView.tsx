@@ -106,12 +106,15 @@ export default async function ArticleView({ slug, section }: { slug: string; sec
             </figure>
           )}
           {article.toc.length >= 3 && (
-            <nav className="toc" aria-label={sec.lang === "en" ? "Contents" : "目次"}>
-              <div className="toc-title">{sec.lang === "en" ? "Contents" : "目次"}</div>
+            <details className="toc" open>
+              <summary>
+                <span className="toc-title">{sec.lang === "en" ? "Contents" : "目次"}</span>
+                <span className="toc-toggle" data-open={sec.lang === "en" ? "[hide]" : "[閉じる]"} data-closed={sec.lang === "en" ? "[show]" : "[開く]"} aria-hidden="true" />
+              </summary>
               <ol>
                 {article.toc.map((i) => <li key={i.id}><a href={`#${i.id}`}>{i.text}</a></li>)}
               </ol>
-            </nav>
+            </details>
           )}
           {sec.lang === "en" && <ReadingToggle />}
           <div className="prose" dangerouslySetInnerHTML={{ __html: withLinkCards(article.html, article) }} />

@@ -166,9 +166,16 @@ p{margin:0}
 .prose{font-size:16px;line-height:2.05;overflow-wrap:anywhere}
 .prose > * + *{margin-top:1.4em}
 .prose p{margin:0}
-.toc{border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:16px 22px;margin:0 0 32px}
-.toc-title{font-weight:900;font-size:14px;letter-spacing:.08em;margin-bottom:8px}
-.toc ol{margin:0;padding-left:1.4em;display:grid;gap:6px;font-size:15px;line-height:1.6}
+.toc{border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:12px;background:var(--surface);padding:14px 20px;margin:0 0 32px}
+.toc summary{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;cursor:pointer;list-style:none}
+.toc summary::-webkit-details-marker{display:none}
+.toc-title{font-weight:900;font-size:15px;grid-column:2;text-align:center}
+.toc-toggle{color:var(--muted);font-size:12px;justify-self:end;grid-column:3}
+.toc-toggle::before{content:attr(data-closed)}
+.toc[open] .toc-toggle::before{content:attr(data-open)}
+.toc ol{margin:8px 0 0;padding-left:1.5em;font-size:15px;line-height:1.6}
+.toc li{padding:3px 0}
+.toc li::marker{color:var(--accent);font-weight:700}
 .toc a{color:var(--ink);text-decoration:none}
 .toc a:hover{text-decoration:underline}
 .prose h2[id]{scroll-margin-top:84px}
