@@ -45,6 +45,12 @@ I wish は、「現実と違ってほしい」ことを言う道具。あとに�
 - **確認できたが限定的**: English subjunctive(Wikipedia)https://en.wikipedia.org/wiki/English_subjunctive — I wish she were here の were は、伝統文法では「過去仮定法」。Cambridge Grammar of the English Language は irrealis mood と呼ぶ
 - **確認できなかったもの**: 「I wish I was」が日常会話で使われること、「I hope は実現の可能性があるとき」という使い分け、「wish + would は、自分のことには使えない」は、原典で確認できていない。書くなら、Kaz が根拠を持っているか、私が別の資料で確認してからにする(Cambridge、Oxford、Merriam-Webster は、このツールでは開けなかった)
 
+## 使えそうな体験談の候補と、Kaz への質問
+
+personal-brain と `content/materials/` を検索したが、**仮定法・I wish に関する体験は記録になかった**(2026-10-04)。この記事は、体験がなくても成立する。あれば、次を。
+
+1. 「仮定法(I wish など)が、最初は分かりにくかった体験、または、分かった体験はありませんでしたか?」(使いたい見出し: 導入、「1歩離れる」という考え方)
+2. 「英語で、実際に I wish を使った・聞いた体験はありませんでしたか?」(使いたい見出し: 3つの形。伝えたいこと: 実際の場面で、どんな気持ちで使われるか)
 ## イラスト
 
 - サムネ: 星に願う人。足元に「いま(現実)」、星の向こうに「I wish I could fly」。足元と星の間に、距離の矢印
