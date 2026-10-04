@@ -77,8 +77,6 @@ be 動詞や助動詞(do など)が、主語の前に、飛び出す。この「
 | 理由 | why | Why are you late? |
 | 方法・程度 | how | How do you go to school? / How old are you? |
 
-(which と whose は、また別の機会に。まずは、この6つの語順を、身につけましょう。)
-
 「トイレは、どこ?」なら、知りたいのは「場所」。だから where です。
 
 ## 「だれが割ったの?」は、ひっくり返らない

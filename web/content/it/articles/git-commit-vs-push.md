@@ -92,7 +92,7 @@ Pro Git によると、成功するのは、リモートへの**書き込み権�
 実際に、同じブランチで、相手が先に push したあとに、こちらが push すると、こう表示されます(git 2.55.0 で確認)。
 
 ```bash
-(最初の行などは省略しています)
+To (リモートの URL)
  ! [rejected]        main -> main (fetch first)
 error: failed to push some refs to '…'
 hint: Updates were rejected because the remote contains work that you do not
