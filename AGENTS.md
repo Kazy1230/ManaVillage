@@ -19,32 +19,33 @@
 ## 絶対に守ること
 
 1. **秘密情報を Git に入れない**。`web/.env.local` や API キー(`SUPABASE_SECRET_KEY`, `RESEND_API_KEY`)、`.vercel/` はコミットしない。このリポジトリは**公開**されている
-2. **記事の公開(`status: published` にしてデプロイ)は、Kaz の承認後だけ**。下書きのままのデプロイは問題ない(本番には出ない)
-3. **学習に関する体験談を捏造しない**。運営者の学習の方法・成果・経歴は、personal-brain または `web/content/materials/` にあるものだけ使う
-4. **研究や統計は、原典で確認できたものだけ書く**。確認できなければ削る
-5. **自分が書いた記事を、自分でチェックしない**。チェックは別のエージェント(別セッション)が行う(common.md 2-3, 2-6)
+2. **記事の本文は Kaz が書く**(2026-10-04 から)。**エージェントは、記事の本文を書かない・書き直さない・直した文を出さない**。やるのは、テーマと構成の提案、事実・出典の確認、読みやすさ・薄さの指摘、イラスト、公開作業だけ
+3. **記事の公開(`status: published` にしてデプロイ)は、Kaz の承認後だけ**。下書きのままのデプロイは問題ない(本番には出ない)
+4. **研究や統計、文法の説明は、原典で確認できたものだけを根拠にする**。確認できなければ、そう伝える(Kaz が書いた主張でも、確認できないものは指摘する)
+5. **確認は、別のエージェント(`manavillage-checker`)に任せる**。記事の評価を Claude 本体がしない
 6. 本番の DB(Supabase)や DNS、Vercel の設定を変えるときは、Kaz に確認してから
 7. Kaz とのやりとりは日本語で
 
-## 記事の作業の流れ(要約。詳細はワークフロー)
+## 記事の作業の流れ(要約。詳細は `web/content/planning/common.md`)
 
 ```
-[毎日・科目ごとに1本] 在庫から無作為にテーマを選ぶ(node scripts/pick-topic.mjs <english|japanese>。Kaz の確認なし)
-          → アウトライン(決まった型は使わない)→ 企画チェック(別エージェント)
-          → 本文(status: draft)とイラスト
-          → node scripts/check-article.mjs <slug>(web/ で実行)
-          → 本文チェック(別エージェント。差し戻しは最大2回)
-          → Kaz が完成した2本を確認 → 承認されたら published にしてデプロイ → topic-map を published に
+Kaz:「テーマを出して」
+  → Claude: 在庫から無作為に抽出(node scripts/pick-topic.mjs <english|japanese>)→ 上位記事と出典を調べる
+            → 提案(概要・構成案・出典・図の案)を出す            [skill: manavillage-propose]
+  → Kaz: 1つ選ぶ → 自分で書く → チャットに貼る
+  → Claude: 下書きとして保存(言葉は変えない)→ 機械チェック(check-article.mjs)
+            → 別エージェントが、事実・出典の確認と、読みやすさ・薄さの指摘 → イラストを描く  [skill: manavillage-review]
+  → Kaz: 指摘を見て直す(何度でも)→ 承認 → Claude が公開してデプロイ
 ```
 
-- 記事の frontmatter と本文の書き方(例文ボックス、囲み、蛍光ペン、イラストの入れ方)は、科目の文書に書いてある
-- イラスト: `web/content/illustrations/<slug>/core.mjs` に `scripts/doodle.mjs` の関数で描き、`node scripts/illustrate.mjs <slug>` で webp を書き出す
+- 記事の frontmatter と、Kaz の書き方の約束(例文、囲み、ルビなど)は、科目の文書に書いてある
+- イラスト: `web/content/illustrations/<slug>/core.mjs`(サムネ)と `fig-1.mjs` など(本文の図)を `scripts/doodle.mjs` の関数で描き、`node scripts/illustrate.mjs <slug>` で webp を書き出す
 - 内部リンクは公開済みの記事だけに張る(`check-article.mjs` が確かめる)
 
 ## ツールごとのメモ
 
-- **Claude Code**: `.claude/agents/manavillage-checker.md`(チェック用サブエージェント)、`.claude/skills/manavillage-weekly`(在庫の見直し。Kaz の確認なし)、`.claude/skills/manavillage-daily`(日次の記事作成)が使える。personal-brain(MCP)が接続されていれば、`get_persona_core` / `search_persona`(theme: `learning`)/ `get_persona_exemplars` で素材と文体を確かめる
-- **その他のエージェント**: 上の `.claude/` のファイルは普通の Markdown なので、手順書として読んで同じことを行う。チェックは、執筆とは別のセッションで `manavillage-checker.md` の指示に従って行う。personal-brain に接続できない場合は `web/content/materials/` だけを素材にする
+- **Claude Code**: `.claude/skills/manavillage-propose`(テーマと構成の提案)、`.claude/skills/manavillage-review`(貼られた文章の確認・イラスト・公開)、`.claude/skills/manavillage-weekly`(在庫の見直し)、`.claude/agents/manavillage-checker.md`(確認用のサブエージェント)が使える。personal-brain(MCP)が接続されていれば、提案のときに `get_persona_core` / `search_persona`(theme: `learning`)で、Kaz の過去の考えや体験を探して示す
+- **その他のエージェント**: 上の `.claude/` のファイルは普通の Markdown なので、手順書として読んで同じことを行う。確認は、別のセッションで `manavillage-checker.md` の指示に従って行う
 
 ## よく使うコマンド(`web/` で実行)
 

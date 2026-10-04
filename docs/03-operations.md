@@ -74,12 +74,12 @@ update profiles set is_admin = true where id = (select id from auth.users where 
 
 ## 記事を作る
 
-`web/content/planning/workflow.md`(記事制作ワークフロー)に従う。要点:
+`web/content/planning/common.md`(共通)と、科目の文書(`workflow.md` = 英語学習、`japanese/workflow.md` = 日本語学習)に従う。要点:
 
-- テーマは、エージェントが在庫(`topic-map.md`)から選ぶ。Kaz の確認はない(2026-10-02 決定)
-- 毎日2本: アウトライン → 企画チェック(別エージェント)→ 本文とイラスト → `node scripts/check-article.mjs <slug>` → 本文チェック(別エージェント)→ `status: draft` で保存 → Kaz のレビュー → 承認されたら `published` にしてデプロイ
-- イラスト: `web/content/illustrations/<slug>/core.mjs` を書いて `node scripts/illustrate.mjs <slug>`
-- Claude Code なら、スキル `manavillage-weekly` / `manavillage-daily` と、チェック用サブエージェント `manavillage-checker`(`.claude/`)が使える
+- テーマは、Kaz が「テーマを出して」と言ったときに、Claude が在庫から無作為に抽出して提案する。本文は Kaz が書く(2026-10-04 から。`web/content/planning/common.md`)
+- Kaz が書いた文章をチャットに貼る → Claude が下書きとして保存(言葉は変えない)→ `node scripts/check-article.mjs <slug>` → 別エージェントが事実・出典の確認と読みやすさ・薄さの指摘 → Kaz が直す → 承認 → 公開してデプロイ
+- イラスト: Claude が描く。`web/content/illustrations/<slug>/core.mjs`(サムネ)と `fig-1.mjs` など(本文の図)を書いて `node scripts/illustrate.mjs <slug>`
+- Claude Code なら、スキル `manavillage-propose`(提案)/ `manavillage-review`(確認・イラスト・公開)/ `manavillage-weekly`(在庫の見直し)と、確認用サブエージェント `manavillage-checker`(`.claude/`)が使える
 
 ## personal-brain(素材庫)
 
