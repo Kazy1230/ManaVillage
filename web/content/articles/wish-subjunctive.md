@@ -85,6 +85,10 @@ I wish の形は、「何を変えたいか」で3つに分かれます。Britis
 
 ## 雨が降ってほしい、も would で言える
 
+「明日、晴れてほしいなあ」と、天気にお願いしたこと、ありますよね。
+
+人の行動ではないのに、「そうなってほしい」。
+
 would は、「腹が立つとき」だけの形ではありません。
 
 British Council のページでは、wish + would は、人や物の行動にいらだつときの形として説明されています。その例の中に、こんな文もあります。
@@ -95,6 +99,8 @@ British Council のページでは、wish + would は、人や物の行動にい
 
 ## 「空を飛べたらなあ」は、could
 
+「空を飛べたらいいのに」と、子どもの頃に思ったこと、ありませんか。
+
 「できたらいいのに」と言いたいときは、wish + could です。
 
 <div class="example"><span class="lbl">EXAMPLE</span><span class="en">He <mark class="hl">wishes</mark> he <mark class="hl">could</mark> afford a holiday.</span><span class="ja">彼は、休暇を取る余裕があったらいいのに、と思っています。</span></div>
@@ -104,6 +110,10 @@ could は can の過去形。ここでも、「事実から1歩離れる」し�
 トップの絵にある I wish I could fly も、この形です。
 
 ## 本気の「ああ、そうだったら!」は if only
+
+「ああ、あのとき〜していれば!」と、胸が痛くなるほど悔やんだことが、ありませんか。
+
+そんな強い気持ちは、英語では、どう言うのでしょう。
 
 もう1つ、覚えておくと便利なのが if only です。
 

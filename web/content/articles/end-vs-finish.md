@@ -66,6 +66,10 @@ finish のあとに、動詞の ing 形(writing, reading)を置く。これが�
 
 ## 道は、自分で「やり終え」たりしない
 
+「この道は、ここで終わりです」と、行き止まりに着いたこと、ありませんか。
+
+道は、宿題のように、だれかが「やり終えた」ものではないのに、「終わる」。こんなときは、どうなるのでしょう。
+
 では、end はどんなときに出てくるのでしょう。
 
 辞書には、こんな例文があります。
@@ -83,6 +87,10 @@ finish のあとに、動詞の ing 形(writing, reading)を置く。これが�
 <div class="example"><span class="lbl">EXAMPLE</span><span class="en">at the <mark class="hl">end</mark> of the year</span><span class="ja">1年の終わりに</span></div>
 
 ## 会議を終わらせるのは、end? finish?
+
+会議が、予定より早く終わった日。「今日は、ここまでにしましょう」と、だれかが言った。
+
+そんな場面を、英語で言うなら、どちらでしょう。
 
 ここで、こんな疑問が浮かびませんか?
 
