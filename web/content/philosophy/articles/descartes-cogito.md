@@ -3,9 +3,9 @@ title: デカルト「我思う故に我あり」の意味。すべてを疑っ�
 description: 見間違いや夢の経験から出発して、デカルトがすべてを疑った道すじをたどります。疑ったあとに残ったもの、「ゆえに」が推論か直観かの議論、この言葉が出てくる本、分かったことの限りを、百科事典に沿って整理します。
 slug: descartes-cogito
 type: general
-status: draft
+status: published
 author: kaz
-publishedAt: ""
+publishedAt: 2026-10-05
 updatedAt: ""
 primaryKeyword: デカルト 我思う故に我あり
 searchIntent: 「我思う故に我あり」の意味と、デカルトがその結論にどうたどり着いたかを知りたい

@@ -3,9 +3,9 @@ title: end と finish の違い。「宿題を終わらせた」は、どっち?
 description: finish は「やり終える」、end は「そこで終わる・終わらせる」。「〜し終える」と言うときは finish、道や計画が終わるときは end。complete との違いも、例文でスッキリ整理します。
 slug: end-vs-finish
 type: general
-status: draft
+status: published
 author: yukina
-publishedAt: ""
+publishedAt: 2026-10-05
 updatedAt: ""
 primaryKeyword: end finish 違い
 searchIntent: 「終わる」「終わらせる」を英語で言うとき、end と finish のどちらを使えばいいか知りたい

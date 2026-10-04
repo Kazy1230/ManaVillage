@@ -3,9 +3,9 @@ title: think と feel の違い。「〜と思う」は、頭で? 心で?
 description: think は「(頭を使って)考える」、feel は「心で思う・なんとなく感じる」。どちらも「〜と思う」と言えるときの気持ちの違いと、feel + 形容詞の使い方を、辞書の説明と例文で整理します。
 slug: think-vs-feel
 type: general
-status: draft
+status: published
 author: yukina
-publishedAt: ""
+publishedAt: 2026-10-05
 updatedAt: ""
 primaryKeyword: think feel 違い
 searchIntent: 「〜と思う」を英語で言うとき、think と feel のどちらを使うか知りたい

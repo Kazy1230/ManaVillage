@@ -3,9 +3,9 @@ title: git commit と push の違い。「手元に記録」と「みんなに�
 description: git commit は、変更を自分のパソコンのリポジトリに記録するコマンド。git push は、その記録をリモート(GitHub など)に送るコマンドです。add から push までの流れと、push が弾かれる理由を、公式の説明と実際の出力で整理します。
 slug: git-commit-vs-push
 type: general
-status: draft
+status: published
 author: kaz
-publishedAt: ""
+publishedAt: 2026-10-05
 updatedAt: ""
 primaryKeyword: git commit push 違い
 searchIntent: git commit と git push は何が違うのか、どの順番で使うのかを知りたい

@@ -8,7 +8,7 @@
 
 | ID | slug | タイトル | 主キーワード | 検索意図 | 想定読者 | type | 状態 | ハブ |
 |---|---|---|---|---|---|---|---|---|
-| I-0001 | git-commit-vs-push | git commit と push の違い | git commit push 違い | commit と push は何が違うか、どの順番で使うかを知りたい | Git の初心者 | general | draft | Git |
+| I-0001 | git-commit-vs-push | git commit と push の違い | git commit push 違い | commit と push は何が違うか、どの順番で使うかを知りたい | Git の初心者 | general | published | Git |
 
 ## 次に書く候補(アイデア)
 
