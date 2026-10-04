@@ -16,6 +16,9 @@
 
 | ID | slug | タイトル | 主キーワード | 検索意図 | 想定読者 | type | 状態 | ハブ |
 |---|---|---|---|---|---|---|---|---|
+| E-0189 | rise-vs-raise | rise と raise の違い | rise raise 違い | rise と raise の使い分けを知りたい | 初級〜中級 | general | proposed | 英文法・語法 |
+| E-0137 | wish-subjunctive | 仮定法 I wish の使い方 | 仮定法 I wish | I wish のあとの形を、いつ・なぜそうするか知りたい | 高校生〜社会人(中級) | general | proposed | 英文法・語法 |
+| E-0045 | extensive-reading-high-school | 高校生の英語多読 | 英語 多読 高校生 | 受験もある中で、多読をやっていいか・どうやるか知りたい | 高校生 | general | proposed | 教材の選び方・進め方 |
 
 ## ハブ(テーマのまとまり)
 
