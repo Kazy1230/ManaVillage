@@ -3,7 +3,7 @@ name: manavillage-review
 description: Kaz が書いた記事の文章をチャットに貼ったときの確認と、イラスト、公開の作業。下書きとして保存し、機械チェック・事実と出典の確認・読みやすさと薄さの指摘を行い、イラストを描く。承認後に公開してデプロイする。文章は書き直さない。
 ---
 
-`web/content/planning/common.md` の 2-2〜2-6 と、対象の科目の文書(英語学習 `workflow.md` / 日本語学習 `japanese/workflow.md`)に従う。**Kaz の文章の言葉は変えない。直した文を出さない。**
+`web/content/planning/common.md` の 2-2〜2-6 と、対象の科目の文書(英語学習 `workflow.md` / 日本語学習 `japanese/workflow.md`)に従う。**Kaz の文章の言葉は変えない。直した文を出さない。**(雪菜の記事は、Claude が書いた文章なので、指摘を受けて Claude が直してよい。`common.md` 5章)
 
 ## Kaz が文章を貼ったとき
 
