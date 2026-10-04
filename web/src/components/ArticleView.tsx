@@ -65,7 +65,8 @@ export default async function ArticleView({ slug, section }: { slug: string; sec
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
     url,
     image: `${SITE_URL}${article.ogImage ?? "/og-default.png"}`,
-    author: { "@id": PERSON_ID },
+    // 雪菜は架空のキャラクターなので、Person ではなく組織の署名にする
+    author: { "@id": article.author === "yukina" ? ORG_ID : PERSON_ID },
     publisher: { "@id": ORG_ID },
   };
   const breadcrumbLd = {
@@ -91,9 +92,9 @@ export default async function ArticleView({ slug, section }: { slug: string; sec
           {article.draft && <p className="draft-badge">下書き（本番には表示されません）</p>}
           <h1 dangerouslySetInnerHTML={{ __html: article.titleHtml }} />
           <div className="byline">
-            <div className="avatar" aria-hidden="true">K</div>
+            <div className="avatar" aria-hidden="true">{article.author === "yukina" ? "雪" : "K"}</div>
             <div>
-              <div className="who">Kaz</div>
+              <div className="who">{article.author === "yukina" ? (sec.lang === "en" ? "Yukina Shirakawa (fictional character)" : "白河雪菜(キャラクター)") : "Kaz"}</div>
               <div className="sub">{formatDate(article.date, sec.lang)} · {s.minutesRead(article.minutes)}{updated}</div>
             </div>
           </div>

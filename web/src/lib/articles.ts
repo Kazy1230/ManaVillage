@@ -27,6 +27,8 @@ export type ArticleMeta = {
   minutes: number;
   draft: boolean;
   type: "general" | "experience";
+  // 署名。kaz(既定)/ yukina(架空のキャラクター)
+  author: "kaz" | "yukina";
   primaryKeyword: string;
   hub: string;
   // ハブ記事のとき、検索を譲らせる（noindex にする）タグ
@@ -91,6 +93,7 @@ function load(section: SectionKey, file: string): Article {
     jaPhrases: ruby ? (data.phrases ?? []).map((p: Record<string, unknown>) => ({ jp: rubyToHtml(escHtml(str(p.jp))), romaji: str(p.romaji), en: str(p.en) })) : [],
     draft,
     type: data.type === "experience" ? "experience" : "general",
+    author: data.author === "yukina" ? "yukina" : "kaz",
     primaryKeyword: str(data.primaryKeyword),
     hub: str(data.hub),
     hubTag: str(data.hubTag),

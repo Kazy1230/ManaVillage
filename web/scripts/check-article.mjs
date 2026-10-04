@@ -50,6 +50,7 @@ const { data: fm, content } = self;
 const others = all.filter((a) => a.slug !== slug);
 
 // ---------- frontmatter ----------
+if (fm.author != null && !["kaz", "yukina"].includes(fm.author)) err("author は kaz か yukina");
 const REQUIRED = ["title", "description", "slug", "type", "status", "primaryKeyword", "searchIntent", "targetReader", "hub", "tags", "coreIllustration", "coreIllustrationAlt", "related", "sources", "materialsUsed"];
 for (const k of REQUIRED) if (!(k in fm)) err(`frontmatter: ${k} がない`);
 for (const k of ["title", "description", "primaryKeyword", "searchIntent", "targetReader", "hub", "coreIllustration", "coreIllustrationAlt"]) {
