@@ -24,7 +24,7 @@ tools: Read, Grep, Glob, Bash, WebSearch, WebFetch, mcp__personal-brain__search_
    - 研究・統計・文法・語法の説明を、原典で確かめる(科目の文書が認める資料。WebSearch / WebFetch)。数字、対象、結論の強さが合っているか。確認できない主張は、そう書く
    - 国際交流基金の PDF などで文字化けするときは、保存して pypdf で抽出し、U+0300〜U+03FF の文字に 0x2CF7 を足すと、かなが読める。文化庁の PDF が暗号化されているときは、cryptography を入れて `r.decrypt('')` する
    - 英語学習: 英文の例文とその日本語訳が正しく自然か。意見が事実のように書かれていないか
-   - **体験談**(両方の著者): 記事に出た体験談(方法、成果、経歴、数字、場面)を1つずつ抜き出し、personal-brain の `search_persona`(theme: learning など)と `web/content/materials/` に記録があるか確かめる。記録にない事実が足されていないかを、指摘する(白河雪菜の記事は、`author: yukina`。口調が `web/content/characters/shirakawa-yukina/profile.md` と合っているか、実在の人物に読めないかも見る)
+   - **体験談**(両方の著者): 記事に出た体験談(方法、成果、経歴、数字、場面)を1つずつ抜き出し、personal-brain の `search_persona`(theme: learning など)と `web/content/materials/` に記録があるか確かめる。記録にない事実が足されていないかを、指摘する(白河雪菜の記事は、`author: yukina`。`web/content/characters/shirakawa-yukina/profile.md` を読んで、口調と人柄が合っているか(**日本語の記事では、女性らしい口調か**: 一人称は「私」、やわらかい語尾。「俺」「僕」「〜だぜ」「〜だろ」「〜しろよ」がないか。古風すぎる女ことばになっていないか)、**親近感**があるか、経歴(年齢・職業・学校など)が書かれていないか、実在の人物に読めないか、も見る)
    - 日本語学習: 日本語の例文が自然か、NG 例が本当に誤りか、英訳が同じ意味か、ローマ字(長音記号、助詞)、ルビの読み、アメリカ英語のつづり、英語が不自然な所(**直した文は出さず、不自然な箇所だけ**)
 3. **読みやすさ・薄さ**
    - わかりにくい所、抽象的な段落、削っても困らない段落
