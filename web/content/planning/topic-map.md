@@ -19,6 +19,9 @@
 | E-0189 | rise-vs-raise | rise と raise の違い | rise raise 違い | rise と raise の使い分けを知りたい | 初級〜中級 | general | published | 英文法・語法 |
 | E-0137 | wish-subjunctive | 仮定法 I wish の使い方 | 仮定法 I wish | I wish のあとの形を、いつ・なぜそうするか知りたい | 高校生〜社会人(中級) | general | published | 英文法・語法 |
 | E-0045 | extensive-reading-high-school | 高校生の英語多読 | 英語 多読 高校生 | 受験もある中で、多読をやっていいか・どうやるか知りたい | 高校生 | experience | published | 教材の選び方・進め方 |
+| E-0201 | end-vs-finish | end と finish の違い | end finish 違い | 「終わる」を英語で言うとき end と finish のどちらか知りたい | 初級〜中級 | general | draft | 英文法・語法 |
+| E-0195 | think-vs-feel | think と feel の違い | think feel 違い | 「〜と思う」を英語で言うとき think と feel のどちらか知りたい | 初級〜中級 | general | draft | 英文法・語法 |
+| E-0160 | question-words-order | 疑問詞の使い方 | 疑問詞 使い方 | 疑問詞の使い方と、疑問詞を使った文の語順を知りたい | 初級 | general | draft | 英文法・語法 |
 
 ## ハブ(テーマのまとまり)
 
