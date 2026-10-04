@@ -68,7 +68,7 @@ I wish の形は、「何について願っているか」で3つに分かれま
 
 相手が「やっていること」を、やめてほしい。そんなときは would を使います。
 
-この3つが、I wish の中心です。「何を変えたいか」を考えれば、形が決まります。
+この3つが、I wish の中心です。「何を変えたいか」を考えると、形を選びやすくなります。
 
 ![横に3つの時間軸が並ぶ絵。「いま」は過去形(I wish I had …)、「過去」は過去完了(I wish I had been …)、「相手の行動」は would(I wish you would …)の矢印](/illustrations/wish-subjunctive/fig-2.webp)
 
@@ -86,7 +86,7 @@ British Council のページでは、wish + would は、人や物の行動にい
 
 <div class="example"><span class="lbl">EXAMPLE</span><span class="en">He <mark class="hl">wishes</mark> he <mark class="hl">could</mark> afford a holiday.</span><span class="ja">彼は、休暇を取る余裕があったらいいのに、と思っています。</span></div>
 
-サムネの I wish I could fly も、この形です。「空を飛べたらなあ」という、いまの事実から1歩離れた願いですね。
+could は can の過去形なので、ここでも「事実から1歩離れる」しるしになっています。サムネの I wish I could fly も、この形です。「空を飛べたらなあ」という、いまの事実から1歩離れた願いですね。
 
 ## If only は、もう少し強い
 
@@ -94,7 +94,7 @@ British Council のページでは、wish + would は、人や物の行動にい
 
 <div class="example"><span class="lbl">EXAMPLE</span><span class="en"><mark class="hl">If only</mark> I had a car!</span><span class="ja">車があったらなあ!</span></div>
 
-British Council の説明によると、if only は wish より、少し強い気持ちを表します。後ろの形は、wish と同じ考え方で選べます。「ああ、本当に、そうだったらよかったのに」という、切実な気持ちのときに使ってみてください。
+British Council のページでは、if only は、たいてい wish より少し強い気持ちを表す、と説明されています。後ろの形は、wish と同じ考え方で選べます。
 
 ## were を使う形もあります
 
@@ -102,7 +102,7 @@ I wish のあとの be 動詞に、主語が I や he でも、were が使われ
 
 <div class="example"><span class="lbl">EXAMPLE</span><span class="en">I <mark class="hl">wish</mark> I <mark class="hl">were</mark> taller.</span><span class="ja">もう少し背が高ければいいのに。</span></div>
 
-この were は、英語の文法では、伝統的に past subjunctive(過去形の仮定法)と呼ばれてきました。ここでも、「事実から1歩離れる」しるしとして使われています。まずは、I wish I had … と同じ仲間だと考えておけば、大丈夫です。
+この were は、英語の文法では、伝統的に past subjunctive(過去形の仮定法)と呼ばれてきました。ここでも、「事実から1歩離れる」しるしとして使われています。この記事では、were の形を紹介しました。まずは、I wish I had … と同じ仲間だと考えておけば、大丈夫です。
 
 ## 間違えやすい文
 
@@ -110,7 +110,7 @@ I wish のあとを、ふつうの現在形にしてしまう文です。
 
 <div class="example ng"><span class="lbl">NG</span><span class="en">I wish I have a car.</span><span class="ja">「車を持っていたらいいのに」は、事実から1歩離れる話なので、I wish I had a car. と過去形にします。</span></div>
 
-過去の後悔は、ここで見た過去完了の形(I wish I hadn’t eaten so much yesterday. のように)で言うのが、基本の形です。
+もう1つ。過去の後悔は、ここで見た過去完了の形(I wish I hadn’t eaten so much yesterday. のように)で言うのが、基本の形です。
 
 「いまの話か、過去の話か」を、先に決める。それだけで、迷いにくくなります。
 
