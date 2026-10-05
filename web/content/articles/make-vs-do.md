@@ -3,9 +3,9 @@ title: make と do の使い分けで、困ったことがない。私は「す�
 description: 宿題をする、間違いをする、決心をする。日本語は全部「する」なのに、英語は do と make に分かれます。make と do で困ったことがない私が、ルールではなく、独り言英会話で調べては使い、「塊」で覚えてきた話です。
 slug: make-vs-do
 type: experience
-status: draft
+status: published
 author: kaz
-publishedAt: ""
+publishedAt: 2026-10-05
 updatedAt: ""
 primaryKeyword: make do 使い分け
 searchIntent: make と do のどちらを使うか、組み合わせで迷う。ルールで割り切れるのか、どう覚えればいいのかを知りたい
