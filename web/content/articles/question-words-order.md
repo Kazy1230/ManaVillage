@@ -35,7 +35,9 @@ keyword: who / what / where
 
 <div class="example"><span class="lbl">EXAMPLE</span><span class="en"><mark class="hl">Where</mark> is the restroom?</span><span class="ja">トイレは、どこですか?</span></div>
 
-where がいちばん前で、そのあとに is、最後に主語の the restroom。British Council の文法ページでは、疑問詞を使う文を、疑問詞を前に置き、そのあとで動詞(be 動詞や助動詞)を主語の前に出す、と説明しています。例も載っています。
+日本語なら、「トイレは、どこですか?」と、聞きたいことは最後に来ます。英語は逆で、聞きたいことを先に言います。where がいちばん前。そのあとに is、最後に主語の the restroom。「どこ?」と先に言ってしまったら、あとは is が主語より前に出て、続きの文を引き受けます。
+
+British Council の文法ページも、疑問詞を使う文を、疑問詞を前に置き、そのあとで動詞(be 動詞や助動詞)を主語の前に出す、と説明しています。例も載っています。
 
 <div class="example"><span class="lbl">EXAMPLE</span><span class="en"><mark class="hl">Why</mark> are you late?</span><span class="ja">どうして遅れたの?</span></div>
 
@@ -52,7 +54,7 @@ where がいちばん前で、そのあとに is、最後に主語の the restro
 
 ![語順の絵。左から「Where(疑問詞)」「do(助動詞)」「you(主語)」「work(動詞)」と4つの箱が並び、矢印でつながっている。下に「どこで働いているの?」の文字](/illustrations/question-words-order/fig-1.webp)
 
-be 動詞や助動詞(do など)が、主語の前に飛び出す。この「ひっくり返し」が、疑問詞の文の特徴です。
+be 動詞や助動詞(do など)が、主語の前に飛び出します。この「ひっくり返し」が、疑問詞の文の特徴です。
 
 ## そもそも、疑問詞は、どう選ぶ?
 
@@ -73,23 +75,28 @@ be 動詞や助動詞(do など)が、主語の前に飛び出す。この「ひ
 
 家に帰ったら、窓ガラスが割れていた。思わず、「だれが割ったの!?」と言いたくなる場面です。
 
-これを英語にすると、さっきの「ひっくり返し」のルールが、あれ? と通じなくなります。ひっくり返らない質問があるからです。「だれが〜したの?」「何が〜したの?」のように、疑問詞そのものが主語のとき。British Council のページの例です。
+日本語では、聞きたいことで、2つの質問を言い分けています。
+
+- 「だれが割ったの?」: 割った人を知りたい
+- 「何を割ったの?」: 割られたものを知りたい
+
+「だれが」は、割った人、つまり主語を聞いています。主語を聞いているのだから、疑問詞がそのまま主語になって、もう文の最初にいます。先頭に出すものは残っていないので、ひっくり返す必要がありません。「何を」のほうは、主語(割った人)が別にいるので、疑問詞を前に出すと、主語が後ろに押されて、ひっくり返ります。
+
+「だれが」は、「だれかが窓を割った」の「だれか」を、そのまま「だれ」に替えただけ。英語も、同じ仕組みです。British Council のページの例を見てください。
 
 <div class="example"><span class="lbl">EXAMPLE</span><span class="en"><mark class="hl">Who</mark> broke the window?</span><span class="ja">だれが窓を割ったの?</span></div>
 
 <div class="example"><span class="lbl">EXAMPLE</span><span class="en"><mark class="hl">Who</mark> is knocking on the door?</span><span class="ja">だれが、ドアをノックしているの?</span></div>
 
-どちらも、who のすぐあとに、動詞が来ています。ひっくり返っていません。
-
-もとの文は、Someone broke the window.(だれかが窓を割った)。この someone を who に替えただけで、主語はもう最初に来ているから、動かす必要がありません。what が主語のときも同じです。
+どちらも、who のすぐあとに、動詞が来ています。もとの文は、Someone broke the window.(だれかが窓を割った)。この someone を who に替えただけです。what が主語のときも同じです。
 
 <div class="example"><span class="lbl">EXAMPLE</span><span class="en"><mark class="hl">What</mark> happened?</span><span class="ja">何があったの?</span></div>
 
-「何を」を知りたいときは、どうでしょう。
+「何を割ったの?」のほうは、主語が別にいます。
 
 <div class="example"><span class="lbl">EXAMPLE</span><span class="en"><mark class="hl">What</mark> did Sam break?</span><span class="ja">サムは、何を割ったの?</span></div>
 
-主語は Sam で、知りたいのは「何を」。こちらはひっくり返っています。「だれが/何が」を知りたいならひっくり返らず、「だれを/何を/どこで…」を知りたいならひっくり返ります。
+主語は Sam で、知りたいのは「何を」。こちらはひっくり返っています。「だれが/何が」ならひっくり返らず、「だれを/何を/どこで…」ならひっくり返ります。
 
 ## ここで、うっかりやりがちな文
 
