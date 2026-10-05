@@ -48,3 +48,13 @@ openl、verbling、7esl、migaku、duolingo、test-english など。どれも「
 - 意見: 「スピーキングなんか使わない」ではなく、スピーキングもリーディングもリスニングも全部こなしてしまうのが「天才」。
 
 ※「do a mistake」は、Kaz の書き込み「do a makemistake」を、「make a mistake を do a mistake と言ってしまう間違い」と解釈した。記事化のとき、Kaz に確認する。
+
+### 2回目の答え(2026-10-05。personal-brain に記録済み)
+
+- do a mistake の解釈: 合っている(make a mistake を do a mistake と言ってしまう間違い)
+- 迷う人は日本語の「する」から選んでしまう、という補足: 合っている
+- make a decision も、do homework と同じ感覚で、塊で浮かぶ
+- 独り言英会話の具体例: come on、shit。文章だと I'm walking to the station、nose is running(調べた表現)。流れは「分からなかったら調べる → 普段から使えるようになる → 定着する」
+- 塊で覚えたきっかけ: make an effort、I'll do coke
+
+※「I'll do coke」は、スラングで別の意味に読まれるおそれがある。Kaz に、意図(注文の言い方?)を確認してから使う。「shit」は、サイトの読者(学生を含む)を考えて、載せるか確認する。
