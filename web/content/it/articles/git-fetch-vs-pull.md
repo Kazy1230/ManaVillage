@@ -3,9 +3,9 @@ title: git fetch と pull の違い。「取ってくる」だけか、「取り
 description: git fetch は、リモートの更新を手元に取ってくるだけのコマンド。git pull は、fetch したあとに、自分のブランチへ取り込む(マージする)ところまでやるコマンドです。実機で確かめた出力と、pull が止まる場面も見ながら、使い分けを整理します。
 slug: git-fetch-vs-pull
 type: general
-status: draft
+status: published
 author: kaz
-publishedAt: ""
+publishedAt: 2026-10-05
 updatedAt: ""
 primaryKeyword: git fetch pull 違い
 searchIntent: git fetch と git pull は何が違うのか、どちらを使えばいいのかを知りたい
