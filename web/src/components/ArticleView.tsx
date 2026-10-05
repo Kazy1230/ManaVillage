@@ -65,7 +65,7 @@ export default async function ArticleView({ slug, section }: { slug: string; sec
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
     url,
     image: `${SITE_URL}${article.ogImage ?? "/og-default.png"}`,
-    // 雪菜は架空のキャラクターなので、Person ではなく組織の署名にする
+    // 雪菜は、まなビレッジのアンバサダー。Person ではなく組織の署名にする
     author: { "@id": article.author === "yukina" ? ORG_ID : PERSON_ID },
     publisher: { "@id": ORG_ID },
   };
@@ -94,7 +94,7 @@ export default async function ArticleView({ slug, section }: { slug: string; sec
           <div className="byline">
             <div className="avatar" aria-hidden="true">{article.author === "yukina" ? "雪" : "K"}</div>
             <div>
-              <div className="who">{article.author === "yukina" ? <Link href={`${sec.lang === "en" ? "/en" : ""}/operator#yukina`}>{sec.lang === "en" ? "Yukina Shirakawa (fictional character)" : "白河雪菜(キャラクター)"}</Link> : "Kaz"}</div>
+              <div className="who">{article.author === "yukina" ? <Link href={`${sec.lang === "en" ? "/en" : ""}/operator#yukina`}>{sec.lang === "en" ? "Yukina Shirakawa (Ambassador)" : "白河雪菜(アンバサダー)"}</Link> : "Kaz"}</div>
               <div className="sub">{formatDate(article.date, sec.lang)} · {s.minutesRead(article.minutes)}{updated}</div>
             </div>
           </div>

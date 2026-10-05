@@ -19,7 +19,7 @@
 ## 絶対に守ること
 
 1. **秘密情報を Git に入れない**。`web/.env.local` や API キー(`SUPABASE_SECRET_KEY`, `RESEND_API_KEY`)、`.vercel/` はコミットしない。このリポジトリは**公開**されている
-2. **記事の本文は、Claude が書いてよい**(2026-10-04 に Kaz が許可。Kaz は最終チェックをする。Kaz が自分で書きたいときは、Kaz が明示する)。著者は Kaz と、キャラクター「白河雪菜」の二人(`web/content/planning/common.md` 5章。雪菜は架空のキャラクターだと読者に明記する)。**体験談は、どの著者の記事でも、Kaz の本当の体験だけ**(雪菜は、それを雪菜の話として語り直す。設定は `web/content/characters/shirakawa-yukina/profile.md`)。personal-brain と `web/content/materials/` に記録がなければ、作らずに Kaz に質問する(`common.md` 2-1b)。**Kaz の記事に、記録にない気持ち・見解・数字を足さない**
+2. **記事の本文は、Claude が書いてよい**(2026-10-04 に Kaz が許可。Kaz は最終チェックをする。Kaz が自分で書きたいときは、Kaz が明示する)。著者は Kaz と、キャラクター「白河雪菜」の二人(`web/content/planning/common.md` 5章。雪菜はアンバサダーだと読者に明記する)。**体験談は、どの著者の記事でも、Kaz の本当の体験だけ**(雪菜は、それを雪菜の話として語り直す。設定は `web/content/characters/shirakawa-yukina/profile.md`)。personal-brain と `web/content/materials/` に記録がなければ、作らずに Kaz に質問する(`common.md` 2-1b)。**Kaz の記事に、記録にない気持ち・見解・数字を足さない**
 3. **記事の公開(`status: published` にしてデプロイ)は、Kaz の承認後だけ**。下書きのままのデプロイは問題ない(本番には出ない)。**体験談を、エージェントが作ることはしない**。記録にないときは、Kaz に質問して、答えを personal-brain に記録する
 4. **研究や統計、文法の説明は、原典で確認できたものだけを根拠にする**。確認できなければ、そう伝える(Kaz が書いた主張でも、確認できないものは指摘する)
 5. **確認は、別のエージェント(`manavillage-checker`)に任せる**。記事の評価を Claude 本体がしない

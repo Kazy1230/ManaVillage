@@ -27,7 +27,7 @@ export type ArticleMeta = {
   minutes: number;
   draft: boolean;
   type: "general" | "experience";
-  // 署名。kaz(既定)/ yukina(架空のキャラクター)
+  // 署名。kaz(既定)/ yukina(アンバサダー)
   author: "kaz" | "yukina";
   primaryKeyword: string;
   hub: string;

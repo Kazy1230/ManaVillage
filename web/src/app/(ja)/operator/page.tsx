@@ -8,7 +8,7 @@ import { ldScript, personLd } from "@/lib/jsonld";
 export function generateMetadata(): Metadata {
   return {
     title: "運営者について",
-    description: "まなビレッジの運営者 Kaz と、キャラクターの白河雪菜の紹介、サイトの運営情報です。",
+    description: "まなビレッジの運営者 Kaz と、アンバサダーの白河雪菜の紹介、サイトの運営情報です。",
     alternates: pageAlternates("/operator"),
   };
 }
@@ -56,15 +56,12 @@ export default function OperatorPage() {
         くわしい考え方は、<Link href="/about">まなビレッジとは</Link>に書いています。
       </p>
 
-      <h2 id="yukina">白河雪菜(キャラクター)</h2>
+      <h2 id="yukina">白河雪菜(アンバサダー)</h2>
       <p>
-        白河雪菜は、まなビレッジの<strong>架空のキャラクター</strong>です。英語学習や日本語学習の記事の一部は、雪菜の語りで書いています。署名が「白河雪菜(キャラクター)」になっている記事です。
+        白河雪菜は、まなビレッジの<strong>アンバサダー</strong>です。英語学習や日本語学習の記事の一部は、雪菜の語りで書いています。署名が「白河雪菜(アンバサダー)」になっている記事です。
       </p>
       <p>
         のんびりしていて、ほめ上手。失敗を笑えて、あきらめが悪い。読んでくれた人といっしょに続ける、仲間のような存在です。「できた日」は、いっしょに喜びます。
-      </p>
-      <p>
-        雪菜が語る体験談は、運営者 Kaz の実際の体験をもとにしています。実在の人物ではないので、年齢や職業などの経歴はありません。
       </p>
 
       <h2>ご連絡について</h2>
