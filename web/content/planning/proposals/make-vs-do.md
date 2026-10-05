@@ -58,3 +58,10 @@ openl、verbling、7esl、migaku、duolingo、test-english など。どれも「
 - 塊で覚えたきっかけ: make an effort、I'll do coke
 
 ※「I'll do coke」は、スラングで別の意味に読まれるおそれがある。Kaz に、意図(注文の言い方?)を確認してから使う。「shit」は、サイトの読者(学生を含む)を考えて、載せるか確認する。
+
+### 3回目の答え(2026-10-05。personal-brain に記録済み)
+
+- 「I'll do coke」: 「コーラにします」という注文のつもりで挙げた例。→ スラングで別の意味に読まれるおそれがあり、標準的な言い方とも確認できないので、記事には入れない(標準的な言い方は I'll have a Coke。Kaz に報告)
+- shit: 載せてよい
+- come on、shit: ゲームで死んだときや、ミスったときに言っていた
+- make an effort: 覚えたきっかけは、特にない。耳で覚えていたから、馴染んでいた
