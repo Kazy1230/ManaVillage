@@ -3,9 +3,9 @@ title: ソクラテスの「無知の知」とは。「知っているつもり�
 description: 「無知の知」は、ソクラテスが「知らないことを、知っているとは思わない」と語った話から生まれた言葉です。デルフォイの神託、賢いとされる人たちとの対話、敵が増えて裁判へ向かったこと、そして「無知の知」という標語への研究者の指摘まで、原典に沿ってたどります。
 slug: socrates-ignorance
 type: general
-status: draft
+status: published
 author: kaz
-publishedAt: ""
+publishedAt: 2026-10-05
 updatedAt: ""
 primaryKeyword: 無知の知 ソクラテス
 searchIntent: ソクラテスの「無知の知」の意味と、どんな話から生まれた言葉なのかを知りたい
