@@ -36,15 +36,6 @@ export default function AboutPage() {
         When you know how to learn, you start to feel progress, and learning becomes fun. When it’s fun, you keep going. And when you keep going, the things you can’t do yet slowly get fewer.
       </p>
 
-      <h2>How we write our articles</h2>
-      <ul>
-        <li>We don’t rewrite other sites’ articles. We use them only to research the topic; the structure, example sentences, and pictures are our own.</li>
-        <li>When we mention research or statistics, we only include what we could confirm in the original source. If we can’t confirm it, we leave it out.</li>
-        <li>The operator’s personal opinions are written as opinions, separately from facts.</li>
-        <li>The articles are written by the operator, Kaz, and by a fictional character, Yukina Shirakawa. The experiences Yukina talks about are based on the operator’s real experiences.</li>
-        <li>The pictures in our articles are simple drawings on a white background, made to help the explanation.</li>
-      </ul>
-
       <h2>Who runs this site</h2>
       <p>
         Mana Village is run by <Link href="/en/operator">Kaz</Link>. To point out a mistake in an article, share feedback, or ask us to remove something, please use the <Link href="/en/contact">contact page</Link>.
