@@ -22,7 +22,7 @@
 2. **記事の本文は、Claude が書いてよい**(2026-10-04 に Kaz が許可。Kaz は最終チェックをする。Kaz が自分で書きたいときは、Kaz が明示する)。著者は Kaz と、キャラクター「白河雪菜」の二人(`web/content/planning/common.md` 5章。雪菜はアンバサダーだと読者に明記する)。**体験談は、どの著者の記事でも、Kaz の本当の体験だけ**(雪菜は、それを雪菜の話として語り直す。設定は `web/content/characters/shirakawa-yukina/profile.md`)。personal-brain と `web/content/materials/` に記録がなければ、作らずに Kaz に質問する(`common.md` 2-1b)。**Kaz の記事に、記録にない気持ち・見解・数字を足さない**
 3. **記事の公開(`status: published` にしてデプロイ)は、Kaz の承認後だけ**。下書きのままのデプロイは問題ない(本番には出ない)。**体験談を、エージェントが作ることはしない**。記録にないときは、Kaz に質問して、答えを personal-brain に記録する
 4. **研究や統計、文法の説明は、原典で確認できたものだけを根拠にする**。確認できなければ、そう伝える(Kaz が書いた主張でも、確認できないものは指摘する)
-5. **確認は、別のエージェント(`manavillage-checker`)に任せる**。記事の評価を Claude 本体がしない
+5. **記事の編集(面白くする)は、別のエージェント(`manavillage-editor`)に任せる**(2026-10-05〜)。記事の評価を Claude 本体がしない。事実・出典の確認は、提案のときに Claude が出典を開いて済ませる。`manavillage-checker`(確認専用)は、Kaz が頼んだときと、編集で事実の記述が変わったときに使う
 6. 本番の DB(Supabase)や DNS、Vercel の設定を変えるときは、Kaz に確認してから
 7. Kaz とのやりとりは日本語で
 
@@ -30,12 +30,13 @@
 
 ```
 Kaz:「テーマを出して」
-  → Claude: 在庫から無作為に抽出(node scripts/pick-topic.mjs <english|japanese>)→ 上位記事と出典を調べる
-            → 提案(概要・構成案・出典・図の案)を出す            [skill: manavillage-propose]
-  → Kaz: 1つ選ぶ(著者も決める)→ Claude が書く(Kaz が自分で書くときは、Kaz が明示する)
-  → Claude: 下書きとして保存 → 機械チェック(check-article.mjs)
-            → 別エージェントが、事実・出典の確認と、読みやすさ・薄さの指摘 → イラストを描く  [skill: manavillage-review]
-  → Claude: 指摘を受けて直す(最大2回)→ 本文と図をチャットに送る → Kaz が最終チェック → 承認 → Claude が公開してデプロイ
+  ① Claude: 在庫から無作為に抽出(node scripts/pick-topic.mjs <english|japanese>)→ 上位記事と出典を調べ、概要と構成案を出す   [skill: manavillage-propose]
+  ② Claude: その概要をもとに、Kaz への質問(5〜8問)を考える
+  ③ Kaz: 質問に答える(インタビュー)。答えは personal-brain に記録し、提案ファイルに貼る
+  ④ Claude: 答えを軸に、記事にまとめる(元のテーマから逸れない)→ 機械チェック(check-article.mjs)     [skill: manavillage-review]
+  ⑤ manavillage-editor(面白くするエージェント)に通す。事実と出典は変えない
+  ⑥ Claude: イラストを描き、本文・画像・編集者の報告をチャットに送る → Kaz が確認・承認
+  ⑦ 公開してデプロイする
 ```
 
 - 記事の frontmatter と、Kaz の書き方の約束(例文、囲み、ルビなど)は、科目の文書に書いてある
@@ -44,7 +45,7 @@ Kaz:「テーマを出して」
 
 ## ツールごとのメモ
 
-- **Claude Code**: `.claude/skills/manavillage-propose`(テーマと構成の提案)、`.claude/skills/manavillage-review`(貼られた文章の確認・イラスト・公開)、`.claude/skills/manavillage-weekly`(在庫の見直し)、`.claude/agents/manavillage-checker.md`(確認用のサブエージェント)が使える。personal-brain(MCP)が接続されていれば、提案のときに `get_persona_core` / `search_persona`(theme: `learning`)で、Kaz の過去の考えや体験を探して示す
+- **Claude Code**: `.claude/agents/manavillage-editor.md`(面白くする編集者。記事を直してよい)、`.claude/skills/manavillage-propose`(テーマと構成の提案、インタビュー)、`.claude/skills/manavillage-review`(貼られた文章の確認・イラスト・公開)、`.claude/skills/manavillage-weekly`(在庫の見直し)、`.claude/agents/manavillage-checker.md`(確認用のサブエージェント)が使える。personal-brain(MCP)が接続されていれば、提案のときに `get_persona_core` / `search_persona`(theme: `learning`)で、Kaz の過去の考えや体験を探して示す
 - **その他のエージェント**: 上の `.claude/` のファイルは普通の Markdown なので、手順書として読んで同じことを行う。確認は、別のセッションで `manavillage-checker.md` の指示に従って行う
 
 ## よく使うコマンド(`web/` で実行)
