@@ -41,10 +41,9 @@ export default function OperatorPage() {
         I run Mana Village. I love thinking about <em>how</em> to learn and sharing it with others, so I built this site.
       </p>
 
-      <div className="voice">
-        <span className="lbl">The operator’s view</span>
-        <p>When you know how to learn, learning becomes fun. What I hope for, in the end, is that readers come to enjoy learning itself. When it’s fun, you can keep going; when you keep going, the things you can’t do slowly disappear. You start to like yourself a little more, and every day becomes more enjoyable.</p>
-      </div>
+      <p>
+        When you know how to learn, learning becomes fun. What I hope for, in the end, is that readers come to enjoy learning itself. When it’s fun, you can keep going; when you keep going, the things you can’t do slowly disappear. You start to like yourself a little more, and every day becomes more enjoyable.
+      </p>
 
       <h2>What I want to share</h2>
       <p>
