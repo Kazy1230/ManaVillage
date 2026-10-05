@@ -147,3 +147,14 @@ Kaz は、ふつうの Markdown で、**英語で**書く。日本語の例は�
   - JLPT(0〜1つ): `N5` `N4` `N3` `N2` `N1`
   - そのほか: `Verbs` `Adjectives` `Conversation` `Business`
 - JLPT タグは、迷うとき、レベルに関係しない記事には付けない。対応の目安: N5・N4 = Beginner、N3 = Intermediate、N2・N1 = Advanced
+
+---
+
+## 11. 新しい流れと書き方(2026-10-05 から)
+
+`common.md` の 2-0(インタビュー → 記事化 → 面白くする編集者 → 承認 → 公開)と 2-1d(書き方)に従う。日本語学習(英語で書く)で特に守ること:
+
+- **インタビューは、日本語で行う。Kaz の答えは、英語の記事に、記録の範囲で使う**。聞くこと: 日本語を学ぶ人(英語話者)が、どこで引っかかると感じるか。日本語を教えた・伝えた体験。英語で説明するときに、使うたとえ
+- **AI 臭は、英語でも消す**。次のような英語の癖を使わない: "Let's dive in" / "Let's break it down" / "In this article, we will..." / "It's important to note that..." / "Here's the thing" / "Whether you're a beginner or an advanced learner..." / "In conclusion" / "So, what's the takeaway?" / 毎回の "Ready to try?" で終える締め。見出しも、"Understanding X" "A Comprehensive Guide to X" のようなラベルにしない。まとめの節の見出しは "Summary"(2-1d の「まとめ」に当たる)
+- **分かりやすい説明の型**(2-1d)を、英語で使う: 身近な一言で理由を言い切る / "X, but not Y" の対比 / わざと変な日本語の文で、ずれを体感させる(例: 「リンゴを立つ」のような)/ 英語の感覚から日本語へつなぐ
+- ルビ、ローマ字、アメリカ英語、レベルのタグ、固定のタグ・ハブは、この文書の1〜10章のとおり(変えない)

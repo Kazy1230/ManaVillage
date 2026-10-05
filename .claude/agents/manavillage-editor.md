@@ -57,3 +57,12 @@ tools: Read, Write, Edit, Grep, Glob, Bash, WebSearch, WebFetch, mcp__personal-b
 ```
 
 ファイルは、報告の前に、実際に書き換えておく。報告に、書き直した本文を貼る必要はない。
+
+## 科目ごとの注意
+
+- **英語学習**(日本語で書く): `planning/workflow.md` の「新しい流れと書き方」。説明は、身近な一言で言い切ってから規則へ
+- **日本語学習**(英語で書く): `planning/japanese/workflow.md` の 11章。英語の AI 臭(Let's dive in など)も消す。ルビ・ローマ字・タグの決まりは変えない
+- **IT**: `planning/it/workflow.md` の 7章。コードブロックの中身(コマンド、出力)は変えない。たとえの対応を崩さない
+- **哲学**: `planning/philosophy/workflow.md` の 7章。解釈が分かれる所を、一つに決めつけない。出典で確認できた範囲を超えない
+- **科学・人間関係**: 文書がまだない。`common.md` に従い、事実は出典を開いて確認する
+- **並行して作業する他のエージェントがいるので、git の操作(stash、checkout、reset、add、commit など)は一切しない**
