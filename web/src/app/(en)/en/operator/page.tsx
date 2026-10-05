@@ -8,7 +8,7 @@ import { CONTACT_EMAIL, OPERATOR_NAME, SOCIAL } from "@/lib/site";
 export function generateMetadata(): Metadata {
   return {
     title: "About the operator",
-    description: "About Kaz, who runs Mana Village, and information about the site.",
+    description: "About Kaz, who runs Mana Village, the fictional character Yukina Shirakawa, and information about the site.",
     alternates: pageAlternates("/operator", "en"),
   };
 }
@@ -50,6 +50,17 @@ export default function OperatorPage() {
       <p>
         Not just skills, but ways of learning that help later — how to face something you don’t understand, and how to learn efficiently.
         You can read more on the <Link href="/en/about">About Mana Village</Link> page.
+      </p>
+
+      <h2 id="yukina">Yukina Shirakawa (fictional character)</h2>
+      <p>
+        Yukina Shirakawa is a <strong>fictional character</strong> of Mana Village. Some of our English- and Japanese-learning articles are written in her voice. They are signed “Yukina Shirakawa (fictional character).”
+      </p>
+      <p>
+        She is easygoing, good at cheering you on, able to laugh at her own mistakes, and never quite gives up. Think of her as a friend who keeps learning alongside you, and celebrates the days you make it.
+      </p>
+      <p>
+        The experiences Yukina talks about are based on the operator Kaz’s real experiences. Since she is not a real person, she has no age, job, or other personal background.
       </p>
 
       <h2>Getting in touch</h2>

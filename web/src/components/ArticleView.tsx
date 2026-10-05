@@ -94,7 +94,7 @@ export default async function ArticleView({ slug, section }: { slug: string; sec
           <div className="byline">
             <div className="avatar" aria-hidden="true">{article.author === "yukina" ? "雪" : "K"}</div>
             <div>
-              <div className="who">{article.author === "yukina" ? (sec.lang === "en" ? "Yukina Shirakawa (fictional character)" : "白河雪菜(キャラクター)") : "Kaz"}</div>
+              <div className="who">{article.author === "yukina" ? <Link href={`${sec.lang === "en" ? "/en" : ""}/operator#yukina`}>{sec.lang === "en" ? "Yukina Shirakawa (fictional character)" : "白河雪菜(キャラクター)"}</Link> : "Kaz"}</div>
               <div className="sub">{formatDate(article.date, sec.lang)} · {s.minutesRead(article.minutes)}{updated}</div>
             </div>
           </div>
