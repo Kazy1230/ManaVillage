@@ -3,9 +3,9 @@ title: 関係代名詞とは。短い文しか作れなかった高1の私に、
 description: 関係代名詞とは、名詞の後ろに説明を足す道具です。短い文しか作れなかった高1の私が出会って驚いたこと、who・which・that を選ばずに言える理由、省略の見分け方、使わなくていい時期までを、British Council の説明と一緒に。
 slug: relative-pronouns
 type: experience
-status: draft
+status: published
 author: kaz
-publishedAt: ""
+publishedAt: 2026-10-07
 updatedAt: ""
 primaryKeyword: 関係代名詞 とは
 searchIntent: 関係代名詞が何をするものか、who / which / that をどう使い分けるかを、一度で整理したい
