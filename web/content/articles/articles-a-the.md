@@ -3,9 +3,9 @@ title: 冠詞 a と the の使い分けより大事なのは、a と冠詞なし
 description: a dog はペットの犬。冠詞を取った dog は、犬の肉。冠詞を謎の呪文だと思っていた私が、感覚で選べるようになった道のりです。冠詞 a と the の使い分けより、a と冠詞なしの違いが大事だと思う理由を書きました。
 slug: articles-a-the
 type: experience
-status: draft
+status: published
 author: kaz
-publishedAt: ""
+publishedAt: 2026-10-07
 updatedAt: ""
 primaryKeyword: 冠詞 a the 使い分け
 searchIntent: a と the、冠詞なしを、どう使い分けるか知りたい。日本語にない仕組みで、感覚がつかめない
