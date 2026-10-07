@@ -23,6 +23,7 @@
 | E-0195 | think-vs-feel | think と feel の違い | think feel 違い | 「〜と思う」を英語で言うとき think と feel のどちらか知りたい | 初級〜中級 | general | published | 英文法・語法 |
 | E-0160 | question-words-order | 疑問詞の使い方 | 疑問詞 使い方 | 疑問詞の使い方と、疑問詞を使った文の語順を知りたい | 初級 | general | draft | 英文法・語法 |
 | E-0273 | make-vs-do | make と do の違い | make do 使い分け | make と do のどちらを使うか迷う | 初級〜中級 | experience | published | 英文法・語法 |
+| E-0132 | relative-pronouns | 関係代名詞とは | 関係代名詞 とは | 関係代名詞が何をするものか、who / which / that をどう使い分けるか知りたい | 中学生〜高校生、やり直しの社会人 | general | proposed | 英文法・語法 |
 
 ## ハブ(テーマのまとまり)
 
