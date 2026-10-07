@@ -21,6 +21,7 @@ sources:
   - 'Wiktionary「raise」(補助。米の a raise と英の pay rise) https://en.wiktionary.org/wiki/raise'
 materialsUsed: []
 keyword: rise / raise
+commentPrompt: "rise と raise、いちばん迷った場面は、どんなときでしたか?"
 ---
 
 授業中、先生が言います。

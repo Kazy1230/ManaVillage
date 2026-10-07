@@ -21,6 +21,7 @@ sources:
 materialsUsed:
   - '運営者本人の体験(content/materials/learning-philosophy.md 7章。personal-brain に記録済み)'
 keyword: 多読
+commentPrompt: "英語の本を読もうとして、止まってしまった経験はありますか?"
 ---
 
 英語の多読で、私は一度、挫折しました。図書館のレベル別の洋書(ラダーシリーズ)を、毎日1000語くらい。1か月くらい続けても、効果は感じられませんでした。

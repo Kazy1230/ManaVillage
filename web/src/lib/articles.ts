@@ -37,6 +37,8 @@ export type ArticleMeta = {
   ogImage: string | null;
   coreIllustrationAlt: string;
   related: string[];
+  // コメント欄の上に出す、読者への問い(任意)
+  commentPrompt: string;
 };
 
 export type TocItem = { id: string; text: string };
@@ -116,6 +118,7 @@ function load(section: SectionKey, file: string): Article {
     ogImage: core ? `/illustrations/${slug}/${core.replace(/\.[a-z]+$/, "")}-og.png` : null,
     coreIllustrationAlt: str(data.coreIllustrationAlt),
     related: list(data.related),
+    commentPrompt: str(data.commentPrompt),
     // 日本語は約500字/分、英語は約200語/分として概算
     minutes: Math.max(1, Math.round(lang === "ja" ? content.length / 500 : words / 200)),
     html,

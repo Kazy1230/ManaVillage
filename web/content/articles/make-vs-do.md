@@ -21,6 +21,7 @@ sources:
 materialsUsed:
   - '運営者本人の体験と意見(2026-10-05 のインタビュー。personal-brain に記録済み)'
 keyword: make / do
+commentPrompt: "make と do で、迷う組み合わせは、ありますか?"
 ---
 
 宿題をする。間違いをする。決心をする。

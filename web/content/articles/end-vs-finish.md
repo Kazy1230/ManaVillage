@@ -21,6 +21,7 @@ sources:
   - 'VOA Learning English「Finish or Complete?」 https://learningenglish.voanews.com/a/finish-or-complete-/7148510.html'
 materialsUsed: []
 keyword: end / finish
+commentPrompt: "end と finish、どちらを使うか迷った文を、教えてください。"
 ---
 
 宿題が、やっと終わった。

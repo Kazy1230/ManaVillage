@@ -21,6 +21,7 @@ sources:
   - 'Grammarphobia「Feel」(feel を think / believe の意味で使うことについて) https://grammarphobia.com/blog/2012/08/feel.html'
 materialsUsed: []
 keyword: think / feel
+commentPrompt: "「〜と思う」を英語にするとき、think と feel のどちらを使うことが多いですか?"
 ---
 
 映画を観た帰りに、友だちから聞かれます。

@@ -127,6 +127,7 @@ export default async function ArticleView({ slug, section }: { slug: string; sec
 
         <Discussion
           title={s.commentsTitle}
+          prompt={article.commentPrompt || undefined}
           rows={asPosts(data)}
           action={addComment}
           hidden={{ slug }}

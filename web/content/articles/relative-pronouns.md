@@ -21,6 +21,7 @@ sources:
 materialsUsed:
   - '運営者本人の体験と意見(2026-10-07 のインタビュー。personal-brain に記録済み)'
 keyword: who / which / that
+commentPrompt: "関係代名詞に、初めて出会ったときのことを、覚えていますか?"
 ---
 
 高校1年のとき、自習で Vision Quest を読んでいて、関係代名詞に出会いました。

@@ -18,6 +18,8 @@ type Props = {
   empty: string;
   badge: (row: PostRow) => string | null;
   lang?: Lang;
+  // 記事の最後に出す、答えやすい問い(任意)
+  prompt?: string;
 };
 
 // 返信は根のコメントの下にまとめ、古い順に並べる。根のコメントは新着順。
@@ -43,7 +45,7 @@ function buildTree(rows: PostRow[]) {
   return { roots, replies, byId };
 }
 
-export default function Discussion({ title, rows, action, hidden, loggedIn, path, placeholder, empty, badge, lang = "ja" }: Props) {
+export default function Discussion({ title, rows, action, hidden, loggedIn, path, placeholder, empty, badge, lang = "ja", prompt }: Props) {
   const s = tr(lang);
   const { roots, replies, byId } = buildTree(rows);
   const loginHref = `${lp(lang, "/login")}?next=${encodeURIComponent(path)}`;
@@ -78,6 +80,7 @@ export default function Discussion({ title, rows, action, hidden, loggedIn, path
     <section className="panel comments reveal" id="comments">
       <div className="c-head">
         <h2>{title} <span className="sub">{s.commentsCount(rows.length)}</span></h2>
+        {prompt && <p className="cmt-prompt">{prompt}</p>}
       </div>
       <div className="c-body">
         {loggedIn ? (

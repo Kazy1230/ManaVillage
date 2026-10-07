@@ -21,6 +21,7 @@ sources:
   - '実機で確認: git 2.55.0(git status の「ahead of」の表示、push が rejected になる出力)'
 materialsUsed: []
 keyword: git push
+commentPrompt: "Git で、最初に引っかかったのは、どこでしたか?"
 ---
 
 「commit したのに、GitHub を開いても、何も変わっていない」

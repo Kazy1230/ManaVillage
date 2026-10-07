@@ -20,6 +20,7 @@ sources:
   - 'Stanford Encyclopedia of Philosophy「Descartes’ Epistemology」(疑いの段階、欺く者、cogito の説明、解釈の相違、時間の限定) https://plato.stanford.edu/entries/descartes-epistemology/'
 materialsUsed: []
 keyword: 疑っても、疑えないもの
+commentPrompt: "あなたが「これだけは疑えない」と思うものは、何ですか?"
 ---
 
 遠くに、友だちの後ろ姿が見えた。手を振りながら駆け寄ったら、まったくの他人だった。

@@ -544,3 +544,5 @@ html[data-section="japanese"] .cat.c0{background:var(--p1);color:#A23A50}.cat.c1
 /* 人間関係: やわらかい水玉の地 */
 .section-relationships .stage{background-color:#FFF4EF;background-image:radial-gradient(rgba(200,85,61,.12) 2px,transparent 2.5px);background-size:22px 22px}
 .section-relationships .ticker .code{font-size:16px;color:#FFC2B3;font-weight:700}
+
+.cmt-prompt{margin:6px 0 14px;padding:10px 14px;border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 10px 10px 0;font-size:15px;line-height:1.7}

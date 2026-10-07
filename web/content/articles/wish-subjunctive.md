@@ -20,6 +20,7 @@ sources:
   - 'English subjunctive(Wikipedia。were の扱いの補助) https://en.wikipedia.org/wiki/English_subjunctive'
 materialsUsed: []
 keyword: I wish
+commentPrompt: "「〜だったらいいのに」を、英語で言ってみたい場面はありますか?"
 ---
 
 試験の前の日の夜。「ああ、もっと早く始めていれば……」と思ったことは、きっとあると思います。

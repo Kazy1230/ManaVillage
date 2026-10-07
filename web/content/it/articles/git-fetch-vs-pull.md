@@ -20,6 +20,7 @@ sources:
   - '実機で確認: git 2.55.0(fetch の前後の git status、git log main..origin/main、git diff main...origin/main、git merge、git pull、設定がないときの pull の停止)'
 materialsUsed: []
 keyword: git fetch
+commentPrompt: "fetch と pull、あなたは、どちらを使うことが多いですか?"
 ---
 
 友だちから、メッセージが届きます。「共有フォルダに、新しい資料を入れたよ」。でも、自分のパソコンにある資料は、まだ古いまま。自分から取りに行かなければ、新しい資料は手元に来ません。
