@@ -49,6 +49,17 @@ a dog なら、ペットの犬のような、形のある1匹の犬。冠詞を�
 
 これは、『一億人の英文法』を読んで、私の中でつかんだ理解です。
 
+a dog、dog、the moon。切り替えて見比べると、頭に浮かぶものが変わります。
+
+<div class="switcher" data-switcher>
+<div class="sw-tabs" role="tablist" aria-label="冠詞の切り替え"><button type="button" class="sw-tab" role="tab" data-sw-tab="a">a dog</button><button type="button" class="sw-tab" role="tab" data-sw-tab="none">dog</button><button type="button" class="sw-tab" role="tab" data-sw-tab="the">the moon</button></div>
+<div class="sw-panels">
+<div class="sw-panel" data-sw-panel="a"><img src="/illustrations/articles-a-the/switch-a.webp" alt="輪郭のはっきりした、1匹の犬の絵。下に「a dog」の文字" width="800" height="500" loading="lazy" decoding="async"><p class="sw-cap">a dog。形のある、1匹の犬。ペットの犬が、頭に浮かびます。</p></div>
+<div class="sw-panel" data-sw-panel="none"><img src="/illustrations/articles-a-the/switch-none.webp" alt="形のない、肉の塊の絵。下に「dog」の文字" width="800" height="500" loading="lazy" decoding="async"><p class="sw-cap">冠詞なしの dog。形のない、素材のような犬。犬の肉のイメージです。</p></div>
+<div class="sw-panel" data-sw-panel="the"><img src="/illustrations/articles-a-the/switch-the.webp" alt="暗い舞台で、スポットライトが月に当たっている絵。下に「the moon」の文字" width="800" height="500" loading="lazy" decoding="async"><p class="sw-cap">the moon。スポットライトが当たっているもの。月は1つだけなので、the がつきます。</p></div>
+</div>
+</div>
+
 ## 迷うのは the ではない。a と冠詞なしだ
 
 形があるものには a。形のない、素材のようなものには、冠詞なし。
@@ -72,8 +83,6 @@ British Council の説明では、the は、聞き手が、どれのことか分
 私の理解では、the は、スポットライトが当たっているような感覚です。話し手と聞き手の間で、1つのものに、光が当たっている。
 
 月も、太陽も、1つしかありません。光が当たるものは、最初から決まっている。だから the がつくのは、当然です。
-
-![暗い舞台で、スポットライトが月に当たっていて「the moon」。中央には、輪郭のはっきりした犬の絵で「a dog」。右には、形のない雲のような塊で「dog」と書かれている](/illustrations/articles-a-the/fig-1.webp)
 
 ## an hour なのに、a university
 

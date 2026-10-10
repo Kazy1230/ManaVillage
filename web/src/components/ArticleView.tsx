@@ -3,7 +3,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { addComment } from "@/app/actions";
 import ArticleCard from "@/components/ArticleCard";
+import ArticleInteractive from "@/components/ArticleInteractive";
 import Discussion from "@/components/Discussion";
+import LessonMode from "@/components/LessonMode";
 import ReadingProgress from "@/components/ReadingProgress";
 import ReadingToggle from "@/components/ReadingToggle";
 import { getAllArticles, getArticle, getRelatedArticles, isSectionLive } from "@/lib/articles";
@@ -97,6 +99,8 @@ export default async function ArticleView({ slug, section }: { slug: string; sec
               <div className="who">{article.author === "yukina" ? <Link href={`${sec.lang === "en" ? "/en" : ""}/operator#yukina`}>{sec.lang === "en" ? "Yukina Shirakawa (Ambassador)" : "白河雪菜(アンバサダー)"}</Link> : "Kaz"}</div>
               <div className="sub">{formatDate(article.date, sec.lang)} · {s.minutesRead(article.minutes)}{updated}</div>
             </div>
+            <LessonMode lang={sec.lang} />
+            <ArticleInteractive />
           </div>
           {/* サムネ(核のイラスト)は、どの科目でもタイトルと本文の間に出す。本文には書かない */}
           {article.coreIllustration && (

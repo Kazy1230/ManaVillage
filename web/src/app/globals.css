@@ -546,3 +546,49 @@ html[data-section="japanese"] .cat.c0{background:var(--p1);color:#A23A50}.cat.c1
 .section-relationships .ticker .code{font-size:16px;color:#FFC2B3;font-weight:700}
 
 .cmt-prompt{margin:6px 0 14px;padding:10px 14px;border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 10px 10px 0;font-size:15px;line-height:1.7}
+
+/* ---- 切り替え部品(記事の中。JavaScript がないときは、全パネルが縦に並ぶ) ---- */
+.prose .switcher{margin:1.8em 0;border:1px solid var(--line);border-radius:16px;background:var(--surface);overflow:hidden}
+.prose .switcher .sw-tabs{display:none;gap:8px;padding:12px;background:var(--accent-soft);border-bottom:1px solid var(--line)}
+.prose .switcher.is-ready .sw-tabs{display:flex;flex-wrap:wrap}
+.prose .switcher .sw-tab{font:inherit;font-weight:700;padding:8px 22px;border-radius:99px;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);cursor:pointer;transition:background .2s,color .2s,transform .2s}
+.prose .switcher .sw-tab:hover{transform:translateY(-1px)}
+.prose .switcher .sw-tab.is-active{background:var(--accent);border-color:var(--accent);color:#fff}
+.prose .switcher.is-ready .sw-panel{display:none}
+.prose .switcher.is-ready .sw-panel.is-active{display:block;animation:swIn .35s var(--ease)}
+.prose .switcher .sw-panel img{display:block;width:100%;height:auto}
+.prose .switcher .sw-cap{margin:0;padding:12px 18px 16px;font-size:.95em;line-height:1.8;text-align:center}
+@keyframes swIn{from{opacity:0;transform:scale(.985)}to{opacity:1;transform:none}}
+
+/* ---- 授業モード ---- */
+.lesson-btn{margin-left:auto;font:inherit;font-size:13px;font-weight:700;padding:8px 16px;border-radius:99px;border:1px solid var(--accent);background:var(--accent-soft);color:var(--accent-dark);cursor:pointer;transition:background .2s,color .2s}
+.lesson-btn:hover{background:var(--accent);color:#fff}
+.byline{flex-wrap:wrap}
+.lesson-bar{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:60;display:flex;align-items:center;flex-wrap:wrap;justify-content:center;gap:8px;max-width:calc(100vw - 24px);padding:10px 14px;border-radius:18px;background:rgba(34,39,53,.94);color:#fff;box-shadow:var(--shadow-m);font-size:14px}
+.lesson-bar.is-hidden{opacity:0;pointer-events:none}
+.lesson-bar button{font:inherit;font-weight:700;padding:8px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.3);background:transparent;color:#fff;cursor:pointer}
+.lesson-bar button.primary{background:var(--accent);border-color:var(--accent)}
+.lesson-bar button:hover{background:rgba(255,255,255,.14)}
+.lesson-bar button.primary:hover{background:var(--accent-dark)}
+.lesson-count{font-variant-numeric:tabular-nums;min-width:56px;text-align:center}
+.lesson-hint{flex-basis:100%;text-align:center;font-size:12px;color:#B8C0D0}
+html[data-lesson="on"]{scroll-behavior:smooth}
+html[data-lesson="on"] .site-head,html[data-lesson="on"] .site-foot,html[data-lesson="on"] .related,html[data-lesson="on"] #comments,html[data-lesson="on"] .totop,html[data-lesson="on"] .progress,html[data-lesson="on"] .paper .crumb,html[data-lesson="on"] .paper .toc,html[data-lesson="on"] .paper .tags-foot,html[data-lesson="on"] .paper .draft-badge{display:none!important}
+html[data-lesson="on"] body{padding-inline:0;background:var(--surface)}
+html[data-lesson="on"] .screen{padding-block:0}
+html[data-lesson="on"] .reader-grid{grid-template-columns:minmax(0,1100px)}
+html[data-lesson="on"] .paper{min-height:100vh;display:flex;flex-direction:column;justify-content:center;border:0;box-shadow:none;background:var(--surface);border-radius:0;padding:clamp(20px,5vw,72px) clamp(20px,6vw,96px) 120px}
+html[data-lesson="on"] .paper h1{font-size:calc(clamp(24px,3.4vw,32px)*var(--lesson-scale,1.25))}
+html[data-lesson="on"] .prose{font-size:calc(16px*var(--lesson-scale,1.25))}
+html[data-lesson="on"] .prose h2{font-size:1.35em}
+html[data-lesson="on"] .ls-off,html[data-lesson="on"] .ls-hide{display:none!important}
+html[data-lesson="on"] .ls-in{animation:lsIn .45s var(--ease)}
+@keyframes lsIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){html[data-lesson="on"] .ls-in,.prose .switcher.is-ready .sw-panel.is-active{animation:none}}
+html[data-lesson="on"] .paper .byline{border:0;padding:0;margin:0;min-height:0}
+html[data-lesson="on"] .paper .byline>*:not(.lesson-bar){display:none!important}
+html[data-lesson="on"] .paper .cover{margin:0 0 20px}
+html[data-lesson="on"] .paper .cover img{width:auto;max-width:100%;max-height:44vh;margin-inline:auto}
+html[data-lesson="on"] .prose p>img,html[data-lesson="on"] .prose .switcher .sw-panel img{width:auto;max-width:100%;max-height:44vh;margin-inline:auto;display:block}
+html[data-lesson="on"] .prose .switcher .sw-tab{font-size:1.1em;padding:10px 26px}
+@media (max-width:600px){.lesson-bar{width:calc(100vw - 16px);max-width:none;padding:8px;gap:6px}.lesson-bar button{padding:8px 10px;font-size:13px}.lesson-hint{display:none}}
