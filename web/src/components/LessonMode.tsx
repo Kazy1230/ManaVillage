@@ -46,7 +46,7 @@ export default function LessonMode({ lang = "ja" }: { lang?: "ja" | "en" }) {
     sections.current.forEach((units, i) => {
       // 切り替え部品が出たら、見出しと部品だけを残す(部品が主役の場面になる)
       let stage = -1;
-      if (i === sec) for (let j = 0; j < Math.min(shown, units.length); j++) if (units[j].classList.contains("switcher")) stage = j;
+      if (i === sec) for (let j = 0; j < Math.min(shown, units.length); j++) if ((units[j].classList.contains("switcher") || units[j].classList.contains("reorder"))) stage = j;
       units.forEach((el, j) => {
         el.classList.toggle("ls-off", i !== sec || (stage > 0 && j > 0 && j < stage));
         el.classList.toggle("ls-hide", i === sec && j >= shown);

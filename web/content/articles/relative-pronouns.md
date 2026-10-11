@@ -38,7 +38,12 @@ commentPrompt: "関係代名詞に、初めて出会ったときのことを、�
 
 英語は逆です。先に a man と言ってから、その後ろに「私が昨日会った」を足します。a man that I met yesterday。この「あとから足す」ための道具が、関係代名詞です。
 
-![上段は日本語で、「私が昨日会った」という説明が、「人」の前に置かれる。下段は英語で、a man のあとに「(that) I met yesterday」が足される。左右の矢印が逆向きになっている](/illustrations/relative-pronouns/fig-1.webp)
+<div class="reorder" data-reorder data-state="ja">
+<div class="ro-fallback"><img src="/illustrations/relative-pronouns/fig-1.webp" alt="上段は日本語で、「私が昨日会った」という説明が、「人」の前に置かれる。下段は英語で、a man のあとに「(that) I met yesterday」が足される。左右の矢印が逆向きになっている" width="800" height="500" loading="lazy" decoding="async"></div>
+<div class="ro-stage" aria-live="polite"><span class="ro-chip ro-mod" style="--ja:1;--en:3"><span class="ro-ja">私が昨日会った</span><span class="ro-en">I met yesterday</span></span><span class="ro-chip ro-noun" style="--ja:2;--en:1"><span class="ro-ja">人</span><span class="ro-en">a man</span></span><span class="ro-chip ro-rel" data-only="en" style="--ja:9;--en:2"><span class="ro-en">(that)</span></span></div>
+<p class="ro-cap"><span class="ro-cap-ja">日本語は、説明を、名詞の前に置く。</span><span class="ro-cap-en">英語は、先に名詞を言って、説明をあとから足す。</span></p>
+<div class="ro-ctrl"><button type="button" data-ro-set="ja">日本語の語順</button><button type="button" data-ro-set="en">英語の語順</button></div>
+</div>
 
 最初は「そうやって言うんだ」と驚きました。でも、この語順は、直感的で分かりやすくもありました。
 

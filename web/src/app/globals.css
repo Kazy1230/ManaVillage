@@ -592,3 +592,24 @@ html[data-lesson="on"] .paper .cover img{width:auto;max-width:100%;max-height:44
 html[data-lesson="on"] .prose p>img,html[data-lesson="on"] .prose .switcher .sw-panel img{width:auto;max-width:100%;max-height:44vh;margin-inline:auto;display:block}
 html[data-lesson="on"] .prose .switcher .sw-tab{font-size:1.1em;padding:10px 26px}
 @media (max-width:600px){.lesson-bar{width:calc(100vw - 16px);max-width:none;padding:8px;gap:6px}.lesson-bar button{padding:8px 10px;font-size:13px}.lesson-hint{display:none}}
+
+/* ---- 語順が動く部品(JavaScript がないときは、静止画 .ro-fallback が出る) ---- */
+.prose .reorder{margin:1.8em 0;border:1px solid var(--line);border-radius:16px;background:var(--surface);overflow:hidden}
+.prose .reorder .ro-stage,.prose .reorder .ro-ctrl{display:none}
+.prose .reorder .ro-fallback img{display:block;width:100%;height:auto}
+.prose .reorder.is-ready .ro-fallback{display:none}
+.prose .reorder.is-ready .ro-stage{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px;padding:44px 16px 28px;min-height:150px}
+.prose .reorder.is-ready .ro-ctrl{display:flex;flex-wrap:wrap;gap:8px;padding:12px;background:var(--accent-soft);border-top:1px solid var(--line)}
+.prose .reorder .ro-ctrl button{font:inherit;font-weight:700;padding:8px 22px;border-radius:99px;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);cursor:pointer;transition:background .2s,color .2s}
+.prose .reorder .ro-ctrl button.is-active{background:var(--accent);border-color:var(--accent);color:#fff}
+.prose .reorder .ro-chip{display:inline-block;padding:12px 20px;border-radius:14px;border:2px solid;font-size:1.25em;font-weight:700;line-height:1.5;order:var(--ja,0)}
+.prose .reorder[data-state="en"] .ro-chip{order:var(--en,0)}
+.prose .reorder .ro-mod{background:#EAF0FF;border-color:var(--accent);color:var(--accent-dark)}
+.prose .reorder .ro-noun{background:#FFF1D6;border-color:var(--orange,#FF9F1C);color:#8A4B00}
+.prose .reorder .ro-rel{background:#fff;border-style:dashed;border-color:var(--faint);color:var(--muted)}
+.prose .reorder[data-state="ja"] .ro-en,.prose .reorder[data-state="en"] .ro-ja{display:none}
+.prose .reorder[data-state="ja"] [data-only="en"]{display:none}
+.prose .reorder .ro-cap{margin:0;padding:0 18px 16px;font-size:.95em;text-align:center;display:none}
+.prose .reorder.is-ready .ro-cap{display:block}
+.prose .reorder[data-state="ja"] .ro-cap-en,.prose .reorder[data-state="en"] .ro-cap-ja{display:none}
+html[data-lesson="on"] .prose .reorder .ro-chip{font-size:1.5em}
