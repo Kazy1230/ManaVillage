@@ -103,7 +103,13 @@ export default function PrivacyPage() {
         We may change this policy to follow changes in the law or new site features. When we do, we will update this page.
       </p>
 
-      <h2>10. Contact</h2>
+      <h2>10. Video publishing tool (ManaVillage Publisher)</h2>
+      <p>
+        The operator uses a desktop tool, “ManaVillage Publisher”, that runs only on the operator’s own computer to publish the operator’s own educational videos to the operator’s own YouTube, TikTok and Instagram accounts.
+        The information this tool receives from those services, and how it is handled, is described in the <a href="/publisher/privacy.html">ManaVillage Publisher Privacy Policy</a>.
+      </p>
+
+      <h2>11. Contact</h2>
       <p>
         Operator: {OPERATOR_NAME}<br />
         Email: {CONTACT_EMAIL}<br />

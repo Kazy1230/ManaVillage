@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — ManaVillage</title>
+<link rel="stylesheet" href="/publisher/style.css">
+</head>
+<body>
+<header class="site"><div class="in">
+  <a class="logo" href="/">Mana<span>Village</span></a>
+  <nav><a href="/publisher/privacy.html">Privacy Policy</a><a href="/publisher/terms.html">Terms of Service</a><a href="#ja">日本語</a></nav>
+</div></header>
+<main>
+  <h1>Privacy Policy</h1>
+  <p class="lead">ManaVillage Publisher · Effective date: November 20, 2026</p>
+
+  <p>This policy explains what information <b>ManaVillage Publisher</b> (“the app”) accesses, how it is used and stored, and how you can revoke access or delete it. The app is operated by Kaz (ManaVillage), the creator of the ManaVillage educational video channel (“we”).</p>
+
+  <h2>1. What the app is</h2>
+  <p>The app is a desktop tool that runs only on the creator’s own computer. It uploads the creator’s own finished educational videos, with the title, caption and settings the creator enters, to the creator’s own YouTube channel, TikTok account and Instagram professional account, either immediately or at a time the creator schedules. The app has no server-side component, no user accounts of its own, and is not offered to the public.</p>
+
+  <h2>2. Information the app accesses</h2>
+  <p>The app accesses only what is needed to publish videos and to show the result to the creator. It signs in through each platform’s official OAuth authorization, so the app never sees your passwords.</p>
+  <table>
+    <tr><th>Platform</th><th>Permissions (scopes)</th><th>Information accessed and why</th></tr>
+    <tr><td>YouTube<br><small>(YouTube API Services)</small></td><td><code>youtube.upload</code><br><code>youtube.readonly</code></td>
+      <td>Uploads videos and sets their thumbnails; reads the channel name (to show which channel will receive the upload) and the privacy/processing status of videos the app uploaded (to confirm that a scheduled video was published).</td></tr>
+    <tr><td>TikTok<br><small>(Login Kit, Content Posting API)</small></td><td><code>user.info.basic</code><br><code>video.publish</code></td>
+      <td>Reads the account’s open ID, display name and avatar, and the creator info required before posting (nickname, avatar, available privacy levels, comment/duet/stitch settings, maximum video length); uploads the video with the settings the creator selects; reads the post’s publishing status.</td></tr>
+    <tr><td>Instagram<br><small>(Instagram API with Instagram Login)</small></td><td><code>instagram_business_basic</code><br><code>instagram_business_content_publish</code></td>
+      <td>Reads the professional account’s user ID and username; uploads the video as a Reel with the caption the creator enters; reads the upload’s processing status and the published post’s link.</td></tr>
+  </table>
+  <p>The app does <b>not</b> read your followers, messages, comments, analytics, viewing history, contacts, location, or any information about other people. It does not access any data from viewers of our videos.</p>
+
+  <h2>3. How the information is used</h2>
+  <p>The information is used only to (a) show the creator which account a video will be posted to and which options that account allows, (b) upload and publish the creator’s video, and (c) show whether the post succeeded and link to it. It is not used for advertising, profiling, analytics, or any other purpose.</p>
+
+  <h2>4. Where information is stored</h2>
+  <ul>
+    <li><b>Access tokens and refresh tokens</b> issued by Google, TikTok and Meta are stored <b>only on the creator’s own computer</b>, in a local file in the creator’s user folder (<code>%USERPROFILE%\.manavillage\tokens.json</code>). They are never sent to us or to any server other than the platform that issued them.</li>
+    <li><b>Post records</b> (video file name, scheduled time, post status and the public URL of each post) are stored in local files on the same computer.</li>
+    <li>The page <code>https://manavillage.online/auth/callback.html</code> only forwards the one-time authorization code from your browser to the app on the same computer. It runs entirely in your browser, does not store or transmit the code anywhere else, and uses no cookies, analytics or third-party scripts. Our web host may keep standard access logs (which can include requested URLs) for security and operation; authorization codes are single-use and expire within minutes to an hour.</li>
+  </ul>
+
+  <h2>5. Sharing</h2>
+  <p>We do not sell, rent, share or disclose information obtained through the platforms’ APIs to any third party. The only data that leaves the creator’s computer is the video and its settings, which are sent directly to the platform the creator chose (Google/YouTube, TikTok or Meta/Instagram) in order to publish it.</p>
+
+  <h2>6. Cookies and tracking</h2>
+  <p>The app itself and the sign-in relay page do not use cookies, tracking pixels, analytics or advertising. Cookies used elsewhere on manavillage.online (for example, to keep site members signed in) are described in the <a href="/privacy">site privacy policy</a> and are unrelated to the app.</p>
+
+  <h2 id="data-deletion">7. Revoking access and deleting data</h2>
+  <p>You can revoke the app’s access and delete all stored data at any time:</p>
+  <ul>
+    <li><b>In the app:</b> run <code>python tools/publish.py logout youtube</code> (or <code>tiktok</code> / <code>instagram</code>). This deletes the stored token from the computer and, for YouTube and TikTok, also asks the platform to revoke it. Deleting the folder <code>%USERPROFILE%\.manavillage</code> removes all tokens.</li>
+    <li><b>Google / YouTube:</b> remove “ManaVillage Publisher” at <a href="https://myaccount.google.com/connections">Google Account → Third-party apps &amp; services</a> (or <a href="https://security.google.com/settings/security/permissions">security.google.com/settings/security/permissions</a>).</li>
+    <li><b>TikTok:</b> in the TikTok app, open Settings and privacy → Security &amp; permissions → Apps and services permissions, and remove the app.</li>
+    <li><b>Instagram:</b> in Instagram, open Settings → Website permissions → Apps and websites, and remove the app.</li>
+  </ul>
+  <p>Because we keep no copy of your data on any server, revoking access and deleting the local folder removes everything the app stored. If you would like us to confirm deletion, contact us at the address below and we will respond within 30 days.</p>
+
+  <h2>8. YouTube API Services</h2>
+  <p>The app uses YouTube API Services. By using the app with YouTube, you agree to be bound by the <a href="https://www.youtube.com/t/terms">YouTube Terms of Service</a>. Google’s handling of your data is described in the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>. ManaVillage Publisher’s use and transfer of information received from Google APIs adheres to the YouTube API Services Terms of Service and Developer Policies.</p>
+
+  <h2>9. Other platforms’ policies</h2>
+  <p>Content you publish is also governed by the <a href="https://www.tiktok.com/legal/page/global/privacy-policy/en">TikTok Privacy Policy</a> and the <a href="https://privacycenter.instagram.com/policy">Instagram (Meta) Privacy Policy</a>.</p>
+
+  <h2>10. Children</h2>
+  <p>The app is a tool for one adult creator and is not directed to children. It does not collect information from anyone other than the creator who signs in.</p>
+
+  <h2>11. Changes</h2>
+  <p>If this policy changes, we will update this page and its effective date.</p>
+
+  <h2>12. Contact</h2>
+  <p>Kaz (ManaVillage) — <a href="mailto:xenon.english@gmail.com">xenon.english@gmail.com</a> — <a href="https://manavillage.online/">https://manavillage.online/</a></p>
+
+  <section class="ja" id="ja" lang="ja">
+    <h1>プライバシーポリシー（日本語）</h1>
+    <p class="lead">ManaVillage Publisher・施行日：2026年11月20日</p>
+    <p>このページは、<b>ManaVillage Publisher</b>（以下「本アプリ」）が、どの情報にアクセスし、どう使い、どこに保存するか、また許可の取り消しと削除の方法を説明します。運営者は、学習動画チャンネル ManaVillage の Kaz です。</p>
+    <h3>1. 本アプリについて</h3>
+    <p>本アプリは、運営者が自分のパソコンだけで使う投稿ツールです。運営者自身が作った学習動画を、運営者が入力したタイトル・説明・設定で、運営者自身の YouTube チャンネル・TikTok アカウント・Instagram のプロアカウントに、すぐに、または予約した時刻に投稿します。サーバーはなく、一般には提供していません。</p>
+    <h3>2. アクセスする情報</h3>
+    <ul>
+      <li><b>YouTube</b>（youtube.upload・youtube.readonly）：動画のアップロードとサムネイルの設定、チャンネル名の表示、本アプリで上げた動画の公開状態の確認。</li>
+      <li><b>TikTok</b>（user.info.basic・video.publish）：アカウントのID・表示名・アイコン、投稿前に必要なクリエイター情報（ニックネーム・選べる公開範囲・コメント／デュエット／Stitch の設定・投稿できる長さ）、動画の投稿、投稿の状態。</li>
+      <li><b>Instagram</b>（instagram_business_basic・instagram_business_content_publish）：プロアカウントのIDとユーザー名、リールの投稿、処理の状態と投稿のURL。</li>
+    </ul>
+    <p>フォロワー・メッセージ・コメント・分析データ・視聴履歴・位置情報など、ほかの情報や、ほかの人の情報にはアクセスしません。パスワードは各サービスの公式のログイン画面で入力するので、本アプリには渡りません。</p>
+    <h3>3. 使い道</h3>
+    <p>投稿先のアカウントと選べる設定の表示、動画の投稿、投稿の結果の表示だけに使います。広告・分析などには使いません。</p>
+    <h3>4. 保存場所</h3>
+    <p>各サービスが発行するトークンは、<b>運営者のパソコンの中だけ</b>（<code>%USERPROFILE%\.manavillage\tokens.json</code>）に保存し、発行元のサービス以外には送りません。投稿の記録（動画の名前・予約の時刻・結果・投稿のURL）も、同じパソコンの中に保存します。<code>auth/callback.html</code> は、ブラウザの中で、ログインの一時的なコードを同じパソコンの本アプリに渡すだけのページで、コードを保存・送信しません。Cookie・分析ツール・外部のスクリプトは使いません（サーバーの標準的なアクセス記録が残る場合がありますが、コードは1回しか使えず、短時間で無効になります）。</p>
+    <h3>5. 第三者への提供</h3>
+    <p>API で得た情報を、第三者に販売・提供・共有することはありません。パソコンの外に出るのは、投稿する動画とその設定だけで、運営者が選んだサービス（Google/YouTube・TikTok・Meta/Instagram）に直接送ります。</p>
+    <h3 id="ja-data-deletion">6. 許可の取り消しと削除</h3>
+    <ul>
+      <li>本アプリ：<code>python tools/publish.py logout youtube</code>（tiktok / instagram）で、パソコンのトークンを消し、YouTube と TikTok では許可の取り消しも送ります。<code>%USERPROFILE%\.manavillage</code> フォルダーを消すと、すべてのトークンが消えます。</li>
+      <li>Google / YouTube：<a href="https://myaccount.google.com/connections">Google アカウント → サードパーティのアプリとサービス</a>から外す。</li>
+      <li>TikTok：アプリの「設定とプライバシー」→「セキュリティと権限」→「アプリとサービスの権限」から外す。</li>
+      <li>Instagram：「設定」→「ウェブサイトのアクセス許可」→「アプリとウェブサイト」から外す。</li>
+    </ul>
+    <p>サーバーに情報を残していないので、許可を取り消してフォルダーを消せば、本アプリが保存したものはすべて消えます。削除の確認をご希望の方は、下のメールアドレスにご連絡ください（30日以内にお返事します）。</p>
+    <h3>7. YouTube API サービス</h3>
+    <p>本アプリは YouTube API サービスを使っています。YouTube で本アプリを使うことで、<a href="https://www.youtube.com/t/terms">YouTube 利用規約</a>に同意したことになります。Google によるデータの扱いは <a href="https://policies.google.com/privacy">Google プライバシーポリシー</a>をご覧ください。</p>
+    <h3>8. お問い合わせ</h3>
+    <p>Kaz（ManaVillage）　<a href="mailto:xenon.english@gmail.com">xenon.english@gmail.com</a></p>
+  </section>
+</main>
+<footer><div class="in">© 2026 ManaVillage <a href="/">Home</a> <a href="/publisher/terms.html">Terms of Service</a></div></footer>
+</body>
+</html>

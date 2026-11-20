@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex">
+<title>Returning to ManaVillage Publisher</title>
+<link rel="stylesheet" href="/publisher/style.css">
+<style>
+.box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:16px 0}
+textarea{width:100%;font-family:Consolas,monospace;font-size:13px;padding:10px;border:1px solid var(--line);border-radius:8px;background:#FAF7F2;resize:vertical;min-height:90px}
+button,.btn{font:inherit;font-weight:700;border:0;border-radius:999px;padding:9px 18px;background:var(--accent);color:#fff;cursor:pointer;text-decoration:none;display:inline-block}
+.err{color:#C92A2A;font-weight:700}
+</style>
+</head>
+<body>
+<header class="site"><div class="in"><a class="logo" href="/">Mana<span>Village</span></a></div></header>
+<main>
+  <h1 id="title">パソコンの投稿ツールに戻ります…</h1>
+  <p class="lead" id="lead">Returning to ManaVillage Publisher on this computer…</p>
+
+  <div class="box" id="go-box">
+    <p>自動で戻らないときは、このボタンを押してください。<br><small>If nothing happens, click the button.</small></p>
+    <a class="btn" id="go" href="#">投稿ツールに戻る / Return to the app</a>
+  </div>
+
+  <div class="box">
+    <p><b>うまく戻れなかったとき</b>：ブラウザの「戻る」でこのページに戻り、下の文字をコピーして、投稿ツールの「コードを貼る」に貼ってください（または <code>python tools/publish.py auth tiktok --code "…"</code>）。<br>
+    <small>If the app could not be reached, copy the text below and paste it into the app’s “paste code” box.</small></p>
+    <textarea id="code" readonly></textarea>
+    <p><button id="copy">コピー / Copy</button> <span id="copied"></span></p>
+  </div>
+
+  <p class="note">このページは、ブラウザの中でログインのコードを同じパソコンの投稿ツール（127.0.0.1）に渡すだけです。コードをどこにも保存・送信しません。<br>
+  <small>This page only hands the one-time authorization code to the app running on this same computer (127.0.0.1). It does not store or send the code anywhere else. See our <a href="/publisher/privacy.html">Privacy Policy</a>.</small></p>
+</main>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  var state = q.get("state") || "";
+  var m = /^p(\d{2,5})\./.exec(state);       // publish.py が state の先頭に、自分のポート番号を入れている
+  var port = m ? m[1] : "8766";
+  // Instagram はコードの後ろに "#_" を付けるが、それは location.hash に入るので、ここでは search だけを渡す
+  var target = "http://127.0.0.1:" + port + "/callback" + location.search;
+  document.getElementById("go").href = target;
+  document.getElementById("code").value = location.search.replace(/^\?/, "");
+  document.getElementById("copy").onclick = function () {
+    var t = document.getElementById("code");
+    t.select();
+    (navigator.clipboard ? navigator.clipboard.writeText(t.value) : Promise.reject()).catch(function () { document.execCommand("copy"); });
+    document.getElementById("copied").textContent = "コピーしました / Copied";
+  };
+  if (q.get("error")) {
+    document.getElementById("title").textContent = "ログインできませんでした";
+    document.getElementById("lead").innerHTML = '<span class="err"></span>';
+    document.querySelector("#lead .err").textContent = (q.get("error_description") || q.get("error_reason") || q.get("error")) + "（投稿ツールに戻って、もう一度ログインしてください）";
+    return;
+  }
+  if (!q.get("code")) {
+    document.getElementById("title").textContent = "ログインのコードがありません";
+    document.getElementById("lead").textContent = "This page is used only as the sign-in return address of ManaVillage Publisher.";
+    document.getElementById("go-box").hidden = true;
+    return;
+  }
+  setTimeout(function () { location.replace(target); }, 1200);
+})();
+</script>
+</body>
+</html>

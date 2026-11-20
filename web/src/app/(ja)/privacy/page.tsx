@@ -99,7 +99,13 @@ export default function PrivacyPage() {
         法令の変更や、サイトの機能の追加などに合わせて、このポリシーを変更することがあります。変更したときは、このページに反映します。
       </p>
 
-      <h2>10. お問い合わせ先</h2>
+      <h2>10. 動画投稿ツール(ManaVillage Publisher)</h2>
+      <p>
+        運営者は、自分の学習動画を自分の YouTube・TikTok・Instagram に投稿するために、自分のパソコンだけで動く投稿ツール「ManaVillage Publisher」を使っています。
+        このツールが各サービスから受け取る情報と、その取り扱いは、<a href="/publisher/privacy.html">ManaVillage Publisher のプライバシーポリシー</a>にまとめています。
+      </p>
+
+      <h2>11. お問い合わせ先</h2>
       <p>
         運営者: {OPERATOR_NAME}<br />
         メール: {CONTACT_EMAIL}<br />
