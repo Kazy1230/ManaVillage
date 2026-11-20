@@ -1,0 +1,26 @@
+/* manavillage.online — light theme only */
+:root{--bg:#FFFBF5;--card:#FFFFFF;--ink:#24262B;--sub:#6B6F78;--line:#ECE4D8;--accent:#E8590C;--accent-soft:#FFF0E3;--link:#1C7ED6}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Helvetica Neue",Arial,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",sans-serif;line-height:1.75;font-size:16px}
+a{color:var(--link)}
+header.site{border-bottom:1px solid var(--line);background:var(--card)}
+header.site .in{max-width:860px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+header.site .logo{font-weight:800;font-size:20px;color:var(--ink);text-decoration:none}
+header.site .logo span{color:var(--accent)}
+header.site nav{display:flex;gap:16px;font-size:14px;margin-left:auto}
+main{max-width:860px;margin:0 auto;padding:28px 20px 60px}
+h1{font-size:28px;line-height:1.35;margin:8px 0 6px}
+h2{font-size:20px;margin:36px 0 8px;padding-top:8px;border-top:1px solid var(--line)}
+h3{font-size:17px;margin:22px 0 4px}
+.lead{color:var(--sub);margin-top:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:16px 0}
+.ja{margin-top:48px;padding-top:24px;border-top:3px solid var(--accent-soft)}
+.note{background:var(--accent-soft);border-radius:10px;padding:10px 14px;font-size:15px}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:#FAF5EE}
+code{background:#F3EEE6;border-radius:5px;padding:1px 6px;font-size:14px}
+footer{border-top:1px solid var(--line);color:var(--sub);font-size:14px}
+footer .in{max-width:860px;margin:0 auto;padding:18px 20px;display:flex;gap:16px;flex-wrap:wrap}
+@media (max-width:600px){h1{font-size:23px}header.site nav{margin-left:0}}
