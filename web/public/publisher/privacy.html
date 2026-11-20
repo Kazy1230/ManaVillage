@@ -28,7 +28,7 @@
       <td>Uploads videos and sets their thumbnails; reads the channel name (to show which channel will receive the upload) and the privacy/processing status of videos the app uploaded (to confirm that a scheduled video was published).</td></tr>
     <tr><td>TikTok<br><small>(Login Kit, Content Posting API)</small></td><td><code>user.info.basic</code><br><code>video.publish</code></td>
       <td>Reads the account’s open ID, display name and avatar, and the creator info required before posting (nickname, avatar, available privacy levels, comment/duet/stitch settings, maximum video length); uploads the video with the settings the creator selects; reads the post’s publishing status.</td></tr>
-    <tr><td>Instagram<br><small>(Instagram API with Instagram Login)</small></td><td><code>instagram_business_basic</code><br><code>instagram_business_content_publish</code></td>
+    <tr><td>Instagram<br><small>(Instagram API with Unified Login)</small></td><td><code>instagram_basic</code><br><code>instagram_content_publish</code></td>
       <td>Reads the professional account’s user ID and username; uploads the video as a Reel with the caption the creator enters; reads the upload’s processing status and the published post’s link.</td></tr>
   </table>
   <p>The app does <b>not</b> read your followers, messages, comments, analytics, viewing history, contacts, location, or any information about other people. It does not access any data from viewers of our videos.</p>
@@ -55,7 +55,7 @@
     <li><b>In the app:</b> run <code>python tools/publish.py logout youtube</code> (or <code>tiktok</code> / <code>instagram</code>). This deletes the stored token from the computer and, for YouTube and TikTok, also asks the platform to revoke it. Deleting the folder <code>%USERPROFILE%\.manavillage</code> removes all tokens.</li>
     <li><b>Google / YouTube:</b> remove “ManaVillage Publisher” at <a href="https://myaccount.google.com/connections">Google Account → Third-party apps &amp; services</a> (or <a href="https://security.google.com/settings/security/permissions">security.google.com/settings/security/permissions</a>).</li>
     <li><b>TikTok:</b> in the TikTok app, open Settings and privacy → Security &amp; permissions → Apps and services permissions, and remove the app.</li>
-    <li><b>Instagram:</b> in Instagram, open Settings → Website permissions → Apps and websites, and remove the app.</li>
+    <li><b>Instagram:</b> in Meta Business Suite / Business settings, open Integrations → Connected apps and remove the app (or remove it in Instagram under Settings → Website permissions → Apps and websites).</li>
   </ul>
   <p>Because we keep no copy of your data on any server, revoking access and deleting the local folder removes everything the app stored. If you would like us to confirm deletion, contact us at the address below and we will respond within 30 days.</p>
 
@@ -84,7 +84,7 @@
     <ul>
       <li><b>YouTube</b>（youtube.upload・youtube.readonly）：動画のアップロードとサムネイルの設定、チャンネル名の表示、本アプリで上げた動画の公開状態の確認。</li>
       <li><b>TikTok</b>（user.info.basic・video.publish）：アカウントのID・表示名・アイコン、投稿前に必要なクリエイター情報（ニックネーム・選べる公開範囲・コメント／デュエット／Stitch の設定・投稿できる長さ）、動画の投稿、投稿の状態。</li>
-      <li><b>Instagram</b>（instagram_business_basic・instagram_business_content_publish）：プロアカウントのIDとユーザー名、リールの投稿、処理の状態と投稿のURL。</li>
+      <li><b>Instagram</b>（instagram_basic・instagram_content_publish）：プロアカウントのIDとユーザー名、リールの投稿、処理の状態と投稿のURL。</li>
     </ul>
     <p>フォロワー・メッセージ・コメント・分析データ・視聴履歴・位置情報など、ほかの情報や、ほかの人の情報にはアクセスしません。パスワードは各サービスの公式のログイン画面で入力するので、本アプリには渡りません。</p>
     <h3>3. 使い道</h3>
@@ -98,7 +98,7 @@
       <li>本アプリ：<code>python tools/publish.py logout youtube</code>（tiktok / instagram）で、パソコンのトークンを消し、YouTube と TikTok では許可の取り消しも送ります。<code>%USERPROFILE%\.manavillage</code> フォルダーを消すと、すべてのトークンが消えます。</li>
       <li>Google / YouTube：<a href="https://myaccount.google.com/connections">Google アカウント → サードパーティのアプリとサービス</a>から外す。</li>
       <li>TikTok：アプリの「設定とプライバシー」→「セキュリティと権限」→「アプリとサービスの権限」から外す。</li>
-      <li>Instagram：「設定」→「ウェブサイトのアクセス許可」→「アプリとウェブサイト」から外す。</li>
+      <li>Instagram：Meta のビジネス設定の「連携」→「接続済みのアプリ」から外す（Instagram の「設定」→「ウェブサイトのアクセス許可」→「アプリとウェブサイト」からも外せます）。</li>
     </ul>
     <p>サーバーに情報を残していないので、許可を取り消してフォルダーを消せば、本アプリが保存したものはすべて消えます。削除の確認をご希望の方は、下のメールアドレスにご連絡ください（30日以内にお返事します）。</p>
     <h3>7. YouTube API サービス</h3>
