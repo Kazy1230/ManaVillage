@@ -1,7 +1,7 @@
 "use client";
 
 // マイページの「アカウントを削除する」。押すとポップアップで説明と確認のチェックが出て、「削除する」で削除する
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { deleteAccount } from "@/app/actions";
 import ActionForm from "@/components/ActionForm";
 import type { Lang } from "@/lib/sections";
@@ -39,6 +39,7 @@ const T = {
 export default function DeleteAccount({ lang }: { lang: Lang }) {
   const s = T[lang];
   const ref = useRef<HTMLDialogElement>(null);
+  const [checked, setChecked] = useState(false);
   const close = () => ref.current?.close();
   return (
     <>
@@ -49,16 +50,17 @@ export default function DeleteAccount({ lang }: { lang: Lang }) {
         ref={ref}
         className="delete-box"
         aria-labelledby="delete-title"
+        onClose={() => setChecked(false)}
         onClick={(e) => { if (e.target === e.currentTarget) close(); }}
       >
         <p id="delete-title" className="delete-title">{s.title}</p>
         <ul>
           {s.points.map((p) => <li key={p}>{p}</li>)}
         </ul>
-        <ActionForm action={deleteAccount} submitLabel={s.submit} pendingLabel={s.pending} buttonClass="btn block-btn danger solid">
+        <ActionForm action={deleteAccount} submitLabel={s.submit} pendingLabel={s.pending} buttonClass="btn block-btn danger solid" submitDisabled={!checked}>
           <input type="hidden" name="lang" value={lang} />
           <label className="check">
-            <input type="checkbox" name="confirm" value="yes" required />
+            <input type="checkbox" name="confirm" value="yes" required checked={checked} onChange={(e) => setChecked(e.target.checked)} />
             {s.confirm}
           </label>
         </ActionForm>

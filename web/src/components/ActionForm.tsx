@@ -10,6 +10,8 @@ type Props = {
   className?: string;
   buttonClass?: string;
   footNote?: React.ReactNode;
+  /** true のあいだ送信ボタンを押せなくする(確認のチェック待ちなど) */
+  submitDisabled?: boolean;
   onSuccess?: () => void;
   children: React.ReactNode;
 };
@@ -21,6 +23,7 @@ export default function ActionForm({
   className = "form",
   buttonClass = "btn primary block-btn",
   footNote,
+  submitDisabled = false,
   onSuccess,
   children,
 }: Props) {
@@ -39,10 +42,10 @@ export default function ActionForm({
       {footNote ? (
         <div className="compose-foot">
           <span className="hint">{footNote}</span>
-          <button className={buttonClass} type="submit" disabled={pending}>{pending ? pendingLabel : submitLabel}</button>
+          <button className={buttonClass} type="submit" disabled={pending || submitDisabled}>{pending ? pendingLabel : submitLabel}</button>
         </div>
       ) : (
-        <button className={buttonClass} type="submit" disabled={pending}>{pending ? pendingLabel : submitLabel}</button>
+        <button className={buttonClass} type="submit" disabled={pending || submitDisabled}>{pending ? pendingLabel : submitLabel}</button>
       )}
     </form>
   );
