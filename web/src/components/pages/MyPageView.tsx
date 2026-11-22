@@ -1,6 +1,6 @@
 // マイページ。日本語(/mypage)と英語(/en/mypage)で共通
 import Link from "next/link";
-import { logout, updateNickname } from "@/app/actions";
+import { logout, setOshieteMail, updateNickname } from "@/app/actions";
 import ActionForm from "@/components/ActionForm";
 import { findArticle } from "@/lib/articles";
 import { requireViewer } from "@/lib/auth";
@@ -59,12 +59,15 @@ export default async function MyPageView({ lang }: { lang: Lang }) {
   const viewer = await requireViewer(lp(lang, "/mypage"), lang);
   const supabase = await createClient();
 
-  const [comments, threads, posts, profile] = await Promise.all([
+  const [comments, threads, posts, profile, oshiete] = await Promise.all([
     supabase.from("comments").select("id, article_slug, body, created_at", { count: "exact" }).eq("user_id", viewer.id).order("created_at", { ascending: false }).limit(20),
     supabase.from("threads").select("id, title, category_id, reply_count, created_at", { count: "exact" }).eq("user_id", viewer.id).order("created_at", { ascending: false }).limit(20),
     supabase.from("thread_posts").select("id, body, created_at, thread:threads(id, title, category_id)", { count: "exact" }).eq("user_id", viewer.id).order("created_at", { ascending: false }).limit(20),
     supabase.from("profiles").select("created_at").eq("id", viewer.id).single(),
+    // おしえて英語を使ったことがある人だけ、朝のメールの設定を出す(日本語のページだけ)
+    lang === "ja" ? supabase.from("oshiete_progress").select("mail_opt_out").eq("user_id", viewer.id).maybeSingle() : Promise.resolve({ data: null }),
   ]);
+  const oshieteMailOn = oshiete.data ? !oshiete.data.mail_opt_out : null;
 
   const items: Item[] = [
     ...(comments.data ?? []).map((c) => {
@@ -124,6 +127,21 @@ export default async function MyPageView({ lang }: { lang: Lang }) {
               </ActionForm>
               <p className="sub">{s.notify(viewer.email)}</p>
             </section>
+            {oshieteMailOn !== null && (
+              <section className="panel side-form reveal">
+                <h2 style={{ fontSize: 18 }}>おしえて英語</h2>
+                <p className="sub">
+                  {oshieteMailOn
+                    ? `毎朝7時に、新しい質問が届いたことを ${viewer.email} にお知らせしています。`
+                    : "朝のメールは止めています。"}
+                </p>
+                <form action={setOshieteMail}>
+                  <input type="hidden" name="lang" value={lang} />
+                  <input type="hidden" name="on" value={oshieteMailOn ? "0" : "1"} />
+                  <button className="btn block-btn" type="submit">{oshieteMailOn ? "朝のメールを止める" : "朝のメールを受け取る"}</button>
+                </form>
+              </section>
+            )}
             <section className="panel side-form reveal">
               <h2 style={{ fontSize: 18 }}>{s.account}</h2>
               <Link className="btn" href={lp(lang, "/update-password")}>{s.changePw}</Link>

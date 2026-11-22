@@ -168,3 +168,16 @@ web/
 - **日本語学習(英語で書く)の見た目**: レイアウトと部品は英語学習と同じ。色・文字・飾りだけを和風に上書きする(和紙の地、墨、朱、藍、明朝の見出し、青海波)。イラストにも和の小物を入れる
 - **日本語の表記**: 例文はローマ字を最初から表示する(切り替えで消せる)。**漢字には、すべて読み(ルビ)を付ける**(ルビも切り替えで消せる)
 - モック: `docs/mock-japanese/`(`00-index` 全体の入口、`01` 日本語学習のトップ、`02` 記事、`03` 英語学習のトップ)。生成スクリプトは `docs/mock-japanese/src/`(`furigana.py` が、ルビのない漢字を見つけたらエラーにする)
+
+## おしえて英語(`/oshiete`、2026-11-22〜 MVP)
+
+英文法アプリ。ユーザーが先生役になり、AI の生徒(ハル・リコ・タクミ)の質問に答える。もとは claude.ai の Artifact 版(英語動画ショートのリポジトリの `app/oshiete.html`)で、中身(質問・解説・判定の要点・追い質問・わざと間違い)はそのまま `web/src/lib/oshiete/talks.ts` に移した(フェーズ1〜4の40トーク)
+
+- 画面: `web/src/app/(oshiete)/`(サイトのヘッダー・フッターを付けない、3つ目のルートレイアウト。フォントは Zen Maru Gothic をここだけで読む)。アプリ本体は `web/src/components/oshiete/OshieteApp.tsx`(クライアントだけで描く)。見た目は `(oshiete)/oshiete.css`(Artifact 版と同じ、ライトモードだけ)
+- 体験版: ログインしなくても最初の3トーク。進み具合はブラウザ(localStorage `oshiete-eigo-site-v1`)。4つ目からは、ログインしない限り開かない(判定の API も、ログインなしでは最初の3トークしか受け付けない)
+- ログインした人: 1日3トーク。1日の区切りは日本時間の朝7時(`dayKey`)。進み具合は `oshiete_progress.state`(本人の行だけ RLS で読み書き)。体験版のあとに初めてログインすると、ブラウザの進み具合を引きつぐ
+- 3トーク解決したら: ログインの案内(ログインしていない人だけ)→ レビュー(★5段階＋記述2問)。レビューは `oshiete_reviews`(サーバーが秘密鍵で書く。読めるのは管理者だけ。一覧 `/oshiete/reviews`)
+- AI 判定: `POST /api/oshiete/judge` が DeepSeek(`DEEPSEEK_API_KEY`、モデルは `DEEPSEEK_MODEL`、既定 `deepseek-chat`)を呼ぶ。判定の文は Artifact 版と同じ(`web/src/lib/oshiete/judge.ts`)。失敗・上限超えのときは、言葉の簡易判定に戻して、画面に小さく理由を出す。回数の上限は1日あたり IP 120・ログインなし 40・ログイン 150(`config.ts`。数えるのは `oshiete_rate_hit`)
+- 朝のメール: Vercel Cron(`web/vercel.json`、22:00 UTC)→ `GET /api/oshiete/morning`(`Authorization: Bearer CRON_SECRET`。`?dry=1` で送らずに数だけ)。メールを止めていない、全部は解決していない、今日まだ答えていない人に、次の質問を知らせる。止め方は、メールのリンク(`/oshiete/mail-stop?t=…`、ボタンを押して止める)、メールソフトの配信停止(`POST /api/oshiete/unsubscribe`)、マイページのボタン
+- ヒント動画: YouTube の限定公開を埋めこむ。動画 ID は `web/src/lib/oshiete/config.ts` の `HINT_VIDEOS` だけで差し替える
+- 環境変数(追加): `DEEPSEEK_API_KEY`(秘密)、`CRON_SECRET`(秘密)、`DEEPSEEK_MODEL`(任意)
