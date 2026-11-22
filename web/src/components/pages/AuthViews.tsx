@@ -102,6 +102,7 @@ export async function SignupView({ lang, sp }: { lang: Lang; sp: SP }) {
     <AuthShell title={s.signupTitle} sub={s.signupSub} tab="signup" next={next} lang={lang}>
       <ActionForm action={signup} submitLabel={s.signupBtn} pendingLabel={s.signingUp}>
         <LangField lang={lang} />
+        <input type="hidden" name="next" value={next} />
         <label className="field" htmlFor="su-nick">
           {s.nickname}
           <input id="su-nick" name="nickname" required maxLength={30} autoComplete="nickname" placeholder={s.nicknamePh} />

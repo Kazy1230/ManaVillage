@@ -45,6 +45,12 @@ export async function login(_: ActionState, fd: FormData): Promise<ActionState> 
   redirect(safeNext(fd.get("next")));
 }
 
+// 登録確認のメールのリンクから戻る先。next がなければマイページ
+const signupNext = (fd: FormData, lang: Lang) => {
+  const next = safeNext(fd.get("next"));
+  return next === "/" ? lp(lang, "/mypage") : next;
+};
+
 export async function signup(_: ActionState, fd: FormData): Promise<ActionState> {
   const lang = langOf(fd);
   const nickname = text(fd, "nickname");
@@ -55,7 +61,7 @@ export async function signup(_: ActionState, fd: FormData): Promise<ActionState>
   const { error } = await supabase.auth.signUp({
     email: text(fd, "email"),
     password,
-    options: { data: { nickname }, emailRedirectTo: `${SITE_URL}/auth/confirm?next=${lp(lang, "/mypage")}` },
+    options: { data: { nickname }, emailRedirectTo: `${SITE_URL}/auth/confirm?next=${encodeURIComponent(signupNext(fd, lang))}` },
   });
   if (error) return { error: authError(error.message, lang) };
   return { ok: say(lang, "確認メールを送りました。メール内のリンクを開くと登録が完了します。", "We’ve sent you a confirmation email. Open the link in it to finish signing up.") };
@@ -99,6 +105,18 @@ export async function updateNickname(_: ActionState, fd: FormData): Promise<Acti
   if (error) return { error: say(lang, "保存できませんでした。もう一度お試しください。", "Couldn’t save. Please try again.") };
   revalidatePath("/", "layout");
   return { ok: say(lang, "ニックネームを保存しました。", "Your nickname has been saved.") };
+}
+
+// ---------- おしえて英語 ----------
+
+// マイページの「朝のメール」の切り替え
+export async function setOshieteMail(fd: FormData) {
+  const viewer = await getViewer();
+  if (!viewer) return;
+  const supabase = await createClient();
+  const { error } = await supabase.from("oshiete_progress").update({ mail_opt_out: fd.get("on") !== "1" }).eq("user_id", viewer.id);
+  if (error) console.error("[oshiete mail setting]", error.message);
+  revalidatePath(lp(langOf(fd), "/mypage"));
 }
 
 // ---------- article comments ----------
