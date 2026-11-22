@@ -76,7 +76,7 @@ as $$
   insert into public.oshiete_rate as r (key, day, count)
   values (p_key, p_day, 1)
   on conflict (key, day) do update set count = r.count + 1
-  returning count <= p_limit;
+  returning r.count <= p_limit;
 $$;
 revoke execute on function public.oshiete_rate_hit(text, date, integer) from public, anon, authenticated;
 grant execute on function public.oshiete_rate_hit(text, date, integer) to service_role;

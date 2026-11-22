@@ -72,7 +72,7 @@
 ## おしえて英語のサイト版 MVP(2026-11-22 実装。ブランチ `oshiete-mvp`、本番には未公開)
 
 Kaz がやること(上から順に):
-- [ ] **マイグレーションを本番に流す**: `web/supabase/migrations/20261122000000_oshiete.sql` を Supabase の SQL Editor で実行(テーブル `oshiete_progress`・`oshiete_reviews`・`oshiete_rate` と関数 `oshiete_rate_hit`)。流すまでは、ログインした人の進み具合とレビューが保存されない(AI 判定は回数の上限なしで動く)
+- [x] **マイグレーションを本番に流した**(2026-11-22、Kaz の了承のうえで SQL Editor から): `web/supabase/migrations/20261122000000_oshiete.sql`(テーブル `oshiete_progress`・`oshiete_reviews`・`oshiete_rate` と関数 `oshiete_rate_hit`)。回数の数え方・レビューの保存・ログインなしでは読み書きできないことを確認済み
 - [ ] **Vercel の環境変数**: `CRON_SECRET`(長いランダムな文字列。Production)を足す。朝のメールの呼び出しを守る鍵で、未設定だと朝のメールは動かない。`DEEPSEEK_API_KEY` は登録済み
 - [ ] **朝のメールを届けるには、Resend の独自ドメインの認証が先**(下の「運用・設定」の項目と同じ)。今の送信元 `onboarding@resend.dev` では Kaz 本人にしか届かない
 - [ ] **ヒント動画の ID**: YouTube に限定公開で上げたら、`web/src/lib/oshiete/config.ts` の `HINT_VIDEOS` に動画 ID を入れる(8本。空のままなら解説文だけが出る)
