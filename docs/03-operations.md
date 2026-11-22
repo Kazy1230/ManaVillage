@@ -16,7 +16,7 @@ npm run dev                  # http://localhost:3000
 ## デプロイ(Vercel)
 
 - **記事の公開は Kaz の承認後だけ**(`web/content/planning/workflow.md` 0章)。下書きのままなら、コードのデプロイで記事が公開されることはない
-- 現在は Vercel CLI で手動デプロイしている(GitHub 連携の自動デプロイは未設定)
+- GitHub の main に push すると、Vercel が自動で本番にデプロイする(2026-11-22 に確認)。Vercel CLI の手動デプロイも使える
 
 ```bash
 cd web

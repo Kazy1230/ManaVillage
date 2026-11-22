@@ -76,6 +76,6 @@ Kaz がやること(上から順に):
 - [ ] **Vercel の環境変数**: `CRON_SECRET`(長いランダムな文字列。Production)を足す。朝のメールの呼び出しを守る鍵で、未設定だと朝のメールは動かない。`DEEPSEEK_API_KEY` は登録済み
 - [ ] **朝のメールを届けるには、Resend の独自ドメインの認証が先**(下の「運用・設定」の項目と同じ)。今の送信元 `onboarding@resend.dev` では Kaz 本人にしか届かない
 - [ ] **ヒント動画の ID**: YouTube に限定公開で上げたら、`web/src/lib/oshiete/config.ts` の `HINT_VIDEOS` に動画 ID を入れる(8本。空のままなら解説文だけが出る)
-- [ ] **main へのマージとデプロイ**(Kaz の了承後)。デプロイ後、Vercel の Settings → Cron Jobs に `/api/oshiete/morning`(毎日 22:00 UTC = 日本時間 7:00)が出ているか確認する。Hobby プランの Cron は、指定した時刻の1時間以内のどこかで動く
+- [x] **main へのマージとデプロイ**(2026-11-22、Kaz の了承のうえで)。本番の `/oshiete` が表示され、DeepSeek の判定と回数の記録が動くことを確認。Cron(`/api/oshiete/morning`、毎日 22:00 UTC = 日本時間 7:00)も登録済み。Hobby プランの Cron は、指定した時刻の1時間以内のどこかで動く
 - [ ] **レビューを見る**: `https://manavillage.online/oshiete/reviews`(`is_admin = true` のアカウントだけ)か、Supabase の Table Editor の `oshiete_reviews`
 - [ ] 入口(`/`)や英語学習のトップから `/oshiete` への導線を置くか(今はリンクなし)
