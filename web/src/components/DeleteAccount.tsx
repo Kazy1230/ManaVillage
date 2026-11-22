@@ -1,7 +1,7 @@
 "use client";
 
-// マイページの「アカウントを削除する」。押すと説明と確認のチェックが出て、もう一度押すと削除する
-import { useState } from "react";
+// マイページの「アカウントを削除する」。押すとポップアップで説明と確認のチェックが出て、「削除する」で削除する
+import { useRef } from "react";
 import { deleteAccount } from "@/app/actions";
 import ActionForm from "@/components/ActionForm";
 import type { Lang } from "@/lib/sections";
@@ -38,28 +38,32 @@ const T = {
 
 export default function DeleteAccount({ lang }: { lang: Lang }) {
   const s = T[lang];
-  const [open, setOpen] = useState(false);
-  if (!open) {
-    return (
-      <button className="btn block-btn danger" type="button" onClick={() => setOpen(true)}>
+  const ref = useRef<HTMLDialogElement>(null);
+  const close = () => ref.current?.close();
+  return (
+    <>
+      <button className="btn block-btn danger" type="button" onClick={() => ref.current?.showModal()}>
         {s.open}
       </button>
-    );
-  }
-  return (
-    <div className="delete-box" role="group" aria-labelledby="delete-title">
-      <p id="delete-title" className="delete-title">{s.title}</p>
-      <ul>
-        {s.points.map((p) => <li key={p}>{p}</li>)}
-      </ul>
-      <ActionForm action={deleteAccount} submitLabel={s.submit} pendingLabel={s.pending} buttonClass="btn block-btn danger solid">
-        <input type="hidden" name="lang" value={lang} />
-        <label className="check">
-          <input type="checkbox" name="confirm" value="yes" required />
-          {s.confirm}
-        </label>
-      </ActionForm>
-      <button className="btn block-btn" type="button" onClick={() => setOpen(false)}>{s.cancel}</button>
-    </div>
+      <dialog
+        ref={ref}
+        className="delete-box"
+        aria-labelledby="delete-title"
+        onClick={(e) => { if (e.target === e.currentTarget) close(); }}
+      >
+        <p id="delete-title" className="delete-title">{s.title}</p>
+        <ul>
+          {s.points.map((p) => <li key={p}>{p}</li>)}
+        </ul>
+        <ActionForm action={deleteAccount} submitLabel={s.submit} pendingLabel={s.pending} buttonClass="btn block-btn danger solid">
+          <input type="hidden" name="lang" value={lang} />
+          <label className="check">
+            <input type="checkbox" name="confirm" value="yes" required />
+            {s.confirm}
+          </label>
+        </ActionForm>
+        <button className="btn block-btn" type="button" onClick={close}>{s.cancel}</button>
+      </dialog>
+    </>
   );
 }

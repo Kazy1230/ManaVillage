@@ -276,10 +276,13 @@ textarea{min-height:110px;resize:vertical}
 .btn.danger{color:var(--danger);border-color:var(--line-strong)}
 .btn.danger:hover{border-color:var(--danger)}
 .btn.danger.solid{background:var(--danger);border-color:var(--danger);color:#fff}
-.delete-box{display:grid;gap:12px;padding:16px;border:1px solid var(--danger);border-radius:14px;background:var(--p4)}
-.delete-title{margin:0;font-weight:700;color:var(--danger)}
-.delete-box ul{margin:0;padding-left:1.2em;display:grid;gap:4px;font-size:13px;line-height:1.7}
-.delete-box .check{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500}
+.delete-box{width:min(420px,calc(100vw - 32px));max-height:calc(100dvh - 32px);overflow:auto;margin:auto;padding:24px 20px;border:2px solid var(--danger);border-radius:18px;background:var(--surface);color:var(--ink);box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.delete-box[open]{display:grid;gap:14px}
+.delete-box::backdrop{background:rgba(20,20,30,.5)}
+.delete-title{margin:0;font-size:17px;font-weight:700;color:var(--danger)}
+.delete-box ul{margin:0;padding-left:1.2em;display:grid;gap:4px;font-size:14px;line-height:1.7}
+.delete-box .check{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500;cursor:pointer}
+.delete-box .check input{width:20px;height:20px;padding:0;flex:none;accent-color:var(--danger)}
 .delete-box .form{display:grid;gap:12px}
 .hint{font-size:12px;color:var(--muted);font-weight:400}
 .or{display:flex;align-items:center;gap:12px;font-size:12px;color:var(--faint)}
