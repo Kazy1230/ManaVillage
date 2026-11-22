@@ -103,5 +103,5 @@
 | 技術スタック(6章) | **Next.js 16 + Supabase。FastAPI は使わない**。要件が CRUD 中心で、アプリを1つにして管理を楽にするため。将来 Python の分析が必要になったら、同じ Postgres に接続するサービスを後から足す | 2026-09-29 |
 | メール送信サービス(6章) | **Resend**(通知メール)。認証メール(登録確認・パスワード再設定)は Supabase Auth が送る | 2026-09-29 |
 | ホスティング | Vercel(Hobby)。本番ドメイン **manavillage.online**(お名前.com で取得) | 2026-09-30 |
-| サイトの方向性 | 記事は「英語の勉強方法」をメインにする。記事の制作は `web/content/planning/workflow.md` のワークフローに従う | 2026-09-30 |
+| サイトの方向性 | 記事は「英語の勉強方法」をメインにする。記事の制作は `web/content/english/planning/workflow.md` のワークフローに従う | 2026-09-30 |
 | 記事の下書き | frontmatter の `status: draft`(旧形式は `draft: true`)。本番のサイト表示・sitemap・内部リンクから除外し、ローカルでだけ表示する | 2026-09-30 |

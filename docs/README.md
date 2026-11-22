@@ -10,4 +10,4 @@
 | [06-open-items.md](06-open-items.md) | 残っている作業と、未決定のこと |
 | [archive/](archive/) | 役目を終えた資料(要件定義書の原本、最初の記事作成手順書、導入前のテーマ一覧、学習哲学の聞き取り、HTML モック) |
 
-記事制作ワークフローそのものは [`../web/content/planning/workflow.md`](../web/content/planning/workflow.md) にある。
+記事制作ワークフローそのものは [`../web/content/english/planning/workflow.md`](../web/content/english/planning/workflow.md) にある。

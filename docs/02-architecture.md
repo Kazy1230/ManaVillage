@@ -6,7 +6,7 @@ manavillage.online の技術構成。コードを触る前に読む。
 
 ```
 ブラウザ ──> Vercel(Next.js 16 App Router, Node.js)
-               ├─ 記事: web/content/articles/*.md を実行時に読み込んで SSR
+               ├─ 記事: web/content/<記事チーム>/articles/*.md を実行時に読み込んで SSR
                ├─ 認証・DB: Supabase(Postgres + Auth + RLS)
                └─ 通知メール: Resend(サーバー側から送信)
 ```
@@ -33,11 +33,15 @@ manavillage.online の技術構成。コードを触る前に読む。
 ```
 web/
   content/
-    articles/            英語学習の記事の Markdown(slug = ファイル名)
-    japanese/articles/   日本語学習の記事の Markdown(英語で書く)。slug は科目をまたいで重複させない
-    illustrations/<slug>/core.mjs, core.svg   記事イラストの描画コードと原本
-    materials/           運営者の学習の素材(personal-brain のスナップショット)
-    planning/            記事制作のルール(common.md = 共通、workflow.md = 英語学習、japanese/workflow.md = 日本語学習)、在庫(inventory.csv)、topic-map.md、outlines/)
+    <記事チーム>/        english(英語学習)・japanese(日本語学習、英語で書く)・it・philosophy・science・relationships。1チーム1フォルダ
+      articles/          記事の Markdown(slug = ファイル名)。slug は科目をまたいで重複させない
+      planning/          そのチームの記事制作のルール(workflow.md)、在庫(inventory.csv)、topic-map.md、proposals/ など
+    common/              記事課の共通
+      planning/          共通のルール(common.md)、掲示板の最初のスレッド案(board-seed.md)
+      materials/         運営者の学習の素材(personal-brain のスナップショット)
+      characters/        キャラクター(白河雪菜)の設定
+      brand/             ロゴの元画像(make-icons.mjs が読む)
+    illustrations/<slug>/core.mjs, core.svg   記事イラストの描画コードと原本(深さを変えない。scripts/doodle.mjs を相対パスで読む)
   public/
     illustrations/<slug>/core.webp   ワークフロー導入後の記事のイラスト
     articles/<slug>/*.svg            導入前の記事のイラスト
@@ -46,8 +50,6 @@ web/
     illustrate.mjs       content/illustrations/<slug>/*.mjs → svg、webp(幅900)、共有用の PNG(1200x630)を書き出す
     make-og.mjs          サイト共通の共有画像 public/og-default.png を作る
     check-article.mjs    記事の機械チェック(common.md 2-5 と、科目の文書の「機械チェック」の項目項目)
-    draw-articles.mjs    導入前の記事10本のイラスト(旧方式)
-    draw-study.mjs       導入前の勉強法記事30本のイラスト(旧方式)
   src/
     proxy.ts             Supabase のセッション更新(旧 middleware)
     app/
@@ -118,7 +120,7 @@ web/
 - 科目ごとに読み込む(`getAllArticles(section)`)。記事は `section` と `url` を持つ。コメントやマイページのように slug だけのときは `findArticle(slug)`
 - **公開済みの記事が1本もない科目は、本番ではメニュー・入口のカード・ページ・sitemap に出さない**(`isSectionLive`)。ローカルでは下書きの確認のため出す
 - 日本語学習の記事: 漢字には記法 `{漢字|かんじ}` でルビを付ける(title、description、本文、phrases)。`check-article.mjs` がルビのない漢字を不合格にする。例文は `<div class="example">` に `.jpx`(日本語)、`.ro`(ローマ字)、`.tr`(英訳)。例え話の囲みは `<div class="analogy">`(体験談の `.voice` は使わない)。ふりがなとローマ字は最初から表示し、記事ページの切り替えで消せる(`ReadingToggle`)
-- 本文の独自記法: `==語句==` → 蛍光ペン。例文ボックス `<div class="example">`、運営者の体験 `<div class="voice">`(書き方は `web/content/planning/workflow.md` の付録)
+- 本文の独自記法: `==語句==` → 蛍光ペン。例文ボックス `<div class="example">`、運営者の体験 `<div class="voice">`(書き方は `web/content/english/planning/workflow.md` の付録)
 - `phrases`(任意)を持つ記事が最新だと、トップのヒーローでフレーズが切り替わる
 - 関連記事: frontmatter の `related` を優先し、足りない分をタグの重なりで補う
 - 記事ページの並び: 本文 → コメント → 関連記事
@@ -171,7 +173,7 @@ web/
 
 ## おしえて英語(`/oshiete`、2026-11-22〜 MVP)
 
-英文法アプリ。ユーザーが先生役になり、AI の生徒(ハル・リコ・タクミ)の質問に答える。もとは claude.ai の Artifact 版(英語動画ショートのリポジトリの `app/oshiete.html`)で、中身(質問・解説・判定の要点・追い質問・わざと間違い)はそのまま `web/src/lib/oshiete/talks.ts` に移した(フェーズ1〜4の40トーク)
+英文法アプリ。ユーザーが先生役になり、AI の生徒(ハル・リコ・タクミ)の質問に答える。もとは claude.ai の Artifact 版(`C:\まなビレッジ\ウェブ部\おしえて英語課\企画チーム\app\oshiete.html`。おしえて英語課の企画チーム。このリポジトリには入れない)で、中身(質問・解説・判定の要点・追い質問・わざと間違い)はそのまま `web/src/lib/oshiete/talks.ts` に移した(フェーズ1〜4の40トーク)
 
 - 画面: `web/src/app/(oshiete)/`(サイトのヘッダー・フッターを付けない、3つ目のルートレイアウト。フォントは Zen Maru Gothic をここだけで読む)。アプリ本体は `web/src/components/oshiete/OshieteApp.tsx`(クライアントだけで描く)。見た目は `(oshiete)/oshiete.css`(Artifact 版と同じ、ライトモードだけ)
 - 体験版: ログインしなくても最初の3トーク。進み具合はブラウザ(localStorage `oshiete-eigo-site-v1`)。4つ目からは、ログインしない限り開かない(判定の API も、ログインなしでは最初の3トークしか受け付けない)

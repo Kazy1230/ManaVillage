@@ -1,13 +1,13 @@
 # IT を学ぶ(日本語で書く)の記事制作ルール
 
 Git、ネットワーク、データベースなど、IT の仕組みを、身近なたとえと図で解説する記事(`/it/articles/...`)のルール。
-**流れと役割分担は `planning/common.md`**(2-1c, 2-1d の書き方も同じ)。記事の作業をするときは、`common.md` とこの文書の2つを読む。
+**流れと役割分担は `common/planning/common.md`**(2-1c, 2-1d の書き方も同じ)。記事の作業をするときは、`common.md` とこの文書の2つを読む。
 
 ## 1. 読者と、基本の方針
 
 - 読者: IT を使い始めた人、これから学ぶ人(初心者〜初級)。記事ごとに想定読者を決める
 - 著者: **Kaz**(`author: kaz`)。白河雪菜は、英語学習・日本語学習の記事だけで使う
-- type: 基本は **general**。体験談は、personal-brain と `content/materials/` に記録があるものだけ(`common.md` 2-1b)。**仕事の内容(勤務先、顧客、業務の細部)は、体験談として書かない**
+- type: 基本は **general**。体験談は、personal-brain と `content/common/materials/` に記録があるものだけ(`common.md` 2-1b)。**仕事の内容(勤務先、顧客、業務の細部)は、体験談として書かない**
 - 分量の目安: 2,500〜4,500字(内容が足りなければ短くてよい)
 - 見出し・導入・口調・改行は `common.md` 2-1d。仕組みは、**身近なたとえ**と**図**で見せる。たとえは、仕組みと対応していること(「ノートに書く = commit」「共有フォルダに置く = push」のように、1つずつ対応する)
 
@@ -31,14 +31,14 @@ Git、ネットワーク、データベースなど、IT の仕組みを、身�
 
 ## 5. frontmatter
 
-`planning/workflow.md` 6章と同じ。`hub`、`tags` は上の一覧から。`keyword` は、カードに大きく出る短い言葉(コマンド名など)。
+`english/planning/workflow.md` 6章と同じ。`hub`、`tags` は上の一覧から。`keyword` は、カードに大きく出る短い言葉(コマンド名など)。
 
 ## 6. 置き場所
 
 | 項目 | 場所 |
 |---|---|
 | 記事 | `web/content/it/articles/<slug>.md` |
-| テーマ管理表(IDは `I-xxxx`) | `web/content/planning/it/topic-map.md`(次の候補も、ここ) |
+| テーマ管理表(IDは `I-xxxx`) | `web/content/it/planning/topic-map.md`(次の候補も、ここ) |
 | イラスト | `web/content/illustrations/<slug>/` |
 
 ---

@@ -39,7 +39,7 @@
 7. 続けるコツ: 誰かといっしょに読む(体験5)。紙か電子か(研究。下記)
 8. 高校生へ: 教科書が先。授業と質問を使い、忘却曲線に合わせて復習し、間違えたものを100%にする。そのうえで多読を足す(体験6)
 
-## 使う体験談(記録済み。personal-brain と `content/materials/learning-philosophy.md` §7)
+## 使う体験談(記録済み。personal-brain と `content/common/materials/learning-philosophy.md` §7)
 
 | # | 体験・意見 | 使う見出し |
 |---|---|---|

@@ -8,8 +8,8 @@
 
 | 科目 | 科目の文書 | 記事のフォルダ | 在庫 | テーマ管理表 |
 |---|---|---|---|---|
-| 英語学習(日本語で書く) | `planning/workflow.md` | `content/articles/` | `planning/inventory.csv` | `planning/topic-map.md` |
-| 日本語学習(英語で書く) | `planning/japanese/workflow.md` | `content/japanese/articles/` | `planning/japanese/inventory.csv` | `planning/japanese/topic-map.md` |
+| 英語学習(日本語で書く) | `english/planning/workflow.md` | `content/english/articles/` | `english/planning/inventory.csv` | `english/planning/topic-map.md` |
+| 日本語学習(英語で書く) | `japanese/planning/workflow.md` | `content/japanese/articles/` | `japanese/planning/inventory.csv` | `japanese/planning/topic-map.md` |
 
 **記事の作業をするときは、この文書と、その科目の文書の2つだけを読む。**
 
@@ -93,7 +93,7 @@ Kaz へのインタビューを軸に、記事を面白くする流れ。
 
 テーマの抽出は、これまでと同じ(`node scripts/pick-topic.mjs <english|japanese>` で在庫から無作為。重複や「勝てない」ものは `skip` にして引き直す)。
 
-提案は `planning/proposals/<slug>.md`(日本語学習は `planning/japanese/proposals/`)に書き、要点をチャットに出す。**提案に書くこと**(順番や見出しの形は自由):
+提案は `english/planning/proposals/<slug>.md`(日本語学習は `japanese/planning/proposals/`)に書き、要点をチャットに出す。**提案に書くこと**(順番や見出しの形は自由):
 
 - 仮タイトルの案(2〜3個)、主キーワード、検索意図、想定読者(日本語学習はレベル)
 - **使えそうな体験談の候補**(2-1b): 構成案の各見出しで、Kaz の体験談を入れられそうな所と、そこで使いたい体験
@@ -109,7 +109,7 @@ Kaz は、これを素材として使う。使わない部分があってよい�
 
 **2-1b. 体験談の候補と、Kaz への質問**(提案のときに、Claude が行う)
 
-- 構成案で、体験談を入れたい所(「こんな体験があれば、読者に伝わる」)が出たら、**その体験が記録にあるか、検索する**: personal-brain(`search_persona`、theme: learning など)と `content/materials/`
+- 構成案で、体験談を入れたい所(「こんな体験があれば、読者に伝わる」)が出たら、**その体験が記録にあるか、検索する**: personal-brain(`search_persona`、theme: learning など)と `content/common/materials/`
 - 記録に**ある**: 提案に、「この体験を使える」と、記録の内容を書く(記録にない細かい事実を足さない)
 - 記録に**ない・足りない**: 作らずに、**Kaz に質問する**。形は、「〜な体験談を使いたいのですが、そういう体験はありませんでしたか?」。何のために使いたいか(どの見出し、何を伝えたいか)を一言そえる。Kaz が思い出して話してくれたら、それを使う
 - **Kaz が話してくれた体験は、personal-brain に記録する**(`add_persona_entry`、kind: `event` か `insight`、theme: learning)。あとの記事で、検索して使えるようにする。数字や固有名詞は、Kaz が言ったとおりに残す
@@ -220,7 +220,7 @@ Kaz が Search Console の数字を共有したときに行う。
 
 ## 5. キャラクター記事(白河雪菜)
 
-2026-10-04 に、Kaz が決めた。**白河雪菜は、アンバサダー**。著者が二人いると面白いから、二人にする。Claude が雪菜になりきって、記事を書く。**雪菜が語る体験談は、Kaz の本当の体験がもと**(作り話はしない)。設定は `web/content/characters/shirakawa-yukina/profile.md`(確定版。案は `candidates.md`)。**英語学習(日本語で書く)と、日本語学習(英語で書く)の両方**で使う。
+2026-10-04 に、Kaz が決めた。**白河雪菜は、アンバサダー**。著者が二人いると面白いから、二人にする。Claude が雪菜になりきって、記事を書く。**雪菜が語る体験談は、Kaz の本当の体験がもと**(作り話はしない)。設定は `web/content/common/characters/shirakawa-yukina/profile.md`(確定版。案は `candidates.md`)。**英語学習(日本語で書く)と、日本語学習(英語で書く)の両方**で使う。
 
 ### 署名と、読者への伝え方
 
@@ -237,13 +237,13 @@ Kaz が Search Console の数字を共有したときに行う。
 
 ### 体験談のルール(Kaz の記事も、雪菜の記事も、同じ)
 
-- **体験談は、Kaz の本当の体験だけ**。personal-brain と `content/materials/` に記録があるものだけ使う。記録にない細かい事実(数字、時期、場所、人、気持ち)を、足さない
+- **体験談は、Kaz の本当の体験だけ**。personal-brain と `content/common/materials/` に記録があるものだけ使う。記録にない細かい事実(数字、時期、場所、人、気持ち)を、足さない
 - 記録がないときは、書かずに、**Kaz に質問する**(2-1b)。Kaz が話した内容は、personal-brain に記録してから使う
 - 雪菜は、Kaz の体験を、**雪菜の話として語り直す**(「私は〜しました」)。**語り直すときも、実際にあったことだけ**を語り、雪菜の年齢や経歴などの設定を、体験に足さない。雪菜に、経歴の設定は付けない
 - 数字(点数、日数、冊数、順位)は、記録にあるものだけ。効果の主張(「これで伸びた」など)は、体験だけでなく、確認できた出典でも裏付ける
 
 ### 確認(別エージェント)で足す項目
 
-- 雪菜の記事に出た体験談が、すべて personal-brain か `content/materials/` に記録されているか(1つずつ検索して確かめる)。記録にない事実が足されていないか
+- 雪菜の記事に出た体験談が、すべて personal-brain か `content/common/materials/` に記録されているか(1つずつ検索して確かめる)。記録にない事実が足されていないか
 - 口調と人柄が、`profile.md` と合っているか。**日本語の記事では、女性らしい口調になっているか**(一人称は「私」、やわらかい語尾。「俺」「僕」「〜だぜ」「〜だろ」「〜しろよ」のような男性的・乱暴な言い方がないか。ことさら古風な女ことば(「〜わ」「〜かしら」)になっていないか)。**親近感**(読者への話しかけ、共感、説教になっていないか)があるか。英語の記事では、あたたかく話しかける調子になっているか
 - 雪菜が実在の人物として読める書き方になっていないか(所属・学校・勤務先・年齢などの経歴が書かれていないか)

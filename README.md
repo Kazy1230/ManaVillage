@@ -12,9 +12,10 @@
 |---|---|
 | [`AGENTS.md`](AGENTS.md) | **AI エージェント向けの作業ルールと入口。最初に読む** |
 | [`docs/`](docs/README.md) | 要件、アーキテクチャ、運用手順、これまでの経緯、デザイン、残作業 |
-| [`web/`](web/) | サイト本体(Next.js 16 + Supabase)。記事の Markdown も `web/content/articles/` にある |
-| [`web/content/planning/`](web/content/planning/) | 記事制作ワークフロー(指示書、テーマ管理表、企画カード、アウトライン) |
-| [`web/content/materials/`](web/content/materials/) | 運営者の英語学習の素材(記事の体験談はここにあるものだけ使う) |
+| [`web/`](web/) | サイト本体(Next.js 16 + Supabase)。記事の Markdown も `web/content/<記事チーム>/articles/` にある |
+| [`web/content/<記事チーム>/planning/`](web/content/english/planning/) | 記事チームごとの記事制作ワークフロー(指示書、テーマ管理表、企画カード、アウトライン)。english・japanese・philosophy・it・science・relationships |
+| [`web/content/common/planning/`](web/content/common/planning/) | 記事課の共通のルール(`common.md`)と、掲示板の最初のスレッド案 |
+| [`web/content/common/materials/`](web/content/common/materials/) | 運営者の英語学習の素材(記事の体験談はここにあるものだけ使う) |
 | [`.claude/`](.claude/) | Claude Code 用のサブエージェント(記事チェック)とスキル(週次のテーマ選定、日次の記事作成) |
 
 ## すぐ動かす

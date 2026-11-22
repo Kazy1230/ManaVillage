@@ -19,7 +19,7 @@ sources:
   - 'Jeon, E.-Y., & Day, R. R. (2016). The effectiveness of ER on reading proficiency: A meta-analysis. Reading in a Foreign Language, 28(2), 246-265. https://nflrc.hawaii.edu/rfl/item/354'
   - 'Delgado, P., Vargas, C., Ackerman, R., & Salmeron, L. (2018). Don''t throw away your printed books: A meta-analysis on the effects of reading media on reading comprehension. Educational Research Review, 25, 23-38. https://cris.technion.ac.il/en/publications/dont-throw-away-your-printed-books-a-meta-analysis-on-the-effects/'
 materialsUsed:
-  - '運営者本人の体験(content/materials/learning-philosophy.md 7章。personal-brain に記録済み)'
+  - '運営者本人の体験(content/common/materials/learning-philosophy.md 7章。personal-brain に記録済み)'
 keyword: 多読
 commentPrompt: "英語の本を読もうとして、止まってしまった経験はありますか?"
 ---

@@ -33,7 +33,7 @@
 
 ## サイトのアイコン
 
-- 「まなV」のロゴ(Wi-Fi のような弧が付いた青い文字)。元の画像は `web/content/brand/icon-source.jpg`(150px と小さい)
+- 「まなV」のロゴ(Wi-Fi のような弧が付いた青い文字)。元の画像は `web/content/common/brand/icon-source.jpg`(150px と小さい)
 - `node scripts/make-icons.mjs`(`web/` で実行)で、`src/app/favicon.ico`(16/32/48)、`icon.png`(512)、`apple-icon.png`(180)を書き出す。Next.js が `<head>` に自動で出す(どの科目のページにも付く)
 - 検索エンジン向けの組織のロゴ(`lib/jsonld.ts` の `logo`)も、`/icon.png`(正方形)
 - 大きな元画像(512px 以上)に差し替えて同じコマンドを実行すると、くっきりする

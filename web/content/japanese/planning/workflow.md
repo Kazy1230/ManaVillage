@@ -1,9 +1,9 @@
 # 日本語学習(英語で書く)の記事制作ルール
 
 英語話者に向けて、日本語の文法・助詞・似た言葉・丁寧さ・フレーズ・学習法を英語で解説する記事(`/en/japanese/...`)のルール。
-**流れと役割分担(Kaz が書く、Claude は提案・確認・イラスト・公開)は `planning/common.md`**。記事の作業をするときは、`common.md` とこの文書の2つを読む。
+**流れと役割分担(Kaz が書く、Claude は提案・確認・イラスト・公開)は `common/planning/common.md`**。記事の作業をするときは、`common.md` とこの文書の2つを読む。
 
-**著者は二人**(2026-10-04 決定): **Kaz が英語で書く記事**と、**白河雪菜の記事**(Claude が雪菜になりきって英語で書く。`common.md` 5章、`characters/shirakawa-yukina/profile.md`)。Kaz の記事では、Claude は英語の訂正案を出さず、不自然な所を指摘するだけにする。雪菜の記事は、Claude が書いた文章なので、指摘を受けて Claude が直す。
+**著者は二人**(2026-10-04 決定): **Kaz が英語で書く記事**と、**白河雪菜の記事**(Claude が雪菜になりきって英語で書く。`common.md` 5章、`common/characters/shirakawa-yukina/profile.md`)。Kaz の記事では、Claude は英語の訂正案を出さず、不自然な所を指摘するだけにする。雪菜の記事は、Claude が書いた文章なので、指摘を受けて Claude が直す。
 
 ---
 
@@ -20,7 +20,7 @@
 |---|---|
 | 記事の言語 | 英語(**アメリカ英語**。color、favorite、practice、realize など)。例文は日本語 |
 | 記事のフォルダ | `content/japanese/articles/` |
-| 在庫 / テーマ管理表 / 提案 | `planning/japanese/inventory.csv` / `planning/japanese/topic-map.md` / `planning/japanese/proposals/` |
+| 在庫 / テーマ管理表 / 提案 | `japanese/planning/inventory.csv` / `japanese/planning/topic-map.md` / `japanese/planning/proposals/` |
 | type | 基本は general。体験談を使うときは experience(体験談は、Kaz の本当の体験で、personal-brain / 素材に記録があるものだけ。なければ Kaz に質問する。`common.md` 2-1b)。この科目で、Kaz に関係する体験が少ないうちは、general が中心 |
 | 分量の目安 | 1,200〜2,500語(内容が足りなければ、短くてよい) |
 | 漢字 | **すべてにルビ**。ルビは Claude が機械的に付ける(8章) |
@@ -90,7 +90,7 @@
 - 内部リンク(`/en/japanese/articles/<slug>`)と related が公開済みか(本数の不足は、公開済み記事が3本未満のあいだ「要確認」)
 - 主キーワードの語が、title と導入にすべて入っているか(大文字小文字は区別しない)
 - 本文が800語未満なら「要確認」。slug が、ほかの科目の記事と重複していないか
-- `planning/japanese/topic-map.md` に行があり、主キーワードが一致しているか
+- `japanese/planning/topic-map.md` に行があり、主キーワードが一致しているか
 
 ## 7. frontmatter(Claude が組み立てる)
 

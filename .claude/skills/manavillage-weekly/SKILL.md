@@ -3,7 +3,7 @@ name: manavillage-weekly
 description: まなビレッジの在庫(テーマの全体リスト)の見直し。検索サジェスト・Search Console のクエリ・掲示板・personal-brain から、topic-map の在庫を増やし、点数を付け直す。「在庫を見直して」「テーマを増やして」と言われたときに使う。Kaz の確認はいらない。
 ---
 
-`web/content/planning/common.md` の 1章・2-1 に従って、在庫(`web/content/planning/inventory.csv`、日本語学習は `web/content/planning/japanese/inventory.csv`)を見直す。**Kaz にテーマの承認は求めない**(在庫は、提案の元になる材料。Kaz が見るのは、提案と、自分で書いた記事)。
+`web/content/common/planning/common.md` の 1章・2-1 に従って、在庫(`web/content/english/planning/inventory.csv`、日本語学習は `web/content/japanese/planning/inventory.csv`)を見直す。**Kaz にテーマの承認は求めない**(在庫は、提案の元になる材料。Kaz が見るのは、提案と、自分で書いた記事)。
 
 1. 在庫と topic-map を読む(初版は `node scripts/build-inventory.mjs` で作った。再実行すると作り直すので、以後は行を手で足す)
 2. 材料を集める
