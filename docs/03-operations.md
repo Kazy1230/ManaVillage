@@ -15,7 +15,7 @@ npm run dev                  # http://localhost:3000
 
 ## デプロイ(Vercel)
 
-- **記事の公開は Kaz の承認後だけ**(`web/content/planning/workflow.md` 0章)。下書きのままなら、コードのデプロイで記事が公開されることはない
+- **記事の公開は Kaz の承認後だけ**(`web/content/english/planning/workflow.md` 0章)。下書きのままなら、コードのデプロイで記事が公開されることはない
 - GitHub の main に push すると、Vercel が自動で本番にデプロイする(2026-11-22 に確認)。Vercel CLI の手動デプロイも使える
 
 ```bash
@@ -74,9 +74,9 @@ update profiles set is_admin = true where id = (select id from auth.users where 
 
 ## 記事を作る
 
-`web/content/planning/common.md`(共通)と、科目の文書(`workflow.md` = 英語学習、`japanese/workflow.md` = 日本語学習)に従う。要点:
+`web/content/common/planning/common.md`(共通)と、科目の文書(`english/planning/workflow.md` = 英語学習、`japanese/planning/workflow.md` = 日本語学習)に従う。要点:
 
-- テーマは、Kaz が「テーマを出して」と言ったときに、Claude が在庫から無作為に抽出して提案する。本文は Kaz が書く(2026-10-04 から。`web/content/planning/common.md`)
+- テーマは、Kaz が「テーマを出して」と言ったときに、Claude が在庫から無作為に抽出して提案する。本文は Kaz が書く(2026-10-04 から。`web/content/common/planning/common.md`)
 - Kaz が書いた文章をチャットに貼る → Claude が下書きとして保存(言葉は変えない)→ `node scripts/check-article.mjs <slug>` → 別エージェントが事実・出典の確認と読みやすさ・薄さの指摘 → Kaz が直す → 承認 → 公開してデプロイ
 - イラスト: Claude が描く。`web/content/illustrations/<slug>/core.mjs`(サムネ)と `fig-1.mjs` など(本文の図)を書いて `node scripts/illustrate.mjs <slug>`
 - Claude Code なら、スキル `manavillage-propose`(提案)/ `manavillage-review`(確認・イラスト・公開)/ `manavillage-weekly`(在庫の見直し)と、確認用サブエージェント `manavillage-checker`(`.claude/`)が使える
@@ -84,7 +84,7 @@ update profiles set is_admin = true where id = (select id from auth.users where 
 ## personal-brain(素材庫)
 
 - Kaz の考えや体験を記録している MCP サーバー。Claude Code に接続されていれば、`get_persona_core` / `search_persona`(theme: `learning`)/ `get_persona_exemplars` で読める
-- 接続できない環境では `web/content/materials/`(スナップショット)を使う。**素材にない学習の体験談は書かない**
+- 接続できない環境では `web/content/common/materials/`(スナップショット)を使う。**素材にない学習の体験談は書かない**
 
 ## 静的モック(参考)
 

@@ -1,14 +1,14 @@
 // 在庫から、次に書くテーマを無作為に1つ選ぶ: node scripts/pick-topic.mjs <english|japanese> [--dry]
 // 選んだ行の status を selected にし、note に選んだ日付を書く(--dry のときは書き換えない)。
-// 重複や「勝てない」で見送るときは、その行の status を skip にして、もう一度実行する(planning/common.md 2-1)
+// 重複や「勝てない」で見送るときは、その行の status を skip にして、もう一度実行する(content/common/planning/common.md 2-1)
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const FILES = {
-  english: path.join(root, "content/planning/inventory.csv"),
-  japanese: path.join(root, "content/planning/japanese/inventory.csv"),
+  english: path.join(root, "content/english/planning/inventory.csv"),
+  japanese: path.join(root, "content/japanese/planning/inventory.csv"),
 };
 const section = process.argv[2];
 const dry = process.argv.includes("--dry");

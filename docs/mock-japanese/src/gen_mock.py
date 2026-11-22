@@ -6,7 +6,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 from furigana import add_furigana
 from doodles import D_SPOT, D_SEE, D_POLITE, D_NIDE, D_GIVE, D_SHIMAU
 
-ROOT = r"C:\まなビレッジサイト"
+ROOT = r"C:\まなビレッジ\ウェブ部"
 OUT = os.path.join(ROOT, "docs", "mock-japanese")
 GLOBALS = open(os.path.join(ROOT, "web", "src", "app", "globals.css"), encoding="utf-8").read()
 

@@ -1,6 +1,6 @@
 // 在庫(テーマの全体リスト)の初版を作る: node scripts/build-inventory.mjs
 // 候補を分類ごとに組み立て、Google の検索候補(サジェスト)で「実際に検索されているか」を確かめて需要の点数を付ける。
-// 出力: content/planning/inventory.csv(英語学習)、content/planning/japanese/inventory.csv(日本語学習)
+// 出力: content/english/planning/inventory.csv(英語学習)、content/japanese/planning/inventory.csv(日本語学習)
 // 需要の点数は目安: 2 = その語句そのものが候補に出る / 1 = その語句で始まる候補がある / 0 = 候補がない(検索が少ないとみなす)
 // 既存の topic-map の主キーワードと同じものは除く。再実行すると作り直す(状態の列は上書きされるので、初版の作成専用)
 import fs from "node:fs";
@@ -193,5 +193,5 @@ const ja = [
   ...J_STUDY.slice(0, 5).flatMap((k) => J_READERS.map((rd) => ({ category: "Study(読者別)", keyword: `${k} ${rd}`, reader: rd, hub: "Study" }))),
 ];
 
-await build(en, "ja", "jp", "E-", existing(path.join(root, "content/planning/topic-map.md")), path.join(root, "content/planning/inventory.csv"));
-await build(ja, "en", "us", "J-", existing(path.join(root, "content/planning/japanese/topic-map.md")), path.join(root, "content/planning/japanese/inventory.csv"));
+await build(en, "ja", "jp", "E-", existing(path.join(root, "content/english/planning/topic-map.md")), path.join(root, "content/english/planning/inventory.csv"));
+await build(ja, "en", "us", "J-", existing(path.join(root, "content/japanese/planning/topic-map.md")), path.join(root, "content/japanese/planning/inventory.csv"));

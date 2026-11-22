@@ -24,3 +24,6 @@ Thumbs.db
 *.log
 npm-debug.log*
 .claude/settings.local.json
+
+# おしえて英語課の企画・動画(サイトのリポジトリには入れない)
+/おしえて英語課/

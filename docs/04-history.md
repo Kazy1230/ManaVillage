@@ -35,7 +35,7 @@ Kaz(運営者)と Claude Code の作業の記録を、決定事項と理由を�
 
 ## 2026-09-29〜30: 学習哲学の聞き取りと、勉強法記事30本
 
-- 「今後は英語の勉強方法をメインにしたい」。Kaz の学習哲学を聞き取り、`docs/archive/Kazの英語学習哲学_聞き取り.md` にまとめた(現在の素材は `web/content/materials/learning-philosophy.md`)
+- 「今後は英語の勉強方法をメインにしたい」。Kaz の学習哲学を聞き取り、`docs/archive/Kazの英語学習哲学_聞き取り.md` にまとめた(現在の素材は `web/content/common/materials/learning-philosophy.md`)
 - その哲学をもとに、勉強法の記事30本を作成・公開(単語帳のローテーション、ページを破る暗記術、独り言、口ずさみ、想起練習、間隔反復 など)。本文中の内部リンク、関連記事、sitemap を追加
 - 研究は原典を確認して引用。ダイバーの実験(Godden & Baddeley 1975)は、2021年の追試で再現されなかったことも記事に明記した
 
@@ -48,7 +48,7 @@ Kaz(運営者)と Claude Code の作業の記録を、決定事項と理由を�
 
 ## 2026-09-30〜10-01: 記事制作ワークフローの導入
 
-- Kaz が記事制作ワークフロー指示書・topic-map の雛形・素材ファイルを用意(`web/content/planning/workflow.md`, `web/content/materials/learning-philosophy.md`)
+- Kaz が記事制作ワークフロー指示書・topic-map の雛形・素材ファイルを用意(`web/content/english/planning/workflow.md`, `web/content/common/materials/learning-philosophy.md`)
 - 主な方針: 他のサイトにない価値のある記事だけを出す(スケールドコンテンツ・スパムを避ける)、1日2本・1本5000字目安、1つの検索意図に1記事、学習の体験談は素材にあるものだけ、チェックは別のエージェント、公開は Kaz の承認後だけ
 - 実装: 新しい frontmatter、下書きの除外、JSON-LD、タグページの noindex、イラストの webp 書き出し、機械チェックのスクリプト、チェック用サブエージェント、週次・日次のスキル(`docs/02-architecture.md`, `docs/03-operations.md`)
 - 既存42本を topic-map に登録し、主キーワードと検索意図を後から割り当てた。近い記事の判定も記録
@@ -71,8 +71,8 @@ Kaz(運営者)と Claude Code の作業の記録を、決定事項と理由を�
 
 ## 2026-10-01: 導入前の記事32本の書き直しと、SEO の仕上げ
 
-- 導入前に公開した記事32本を、`web/content/planning/rework-brief.md` の基準で書き直した(厚み、出典の確認、素材にない体験談の削除)。執筆者とは別のエージェントが本文チェックを行い、指摘を反映した。`topic-map.md` の該当行は、記事の最新の title / 主キーワード / type / ハブに更新した
-- frontmatter を新テンプレートに統一(`scripts/migrate-legacy-articles.mjs`)。`updatedAt` を持ち、sitemap の `lastmod` と JSON-LD の `dateModified` に使う
+- 導入前に公開した記事32本を、`web/content/english/planning/rework-brief.md` の基準で書き直した(厚み、出典の確認、素材にない体験談の削除)。執筆者とは別のエージェントが本文チェックを行い、指摘を反映した。`topic-map.md` の該当行は、記事の最新の title / 主キーワード / type / ハブに更新した
+- frontmatter を新テンプレートに統一(`scripts/migrate-legacy-articles.mjs`。2026-11-22 に `C:\まなビレッジ\共通\保管庫\サイトの古い道具` へ移した)。`updatedAt` を持ち、sitemap の `lastmod` と JSON-LD の `dateModified` に使う
 - トップに、固定の h1 と説明文の帯(`.home-intro`)を追加。ヒーローの記事タイトルは h2
 - 構造化データに BreadcrumbList を追加。記事ごとの OG 画像(`core-og.png`)
 - DB: 退会後も投稿を残す(`on delete set null`)。本番に適用済み。プライバシーポリシーと利用規約に反映
@@ -80,7 +80,7 @@ Kaz(運営者)と Claude Code の作業の記録を、決定事項と理由を�
 ## 2026-10-02: 科目の仕組みと、日本語学習(英語で書く)の公開
 
 - サイトを科目ごとに分けた。`/` はまなビレッジ全体の入口(キャッチコピー「学び、つまずき、助け合う。まなビレッジ。」)、英語学習のトップは `/english`(英語の記事の URL は変えていない)。ヘッダーに科目を並べて切り替える
-- 日本語学習(`/en/japanese/...`、`<html lang="en">`、和の見た目)を作り、最初の記事 `wa-vs-ga` を公開。漢字はすべてルビ、ローマ字は修正ヘボン式(長音は記号)、体験談は使わない。制作フローは `web/content/planning/japanese/workflow.md`
+- 日本語学習(`/en/japanese/...`、`<html lang="en">`、和の見た目)を作り、最初の記事 `wa-vs-ga` を公開。漢字はすべてルビ、ローマ字は修正ヘボン式(長音は記号)、体験談は使わない。制作フローは `web/content/japanese/planning/workflow.md`
 - ログイン・登録・マイページ・掲示板・サイトについてのページに英語版(`/en/...`)を作った
 - IT・哲学・科学・人間関係は体裁だけ作成(公開記事が出るまで本番には出ない)
 - 記事の署名はどの科目も Kaz。AI は執筆の補助で、記事ごとに関与は書かない
@@ -91,7 +91,7 @@ Kaz(運営者)と Claude Code の作業の記録を、決定事項と理由を�
 - それまでは、Claude が記事を書く完全自動のフローだった(在庫から無作為にテーマを選び、アウトライン、別エージェントのチェック、本文、Kaz の確認)。これを、**記事の本文は Kaz が書く**フローに変えた
 - 新しい流れ: Claude が、在庫から無作為にテーマを抽出し、上位記事と出典を調べ、概要・構成案・図の案を提案する(Kaz が「テーマを出して」と言ったとき)→ Kaz が選んで書く(日本語学習は英語で書く)→ チャットに貼る → Claude が保存(言葉は変えない)、機械チェック、別エージェントが事実・出典の確認と読みやすさ・薄さの指摘、イラストを描く → Kaz が直す → 承認 → Claude が公開してデプロイ
 - Claude は、記事の本文を書かない・書き直さない・直した文を出さない。英語の訂正案も出さない
-- 手順書: `web/content/planning/common.md`(共通)、`workflow.md`(英語学習)、`japanese/workflow.md`(日本語学習)。skill: `manavillage-propose`、`manavillage-review`。サイトのアイコンを「まなV」のロゴにした(同日)
+- 手順書: `web/content/common/planning/common.md`(共通)、`english/planning/workflow.md`(英語学習)、`japanese/planning/workflow.md`(日本語学習)。skill: `manavillage-propose`、`manavillage-review`。サイトのアイコンを「まなV」のロゴにした(同日)
 
 ## 2026-10-04(続き): 記事は Claude が書く流れに。3本の最初の記事と、書き方のルール
 
@@ -106,7 +106,7 @@ Kaz(運営者)と Claude Code の作業の記録を、決定事項と理由を�
 
 - 英語学習: `end-vs-finish`(E-0201)、`think-vs-feel`(E-0195)、`question-words-order`(E-0160。主キーワードは「疑問詞 使い方」に変更)。著者は雪菜
 - IT を学ぶ: `git-commit-vs-push`、哲学を学ぶ: `descartes-cogito`。著者は Kaz、type は general(IT の体験は仕事に関わるものが中心なので、体験談には使わない)
-- IT・哲学の文書を新設: `web/content/planning/it/` と `philosophy/` の `workflow.md`(ハブ・タグ・根拠・確認項目)と `topic-map.md`(次の候補つき)
+- IT・哲学の文書を新設: `web/content/it/planning/` と `web/content/philosophy/planning/` の `workflow.md`(ハブ・タグ・根拠・確認項目)と `topic-map.md`(次の候補つき)
 - 確認エージェントの指摘で、書き直した点: 辞書にない例文を「辞書に載っている」と書かない、think と feel を「理由あり・なし」と言い切らない、who だけでなく what も主語になれる、公式の言い方に出典を結びつけすぎない(Git は実機で出力を確認して載せた)、哲学は定式が『省察』に明示的に出ないこと・解釈が分かれる所を書く
 - 反省: 1回目の下書きは、結論を先に見出しで言う型に戻っていた(2-1d 違反)。確認で、辞書の例文と自作の例文を混ぜない、出典の言い回しより強く書かない、を再確認した
 - 2026-10-05(続き)Kaz の指摘: 各節の問いに、読者がついてこられない箇所があった(特にデカルト)。`common.md` 2-1d に「問いは、日常の体験から、1段ずつつなぐ」(体験 → 引っかかり → 問い。日常から遠い設定は、橋をかけてから出す)を追加。確認エージェントと提案スキルにも項目を足した。8本すべてに、問いの前の日常の場面を足し、デカルトは導入と構成を組み直した(「全能の欺く者」は SEP と合わないので「強力な欺く者」に)

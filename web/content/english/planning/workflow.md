@@ -1,7 +1,7 @@
 # 英語学習(日本語で書く)の記事制作ルール
 
 日本語話者に向けて、英語の勉強方法・英文法・似た言葉・フレーズ・試験対策を書く記事(`/articles/...`)のルール。
-**流れと役割分担(Kaz が書く、Claude は提案・確認・イラスト・公開)は `planning/common.md`**。記事の作業をするときは、`common.md` とこの文書の2つを読む。
+**流れと役割分担(Kaz が書く、Claude は提案・確認・イラスト・公開)は `common/planning/common.md`**。記事の作業をするときは、`common.md` とこの文書の2つを読む。
 
 ---
 
@@ -14,13 +14,13 @@
 ## 1. 素材庫と、運営者の体験
 
 - **体験談は、Kaz の本当の体験だけ**。Kaz の記事では Kaz 自身が書く。**白河雪菜の記事では、Claude が、Kaz の体験を雪菜の話として語り直す**(`common.md` 5章)。囲みを使うと読者に伝わりやすい(下の「書き方の約束」)。体験談を使う記事は `type: experience`、使わない記事は `type: general`
-- Claude は、**提案のとき**に、personal-brain(MCP サーバー)と `content/materials/` から、テーマに関係する Kaz の過去の考えや体験を探し、「こんな体験が使えるかも」と**示す**。使うかどうかと、書き方は Kaz が決める。Claude が体験談を書き足すことはしない
+- Claude は、**提案のとき**に、personal-brain(MCP サーバー)と `content/common/materials/` から、テーマに関係する Kaz の過去の考えや体験を探し、「こんな体験が使えるかも」と**示す**。使うかどうかと、書き方は Kaz が決める。Claude が体験談を書き足すことはしない
 - 学習と関係のない私的な内容(恋愛、人間関係、お金、健康、仕事の愚痴)は、素材として示さない
 - Kaz が話した、長く覚えておく価値のある考えや体験は、personal-brain に記録する(Claude の仕事)
 
 ## 2. 在庫の中身
 
-`planning/inventory.csv`。分類: 勉強法、勉強法(読者別)、試験、英文法、似た言葉(4つの層)、前置詞・句動詞。テーマの抽出は `common.md` 2-1。
+`english/planning/inventory.csv`。分類: 勉強法、勉強法(読者別)、試験、英文法、似た言葉(4つの層)、前置詞・句動詞。テーマの抽出は `common.md` 2-1。
 
 ## 3. 提案で確認すること(Claude)
 
@@ -88,8 +88,8 @@ phrases: []            # 任意。最新記事のときトップで切り替わ�
 
 | 項目 | このサイト |
 |---|---|
-| 記事 | `web/content/articles/<slug>.md` |
-| 提案 | `web/content/planning/proposals/<slug>.md` |
+| 記事 | `web/content/english/articles/<slug>.md` |
+| 提案 | `web/content/english/planning/proposals/<slug>.md` |
 | イラスト | `web/content/illustrations/<slug>/`(サムネは `core.mjs`、本文の図は `fig-1.mjs` など)→ `node scripts/illustrate.mjs <slug>` で webp を書き出す |
 | 確認担当 | `.claude/agents/manavillage-checker.md`(別のエージェントとして起動する) |
 

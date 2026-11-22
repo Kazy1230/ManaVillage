@@ -1,7 +1,7 @@
 # 哲学を学ぶ(日本語で書く)の記事制作ルール
 
 問いの立て方や、考えの筋道を、身近な例で解説する記事(`/philosophy/articles/...`)のルール。
-**流れと役割分担は `planning/common.md`**(2-1c, 2-1d の書き方も同じ)。記事の作業をするときは、`common.md` とこの文書の2つを読む。
+**流れと役割分担は `common/planning/common.md`**(2-1c, 2-1d の書き方も同じ)。記事の作業をするときは、`common.md` とこの文書の2つを読む。
 
 ## 1. 読者と、基本の方針
 
@@ -34,14 +34,14 @@
 
 ## 5. frontmatter
 
-`planning/workflow.md` 6章と同じ。`keyword` は、カードに「この記事の問い」として出る、短い問い(例: 「疑っても、疑えないもの」)。
+`english/planning/workflow.md` 6章と同じ。`keyword` は、カードに「この記事の問い」として出る、短い問い(例: 「疑っても、疑えないもの」)。
 
 ## 6. 置き場所
 
 | 項目 | 場所 |
 |---|---|
 | 記事 | `web/content/philosophy/articles/<slug>.md` |
-| テーマ管理表(IDは `P-xxxx`) | `web/content/planning/philosophy/topic-map.md`(次の候補も、ここ) |
+| テーマ管理表(IDは `P-xxxx`) | `web/content/philosophy/planning/topic-map.md`(次の候補も、ここ) |
 | イラスト | `web/content/illustrations/<slug>/` |
 
 ---
