@@ -8,11 +8,11 @@ export const TRIAL = 3;
 // ヒント動画(YouTube の限定公開)の動画 ID。https://youtu.be/XXXXXXXXXXX の XXXXXXXXXXX の部分を入れる。
 // 空のままなら、ヒントには解説文だけが出る
 export const HINT_VIDEOS: Record<string, string> = {
-  SV: "", // 文の形1 S V
-  SVO: "", // 文の形2 S V O
-  SVC: "", // 文の形3 S V C
-  SVOO: "", // 文の形4 S V O O
-  SVOC: "", // 文の形5 S V O C
+  SV: "v_X2yERKzsA", // 文の形1 S V
+  SVO: "5aVrw4gUe4Y", // 文の形2 S V O
+  SVC: "l4UEpI8Reac", // 文の形3 S V C
+  SVOO: "EP3kgyVWzhU", // 文の形4 S V O O
+  SVOC: "C5XCjiJY38M", // 文の形5 S V O C
   JITA: "", // 自動詞と他動詞
   GUN: "", // 群動詞
   JODO: "", // 助動詞
