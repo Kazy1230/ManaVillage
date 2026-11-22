@@ -52,7 +52,7 @@ export default function TermsPage() {
         <li>You keep the copyright to what you post. However, you grant the site permission, free of charge, to display and store it and to use it to run the site.</li>
         <li>Your nickname and posts can be seen by anyone.</li>
         <li>The operator may delete posts that violate the Terms, or that the operator considers inappropriate, without notice. For repeated violations, the operator may suspend or delete the account.</li>
-        <li>If you delete your account, your comments and posts remain under the name “Deleted user.”</li>
+        <li>You can delete your account at any time from My page. If you delete your account, your comments and posts remain under the name “Deleted user.”</li>
         <li>If you want your own or someone else’s post deleted, please contact us through the <Link href="/en/contact">contact page</Link>.</li>
       </ul>
 

@@ -84,7 +84,7 @@ export default function PrivacyPage() {
       <p>
         We keep account information and posts until the account is deleted.
         On this site, you cannot edit or delete your own comments or posts after posting.
-        When an account is deleted, we delete the account information (email address, nickname, and so on). The account’s comments and posts remain, with the author’s name removed and shown as “Deleted user” (to keep other people’s replies and the flow of conversation intact). If you want the posts themselves deleted, please contact us through the <Link href="/en/contact">contact page</Link>. After confirming your identity, we will delete the posts in question.
+        You can delete your account yourself at any time from My page after logging in. When an account is deleted, we delete the account information (email address, nickname, and so on). The account’s comments and posts remain, with the author’s name removed and shown as “Deleted user” (to keep other people’s replies and the flow of conversation intact). If you want the posts themselves deleted, please contact us through the <Link href="/en/contact">contact page</Link>. After confirming your identity, we will delete the posts in question.
       </p>
 
       <h2>7. Disclosure, correction, and suspension of use</h2>

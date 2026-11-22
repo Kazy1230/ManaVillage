@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { after } from "next/server";
 import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { getViewer, safeNext } from "@/lib/auth";
 import { findArticle } from "@/lib/articles";
 import { lp } from "@/lib/paths";
@@ -70,6 +71,24 @@ export async function signup(_: ActionState, fd: FormData): Promise<ActionState>
 export async function logout(fd: FormData) {
   const supabase = await createClient();
   await supabase.auth.signOut();
+  revalidatePath("/", "layout");
+  redirect(langOf(fd) === "en" ? "/en/japanese" : "/");
+}
+
+// アカウントの削除(マイページ)。プロフィール・おしえて英語の進み具合は消え、コメントや書き込みは「退会したユーザー」として残る
+// (DB の on delete cascade / set null。web/supabase/migrations/20261001000000_keep_posts_when_user_deleted.sql)
+export async function deleteAccount(_: ActionState, fd: FormData): Promise<ActionState> {
+  const lang = langOf(fd);
+  const viewer = await getViewer();
+  if (!viewer) return { error: say(lang, "ログインしてください。", "Please log in.") };
+  if (fd.get("confirm") !== "yes") return { error: say(lang, "確認のチェックを入れてください。", "Please tick the box to confirm.") };
+  const { error } = await createAdminClient().auth.admin.deleteUser(viewer.id);
+  if (error) {
+    console.error("[delete account]", error.message);
+    return { error: say(lang, "削除できませんでした。時間をおいて、もう一度お試しください。", "Couldn’t delete your account. Please try again later.") };
+  }
+  const supabase = await createClient();
+  await supabase.auth.signOut({ scope: "local" });
   revalidatePath("/", "layout");
   redirect(langOf(fd) === "en" ? "/en/japanese" : "/");
 }

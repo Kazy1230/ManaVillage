@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { logout, setOshieteMail, updateNickname } from "@/app/actions";
 import ActionForm from "@/components/ActionForm";
+import DeleteAccount from "@/components/DeleteAccount";
 import { findArticle } from "@/lib/articles";
 import { requireViewer } from "@/lib/auth";
 import { formatDate, initial, timeAgo } from "@/lib/format";
@@ -149,6 +150,7 @@ export default async function MyPageView({ lang }: { lang: Lang }) {
                 <input type="hidden" name="lang" value={lang} />
                 <button className="btn block-btn" type="submit">{s.logout}</button>
               </form>
+              <DeleteAccount lang={lang} />
             </section>
           </div>
         </div>

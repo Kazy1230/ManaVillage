@@ -272,6 +272,15 @@ input:hover,select:hover,textarea:hover{border-color:var(--faint)}
 input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px rgba(47,107,255,.15)}
 textarea{min-height:110px;resize:vertical}
 .btn.block-btn{height:48px;width:100%}
+/* アカウントの削除(マイページ) */
+.btn.danger{color:var(--danger);border-color:var(--line-strong)}
+.btn.danger:hover{border-color:var(--danger)}
+.btn.danger.solid{background:var(--danger);border-color:var(--danger);color:#fff}
+.delete-box{display:grid;gap:12px;padding:16px;border:1px solid var(--danger);border-radius:14px;background:var(--p4)}
+.delete-title{margin:0;font-weight:700;color:var(--danger)}
+.delete-box ul{margin:0;padding-left:1.2em;display:grid;gap:4px;font-size:13px;line-height:1.7}
+.delete-box .check{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500}
+.delete-box .form{display:grid;gap:12px}
 .hint{font-size:12px;color:var(--muted);font-weight:400}
 .or{display:flex;align-items:center;gap:12px;font-size:12px;color:var(--faint)}
 .or::before,.or::after{content:"";flex:1;height:1px;background:var(--line)}
