@@ -12,12 +12,12 @@ export type Section = {
   top: string;
   articles: string;
   tags: string;
-  // web/content/ からの記事フォルダ
+  // web/content/ からの記事フォルダ(記事チームごとに web/content/<key>/articles)
   dir: string;
 };
 
 export const SECTIONS: Record<SectionKey, Section> = {
-  english: { key: "english", lang: "ja", label: "英語を学ぶ", top: "/english", articles: "/articles", tags: "/tags", dir: "articles" },
+  english: { key: "english", lang: "ja", label: "英語を学ぶ", top: "/english", articles: "/articles", tags: "/tags", dir: "english/articles" },
   japanese: { key: "japanese", lang: "en", label: "Learn Japanese", top: "/en/japanese", articles: "/en/japanese/articles", tags: "/en/japanese/tags", dir: "japanese/articles" },
   it: { key: "it", lang: "ja", label: "ITを学ぶ", top: "/it", articles: "/it/articles", tags: "/it/tags", dir: "it/articles" },
   philosophy: { key: "philosophy", lang: "ja", label: "哲学を学ぶ", top: "/philosophy", articles: "/philosophy/articles", tags: "/philosophy/tags", dir: "philosophy/articles" },

@@ -1,5 +1,5 @@
 // サイトのアイコンを作る: node scripts/make-icons.mjs
-// content/brand/icon-source.jpg(まなVのロゴ)から、src/app/favicon.ico(16/32/48)、icon.png(512)、apple-icon.png(180)を書き出す。
+// content/common/brand/icon-source.jpg(まなVのロゴ)から、src/app/favicon.ico(16/32/48)、icon.png(512)、apple-icon.png(180)を書き出す。
 // 元の画像が小さい(150px)ので、大きいサイズは少しやわらかくなる。大きい元画像に差し替えて再実行すると、くっきりする
 import fs from "node:fs";
 import path from "node:path";
@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 import sharp from "sharp";
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
-const src = path.join(root, "content/brand/icon-source.jpg");
+const src = path.join(root, "content/common/brand/icon-source.jpg");
 const app = path.join(root, "src/app");
 const png = (size) => sharp(src).resize(size, size, { fit: "cover", kernel: "lanczos3" }).ensureAlpha().png().toBuffer(); // .ico に入れる PNG は RGBA(透明度つき)が必要
 

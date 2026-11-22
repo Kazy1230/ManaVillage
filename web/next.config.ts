@@ -5,9 +5,9 @@ const CANONICAL_HOST = "manavillage.online";
 const nextConfig: NextConfig = {
   // ルートレイアウトが言語ごとに2つ((ja) と (en))あるため、全体の 404 は app/global-not-found.tsx で出す
   experimental: { globalNotFound: true },
-  // 記事の Markdown は実行時に読み込むため、サーバー関数に同梱する
+  // 記事の Markdown は実行時に読み込むため、サーバー関数に同梱する(web/content/<記事チーム>/articles。planning などは同梱しない)
   outputFileTracingIncludes: {
-    "/**": ["./content/articles/**/*", "./content/japanese/**/*", "./content/it/**/*", "./content/philosophy/**/*", "./content/science/**/*", "./content/relationships/**/*"],
+    "/**": ["./content/*/articles/**/*"],
   },
   // 別ホスト名でのアクセスは正規のドメインへ寄せる（検索評価の分散を防ぐ）
   async redirects() {

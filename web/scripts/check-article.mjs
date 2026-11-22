@@ -1,5 +1,5 @@
 // 記事の機械的なチェック（指示書 3-5 のうち、機械で判定できる項目）: node scripts/check-article.mjs <slug>
-// 英語学習(content/articles/)と日本語学習(content/japanese/articles/、英語で書く)の両方に使える。科目はファイルの場所で決まる
+// どの科目の記事(content/<科目>/articles/。日本語学習 japanese は英語で書く)にも使える。科目はファイルの場所で決まる
 // 判断が必要な項目（薄さ・事実・捏造）はチェックエージェントが行う。このスクリプトはその前提条件を確かめる。
 import fs from "node:fs";
 import path from "node:path";
@@ -8,14 +8,17 @@ import matter from "gray-matter";
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const slug = process.argv[2];
-const SECTIONS = {
-  english: { dir: path.join(root, "content", "articles"), base: "/articles/", lang: "ja" },
-  japanese: { dir: path.join(root, "content", "japanese", "articles"), base: "/en/japanese/articles/", lang: "en" },
-  it: { dir: path.join(root, "content", "it", "articles"), base: "/it/articles/", lang: "ja" },
-  philosophy: { dir: path.join(root, "content", "philosophy", "articles"), base: "/philosophy/articles/", lang: "ja" },
-  science: { dir: path.join(root, "content", "science", "articles"), base: "/science/articles/", lang: "ja" },
-  relationships: { dir: path.join(root, "content", "relationships", "articles"), base: "/relationships/articles/", lang: "ja" },
-};
+// 科目(記事チーム)の一覧。src/lib/sections.ts と同じ。記事は content/<科目>/articles/、計画は content/<科目>/planning/
+const SECTIONS = Object.fromEntries(
+  Object.entries({
+    english: { base: "/articles/", lang: "ja" },
+    japanese: { base: "/en/japanese/articles/", lang: "en" },
+    it: { base: "/it/articles/", lang: "ja" },
+    philosophy: { base: "/philosophy/articles/", lang: "ja" },
+    science: { base: "/science/articles/", lang: "ja" },
+    relationships: { base: "/relationships/articles/", lang: "ja" },
+  }).map(([k, v]) => [k, { ...v, dir: path.join(root, "content", k, "articles"), planning: path.join(root, "content", k, "planning") }]),
+);
 const sectionKey = Object.keys(SECTIONS).find((k) => fs.existsSync(path.join(SECTIONS[k].dir, `${slug}.md`))) ?? "english";
 const SEC = SECTIONS[sectionKey];
 const ART = SEC.dir;
@@ -43,7 +46,7 @@ for (const [k, s] of Object.entries(SECTIONS)) {
 const all = fs.readdirSync(ART).filter((f) => f.endsWith(".md")).map((f) => ({ slug: f.slice(0, -3), ...read(f.slice(0, -3)) }));
 const self = all.find((a) => a.slug === slug);
 if (!self) {
-  console.error(`${slug}.md が、どの科目の記事フォルダ(content/articles/、content/<科目>/articles/)にも見つかりません`);
+  console.error(`${slug}.md が、どの科目の記事フォルダ(content/<科目>/articles/)にも見つかりません`);
   process.exit(1);
 }
 const { data: fm, content } = self;
@@ -75,7 +78,7 @@ if (isJa) {
 const tags = (fm.tags ?? []).map(String);
 const known = new Set(others.flatMap((a) => (a.data.tags ?? []).map(String)));
 if (tags.length < 3 || tags.length > 5) err(`tags は3〜5個（今は${tags.length}個）`);
-// 日本語学習のタグは固定の一覧(planning/japanese/workflow.md 8章)
+// 日本語学習のタグは固定の一覧(content/japanese/planning/workflow.md 8章)
 const JA_TAGS = new Set(["Particles", "Grammar", "Synonyms", "Politeness", "Phrases", "Beginner", "Intermediate", "Advanced", "N5", "N4", "N3", "N2", "N1", "Verbs", "Adjectives", "Conversation", "Business"]);
 if (isJa) {
   for (const t of tags) if (!JA_TAGS.has(t)) err(`タグ「${t}」は日本語学習のタグの一覧にない(workflow 8章)`);
@@ -181,8 +184,8 @@ if (fm.type === "general" && content.includes('class="voice"')) err("general 記
 if (!isJa && content.includes('class="analogy"')) warn("英語学習の記事に例え話の囲み(class=\"analogy\")がある。日本語学習の記事用の部品");
 
 // ---------- topic-map ----------
-const mapFile = sectionKey === "english" ? path.join(root, "content", "planning", "topic-map.md") : path.join(root, "content", "planning", sectionKey, "topic-map.md");
-if (sectionKey !== "english" && !fs.existsSync(mapFile)) warn(`この科目の topic-map(content/planning/${sectionKey}/topic-map.md)がまだない`);
+const mapFile = path.join(SEC.planning, "topic-map.md");
+if (sectionKey !== "english" && !fs.existsSync(mapFile)) warn(`この科目の topic-map(content/${sectionKey}/planning/topic-map.md)がまだない`);
 else if (fs.existsSync(mapFile)) {
   const rows = fs.readFileSync(mapFile, "utf8").split("\n").filter((l) => /^\|\s*[A-Z]+-?\d+/.test(l)).map((l) => l.split("|").map((c) => c.trim()));
   const row = rows.find((r) => r[2] === slug);
@@ -190,7 +193,7 @@ else if (fs.existsSync(mapFile)) {
   else if (row[4] !== fm.primaryKeyword) err(`topic-map の主キーワード（${row[4]}）と frontmatter（${fm.primaryKeyword}）が違う`);
   const dup = rows.filter((r) => r[4] === fm.primaryKeyword && r[2] !== slug);
   for (const r of dup) err(`主キーワードが topic-map の ${r[1]}（${r[2]}）と同じ`);
-} else err("content/planning/topic-map.md がない");
+} else err("content/english/planning/topic-map.md がない");
 
 // ---------- 結果 ----------
 console.log(`\n# check-article: ${slug}`);
