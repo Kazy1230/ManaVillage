@@ -293,15 +293,16 @@ export default function OshieteApp({ viewer, saved, devTools }: { viewer: { nick
             {loggedIn ? <Link href="/mypage">マイページ（{viewer?.nickname}）</Link> : <a href={LOGIN_URL}>ログイン</a>}
           </span>
         </div>
-        <div className="foot pad">
-          {devTools && (
+        {/* テスト用のボタンは開発中だけ(本番では、進み具合を消したり日付を進めたりできない) */}
+        {devTools && (
+          <div className="foot pad">
             <button type="button" className="ghost" onClick={() => { setS((s) => ({ ...s, dayCount: 0 })); go({ fresh: true }); }}>
               テスト用：次の日にする
             </button>
-          )}
-          <button type="button" className="ghost" onClick={() => setUi((u) => ({ ...u, confirmReset: true }))}>はじめからやり直す</button>
-        </div>
-        {ui.confirmReset && (
+            <button type="button" className="ghost" onClick={() => setUi((u) => ({ ...u, confirmReset: true }))}>テスト用：はじめからやり直す</button>
+          </div>
+        )}
+        {devTools && ui.confirmReset && (
           <div className="foot pad">
             <span className="lead">進み具合を全部消します。</span>
             <button type="button" className="ghost" onClick={() => { setS({ ...freshState(), flags: S.flags }); go({}); }}>消す</button>
